@@ -102,7 +102,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="テスト　太郎"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="役職"/>
                 </ListItem>
                 <Divider />
@@ -110,7 +110,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="一般職"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="生年月日"/>
                 </ListItem>
                 <Divider />
@@ -118,7 +118,7 @@ export default function BasicButtonGroup() {
                   <ListItemText　primary="1996/4/1"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="性別"/>
                 </ListItem>
                 <Divider />
@@ -126,7 +126,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="男"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="連絡先"/>
                 </ListItem>
                 <Divider />
@@ -134,7 +134,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="090-1234-5678"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="現配属案件"/>
                 </ListItem>
                 <Divider />
@@ -147,7 +147,7 @@ export default function BasicButtonGroup() {
         <div className={classes.content2}>
             <List >
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText　primary="雇用形態"/>
                 </ListItem>
                 <Divider />
@@ -155,7 +155,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="正社員"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="所属会社"/>
                 </ListItem>
                 <Divider />
@@ -163,7 +163,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="データウェアネットワーク株式会社"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="入社日"/>
                 </ListItem>
                 <Divider />
@@ -171,7 +171,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="2018/4/1"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="年齢"/>
                 </ListItem>
                 <Divider />
@@ -179,7 +179,7 @@ export default function BasicButtonGroup() {
                   <ListItemText　primary="22"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="最終学歴"/>
                 </ListItem>
                 <Divider />
@@ -187,7 +187,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="〇〇大学"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="最寄り駅"/>
                 </ListItem>
                 <Divider />
@@ -195,7 +195,7 @@ export default function BasicButtonGroup() {
                   <ListItemText primary="新小岩駅"/>
                 </ListItem>
                 <Divider />
-                <ListItem>
+                <ListItem className={classes.List}>
                   <ListItemText primary="現案件終了予定日"/>
                 </ListItem>
                 <Divider />
