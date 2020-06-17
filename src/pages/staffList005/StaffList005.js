@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 
 
@@ -23,23 +24,25 @@ const useStyles = makeStyles((theme) => ({
   },
   margin: {
     margin: theme.spacing(1),
-    bottom: theme.spacing(12),
-    left: theme.spacing(74),
+    bottom: theme.spacing(13),
+    left: theme.spacing(65),
     background:'#000000',
   },
   icon: {
     color: '#ffffff',
   },
-
   Button: {
     background:'rgb(120,144,156)',
-    // right: '50px',
+    // width: theme.spacing(14),
+    // height: theme.spacing(4.5),
   },
   ButtonGroup: {
     right: '200px',
   },
   Paper: {
-    padding: theme.spacing(5),
+    padding: theme.spacing(7),
+    margin: '16px',
+    width: '95%',
     borderRadius: '12px 12px 12px 12px',
 },
 demo: {
@@ -51,14 +54,14 @@ demo: {
   content1: {
     float: 'left',
     width:'50%',
-    // top:theme.spacing(2),
-
   },
   content2: {
     float: 'left',
     width:'50%',
   },
-
+  List: {
+    background:'#6699ff'
+  }
 }));
 
 export default function BasicButtonGroup() {
@@ -72,102 +75,134 @@ export default function BasicButtonGroup() {
       <IconButton aria-label="delete" className={classes.margin}>
       <CloseIcon className={classes.icon} />
       </IconButton>
+      <div>
       <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
         <Button className={classes.Button}>経歴</Button>
         <Button className={classes.Button}>キャリアパス</Button>
         <Button className={classes.Button}>スタッフ情報</Button>
       </ButtonGroup>
+      </div>
       <div className={classes.content1}>
             <List >
-                <ListItem>
-                  <ListItemText　primary="スタッフ番号"/>
+                <Divider />
+                <ListItem className={classes.List}>
+                  <ListItemText primary="スタッフ番号"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="0001"/>
                 </ListItem>
-                <ListItem>
+                <Divider />
+                <ListItem className={classes.List}>
                   <ListItemText primary='氏名'/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="テスト　太郎"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="役職"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="一般職"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="生年月日"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText　primary="1996/4/1"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="性別"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="男"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="連絡先"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="090-1234-5678"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="現配属案件"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="〇〇〇〇株式会社ABC開発案件"/>
                 </ListItem>
+                <Divider />
             </List>
         </div>
         <div className={classes.content2}>
             <List >
+                <Divider />
                 <ListItem>
                   <ListItemText　primary="雇用形態"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="正社員"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
                   <ListItemText primary="所属会社"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="生年月日"/>
+                  <ListItemText primary="データウェアネットワーク株式会社"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="性別"/>
+                  <ListItemText primary="入社日"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="連絡先"/>
+                  <ListItemText primary="2018/4/1"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="現配属案件"/>
+                  <ListItemText primary="年齢"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText　primary="スタッフ番号"/>
+                  <ListItemText　primary="22"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="氏名"/>
+                  <ListItemText primary="最終学歴"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="役職"/>
+                  <ListItemText primary="〇〇大学"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="生年月日"/>
+                  <ListItemText primary="最寄り駅"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="性別"/>
+                  <ListItemText primary="新小岩駅"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="連絡先"/>
+                  <ListItemText primary="現案件終了予定日"/>
                 </ListItem>
+                <Divider />
                 <ListItem>
-                  <ListItemText primary="現配属案件"/>
+                  <ListItemText primary="2019/3/31"/>
                 </ListItem>
+                <Divider />
             </List>
         </div>
       </Paper>
