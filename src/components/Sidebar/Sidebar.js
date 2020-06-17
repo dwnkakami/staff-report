@@ -41,8 +41,8 @@ const structure = [
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
-      { label: "スタッフ検索", link: "/staff-report/stafflist/002", icon: <Dot size="small" /> },
-      { label: "スタッフ追加", link: "/staff-report/stafflist/003", icon: <Dot size="small" />  },
+      { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
+      { label: "スタッフ追加", link: "/staff-report/staffadd/001", icon: <Dot size="small" />  },
     ],
   },
   // {
