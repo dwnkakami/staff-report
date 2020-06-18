@@ -8,6 +8,11 @@ import {
   Tab,
   TextField,
   Fade,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -23,6 +28,28 @@ import google from "../../images/google.svg";
 import { useUserDispatch, loginUser } from "../../context/UserContext";
 
 function Login(props) {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const submitAction = () => {
+    loginUser(
+      userDispatch,
+      passwordValue,
+      passwordValue,
+      props.history,
+      setIsLoading,
+      setError,
+    )
+  }
+
   var classes = useStyles();
 
   // global
@@ -199,17 +226,18 @@ function Login(props) {
                 ) : (
                   <Button
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
+                      handleClickOpen()
+                      // loginUser(
+                      //   userDispatch,
+                      //   // loginValue,
+                      //   passwordValue,
+                      //   props.history,
+                      //   setIsLoading,
+                      //   setError,
+                      // )
                     }
                     disabled={
-                      loginValue.length === 0 ||
+                      // loginValue.length === 0 ||
                       passwordValue.length === 0 ||
                       nameValue.length === 0
                     }
@@ -223,6 +251,30 @@ function Login(props) {
                   </Button>
                 )}
               </div>
+              <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">警告</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    管理者のパスワードを入力してください
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="managePassword"
+                    label="パスワード"
+                    type="password"
+                    fullWidth
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    キャンセル
+                  </Button>
+                  <Button onClick={submitAction} color="primary">
+                    確認
+                  </Button>
+                </DialogActions>
+              </Dialog>
               {/* <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
                 <Typography className={classes.formDividerWord}>or</Typography>
