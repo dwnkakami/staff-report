@@ -19,6 +19,7 @@ const BasicMap = withScriptjs(
         lng: parseFloat(144.950259),
       }}
     >
+      
       <Marker position={{ lat: -37.813179, lng: 144.950259 }} />
     </GoogleMap>
   )),
