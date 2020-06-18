@@ -5,7 +5,8 @@ import { CssBaseline } from "@material-ui/core";
 
 import Themes from "./themes";
 // import App from "./components/App";
-import StaffList005 from '../src/pages/staffList005/StaffList005';
+// import StaffList005 from '../src/pages/staffList005/StaffList005';
+import Table from '../src/pages/staffList005/StaffList005';
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
@@ -16,7 +17,8 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         {/* <App /> */}
-        <StaffList005 />
+        {/* <StaffList005 /> */}
+        <Table />
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
