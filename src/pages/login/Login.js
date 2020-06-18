@@ -25,7 +25,7 @@ import logo from "./logo.svg";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 
 function Login(props) {
 
@@ -40,9 +40,8 @@ function Login(props) {
   };
 
   const submitAction = () => {
-    loginUser(
+    registerUser(
       userDispatch,
-      passwordValue,
       passwordValue,
       props.history,
       setIsLoading,
@@ -101,7 +100,7 @@ function Login(props) {
                 </Typography>
               </Fade>
               <TextField
-                id="email"
+                id="name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
@@ -112,7 +111,7 @@ function Login(props) {
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="email"
+                type="text"
                 fullWidth
               />
               <TextField
