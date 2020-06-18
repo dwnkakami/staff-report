@@ -11,8 +11,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
-
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -23,18 +21,33 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   margin: {
-    margin: theme.spacing(1),
-    bottom: theme.spacing(13),
-    left: theme.spacing(65),
+    // margin: theme.spacing(1),
+    bottom: theme.spacing(14),
+    left: theme.spacing(6),
     background:'#000000',
+    float: 'right',
   },
   icon: {
     color: '#ffffff',
   },
   Button: {
     background:'rgb(120,144,156)',
-    // width: theme.spacing(14),
-    // height: theme.spacing(4.5),
+    float: 'left',
+  },
+  Button2: {
+    background:'rgb(120,144,156)',
+    float: 'right',
+    color: '#ffffff',
+    height: '30px',
+    left: theme.spacing(6),
+  },
+  Button3: {
+    background:'rgb(120,144,156)',
+    float: 'right',
+    color: '#ffffff',
+    height: '30px',
+    // bottom: theme.spacing(3),
+    // right: theme.spacing(1),
   },
   ButtonGroup: {
     right: '200px',
@@ -54,10 +67,14 @@ demo: {
   content1: {
     float: 'left',
     width:'50%',
+    color: '#000000',
+    top: theme.spacing(7),
   },
   content2: {
     float: 'left',
     width:'50%',
+    color: '#000000',
+  
   },
   List: {
     background:'#6699ff'
@@ -75,6 +92,8 @@ export default function BasicButtonGroup() {
       <IconButton aria-label="delete" className={classes.margin}>
       <CloseIcon className={classes.icon} />
       </IconButton>
+      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
       <div>
       <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
