@@ -23,7 +23,7 @@ import Maps from "../../pages/maps";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
-import CaseSearch from "../../pages/case/caseSearch/CaseSearch";
+import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
@@ -70,7 +70,7 @@ function Layout(props) {
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
-              <Route path="/staff-report/casasearch/001" component={CaseSearch} />
+              {/* <Route path="/staff-report/casasearch/001" component={CaseSearch} /> */}
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
