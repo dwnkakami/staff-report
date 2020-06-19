@@ -23,13 +23,11 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
-import CaseList from "../../pages/case";
-
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
-//import CaseList from "../../pages/caselist";
+import CaseList from "../../pages/caselist";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
