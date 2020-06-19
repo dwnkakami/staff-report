@@ -8,6 +8,11 @@ import Typography from '@material-ui/core/Typography';
 import CheckBox from './CheckBox';
 import KeywordSearch from './KeywordSearch';
 import SelectBox from './SelectBox';
+import SearchButton from './SearchButton';
+import DeleteButton from './DeleteButton';
+
+//CSS import
+import './CaseSearch.css';
 
 const useStyles = makeStyles({
   root: {
@@ -62,26 +67,28 @@ export default function CaseSearch() {
           期間
         </Typography>
         
-        <SelectBox />
+        <SelectBox /><Typography variant="body2" component="p">年</Typography>
+        <SelectBox className="left" /><Typography variant="body2" component="p">月</Typography>
+        <SelectBox className="left" /><Typography variant="body2" component="p">日</Typography>
+
+        <Typography variant="body2" component="p">～</Typography>
+
+        <SelectBox /><Typography variant="body2" component="p">年</Typography>
+        <SelectBox className="left" /><Typography variant="body2" component="p">月</Typography>
+        <SelectBox className="left" /><Typography variant="body2" component="p">日</Typography>
+
 
         <Typography variant="h5" component="h2">
           並び順
         </Typography>
 
+        <SelectBox /><Typography variant="body2" component="p">を基準に</Typography>
         <SelectBox />
 
-        {/* <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
-        <Typography variant="body2" component="p">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography> */}
+        <DeleteButton />
+        <SearchButton />
+
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }
