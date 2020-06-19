@@ -43,7 +43,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const CustomizedDialogs = () => {
+export default function Caselist () {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -114,5 +114,3 @@ const CustomizedDialogs = () => {
     </div>
   );
 }
-
-export default CustomizedDialogs;
