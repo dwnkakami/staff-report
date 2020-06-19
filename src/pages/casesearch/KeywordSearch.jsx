@@ -43,8 +43,6 @@ const BootstrapInput = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
-  },
-  button: {
     float:'left',
   },
 }));
@@ -58,7 +56,7 @@ export default function KeywordSearch() {
             <InputLabel htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
             <BootstrapInput id="demo-customized-textbox" />
         </FormControl>
-        <SearchButton className={classes.button} />
+        <SearchButton />
       </div>
 
 

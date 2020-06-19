@@ -11,23 +11,28 @@ import SelectBox from './SelectBox';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 
-//CSS import
-import './CaseSearch.css';
+
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
+    backgroundColor: 'lightgrey',
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+  left: {
+    width:160,
+    float:'left',
   },
-  title: {
-    fontSize: 14,
+  date: {
+    width:30,
+    float:'left',
   },
-  pos: {
-    marginBottom: 12,
+other: {
+    width:70,
+    float:'left',
+  },
+end: {
+    width:'100%',
+    clear:'both',
   },
 });
 
@@ -41,49 +46,63 @@ export default function CaseSearch() {
         案件検索
         </Typography>
 
-        <br />
+        <br className={classes.end}/>
 
-      <Typography variant="h5" component="h2">
+      <Typography className={classes.left} variant="h5" component="h2">
         キーワード検索
         </Typography>
 
         <KeywordSearch />
 
+        <br className={classes.end} />
+        
+
         <CheckBox />
 
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.left} variant="h5" component="h2">
           資格
         </Typography>
 
         <SelectBox />
+        <br className={classes.end} />
+        
 
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.left} variant="h5" component="h2">
           スキルレベル
         </Typography>
 
         <SelectBox />
+        <br className={classes.end} />
+        
 
-        <Typography variant="h5" component="h2">
+        <Typography className={classes.left} variant="h5" component="h2">
           期間
         </Typography>
         
-        <SelectBox /><Typography variant="body2" component="p">年</Typography>
-        <SelectBox className="left" /><Typography variant="body2" component="p">月</Typography>
-        <SelectBox className="left" /><Typography variant="body2" component="p">日</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography>
 
+        <br className={classes.end} />
         <Typography variant="body2" component="p">～</Typography>
+        <br className={classes.end} />
 
-        <SelectBox /><Typography variant="body2" component="p">年</Typography>
-        <SelectBox className="left" /><Typography variant="body2" component="p">月</Typography>
-        <SelectBox className="left" /><Typography variant="body2" component="p">日</Typography>
+        <div className={classes.left} />
 
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography>
 
-        <Typography variant="h5" component="h2">
+        <br className={classes.end} />
+
+        <Typography className={classes.left} variant="h5" component="h2">
           並び順
         </Typography>
 
-        <SelectBox /><Typography variant="body2" component="p">を基準に</Typography>
+        <SelectBox /><Typography className={classes.other} variant="body2" component="p">を基準に</Typography>
         <SelectBox />
+
+        <br className={classes.end} />
 
         <DeleteButton />
         <SearchButton />
