@@ -42,6 +42,20 @@ const useStyles = makeStyles((theme) => ({
     left: 300,
   },
 
+  formControl3: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: 400,
+    top:-120,
+  },
+
+  formControl4: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: 80,
+    top:-120,
+  },
+
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
@@ -50,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(1),
       width: '25ch',
-      left: 250,
+      left:60,
     },
   },
 }));
@@ -85,7 +99,7 @@ export default function StaffSearch() {
   return (
     <div>
     <Card class='paper'>
-    <p className='font'>スタッフ検索</p>
+    <p class='font'>スタッフ検索</p>
     <p>職種</p>
     {/* 職種選択 */}
     <FormGroup row>
@@ -158,7 +172,7 @@ export default function StaffSearch() {
       </FormControl>
 
       {/* スキル情報１ */}
-      <p>スキル</p>
+      <p>スキルレベル</p>
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           native
@@ -300,13 +314,13 @@ export default function StaffSearch() {
         </Select>
       </FormControl>
 
-    <p>年齢</p>
+    <p class='older'>年齢</p>
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-basic" label="Outlined" variant="outlined" />
     </form>
 
-    <p>性別</p>
-    <FormControl variant="filled" className={classes.formControl}>
+    <p class='gender'>性別</p>
+    <FormControl variant="filled" className={classes.formControl3}>
         <Select
           native
           value={state.age}
@@ -323,8 +337,8 @@ export default function StaffSearch() {
         </Select>
       </FormControl>
 
-      <p>地域</p>
-      <FormControl variant="filled" className={classes.formControl}>
+      <p class='area'>地域</p>
+      <FormControl variant="filled" className={classes.formControl4}>
         <Select
           native
           value={state.age}
@@ -342,10 +356,10 @@ export default function StaffSearch() {
       </FormControl>
     
       {/* リセットボタン */}
-      <Button variant="contained">クリア</Button>
+      <Button class='reset' variant="contained">クリア</Button>
       
       {/* 検索ボタン */}
-      <Button variant="contained">検索</Button>
+      <Button class='search' variant="contained">検索</Button>
     </Card>
     </div>
   );

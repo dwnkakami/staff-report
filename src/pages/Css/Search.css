@@ -6,6 +6,30 @@
     font-size: 20px;
 }
 
+.older{
+    position: relative;
+    top:60px;
+}
+
 .gender{
-    left: 300px;
+    position: relative;
+    left:  350px;
+    top: -60px
+}
+
+.area{
+    position: relative;
+    top:-70px;
+}
+
+.reset{
+    position: relative;
+    left: 150px;
+    top:-10px;
+}
+
+.search{
+    position: relative;
+    left: 200px;
+    top:-10px;
 }
