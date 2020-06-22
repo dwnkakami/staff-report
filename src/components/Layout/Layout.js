@@ -19,7 +19,7 @@ import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
-// import Tables from "../../pages/tables";
+import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
@@ -62,7 +62,7 @@ function Layout(props) {
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={CaseSearch} />
+              <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
@@ -70,7 +70,7 @@ function Layout(props) {
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
-              {/* <Route path="/staff-report/casasearch/001" component={CaseSearch} /> */}
+              <Route path="/staff-report/casasearch/001" component={CaseSearch} />
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
