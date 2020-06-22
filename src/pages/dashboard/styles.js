@@ -119,9 +119,12 @@ export default makeStyles(theme => ({
     width: "100%",
   },
   Licon: {
-    fontSize: "50px",
+    position: "relative",
+    height: "25%",
+    width: "25%",
   },
   Picon: {
-    fontSize: "100px",
+    height: "50%",
+    width: "50%",
   },
 }));
