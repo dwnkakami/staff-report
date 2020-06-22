@@ -8,6 +8,11 @@ import {
   Tab,
   TextField,
   Fade,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -20,9 +25,30 @@ import logo from "./logo.svg";
 import google from "../../images/google.svg";
 
 // context
-import { useUserDispatch, loginUser } from "../../context/UserContext";
+import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 
 function Login(props) {
+
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const submitAction = () => {
+    registerUser(
+      userDispatch,
+      passwordValue,
+      props.history,
+      setIsLoading,
+      setError,
+    )
+  }
+
   var classes = useStyles();
 
   // global
@@ -40,7 +66,7 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Material Admin</Typography>
+        <Typography className={classes.logotypeText}>Staff Administration System</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -51,30 +77,30 @@ function Login(props) {
             textColor="primary"
             centered
           >
-            <Tab label="Login" classes={{ root: classes.tab }} />
-            <Tab label="New User" classes={{ root: classes.tab }} />
+            <Tab label="ログイン" classes={{ root: classes.tab }} />
+            <Tab label="ユーザー追加" classes={{ root: classes.tab }} />
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
-              </Typography>
-              <Button size="large" className={classes.googleButton}>
+              {/* <Typography variant="h3" className={classes.greeting}>
+                ログインフォーム
+              </Typography> */}
+              {/* <Button size="large" className={classes.googleButton}>
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Sign in with Google
-              </Button>
-              <div className={classes.formDividerContainer}>
-                <div className={classes.formDivider} />
-                <Typography className={classes.formDividerWord}>or</Typography>
-                <div className={classes.formDivider} />
-              </div>
+              </Button> */}
+              {/* <div className={classes.formDividerContainer}> */}
+                {/* <div className={classes.formDivider} /> */}
+                {/* <Typography className={classes.formDividerWord}>or</Typography> */}
+                {/* <div className={classes.formDivider} /> */}
+              {/* </div> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
                 </Typography>
               </Fade>
               <TextField
-                id="email"
+                id="name"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
@@ -84,8 +110,8 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
-                type="email"
+                placeholder="ユーザーID"
+                type="text"
                 fullWidth
               />
               <TextField
@@ -99,7 +125,7 @@ function Login(props) {
                 value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                placeholder="パスワード"
                 type="password"
                 fullWidth
               />
@@ -123,29 +149,26 @@ function Login(props) {
                     }
                     variant="contained"
                     color="primary"
-                    size="large"
+                    size="middle"
                   >
-                    Login
+                  ログイン<br/>する
                   </Button>
                 )}
                 <Button
                   color="primary"
-                  size="large"
+                  size="small"
                   className={classes.forgetButton}
                 >
-                  Forget Password
+                  パスワードをお忘れの場合はこちら
                 </Button>
               </div>
             </React.Fragment>
           )}
           {activeTabId === 1 && (
             <React.Fragment>
-              <Typography variant="h1" className={classes.greeting}>
-                Welcome!
-              </Typography>
-              <Typography variant="h2" className={classes.subGreeting}>
-                Create your account
-              </Typography>
+              {/* <Typography variant="h3" className={classes.subGreeting}>
+                ユーザーの追加
+              </Typography> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
@@ -162,11 +185,11 @@ function Login(props) {
                 value={nameValue}
                 onChange={e => setNameValue(e.target.value)}
                 margin="normal"
-                placeholder="Full Name"
+                placeholder="ユーザーID"
                 type="text"
                 fullWidth
               />
-              <TextField
+              {/* <TextField
                 id="email"
                 InputProps={{
                   classes: {
@@ -180,7 +203,7 @@ function Login(props) {
                 placeholder="Email Adress"
                 type="email"
                 fullWidth
-              />
+              /> */}
               <TextField
                 id="password"
                 InputProps={{
@@ -192,7 +215,7 @@ function Login(props) {
                 value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                placeholder="パスワード"
                 type="password"
                 fullWidth
               />
@@ -202,17 +225,18 @@ function Login(props) {
                 ) : (
                   <Button
                     onClick={() =>
-                      loginUser(
-                        userDispatch,
-                        loginValue,
-                        passwordValue,
-                        props.history,
-                        setIsLoading,
-                        setError,
-                      )
+                      handleClickOpen()
+                      // loginUser(
+                      //   userDispatch,
+                      //   // loginValue,
+                      //   passwordValue,
+                      //   props.history,
+                      //   setIsLoading,
+                      //   setError,
+                      // )
                     }
                     disabled={
-                      loginValue.length === 0 ||
+                      // loginValue.length === 0 ||
                       passwordValue.length === 0 ||
                       nameValue.length === 0
                     }
@@ -222,16 +246,40 @@ function Login(props) {
                     fullWidth
                     className={classes.createAccountButton}
                   >
-                    Create your account
+                    追加する
                   </Button>
                 )}
               </div>
-              <div className={classes.formDividerContainer}>
+              <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">警告</DialogTitle>
+                <DialogContent>
+                  <DialogContentText>
+                    管理者のパスワードを入力してください
+                  </DialogContentText>
+                  <TextField
+                    autoFocus
+                    margin="dense"
+                    id="managePassword"
+                    label="パスワード"
+                    type="password"
+                    fullWidth
+                  />
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleClose} color="primary">
+                    キャンセル
+                  </Button>
+                  <Button onClick={submitAction} color="primary">
+                    確認
+                  </Button>
+                </DialogActions>
+              </Dialog>
+              {/* <div className={classes.formDividerContainer}>
                 <div className={classes.formDivider} />
                 <Typography className={classes.formDividerWord}>or</Typography>
                 <div className={classes.formDivider} />
-              </div>
-              <Button
+              </div> */}
+              {/* <Button
                 size="large"
                 className={classnames(
                   classes.googleButton,
@@ -240,12 +288,12 @@ function Login(props) {
               >
                 <img src={google} alt="google" className={classes.googleIcon} />
                 &nbsp;Sign in with Google
-              </Button>
+              </Button> */}
             </React.Fragment>
           )}
         </div>
         <Typography color="primary" className={classes.copyright}>
-          © 2014-2019 Flatlogic, LLC. All rights reserved.
+          © 2013-2020 force corp. All rights reserved.
         </Typography>
       </div>
     </Grid>

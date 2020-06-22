@@ -1,4 +1,6 @@
 import React from "react";
+import qs from 'qs';
+import axios from "axios";
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -45,7 +47,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, registerUser, signOut };
 
 // ###########################################################
 
@@ -54,6 +56,51 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setIsLoading(true);
 
   if (!!login && !!password) {
+    // setTimeout(() => {
+    //   localStorage.setItem('id_token', 1)
+    //   setError(null)
+    //   setIsLoading(false)
+    //   dispatch({ type: 'LOGIN_SUCCESS' })
+
+    //   history.push('/app/dashboard')
+    // }, 2000);
+    let data = {
+      name: login,
+      password: password
+    };
+    axios.post("http://127.0.0.1:8686/login", qs.stringify(data), {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }).then(res => {
+        setError(false)
+        setIsLoading(false)
+        if (res.data && res.data.code === 0) {
+          window.localStorage.setItem("X-AUTH-TOKEN", '0000')
+          localStorage.setItem('id_token', 1)
+          dispatch({ type: 'LOGIN_SUCCESS' })
+
+          history.push('/app/dashboard')
+        } else {
+          alert('ユーザー　エラー')
+        }
+      },
+      err => {
+        // console.log(err);
+      }
+    );
+  } else {
+    dispatch({ type: "LOGIN_FAILURE" })
+    setError(true);
+    setIsLoading(false);
+  }
+}
+
+function registerUser(dispatch, password, history, setIsLoading, setError) {
+  setError(false);
+  setIsLoading(true);
+
+  if (!!password) {
     setTimeout(() => {
       localStorage.setItem('id_token', 1)
       setError(null)
