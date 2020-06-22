@@ -7,7 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Grid } from '@material-ui/core';
+import { Grid　} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 
 import './S_012.css';
@@ -51,7 +52,10 @@ export default function Referencelist() {
     return (
         <Paper elevation={3} className="paper1">
             {/* <h1>引合リスト</h1> */}
-            <DescriptionOutlinedIcon />
+            <div style={{display:'flex'}}>
+            <DescriptionOutlinedIcon style={{fontSize:'35px'}} />
+            <Typography style={{fontSize:'30px'}}>引合リスト</Typography>
+            </div>
             <TableContainer >
                 <Grid container spacing={24} justify={"center"}>
                     <Grid className="table1">
