@@ -1,5 +1,5 @@
 import React from 'react';
-import './company2.css';
+import './Caselist.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -58,11 +58,11 @@ export default function Caselist () {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         案件リスト
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           案件詳細
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers >
           <Typography gutterBottom>
             <table>
               <tr>
@@ -81,21 +81,25 @@ export default function Caselist () {
                 <td>データ</td>
                 <td>データ</td>
               </tr>
+              </table>
+              <table>
               <tr>
                 <th>募集人数</th>
                 <th>案件開始日</th>
+                <th>案件終了日</th>
               </tr>
               <tr>
+                <td>データ</td>
                 <td>データ</td>
                 <td>データ</td>
               </tr>
             </table>
             <table>
-              <tr class='wide-th'>
+              <tr>
                 <th>業務内容</th>
               </tr>
               <tr>
-                <td class='wide-td'>データ</td>
+                <td class='wide-td1'>データ</td>
               </tr>
             </table>
             <table>
@@ -104,7 +108,7 @@ export default function Caselist () {
                 <th>備考欄</th>
               </tr>
               <tr>
-                <td>データ</td>
+                <td class='wide-td2'>データ</td>
                 <td>データ</td>
               </tr>
             </table>
