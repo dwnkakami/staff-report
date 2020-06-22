@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Drawer, IconButton, List } from "@material-ui/core";
+import { Drawer, IconButton, List, Typography } from "@material-ui/core";
 import {
   Home as HomeIcon,
   // NotificationsNone as NotificationsIcon,
@@ -29,6 +29,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
+import { useUserDispatch, signOut } from "../../context/UserContext";
 
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
@@ -99,11 +100,11 @@ const structure = [
   //     { label: "Maps", link: "/app/ui/maps" },
   //   ],
   // },
-  {
-    id: 6,
-    label: "ログアウト",
-    link: "",
-  },
+  // {
+  //   id: 6,
+  //   label: "ログアウト",
+  //   link: "/login",
+  // },
 ]
 //   { id: 5, type: "divider" },
 //   { id: 6, type: "title", label: "HELP" },
@@ -132,13 +133,14 @@ const structure = [
 //   },
 // ];
 
-function Sidebar({ location }) {
+function Sidebar({ location } ,props) {
   var classes = useStyles();
   var theme = useTheme();
 
   // global
   var { isSidebarOpened } = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
+  var userDispatch = useUserDispatch();
 
   // local
   var [isPermanent, setPermanent] = useState(true);
@@ -185,7 +187,14 @@ function Sidebar({ location }) {
             {...link}
           />
         ))}
+        
       </List>
+      <div className={classes.profileMenuUser}>
+        <Typography className={classes.profileMenuLink}
+              color="primary"
+              onClick={() => signOut(userDispatch, props.history)}>ログアウト
+        </Typography>
+      </div>
     </Drawer>
   );
 
