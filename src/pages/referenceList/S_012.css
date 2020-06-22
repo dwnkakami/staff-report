@@ -1,0 +1,20 @@
+h1{
+    margin: 20px;
+}
+
+.table1{
+    width: 83%;
+    margin: 50px;
+}
+
+.table2{
+width: 100%;
+margin: 50px;
+}
+
+.paper1{
+    position: relative;
+    margin: 50px;
+    min-height:80vh;
+    border: 1px solid black;
+}
