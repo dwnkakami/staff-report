@@ -74,10 +74,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: blue[500] }}>
-                <ListIcon style={{ height: "150px", width: "50px" }} />
-                <PeopleAltIcon style={{ height: "150px", width: "100px" }}  />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: blue[500] }} className={classes.Icon}>
+                <ListIcon className={classes.Licon}  />
+                <PeopleAltIcon className={classes.Picon} />
               </Button>
             </div>
           </Widget>
@@ -89,10 +89,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: blue[500] }}>
-                <SearchIcon style={{ height: "150px", width: "50px" }} />
-                <PeopleAltIcon style={{ height: "150px", width: "100px" }}  />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: blue[500] }} className={classes.Icon}>
+                <SearchIcon className={classes.Licon} />
+                <PeopleAltIcon className={classes.Picon}  />
               </Button>
             </div>
           </Widget>
@@ -104,10 +104,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: blue[500] }}>
-                <AddIcon style={{ height: "150px", width: "50px" }} />
-                <PeopleAltIcon style={{ height: "150px", width: "100px" }}  />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: blue[500] }} className={classes.Icon}>
+                <AddIcon className={classes.Licon} />
+                <PeopleAltIcon className={classes.Picon}  />
               </Button>
             </div>
           </Widget>
@@ -124,10 +124,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: yellow[500] }}>
-              <ListIcon style={{ height: "150px", width: "50px" }} />
-                <AssignmentIcon style={{ height: "150px", width: "100px"}} />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: yellow[500] }} className={classes.Icon}>
+              <ListIcon className={classes.Licon} />
+                <AssignmentIcon className={classes.Picon} />
               </Button>
             </div>
          
@@ -140,10 +140,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: yellow[500] }}>
-                <SearchIcon style={{ height: "150px", width: "50px"}} />
-                <AssignmentIcon style={{ height: "150px", width: "100px"}} />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: yellow[500] }} className={classes.Icon}>
+                <SearchIcon className={classes.Licon} />
+                <AssignmentIcon className={classes.Picon} />
               </Button>
             </div>
             </Widget>
@@ -155,10 +155,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: yellow[500] }}>
-                <AddIcon style={{ height: "150px", width: "50px"}} />
-                <AssignmentIcon style={{ height: "150px", width: "100px"}} />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: yellow[500] }} className={classes.Icon}>
+                <AddIcon className={classes.Licon} />
+                <AssignmentIcon className={classes.Picon} />
               </Button>
             </div>
             </Widget>
@@ -175,34 +175,14 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained" style={{ background: green[500] }}>
-                <ListIcon style={{ height: "150px", width: "50px", }} />
-                <DescriptionIcon style={{height: "150px", width: "100px"}} />
+            <div className={classes.Icon}>
+              <Button variant="contained" style={{ background: green[500] }} className={classes.Icon}>
+                <ListIcon className={classes.Licon} />
+                <DescriptionIcon className={classes.Picon} />
               </Button>
             </div>
             </Widget>
         </Grid>
-        <Grid item lg={2} md={4} sm={6} xs={12}>
-        <Widget
-            title="引合検索"
-            upperTitle
-            bodyClass={classes.fullHeightBody}
-            className={classes.card}
-          >
-            <div>
-              <Button variant="contained" style={{ background: green[500] }}>
-                <SearchIcon style={{height: "150px", width: "50px"}} />
-              　<DescriptionIcon style={{height: "150px", width: "100px"}} />
-              </Button>
-            </div>
-            </Widget>
-        </Grid>
-        </Grid>
-        </div>
-
-        <div>
-        <Grid container spacing={3}>
         <Grid item lg={2} md={4} sm={6} xs={12}>
         <Widget
             title="請求書発行"
@@ -210,10 +190,10 @@ export default function Dashboard(props) {
             bodyClass={classes.fullHeightBody}
             className={classes.card}
           >
-            <div>
-              <Button variant="contained">
-                <ArrowDownwardIcon style={{height: "150px", width: "50px"}} />
-                <LocalAtmIcon style={{height: "150px", width: "100px"}} />
+            <div className={classes.Icon}>
+              <Button variant="contained" className={classes.Icon}>
+                <ArrowDownwardIcon className={classes.Licon} />
+                <LocalAtmIcon className={classes.Picon} />
               </Button>
             </div>
             </Widget>
@@ -226,13 +206,15 @@ export default function Dashboard(props) {
             className={classes.card}
           >
             <div>
-              <Button variant="contained">
-                <ListIcon style={{ height: "150px", width: "50px" }} />
-                <LocalAtmIcon style={{height: "150px", width: "100px"}} />
+              <Button variant="contained" className={classes.Icon}>
+                <ListIcon className={classes.Licon} />
+                <LocalAtmIcon className={classes.Picon} />
               </Button>
             </div>
             </Widget>
         </Grid>
+
+        
           
             {/* <PageTitle title="Dashboard" button="Latest Reports" /> */}
         {/* <Grid item lg={3} md={4} sm={6} xs={12}>

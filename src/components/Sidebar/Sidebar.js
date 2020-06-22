@@ -69,8 +69,7 @@ const structure = [
     link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
-      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" /> },
-      { label: "引合検索", link: "", icon: <Dot size="small" /> },
+      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" /> }
     ],
   },
   // {

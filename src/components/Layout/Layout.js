@@ -32,7 +32,6 @@ import Charts from "../../pages/charts";
 //import CaseAdd from "../../pages/caseadd";
 
 //import ReferenceList from "../../pages/referencelist";
-//import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing";
 
@@ -72,7 +71,6 @@ function Layout(props) {
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
-              {/* <Route path="" component={} /> 引合検索  */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}
 

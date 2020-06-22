@@ -112,4 +112,16 @@ export default makeStyles(theme => ({
     fontSize: "18px !important",
     marginLeft: theme.spacing(1),
   },
+  Icon: {
+    display: "flex",
+    alignItems: "center",
+    height: "100%",
+    width: "100%",
+  },
+  Licon: {
+    fontSize: "50px",
+  },
+  Picon: {
+    fontSize: "100px",
+  },
 }));
