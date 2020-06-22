@@ -60,7 +60,7 @@ function Layout(props) {
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Caselist} />
+              <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
