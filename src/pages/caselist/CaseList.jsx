@@ -8,6 +8,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 const styles = (theme) => ({
   root: {
@@ -55,25 +56,33 @@ const CaseList = () => {
 
   // const [posts, setPosts] = useState([]);
 
-  // useEffect(() => getCaseData() );
+  // useEffect(() => getSlideData() );
 
   // const getCaseData = () => {
-  //   if(posts.length === 0) {
+  //   if (posts.length === 0) {
   //     axios
-  //      .get()
+  //       .get('../../pages/caselist/CaseList')
+  //       .then(response => {
+  //         setPosts(response.data);
+  //       //   console.log([response.data]);
+  //       })
+  //       .catch(() => {
+  //         console.log('失敗しました');
+  //       })
   //   }
   // }
+
 
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         案件リスト
       </Button>
-      <Dialog maxWidth='lg' onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           案件詳細
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers >
           <Typography gutterBottom>
             <table>
               <tr>
@@ -110,7 +119,7 @@ const CaseList = () => {
                 <th>業務内容</th>
               </tr>
               <tr>
-                <td class='wide-td'>データ</td>
+                <td class='wide-td1'>データ</td>
               </tr>
             </table>
             <table>
@@ -118,8 +127,8 @@ const CaseList = () => {
                 <th>スキルレベル</th>
                 <th>備考欄</th>
               </tr>
-              <tr class='wide-td'>
-                <td>データ</td>
+              <tr>
+                <td class='wide-td2'>データ</td>
                 <td>データ</td>
               </tr>
             </table>
@@ -130,4 +139,4 @@ const CaseList = () => {
   );
 }
 
-export default CaseList;
+export default CaseList
