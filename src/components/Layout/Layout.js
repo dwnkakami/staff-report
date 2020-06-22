@@ -1,18 +1,26 @@
+// * App.jsからの呼び出し
+
+// * Reactライブラリの採用
 import React from "react";
+// * React-Dom操作が可能にする
 import {
   Route,
   Switch,
   Redirect,
   withRouter,
 } from "react-router-dom";
+// * classnames で検索 class属性の複数化にする
 import classnames from "classnames";
 
+// * CSS関係
 // styles
 import useStyles from "./styles";
 
 // components
+// todo React オブジェクト
 import Header from "../Header";
 import Sidebar from "../Sidebar";
+
 
 // pages
 import Dashboard from "../../pages/dashboard";

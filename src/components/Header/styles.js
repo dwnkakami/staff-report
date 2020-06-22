@@ -1,6 +1,7 @@
 import { makeStyles } from "@material-ui/styles";
 import { fade } from "@material-ui/core/styles/colorManipulator";
 
+// * ReactのHTMLタグ利用時のデフォルト設定　フォント
 export default makeStyles(theme => ({
   logotype: {
     color: "white",

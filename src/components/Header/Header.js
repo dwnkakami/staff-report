@@ -1,3 +1,4 @@
+// * LayOut.jsからの呼び出し
 import React, { useState } from "react";
 import {
   AppBar,
@@ -19,7 +20,9 @@ import {
 } from "@material-ui/icons";
 import classNames from "classnames";
 
+
 // styles
+// * CSSの扱い
 import useStyles from "./styles";
 
 // components

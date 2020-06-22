@@ -1,5 +1,7 @@
+// * index.jsからの呼び出し
 import React from "react";
 import { HashRouter, Route, Switch, Redirect } from "react-router-dom";
+
 
 // components
 import Layout from "./Layout";

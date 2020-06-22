@@ -5,10 +5,11 @@ import {
   Typography as TypographyBase,
   Button as ButtonBase,
 } from "@material-ui/core";
+// todo material-uiの検索
 import { useTheme, makeStyles } from "@material-ui/styles";
 import classnames from "classnames";
 
-// styles
+/** styles HTMLタグのCSS扱い*/
 var useStyles = makeStyles(theme => ({
   badge: {
     fontWeight: 600,
@@ -17,6 +18,9 @@ var useStyles = makeStyles(theme => ({
   },
 }));
 
+/**
+ *
+ */
 function Badge({ children, colorBrightness, color, ...props }) {
   var classes = useStyles();
   var theme = useTheme();

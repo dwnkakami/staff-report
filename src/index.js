@@ -1,9 +1,13 @@
+// todo エントリーポイント
 import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
 
+// * 全体画面のフォントサイズの指定や色コードの指定
 import Themes from "./themes";
+
+// * HTMLブラウザへの作成
 import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
