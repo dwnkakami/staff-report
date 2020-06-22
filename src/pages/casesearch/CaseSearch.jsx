@@ -1,22 +1,23 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-// import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-// import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import CheckBox from './CheckBox';
+
+//import Component
 import KeywordSearch from './KeywordSearch';
 import SelectBox from './SelectBox';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
+import CheckBox2 from './CheckBox2';
+import DatePickers from './DatePickers';
 
 
 
 const useStyles = makeStyles({
   root: {
     minWidth: 275,
-    backgroundColor: 'lightgrey',
+    // backgroundColor: 'lightgrey',
   },
   left: {
     width:160,
@@ -56,14 +57,18 @@ export default function CaseSearch() {
 
         <br className={classes.end} />
         
+        <Typography className={classes.left} variant="h5" component="h2">
+          職種
+        </Typography>
+        {/* <CheckBox /> */}
+        <CheckBox2 />
 
-        <CheckBox />
 
         <Typography className={classes.left} variant="h5" component="h2">
           資格
         </Typography>
 
-        <SelectBox />
+        <SelectBox name="資格" choice1="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" />
         <br className={classes.end} />
         
 
@@ -71,7 +76,9 @@ export default function CaseSearch() {
           スキルレベル
         </Typography>
 
-        <SelectBox />
+        <SelectBox name="スキルレベル" choice1="Java" choice2="C言語" 
+        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
+        choice7="Oracle" choice8="Python" choice9="JavaScript" />
         <br className={classes.end} />
         
 
@@ -79,30 +86,39 @@ export default function CaseSearch() {
           期間
         </Typography>
         
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
+        {/* <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
         <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography> */}
+
+        <DatePickers label="ここから" />
 
         <br className={classes.end} />
+        <div className={classes.left}><br /></div>
         <Typography variant="body2" component="p">～</Typography>
         <br className={classes.end} />
 
-        <div className={classes.left} />
+        <div className={classes.left}><br /></div>
 
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
+        {/* <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
         <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography>
+        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography> */}
 
+        <DatePickers label="ここまで"　/>
+        
         <br className={classes.end} />
 
         <Typography className={classes.left} variant="h5" component="h2">
           並び順
         </Typography>
 
-        <SelectBox /><Typography className={classes.other} variant="body2" component="p">を基準に</Typography>
-        <SelectBox />
+        <SelectBox name="並び順" choice1="時期" choice2="スキル" choice3="職種" />
+        <Typography className={classes.other} variant="body2" component="p">を基準に</Typography>
+        <SelectBox name="降順" choice1="昇順" choice2="降順" choice3="" />
 
         <br className={classes.end} />
+        <div className={classes.left}><br /></div>
+        <div className={classes.left}><br /></div>
+        <div className={classes.left}><br /></div>
 
         <DeleteButton />
         <SearchButton />

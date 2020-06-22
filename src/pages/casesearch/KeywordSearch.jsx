@@ -44,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
     float:'left',
+    height:30,
+    marginTop:10,
   },
 }));
 
