@@ -32,7 +32,7 @@ import {
 import { useUserDispatch, signOut } from "../../context/UserContext";
 
 const structure = [
-  { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
+  { id: 0, label: "Dashboard", link: "/staff-report/dashboard", icon: <HomeIcon /> },
   { id: 1,　type: "title", label: "メニュー", },
 
   {
