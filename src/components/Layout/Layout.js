@@ -27,7 +27,7 @@ import Charts from "../../pages/charts";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
-//import CaseList from "../../pages/caselist";
+import CaseList from "../../pages/caselist/Caselist";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
@@ -60,7 +60,7 @@ function Layout(props) {
             <Switch>
               <Route path="/app/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
+              <Route path="/app/tables" component={CaseList} />
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
