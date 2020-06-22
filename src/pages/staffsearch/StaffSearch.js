@@ -4,18 +4,15 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
-// import SimpleSelect from './Select';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-// import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { Grid } from '@material-ui/core/';
 import './StaffSearch.css';
 
@@ -31,24 +28,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StaffSearch() {
 
+    const [state, setState] = React.useState({
+        checkedA: false,
+        checkedB: false,
+        checkedC: false,
+        checkedD: false,
+      });
+    
     const classes = useStyles();
     const [age, setAge] = React.useState('');
-  
+
     const handleChange = (event) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
+      };
+  
+    const handleChange2 = (event) => {
       setAge(event.target.value);
     };
 
-    const [state, setState] = React.useState({
-      checkedA: false,
-      checkedB: false,
-      checkedC: false,
-      checkedD: false,
-    });
-
-    const handleChange2 = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
-      };
-    
 return (
     <Paper class="paper">
     <Typography variant="h2">スタッフ検索</Typography>
@@ -99,7 +96,6 @@ return (
         label="：その他"
       />
       </FormGroup>
-      {/* <SimpleSelect /> */}
       <div>
   <Typography>資格</Typography>
 　　　 <FormControl variant="outlined" className={classes.formControl} class="license">

@@ -16,7 +16,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
-import Typography from "../../pages/typography";
+// import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 // import Tables from "../../pages/tables";
@@ -40,7 +40,7 @@ import Charts from "../../pages/charts";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 // import { CheckBox } from "@material-ui/icons";
-// import Tables from "../../pages/tables/Tables";
+import Tables from "../../pages/tables/Tables";
 import StaffSearch from "../../pages/staffsearch/StaffSearch";
 
 function Layout(props) {
@@ -62,8 +62,8 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/app/dashboard" component={Dashboard} />
-              <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={StaffSearch} />
+              <Route path="/app/typography" component={StaffSearch} />
+              <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
