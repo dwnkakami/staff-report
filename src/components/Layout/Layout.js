@@ -25,6 +25,8 @@ import Charts from "../../pages/charts";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
+import CaseList from "../../pages/caselist/CaseList";
+
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
@@ -60,9 +62,10 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={CaseSearch} />
+              <Route path="/staff-report/CaseList" component={CaseList}/>
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
