@@ -61,15 +61,6 @@ const useStyles = makeStyles((theme) => ({
     width: '95%',
     borderRadius: '12px 12px 12px 12px',
   },
-  figure: {
-    background: '#ffffff',
-    color: '#000000',
-    
-  },
-  figure2:{
-    background:'#6699ff'
-  }
-
 }));
 
 export default function BasicButtonGroup() {
@@ -96,15 +87,6 @@ export default function BasicButtonGroup() {
         <Button className={classes.Button}>スタッフ情報</Button>
       </ButtonGroup>
       </div>
-      {/* <div>
-        <Paper variant="outlined" square className={classes.figure}>
-            <Typography variant="h2">1</Typography>
-        </Paper>
-        <Paper variant="outlined" square className={classes.figure2}>
-            <Typography variant="h4">期間</Typography>
-        </Paper>
-        </div> */}
-
       </Paper>
     </div>
   );
