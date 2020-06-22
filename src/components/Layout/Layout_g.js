@@ -11,20 +11,22 @@ import classnames from "classnames";
 import useStyles from "./styles";
 
 // components
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 
 // pages
-import Dashboard from "../../pages/dashboard";
-import Typography from "../../pages/typography";
-import Notifications from "../../pages/notifications";
-import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
-import Icons from "../../pages/icons";
-import Charts from "../../pages/charts";
+import Dashboard from "../../pages/dashboard/Dashboard";
+import Typography from "../../pages/typography/Typography";
+import Notifications from "../../pages/notifications/Notifications";
+import Maps from "../../pages/maps/Maps";
+import Tables from "../../pages/tables/Tables";
+import Icons from "../../pages/icons/Icons";
+import Charts from "../../pages/charts/Charts";
 
 // import StaffList001 from "../pages/stafflist001";
  import StaffSearch_G from "../../pages/staffsearch/StaffSearch_G";
+// import StaffList001 from "../../pages/stafflist001";
+// import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
 //import CaseList from "../../pages/caselist";
@@ -58,7 +60,7 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               {/* <Route path="/app/tables" component={StaffSearch_G} /> */}
