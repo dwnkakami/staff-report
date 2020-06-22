@@ -59,9 +59,9 @@ export default function Caselist () {
         案件リスト
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          案件詳細
-        </DialogTitle>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            案件詳細
+          </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
             <table>
