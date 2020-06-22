@@ -8,7 +8,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import axios from 'axios';
+// import axios from 'axios';
+// import  from '../server/modules';
 
 const styles = (theme) => ({
   root: {
@@ -61,7 +62,7 @@ const CaseList = () => {
   // const getCaseData = () => {
   //   if (posts.length === 0) {
   //     axios
-  //       .get('../../pages/caselist/CaseList')
+  //       .get('/staff-report/caselist/001')
   //       .then(response => {
   //         setPosts(response.data);
   //       //   console.log([response.data]);
