@@ -54,6 +54,7 @@ export default function CaseSearch() {
         </Typography>
 
         <KeywordSearch />
+        <SearchButton />
 
         <br className={classes.end} />
         
@@ -94,6 +95,7 @@ export default function CaseSearch() {
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
+        <div className={classes.other}><br /></div>
         <Typography variant="body2" component="p">～</Typography>
         <br className={classes.end} />
 

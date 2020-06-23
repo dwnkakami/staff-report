@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
-import SearchButton from './SearchButton';
+// import SearchButton from './SearchButton';
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -58,7 +58,6 @@ export default function KeywordSearch() {
             <InputLabel htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
             <BootstrapInput id="demo-customized-textbox" />
         </FormControl>
-        <SearchButton />
       </div>
 
 

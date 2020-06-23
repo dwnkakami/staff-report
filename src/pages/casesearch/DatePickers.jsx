@@ -7,6 +7,17 @@ import {
 //   KeyboardTimePicker,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
+import { makeStyles } from '@material-ui/core';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // margin: theme.spacing(1),
+    float:'left',
+    width:300,
+    // marginTop:10,
+  },
+}));
 
 export default function DatePickers(props) {
   // The first commit of Material-UI
@@ -15,10 +26,11 @@ export default function DatePickers(props) {
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
+  const classes = useStyles();
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container justify="space-around">
+    <MuiPickersUtilsProvider utils={DateFnsUtils} className={classes.root}>
+      <Grid container justify="space-around" className={classes.root}>
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
