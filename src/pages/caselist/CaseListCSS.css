@@ -4,3 +4,7 @@
     min-height:80vh;
     border: 1px solid black; 
 }
+
+.paper2 {
+    position: relative;
+}
