@@ -1,6 +1,6 @@
 const express =require('express');
 const app = express();
-const bodyParser = require('body-parser.jsx');
+const bodyParser = require('body-parser');
 const login = require('./modules/login.jsx');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
