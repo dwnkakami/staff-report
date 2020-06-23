@@ -22,8 +22,8 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 4000;
 
-app.get('/api/login',(req,res) => {
-    login.getData(req,res);
+app.get('/api/login/:condition',(req,res) => {
+    login.getData(req.params.condition,res);
 });
 app.get('/api/menu',(req,res) => {
     menu.getData(req,res);
@@ -31,8 +31,8 @@ app.get('/api/menu',(req,res) => {
 app.get('/api/stafflist001',(req,res) => {
     stafflist001.getData(req,res);
 });
-app.get('/api/stafflist002',(req,res) => {
-    stafflist002.getData(req,res);
+app.get('/api/stafflist002/:condition',(req,res) => {
+    stafflist002.getData(req.params.condition,res);
 });
 app.get('/api/stafflist003',(req,res) => {
     stafflist003.getData(req,res);
