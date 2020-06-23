@@ -27,6 +27,7 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd_Mabuchi from "../../pages/caseadd/CaseAdd_Mabuchi";
 
 // import StaffList001 from "../pages/stafflist001";
+// import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
@@ -61,7 +62,7 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={CaseSearch} />
               <Route path="/app/notifications" component={Notifications} />
