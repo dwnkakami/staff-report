@@ -56,15 +56,17 @@ return(
         <Typography variant="h3" component="h2">
         案件リスト
         </Typography>
-        <TableContainer className='paper2' component={Paper}>
+        <TableContainer className='table1' component={Paper}>
       <Table className={classes.table} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+            <StyledTableCell>リスト一覧</StyledTableCell>
+            <StyledTableCell align="right">案件番号</StyledTableCell>
+            <StyledTableCell align="right">案件名</StyledTableCell>
+            <StyledTableCell align="right">顧客番号</StyledTableCell>
+            <StyledTableCell align="right">依頼単価</StyledTableCell>
+            <StyledTableCell align="right">勤務地</StyledTableCell>
+            <StyledTableCell align="right">募集人数</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
