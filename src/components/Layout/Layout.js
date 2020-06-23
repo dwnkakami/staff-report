@@ -62,12 +62,11 @@ function Layout(props) {
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
-              {/* <Route path="/app/tables" component={StaffSearch_G} /> */}
+              {/* <Route path="/app/tables" component={Tables} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
-              {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
+              <Route path="/staff-report/staffsearch/001" component={StaffSearch_G} />
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
