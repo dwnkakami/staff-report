@@ -57,12 +57,12 @@ const CaseList = () => {
 
   // const [posts, setPosts] = useState([]);
 
-  // useEffect(() => getSlideData() );
+  // useEffect(() => getCaseData() );
 
   // const getCaseData = () => {
   //   if (posts.length === 0) {
   //     axios
-  //       .get('/staff-report/caselist/001')
+  //       .get('/api/caselist/')
   //       .then(response => {
   //         setPosts(response.data);
   //       //   console.log([response.data]);
