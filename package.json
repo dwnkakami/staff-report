@@ -8,6 +8,7 @@
     "@material-ui/styles": "^4.3.0",
     "apexcharts": "^3.8.3",
     "classnames": "^2.2.6",
+    "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "mui-datatables": "^2.6.4",
     "react": "^16.8.6",
@@ -18,7 +19,7 @@
     "react-scripts": "3.0.1",
     "react-syntax-highlighter": "^11.0.2",
     "react-toastify": "^5.3.2",
-    "recharts": "^1.6.2",
+    "recharts": "^1.8.5",
     "tinycolor2": "^1.4.1"
   },
   "scripts": {
