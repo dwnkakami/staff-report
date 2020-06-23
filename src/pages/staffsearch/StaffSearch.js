@@ -292,7 +292,7 @@ return (
       </FormControl>
       </Grid>
       <Grid item xs>
-      <Button variant="contained">クリア</Button>
+      <Button variant="contained" onClick={this.handleButtonClick}>クリア</Button>
       </Grid>
       <Grid item xs>
       <Button variant="contained">検索</Button>
