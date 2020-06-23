@@ -1,6 +1,11 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const http       = require('http');
+const server_    = http.createServer();
+const fileserver = require('fs');
+
+/*
 const login = require('./modules/login.jsx');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
@@ -16,12 +21,13 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
+*/
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 
 const port = process.env.PORT || 4000;
 
+/*
 app.get('/api/login',(req,res) => {
     login.getData(req,res);
 });
@@ -66,8 +72,27 @@ app.get('/api/referencelist',(req,res) => {
 });
 app.get('/api/billing',(req,res) => {
     billing.getData(req,res);
+});*/
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.listen(port,function(req,res)
+{
+    
 });
 
+server_.on('request',functest);
 
-app.listen(port);
+    function functest(req,res)
+    {
+        fileserver.readFile('../public/index.html','UTF-8',html_open);
+
+        function html_open(err,data)
+        {
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.write(data);
+            res.end();
+        }
+    }
 console.log('Server listen on port:' + port);
