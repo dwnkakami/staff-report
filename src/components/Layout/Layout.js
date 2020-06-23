@@ -24,6 +24,7 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
+import CaseAdd_Mabuchi from "../../pages/caseadd/CaseAdd_Mabuchi";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
@@ -64,6 +65,7 @@ function Layout(props) {
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={CaseSearch} />
               <Route path="/app/notifications" component={Notifications} />
+              <Route path="/app/CaseAdd_Mabuchi" component={CaseAdd_Mabuchi} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
