@@ -52,8 +52,8 @@ export default function Referencelist() {
     return (
         <Paper elevation={3} className="paper1">
             {/* <h1>引合リスト</h1> */}
-            <div style={{display:'flex'}}>
-            <DescriptionOutlinedIcon style={{fontSize:'35px'}} />
+            <div className='title' style={{display:'flex'}}>
+            <DescriptionOutlinedIcon style={{fontSize:'40px',}} />
             <Typography style={{fontSize:'30px'}}>引合リスト</Typography>
             </div>
             <TableContainer >

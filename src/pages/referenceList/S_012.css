@@ -1,4 +1,4 @@
-h1{
+.title{
     margin: 20px;
 }
 
@@ -19,6 +19,6 @@ margin: 50px;
     border: 1px solid black;
 }
 
-.DescriptionOutlinedIcon{
-    font-size: larger;
+.icon{
+    height: 20%;
 }
