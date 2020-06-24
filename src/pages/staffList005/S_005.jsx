@@ -2,27 +2,29 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useEffect } from 'react';
 import StaffList005 from './StaffList005';
+import StaffList005_figure from './StaffList005_figure';
 
 const S_005 = () => {
-    const [user, setUser] = useState([]);
+    const [staff, setStaff] = useState([]);
 
     useEffect(() => getData());
 
     const getData = () => {
-        if(user.length === 0){
+        // if(staff.length === 0){
             axios
                 .get('/api/stafflist005')
                 .then(response => {
-                    setUser(response.data);
+                    console.log([response.data]);
+                    // setStaff(response.data);
                 })
                 .catch(() => {
                     console.log('connected error');
                 })
-    }}
+    }
     return (
         <div className="S_005">
-            {user.map((data) => (
-            <StaffList005 key={data.id} 
+            {staff.map((data) => (
+            <StaffList005_figure key={data.id} 
             contents={data.name} />  
             ))}
         </div>

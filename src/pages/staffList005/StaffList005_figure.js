@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function BasicButtonGroup(props) {
+const StaffList005_figure = (props) => {
   const classes = useStyles();
 
   return (
@@ -172,3 +172,5 @@ export default function BasicButtonGroup(props) {
     </div>
   );
   }
+
+  export default StaffList005_figure;
