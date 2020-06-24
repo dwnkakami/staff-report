@@ -9,11 +9,8 @@
     "apexcharts": "^3.8.3",
     "body-parser": "^1.19.0",
     "classnames": "^2.2.6",
-<<<<<<< HEAD
     "express": "^4.17.1",
-=======
     "concurrently": "^5.2.0",
->>>>>>> 7765af45e0094c1c68039945693ee01e7646af0f
     "font-awesome": "^4.7.0",
     "http-proxy-middleware": "^1.0.4",
     "mui-datatables": "^2.6.4",
