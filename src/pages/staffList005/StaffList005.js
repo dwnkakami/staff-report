@@ -3,13 +3,11 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
+import StaffList005_figure from './StaffList005_figure';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,9 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   margin: {
-    // margin: theme.spacing(1),
-    bottom: theme.spacing(14),
-    left: theme.spacing(6),
+    bottom: theme.spacing(16),
+    left: theme.spacing(5),
     background:'#000000',
     float: 'right',
   },
@@ -32,53 +29,41 @@ const useStyles = makeStyles((theme) => ({
   },
   Button: {
     background:'rgb(120,144,156)',
-    float: 'left',
+    borderRadius: '0px 0px 0px 0px',
   },
   Button2: {
     background:'rgb(120,144,156)',
-    float: 'right',
+    left: 45,
     color: '#ffffff',
-    height: '30px',
-    left: theme.spacing(6),
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
   },
   Button3: {
     background:'rgb(120,144,156)',
-    float: 'right',
+    left: 45,
     color: '#ffffff',
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
+  },
+  Button4: {
+    top: theme.spacing(2),
+    right: theme.spacing(6),
+    color: '#000000',
     height: '30px',
-    // bottom: theme.spacing(3),
-    // right: theme.spacing(1),
   },
   ButtonGroup: {
-    right: '200px',
+    margin: '10px 200px 10px 0px',
+    borderRadius: '0px 0px 0px 0px',
   },
   Paper: {
     padding: theme.spacing(7),
     margin: '16px',
     width: '95%',
     borderRadius: '12px 12px 12px 12px',
-},
-demo: {
-    backgroundColor: theme.palette.background.paper,
   },
   title: {
-    margin: theme.spacing(4, 0, 2),
+    margin: '10px 0px 10px 0px',
   },
-  content1: {
-    float: 'left',
-    width:'50%',
-    color: '#000000',
-    top: theme.spacing(7),
-  },
-  content2: {
-    float: 'left',
-    width:'50%',
-    color: '#000000',
-  
-  },
-  List: {
-    background:'#6699ff'
-  }
 }));
 
 export default function BasicButtonGroup() {
@@ -87,13 +72,11 @@ export default function BasicButtonGroup() {
   return (
     <div className={classes.root}>
       <Paper variant="outlined" className={classes.Paper}>
-      <Typography variant="h2">スタッフ詳細</Typography>
-      <Typography variant="h4">テスト太郎</Typography>
+      <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
+      <Typography variant="h5">テスト太郎</Typography>
       <IconButton aria-label="delete" className={classes.margin}>
       <CloseIcon className={classes.icon} />
       </IconButton>
-      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
       <div>
       <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
@@ -101,129 +84,12 @@ export default function BasicButtonGroup() {
         <Button className={classes.Button}>キャリアパス</Button>
         <Button className={classes.Button}>スタッフ情報</Button>
       </ButtonGroup>
+      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
       </div>
-      <div className={classes.content1}>
-            <List >
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="スタッフ番号"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="0001"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary='氏名'/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="テスト　太郎"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="役職"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="一般職"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="生年月日"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText　primary="1996/4/1"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="性別"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="男"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="連絡先"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="090-1234-5678"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="現配属案件"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="〇〇〇〇株式会社ABC開発案件"/>
-                </ListItem>
-                <Divider />
-            </List>
-        </div>
-        <div className={classes.content2}>
-            <List >
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText　primary="雇用形態"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="正社員"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="所属会社"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="データウェアネットワーク株式会社"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="入社日"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="2018/4/1"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="年齢"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText　primary="22"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="最終学歴"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="〇〇大学"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="最寄り駅"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="新小岩駅"/>
-                </ListItem>
-                <Divider />
-                <ListItem className={classes.List}>
-                  <ListItemText primary="現案件終了予定日"/>
-                </ListItem>
-                <Divider />
-                <ListItem>
-                  <ListItemText primary="2019/3/31"/>
-                </ListItem>
-                <Divider />
-            </List>
-        </div>
+      <div>
+        <StaffList005_figure />
+      </div>
       </Paper>
     </div>
   );

@@ -2,11 +2,10 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
-
 import Themes from "./themes";
-// import App from "./components/App";
-// import StaffList005 from '../src/pages/staffList005/StaffList005';
-import Table from '../src/pages/staffList005/StaffList005';
+import App from "./components/App";
+import StaffList005 from '../src/pages/staffList005/StaffList005';
+import StaffList005_figure from '../src/pages/staffList005/StaffList005_figure';
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
@@ -17,8 +16,8 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         {/* <App /> */}
-        {/* <StaffList005 /> */}
-        <Table />
+        <StaffList005 />
+        {/* <StaffList005_figure /> */}
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
