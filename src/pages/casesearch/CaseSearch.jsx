@@ -37,6 +37,25 @@ end: {
   },
 });
 
+const language = [
+  {
+    "id":1,
+    "lang":"Java",
+  },
+  {
+    "id":2,
+    "lang":"JavaScript",
+  },
+  {
+    "id":3,
+    "lang":"PHP",
+  },
+  {
+    "id":4,
+    "lang":"MySQL",
+  },
+]
+
 export default function CaseSearch() {
   const classes = useStyles();
 
@@ -69,7 +88,7 @@ export default function CaseSearch() {
           資格
         </Typography>
 
-        <SelectBox name="資格" choice1="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" />
+        <SelectBox name="資格" choice="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" />
         <br className={classes.end} />
         
 
@@ -77,9 +96,13 @@ export default function CaseSearch() {
           スキルレベル
         </Typography>
 
-        <SelectBox name="スキルレベル" choice1="Java" choice2="C言語" 
-        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
-        choice7="Oracle" choice8="Python" choice9="JavaScript" />
+        {language.map((data)=>(
+        <SelectBox name="スキルレベル"  choice={data.lang} 
+        // choice2="C言語" 
+        // choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
+        // choice7="Oracle" choice8="Python" choice9="JavaScript" 
+        />
+        ))}
         <br className={classes.end} />
         
 

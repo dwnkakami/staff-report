@@ -45,8 +45,8 @@ export default function SelectBox(props) {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={1}>{props.choice1}</MenuItem>
-          <MenuItem value={2}>{props.choice2}</MenuItem>
+          <MenuItem value={1}>{props.choice}</MenuItem>
+          {/* <MenuItem value={2}>{props.choice2}</MenuItem>
           <MenuItem value={3}>{props.choice3}</MenuItem>
           <MenuItem value={4}>{props.choice4}</MenuItem>
           <MenuItem value={5}>{props.choice5}</MenuItem>
@@ -54,7 +54,7 @@ export default function SelectBox(props) {
           <MenuItem value={7}>{props.choice7}</MenuItem>
           <MenuItem value={8}>{props.choice8}</MenuItem>
           <MenuItem value={9}>{props.choice9}</MenuItem>
-          <MenuItem value={91}>{props.choice10}</MenuItem>
+          <MenuItem value={91}>{props.choice10}</MenuItem> */}
         </Select>
       </FormControl>
     </div>
