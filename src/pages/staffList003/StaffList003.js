@@ -7,6 +7,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import StaffList003_figure from './StaffList003_figure';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,8 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   margin: {
-    bottom: theme.spacing(14),
-    left: theme.spacing(6),
+    bottom: theme.spacing(16),
+    left: theme.spacing(5),
     background:'#000000',
     float: 'right',
   },
@@ -28,38 +29,40 @@ const useStyles = makeStyles((theme) => ({
   },
   Button: {
     background:'rgb(120,144,156)',
-    float: 'left',
+    borderRadius: '0px 0px 0px 0px',
   },
   Button2: {
     background:'rgb(120,144,156)',
-    float: 'right',
+    left: 45,
     color: '#ffffff',
-    height: '30px',
-    left: theme.spacing(6),
-    top: theme.spacing(3.8),
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
   },
   Button3: {
     background:'rgb(120,144,156)',
-    float: 'right',
-    top: theme.spacing(3.8),
+    left: 45,
     color: '#ffffff',
-    height: '30px',
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
   },
   Button4: {
-    top: theme.spacing(10),
-    right: theme.spacing(5),
-    // float: 'bottom',
+    top: theme.spacing(2),
+    right: theme.spacing(6),
     color: '#000000',
     height: '30px',
   },
   ButtonGroup: {
-    right: '200px',
+    margin: '10px 200px 10px 0px',
+    borderRadius: '0px 0px 0px 0px',
   },
   Paper: {
     padding: theme.spacing(7),
     margin: '16px',
     width: '95%',
     borderRadius: '12px 12px 12px 12px',
+  },
+  title: {
+    margin: '10px 0px 10px 0px',
   },
 }));
 
@@ -69,16 +72,11 @@ export default function BasicButtonGroup() {
   return (
     <div className={classes.root}>
       <Paper variant="outlined" className={classes.Paper}>
-      <Typography variant="h2">スタッフ詳細</Typography>
+      <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
       <Typography variant="h4">テスト太郎</Typography>
       <IconButton aria-label="delete" className={classes.margin}>
       <CloseIcon className={classes.icon} />
       </IconButton>
-      <div>
-      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
-      </div>
-      <Button className={classes.Button4}><AddIcon />追加</Button>
       <div>
       <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
@@ -86,6 +84,14 @@ export default function BasicButtonGroup() {
         <Button className={classes.Button}>キャリアパス</Button>
         <Button className={classes.Button}>スタッフ情報</Button>
       </ButtonGroup>
+      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+      </div>
+      <div>
+        <StaffList003_figure />
+      </div>
+      <div>
+        <Button className={classes.Button4}><AddIcon />追加</Button>
       </div>
       </Paper>
     </div>

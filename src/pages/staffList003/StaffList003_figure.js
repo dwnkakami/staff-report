@@ -20,90 +20,119 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 4,
     position: 'relative',
   },
+  add: {
+    height: 5,
+    width: 424,
+    borderRadius: '0px 0px 0px 0px'
+  },
   number: {
-    height: 500,
-    width: 100,
+    height: 450,
+    width: 80,
+    color: '#000000',
     textAlign: 'center',
-    fontSize: 30,
-    color: theme.palette.text.secondary,
+    lineHeight: 14,
+    fontSize: 35,
+    borderRadius: '0px 0px 0px 0px'
   },
   content: {
-    height: 50,
-    width: 380,
+    height: 45,
+    width: 344,
     textAlign: 'center',
+    color: '#000000',
     fontSize: 30,
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content_color: {
+    height: 45,
+    width: 344,
+    textAlign: 'center',
+    fontSize: 32,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
   },
   content2: {
-    height: 50,
-    width: 120,
+    height: 45,
+    width: 100,
     fontSize: 30,
     textAlign: 'center',
     float: 'left',
-    color: theme.palette.text.secondary,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
   },
   content3: {
-    height: 50,
-    width: 260,
+    height: 45,
+    width: 244,
     fontSize: 30,
     textAlign: 'center',
+    color: '#000000',
     float: 'left',
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
   },
   content4: {
-    height: 200,
-    width: 120,
+    height: 180,
+    width: 100,
     fontSize: 30,
     textAlign: 'center',
+    lineHeight: 6,
+    background: '#6699ff',
+    color: '#000000',
     float: 'left',
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
   },
   content5: {
-    height: 200,
-    width: 260,
+    height: 180,
+    width: 244,
     fontSize: 30,
     textAlign: 'center',
+    color: '#000000',
     float: 'left',
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
   },
   content6: {
-    height: 50,
-    width: 165,
+    height: 45,
+    width: 145,
     fontSize: 30,
     textAlign: 'center',
-    color: theme.palette.text.secondary,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
   },
   content7: {
-    height: 50,
-    width: 215,
+    height: 45,
+    width: 199,
     textAlign: 'right',
+    color: '#000000',
     fontSize: 30,
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
   },
   content8: {
-    height: 400,
-    width: 380,
+    height: 360,
+    width: 344,
     textAlign: 'center',
+    color: '#000000',
     fontSize: 30,
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
   },
   content9: {
-    height: 50,
-    width: 340,
+    height: 45,
+    width: 280,
     textAlign: 'center',
+    color: '#000000',
     fontSize: 30,
-    color: theme.palette.text.secondary,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content9_color: {
+    height: 45,
+    width: 280,
+    textAlign: 'center',
+    fontSize: 32,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
   },
   figure: {
-    float: 'left',
-  },
-  figure2: {
-    float: 'left',
-  },
-  figure3: {
-    float: 'left',
-  },
-  figure4: {
     float: 'left',
   },
 }));
@@ -119,10 +148,21 @@ export default function CenteredGrid() {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.content}>期間</Paper>
+              <Paper className={classes.number}>1</Paper>
+            </Grid>
+        </Grid>
+      </div>
+      <div className={classes.figure}>
+        <Grid
+          container
+          direction="column"
+          justify="flex-start"
+          alignItems="baseline">
+            <Grid>
+              <Paper className={classes.content_color} variant="outlined">期間</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content}>~</Paper>
+              <Paper  className={classes.content} variant="outlined">~</Paper>
             </Grid>
           <Grid
             container
@@ -130,10 +170,10 @@ export default function CenteredGrid() {
             justify="flex-start"
             alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2}>職種</Paper>
+                <Paper className={classes.content2} variant="outlined">職種</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3}></Paper>
+                <Paper className={classes.content3} variant="outlined"></Paper>
               </Grid>
               </Grid>
             <Grid
@@ -142,10 +182,10 @@ export default function CenteredGrid() {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2}>業種</Paper>
+                <Paper className={classes.content2} variant="outlined">業種</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3}></Paper>
+                <Paper className={classes.content3} variant="outlined"></Paper>
               </Grid>
             </Grid>
             <Grid
@@ -154,22 +194,10 @@ export default function CenteredGrid() {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content4}>工程</Paper>
+                <Paper className={classes.content4} variant="outlined">工程</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5}></Paper>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="baseline">
-              <Grid>
-                <Paper className={classes.content6}>役割規模</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content7}>人</Paper>
+                <Paper className={classes.content5} variant="outlined"></Paper>
               </Grid>
             </Grid>
             <Grid
@@ -178,107 +206,119 @@ export default function CenteredGrid() {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2}>担当</Paper>
+                <Paper className={classes.content6} variant="outlined">役割規模</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3}></Paper>
+                <Paper className={classes.content7} variant="outlined">人</Paper>
+              </Grid>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="baseline">
+              <Grid>
+                <Paper className={classes.content2} variant="outlined">担当</Paper>
+              </Grid>
+              <Grid>
+                <Paper className={classes.content3} variant="outlined"></Paper>
               </Grid>
               </Grid>
           </Grid>
         </div>
 
-        <div className={classes.figure2}>
+        <div className={classes.figure}>
           <Grid
             container
             direction="column"
             justify="flex-start"
             alignItems="baseline">
             <Grid>
-              <Paper className={classes.content}>案件名</Paper>
+              <Paper className={classes.content_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content}></Paper>
+              <Paper className={classes.content} variant="outlined"></Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content8}></Paper>
+              <Paper className={classes.content8} variant="outlined"></Paper>
             </Grid>
             </Grid>
           </div>
 
-          <div className={classes.figure3}>
+          <div className={classes.figure}>
             <Grid
               container
               direction="column"
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content9}>環境使用/ソフト</Paper>
+                <Paper className={classes.content9_color} variant="outlined">環境使用/ソフト</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
             </Grid>
           </div>
 
-          <div className={classes.figure4}>
+          <div className={classes.figure}>
             <Grid
               container
               direction="column"
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content9}>言語/その他</Paper>
+                <Paper className={classes.content9_color} variant="outlined">言語/その他</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9}></Paper>
+                <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid> 
             </Grid>
           </div>
