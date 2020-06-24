@@ -69,65 +69,111 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function StaffSearch() {
   const classes = useStyles();
 
-  const [check, setCheck] = React.useState({
+  const [check, setCheck] = useState({
     checkedA: false,
     checkedB: false,
     checkedF: false,
     checkedG: false,
   });
 
+  const [license, setLicense] = useState({
+    li: '',
+  });
+
+  const [skill1, setSkill1] = useState({
+    sk1: '',
+  });
+
+  const [skill2, setSkill2] = useState({
+    sk2: '',
+  });
+
+  const [skill3, setSkill3] = useState({
+    sk3: '',
+  });
+
+  const [status1, setStatus1] = useState({
+    st1: '',
+  });
+
+  const [status2, setStatus2] = useState({
+    st2: '',
+  });
+
+  const [status3, setStatus3] = useState({
+    st3: '',
+  });
+
+  const [gender, setGender] = useState({
+    ge: '',
+  });
+
+  const [areas,setAreas] = useState({
+    areas:'',
+  })
+
+  const [text,setText]= useState({
+    label: '',
+  });
+
   const handleChange = (event) => {
     setCheck({ ...check, [event.target.name]: event.target.checked });
+    setText(event.target.value);
   };
 
-  const Click = () => {
+  const Reset = () => {
     setCheck({check:false});
-    setState({age:""});
-    setState2({age2:""});
-    setState3({age3:""});
-    setState4({age4:""});
-  }
-
-  const [state, setState] = React.useState({
-    age: '',
-    name: 'hai',
-  });
-
-  const [state2, setState2] = React.useState({
-    age2: '',
-    name: 'hai',
-  });
-
-  const [state3, setState3] = React.useState({
-    age3: '',
-    name: 'hai',
-  });
-
-  const [state4, setState4] = React.useState({
-    age4: '',
-    name: 'hai',
-  });
+    setLicense({li:""});
+    setSkill1({sk1:""});
+    setSkill2({sk2:""});
+    setSkill3({sk3:""});
+    setStatus1({st1:""});
+    setStatus2({st2:""});
+    setStatus3({st3:""});
+    setGender({ge:''});
+    setAreas({areas:''});
+    setText({label:''});
+  };
 
   const Changehandle = (event) => {
     //const name = event.target.name;
-    setState({
-      ...state,
+    setLicense({
+      ...license,
       [event.target.name]: event.target.value
     });
-    setState2({
-      ...state2,
+    setSkill1({
+      ...skill1,
       [event.target.name]: event.target.value
     });
-    setState3({
-      ...state3,
+    setSkill2({
+      ...skill2,
       [event.target.name]: event.target.value
     });
-    setState4({
-      ...state4,
+    setSkill3({
+      ...skill3,
+      [event.target.name]: event.target.value
+    });
+    setStatus1({
+      ...status1,
+      [event.target.name]: event.target.value
+    });
+    setStatus2({
+      ...status2,
+      [event.target.name]: event.target.value
+    });
+    setStatus3({
+      ...status3,
+      [event.target.name]: event.target.value
+    });
+    setGender({
+      ...gender,
+      [event.target.name]: event.target.value
+    });
+    setAreas({
+      ...areas,
       [event.target.name]: event.target.value
     });
   };
@@ -193,10 +239,10 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           native
-          value={state.age}
+          value={license.li}
           onChange={Changehandle}
           inputProps={{
-            name: 'age',
+            name: 'li',
             id: 'filled-age-native-simple',
           }}
         >
@@ -212,10 +258,10 @@ export default function StaffSearch() {
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           native
-          value={state2.age2}
+          value={skill1.sk1}
           onChange={Changehandle}
           inputProps={{
-            name: 'age2',
+            name: 'sk1',
             id: 'filled-age-native-simple',
           }}
         >
@@ -230,17 +276,17 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           native
-          value={state.age}
+          value={status1.st1}
           onChange={Changehandle}
           inputProps={{
-            name: 'age',
+            name: 'st1',
             id: 'filled-age-native-simple',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
         </Select>
       </FormControl>
 
@@ -265,10 +311,10 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           native
-          value={state3.age3}
+          value={skill2.sk2}
           onChange={Changehandle}
           inputProps={{
-            name: 'age3',
+            name: 'sk2',
             id: 'filled-age-native-simple',
           }}
         >
@@ -283,17 +329,17 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           native
-          value={state.age}
+          value={status2.st2}
           onChange={Changehandle}
           inputProps={{
-            name: 'age',
+            name: 'st2',
             id: 'filled-age-native-simple',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
         </Select>
       </FormControl>
     
@@ -318,10 +364,10 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           native
-          value={state4.age4}
+          value={skill3.sk3}
           onChange={Changehandle}
           inputProps={{
-            name: 'age4',
+            name: 'sk3',
             id: 'filled-age-native-simple',
           }}
         >
@@ -336,33 +382,36 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           native
-          value={state.age}
+          value={status3.st3}
           onChange={Changehandle}
           inputProps={{
-            name: 'age',
+            name: 'st3',
             id: 'filled-age-native-simple',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          <option value={1}>1</option>
+          <option value={2}>2</option>
+          <option value={3}>3</option>
         </Select>
       </FormControl>
 
     <p class='older'>年齢</p>
     <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label="Outlined" variant="outlined" />
+      <TextField id="outlined-basic" variant="outlined" 
+        onChange={handleChange}
+        value={text.label}
+      />
     </form>
 
     <p class='gender'>性別</p>
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
           native
-          value={state.age4}
+          value={gender.ge}
           onChange={Changehandle}
           inputProps={{
-            name: 'age4',
+            name: 'ge',
             id: 'filled-age-native-simple',
           }}
         >
@@ -376,22 +425,22 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
           native
-          value={state.age}
+          value={areas.areas}
           onChange={Changehandle}
           inputProps={{
-            name: 'age',
+            name: 'areas',
             id: 'filled-age-native-simple',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          <option value={'北海道'}>北海道</option>
+          <option value={'青森'}>青森</option>
+          <option value={'東京'}>東京</option>
         </Select>
       </FormControl>
     
       {/* リセットボタン */}
-      <Button class='reset' variant="contained" onClick={Click}>
+      <Button class='reset' variant="contained" onClick={Reset}>
         クリア
       </Button>
       
