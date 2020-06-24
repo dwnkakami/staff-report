@@ -5,6 +5,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import'./stafflist.css';
 
 
+
 // components
 import PageTitle from "../../components/PageTitle/PageTitle";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
@@ -41,7 +42,8 @@ export default function Tables() {
   return (
     <>
       <AssignmentIcon />
-      <EmojiPeopleIcon /><PageTitle title="スタッフリスト" />
+      <EmojiPeopleIcon />
+      <PageTitle title="スタッフリスト" />
       <Scrollbars style={{ width: 800, height: 350}}>
         <table border="3">
             <tr>
@@ -176,7 +178,7 @@ export default function Tables() {
           <MUIDataTable */}
             {/* // title="スタッフリスト"
             // data={datatableData}
-            // columns={["Id", "Name", "Gender", "Position", "Joining_Day", "Birthday", "Age", "School_Career", "Phone_Number", "Near_Staition", "Company_Id", "Area_Id", "Occupattion_Id", "Employment_System_Id", "Entry_At", "Update_At", "Update_By"]}
+            columns={["Id", "Name", "Gender", "Position", "Joining_Day", "Birthday", "Age", "School_Career", "Phone_Number", "Near_Staition", "Company_Id", "Area_Id", "Occupattion_Id", "Employment_System_Id", "Entry_At", "Update_At", "Update_By"]}
             // options={{ */}
               {/* // filterType: "checkbox",
             // }}

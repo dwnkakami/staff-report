@@ -1,3 +1,15 @@
+body {
+    background-color: white
+};
+
+
+
+.material-icons {
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+
 th{
     background-color: rgb(58, 209, 58);
 }
