@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import './CaseList.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -8,8 +8,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-// import axios from 'axios';
-// import  from '../server/modules';
+import axios from 'axios';
 
 const styles = (theme) => ({
   root: {
@@ -46,6 +45,24 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 const CaseList = () => {
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => getCaseData() );
+
+  const getCaseData = () => {
+    if (posts.length === 0) {
+      axios
+        .get('/api/caselist/')
+        .then(response => {
+          setPosts([response.data]);
+        //   console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('失敗しました');
+        })
+    }
+  }
+  
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -54,25 +71,6 @@ const CaseList = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  // const [posts, setPosts] = useState([]);
-
-  // useEffect(() => getCaseData() );
-
-  // const getCaseData = () => {
-  //   if (posts.length === 0) {
-  //     axios
-  //       .get('/api/caselist/')
-  //       .then(response => {
-  //         setPosts(response.data);
-  //       //   console.log([response.data]);
-  //       })
-  //       .catch(() => {
-  //         console.log('失敗しました');
-  //       })
-  //   }
-  // }
-
 
   return (
     <div>
