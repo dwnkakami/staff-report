@@ -16,12 +16,9 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 const port = process.env.PORT || 4000;
-
 app.get('/api/login',(req,res) => {
     login.getData(req,res);
 });
@@ -67,7 +64,10 @@ app.get('/api/referencelist',(req,res) => {
 app.get('/api/billing',(req,res) => {
     billing.getData(req,res);
 });
-
-
 app.listen(port);
 console.log('Server listen on port:' + port);
+
+
+
+
+
