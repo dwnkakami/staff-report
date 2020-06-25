@@ -12,16 +12,6 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
 
-// const GreenCheckbox = withStyles({
-//   root: {
-//     color: green[400],
-//     '&$checked': {
-//       color: green[600],
-//     },
-//   },
-//   checked: {},
-// })((props) => <Checkbox color="default" {...props} />);
-
 const useStyles = makeStyles((theme) => ({
   formControl1: {
     margin: theme.spacing(1),
@@ -63,7 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StaffSearch() {
   const classes = useStyles();
-
+  
+  //チェックボックス項目
   const [check, setCheck] = useState({
     checkedA: false,
     checkedB: false,
@@ -71,10 +62,12 @@ export default function StaffSearch() {
     checkedG: false,
   });
 
+  //チェック切り替え
   const handleChange = (event) => {
     setCheck({ ...check, [event.target.name]: event.target.checked });
   };
 
+  //セレクト項目
   const [state, setState] = useState({
     li: '',
     sk1: '',
@@ -87,33 +80,43 @@ export default function StaffSearch() {
     areas:'',
   });
 
+  //セレクト切り替え
   const handleChange2 = (event) => {
     setState({ ...state,[event.target.name]: event.target.value});
   };
 
+  //テキスト（年齢）
   const [text,setText]= useState({
     label: '',
   });
 
+  //text更新
   const handleChange3 = (event) => {
     setText(event.target.value);
   };
 
+  //radioボタン
   const [value,setValue]=useState({
     radioA: '',
     radioB: '',
   });
 
+  //radioボタン切り替え
   const handleChange4 = (event) => {
     setValue({ ...value,[event.target.name]: event.target.value});
   };
 
+  //リセット機能
   const Reset = () => {
     setCheck({check:false});
     setValue({value:''});
     setState({state:''});
     setText({label:''});
   };
+
+  const Search=()=>{
+
+  }
 
   return (
     <div>
@@ -175,7 +178,6 @@ export default function StaffSearch() {
     <p>資格</p>
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          //native
           value={state.li}
           onChange={handleChange2}
           name="li"
@@ -207,7 +209,6 @@ export default function StaffSearch() {
       {/* ステータス１ */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          //native
           value={state.st1}
           onChange={handleChange2}
           name="st1"
@@ -237,7 +238,6 @@ export default function StaffSearch() {
     {/* スキル情報２ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          //native
           value={state.sk2}
           onChange={handleChange2}
           inputProps={{
@@ -255,7 +255,6 @@ export default function StaffSearch() {
       {/* ステータス2 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-         // native
           value={state.st2}
           onChange={handleChange2}
           inputProps={{
@@ -288,7 +287,6 @@ export default function StaffSearch() {
     {/* スキル情報３ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          //native
           value={state.sk3}
           onChange={handleChange2}
           inputProps={{
@@ -306,7 +304,6 @@ export default function StaffSearch() {
       {/* ステータス3 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          //native
           value={state.st3}
           onChange={handleChange2}
           inputProps={{
@@ -332,7 +329,6 @@ export default function StaffSearch() {
     <p class='gender'>性別</p>
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
-          //native
           value={state.ge}
           onChange={handleChange2}
           inputProps={{
@@ -349,7 +345,6 @@ export default function StaffSearch() {
       <p class='area'>地域</p>
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
-          //native
           value={state.areas}
           onChange={handleChange2}
           inputProps={{
@@ -365,12 +360,10 @@ export default function StaffSearch() {
       </FormControl>
     
       {/* リセットボタン */}
-      <Button class='reset' variant="contained" onClick={Reset}>
-        クリア
-      </Button>
+      <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
       
       {/* 検索ボタン */}
-      <Button class='search' variant="contained">検索</Button>
+      <Button class='search' variant="contained" onClick={Search}>検索</Button>
     </Card>
     </div>
   );
