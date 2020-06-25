@@ -1,8 +1,6 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
-
-
 const login = require('./modules/login.jsx');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
@@ -18,7 +16,6 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
