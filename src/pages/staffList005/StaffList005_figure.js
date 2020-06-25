@@ -16,7 +16,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   Paper: {
-    padding: theme.spacing(0),
     width: '100%',
     borderRadius: '0px 0px 0px 0px',
 },
@@ -54,7 +53,7 @@ const StaffList005_figure = (props) => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText>{props.contents}</ListItemText>
+                  <ListItemText>{props.contentsname}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
