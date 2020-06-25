@@ -11,6 +11,7 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
+// import SelectBox2 from './SelectBox2';
 
 
 
@@ -37,24 +38,24 @@ end: {
   },
 });
 
-const language = [
-  {
-    "id":1,
-    "lang":"Java",
-  },
-  {
-    "id":2,
-    "lang":"JavaScript",
-  },
-  {
-    "id":3,
-    "lang":"PHP",
-  },
-  {
-    "id":4,
-    "lang":"MySQL",
-  },
-]
+// const language = [
+//   {
+//     "id":1,
+//     "lang":"Java",
+//   },
+//   {
+//     "id":2,
+//     "lang":"JavaScript",
+//   },
+//   {
+//     "id":3,
+//     "lang":"PHP",
+//   },
+//   {
+//     "id":4,
+//     "lang":"MySQL",
+//   },
+// ]
 
 export default function CaseSearch() {
   const classes = useStyles();
@@ -96,13 +97,17 @@ export default function CaseSearch() {
           スキルレベル
         </Typography>
 
-        {language.map((data)=>(
-        <SelectBox name="スキルレベル"  choice={data.lang} 
-        // choice2="C言語" 
-        // choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
-        // choice7="Oracle" choice8="Python" choice9="JavaScript" 
+        {/* {language.map((data)=>( */}
+        <SelectBox name="スキルレベル" 
+        // key={data.length} num={data.id} 
+        choice="Java" 
+        choice2="C言語" 
+        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
+        choice7="Oracle" choice8="Python" choice9="JavaScript" 
         />
-        ))}
+        {/* ))} */}
+
+        {/* <SelectBox2 /> */}
         <br className={classes.end} />
         
 
@@ -136,9 +141,9 @@ export default function CaseSearch() {
           並び順
         </Typography>
 
-        <SelectBox name="並び順" choice1="時期" choice2="スキル" choice3="職種" />
+        <SelectBox name="並び順" choice="時期" choice2="スキル" choice3="職種" />
         <Typography className={classes.other} variant="body2" component="p">を基準に</Typography>
-        <SelectBox name="降順" choice1="昇順" choice2="降順" choice3="" />
+        <SelectBox name="降順" choice="昇順" choice2="降順" choice3="" />
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
