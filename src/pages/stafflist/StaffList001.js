@@ -45,19 +45,18 @@ export default function Tables() {
       <EmojiPeopleIcon />
       <PageTitle title="スタッフリスト" />
       <Scrollbars style={{ width: 800, height: 350}}>
-        <table border="3">
+        <table class="staff">
+          <thead>
             <tr>
-            <td>Id</td><th>Name</th><th>Gender</th><th>Position</th><th>Joining_Day</th><th>Birthday</th><th>Age</th><th>School_Career</th><th>Phone_Number</th><th>Near_Staition</th><th>Company_Id</th><th>Area_Id</th><th>Occupattion_Id</th><th>Employment_System_Id</th><th>Entry_At</th><th>Update_At</th><th>Update_By</th>
+            <td>Id</td><td>Name</td><td>Gender</td><td>Position</td><td>Joining_Day</td><td>Birthday</td><td>Age</td><td>School_Career</td><td>Phone_Number</td><td>Near_Staition</td><td>Company_Id</td><td>Area_Id</td><td>Occupattion_Id</td><td>Employment_System_Id</td><td>Entry_At</td><td>Update_At</td><td>Update_By</td>
             </tr>
-
+            </thead>
             <tr>
             <td>1</td><td>佐藤テスト</td><td>男</td><td>社長</td><td>1998-04-01</td><td>1960-06-23</td><td>60</td><td>○○大学</td><td>080-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>4</td><td>1</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
             </tr>
-
             <tr>
             <td>2</td><td>後藤テスト</td><td>男</td><td>課長</td><td>2000-04-01</td><td>1965-10-11</td><td>55</td><td>○○大学</td><td>090-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>9</td><td>2</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
             </tr>
-
             <tr>
             <td>3</td><td>菊池テスト</td><td>男</td><td>部長</td><td>2004-04-01</td><td>1968-04-09</td><td>52</td><td>○○大学</td><td>080-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>7</td><td>3</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
             </tr>
