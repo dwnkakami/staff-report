@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
-import clsx from 'clsx';
-import { makeStyles,withStyles} from '@material-ui/core/styles';
-import { green } from '@material-ui/core/colors';
+import { makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import ListItemText from '@material-ui/core/ListItemText';
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
-import Chip from '@material-ui/core/Chip';
 import '../Css/Search.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
 import { Card } from '@material-ui/core';
 
 // const GreenCheckbox = withStyles({
@@ -79,103 +71,48 @@ export default function StaffSearch() {
     checkedG: false,
   });
 
-  const [license, setLicense] = useState({
+  const handleChange = (event) => {
+    setCheck({ ...check, [event.target.name]: event.target.checked });
+  };
+
+  const [state, setState] = useState({
     li: '',
-  });
-
-  const [skill1, setSkill1] = useState({
     sk1: '',
-  });
-
-  const [skill2, setSkill2] = useState({
     sk2: '',
-  });
-
-  const [skill3, setSkill3] = useState({
     sk3: '',
-  });
-
-  const [status1, setStatus1] = useState({
     st1: '',
-  });
-
-  const [status2, setStatus2] = useState({
     st2: '',
-  });
-
-  const [status3, setStatus3] = useState({
     st3: '',
-  });
-
-  const [gender, setGender] = useState({
     ge: '',
+    areas:'',
   });
 
-  const [areas,setAreas] = useState({
-    areas:'',
-  })
+  const handleChange2 = (event) => {
+    setState({ ...state,[event.target.name]: event.target.value});
+  };
 
   const [text,setText]= useState({
     label: '',
   });
 
-  const handleChange = (event) => {
-    setCheck({ ...check, [event.target.name]: event.target.checked });
+  const handleChange3 = (event) => {
     setText(event.target.value);
+  };
+
+  const [value,setValue]=useState({
+    radioA: '',
+    radioB: '',
+  });
+
+  const handleChange4 = (event) => {
+    setValue({ ...value,[event.target.name]: event.target.value});
   };
 
   const Reset = () => {
     setCheck({check:false});
-    setLicense({li:""});
-    setSkill1({sk1:""});
-    setSkill2({sk2:""});
-    setSkill3({sk3:""});
-    setStatus1({st1:""});
-    setStatus2({st2:""});
-    setStatus3({st3:""});
-    setGender({ge:''});
-    setAreas({areas:''});
+    setValue({value:''});
+    setState({state:''});
     setText({label:''});
-  };
-
-  const Changehandle = (event) => {
-    //const name = event.target.name;
-    setLicense({
-      ...license,
-      [event.target.name]: event.target.value
-    });
-    setSkill1({
-      ...skill1,
-      [event.target.name]: event.target.value
-    });
-    setSkill2({
-      ...skill2,
-      [event.target.name]: event.target.value
-    });
-    setSkill3({
-      ...skill3,
-      [event.target.name]: event.target.value
-    });
-    setStatus1({
-      ...status1,
-      [event.target.name]: event.target.value
-    });
-    setStatus2({
-      ...status2,
-      [event.target.name]: event.target.value
-    });
-    setStatus3({
-      ...status3,
-      [event.target.name]: event.target.value
-    });
-    setGender({
-      ...gender,
-      [event.target.name]: event.target.value
-    });
-    setAreas({
-      ...areas,
-      [event.target.name]: event.target.value
-    });
   };
 
   return (
@@ -238,13 +175,11 @@ export default function StaffSearch() {
     <p>資格</p>
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          native
-          value={license.li}
-          onChange={Changehandle}
-          inputProps={{
-            name: 'li',
-            id: 'filled-age-native-simple',
-          }}
+          //native
+          value={state.li}
+          onChange={handleChange2}
+          name="li"
+          label="資格"
         >
           <option aria-label="None" value="" />
           <option value={"ITパスポート"}>ITパスポート</option>
@@ -257,13 +192,10 @@ export default function StaffSearch() {
       <p>スキルレベル</p>
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          native
-          value={skill1.sk1}
-          onChange={Changehandle}
-          inputProps={{
-            name: 'sk1',
-            id: 'filled-age-native-simple',
-          }}
+          value={state.sk1}
+          onChange={handleChange2}
+          name="sk1"
+          label="スキルレベル１"
         >
           <option aria-label="None" value="" />
           <option value={"Java"}>Java</option>
@@ -275,13 +207,10 @@ export default function StaffSearch() {
       {/* ステータス１ */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          native
-          value={status1.st1}
-          onChange={Changehandle}
-          inputProps={{
-            name: 'st1',
-            id: 'filled-age-native-simple',
-          }}
+          //native
+          value={state.st1}
+          onChange={handleChange2}
+          name="st1"
         >
           <option aria-label="None" value="" />
           <option value={1}>1</option>
@@ -291,28 +220,26 @@ export default function StaffSearch() {
       </FormControl>
 
     {/* 絞り込みボタン */}
-    <RadioGroup row aria-label="position" name="position" defaultValue="top">
+    <RadioGroup row aria-label="position"  name="radioA" value={value.radioA} onChange={handleChange4} defaultValue="top">
         <FormControlLabel
           value="and"
           control={<Radio color="primary" />}
           label="and"
-          labelPlacement="and"
         />
 
         <FormControlLabel
           value="or"
           control={<Radio color="primary" />}
           label="or"
-          labelPlacement="or"
         />
     </RadioGroup>
 
     {/* スキル情報２ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          native
-          value={skill2.sk2}
-          onChange={Changehandle}
+          //native
+          value={state.sk2}
+          onChange={handleChange2}
           inputProps={{
             name: 'sk2',
             id: 'filled-age-native-simple',
@@ -328,9 +255,9 @@ export default function StaffSearch() {
       {/* ステータス2 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          native
-          value={status2.st2}
-          onChange={Changehandle}
+         // native
+          value={state.st2}
+          onChange={handleChange2}
           inputProps={{
             name: 'st2',
             id: 'filled-age-native-simple',
@@ -344,28 +271,26 @@ export default function StaffSearch() {
       </FormControl>
     
      {/* 絞り込みボタン */}
-     <RadioGroup row aria-label="position" name="position" defaultValue="top">
+     <RadioGroup row aria-label="position"  name="radioB" value={value.radioB} onChange={handleChange4} defaultValue="top">
         <FormControlLabel
           value="and"
           control={<Radio color="primary" />}
           label="and"
-          labelPlacement="and"
         />
 
         <FormControlLabel
           value="or"
           control={<Radio color="primary" />}
           label="or"
-          labelPlacement="or"
         />
     </RadioGroup>
 
     {/* スキル情報３ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          native
-          value={skill3.sk3}
-          onChange={Changehandle}
+          //native
+          value={state.sk3}
+          onChange={handleChange2}
           inputProps={{
             name: 'sk3',
             id: 'filled-age-native-simple',
@@ -381,9 +306,9 @@ export default function StaffSearch() {
       {/* ステータス3 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          native
-          value={status3.st3}
-          onChange={Changehandle}
+          //native
+          value={state.st3}
+          onChange={handleChange2}
           inputProps={{
             name: 'st3',
             id: 'filled-age-native-simple',
@@ -399,7 +324,7 @@ export default function StaffSearch() {
     <p class='older'>年齢</p>
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-basic" variant="outlined" 
-        onChange={handleChange}
+        onChange={handleChange3}
         value={text.label}
       />
     </form>
@@ -407,9 +332,9 @@ export default function StaffSearch() {
     <p class='gender'>性別</p>
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
-          native
-          value={gender.ge}
-          onChange={Changehandle}
+          //native
+          value={state.ge}
+          onChange={handleChange2}
           inputProps={{
             name: 'ge',
             id: 'filled-age-native-simple',
@@ -424,9 +349,9 @@ export default function StaffSearch() {
       <p class='area'>地域</p>
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
-          native
-          value={areas.areas}
-          onChange={Changehandle}
+          //native
+          value={state.areas}
+          onChange={handleChange2}
           inputProps={{
             name: 'areas',
             id: 'filled-age-native-simple',

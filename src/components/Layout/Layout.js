@@ -19,7 +19,7 @@ import Dashboard from "../../pages/dashboard/Dashboard";
 import Typography from "../../pages/typography/Typography";
 import Notifications from "../../pages/notifications/Notifications";
 import Maps from "../../pages/maps/Maps";
-import Tables from "../../pages/tables/Tables";
+//import Tables from "../../pages/tables/Tables";
 import Icons from "../../pages/icons/Icons";
 import Charts from "../../pages/charts/Charts";
 
