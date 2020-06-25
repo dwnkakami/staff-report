@@ -54,7 +54,7 @@ const StaffList005_figure = (props) => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary={props.contents}/>
+                  <ListItemText>{props.contents}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>

@@ -25,7 +25,6 @@ app.use(bodyParser.json());
 
 const port = process.env.PORT || 4000;
 
-
 app.get('/api/login',(req,res) => {
     login.getData(req,res);
 });
