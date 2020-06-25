@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Drawer, IconButton, List, Typography } from "@material-ui/core";
+import { Drawer, IconButton, List } from "@material-ui/core";
 import {
   Home as HomeIcon,
   // NotificationsNone as NotificationsIcon,
@@ -22,6 +22,12 @@ import useStyles from "./styles";
 // components
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import Dot from "./components/Dot";
+
+// components
+import { Typography } from "../Wrappers/Wrappers";
+// import Notification from "../Notification/Notification";
+// import UserAvatar from "../UserAvatar/UserAvatar";
+
 
 // context
 import {
@@ -192,7 +198,7 @@ function Sidebar({ location } ,props) {
       <div className={classes.profileMenuUser}>
         <Typography className={classes.profileMenuLink}
               color="primary"
-              onClick={() => signOut(userDispatch, props.history)}>ログアウト
+              onClick={() => signOut(userDispatch, props.history) }>ログアウト
         </Typography>
       </div>
     </Drawer>
