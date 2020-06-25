@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StaffList003_figure from './StaffList003_figure';
+import { render } from 'react-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicButtonGroup() {
+const StaffList003 = () => {
   const classes = useStyles();
 
   return (
@@ -91,9 +92,14 @@ export default function BasicButtonGroup() {
         <StaffList003_figure />
       </div>
       <div>
+      <StaffList003_figure />
+      </div>
+      <div>
         <Button className={classes.Button4}><AddIcon />追加</Button>
       </div>
       </Paper>
     </div>
   );
-  }
+}
+
+  export default StaffList003;

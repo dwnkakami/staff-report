@@ -26,16 +26,16 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   number: {
-    height: 450,
+    height: 400,
     width: 80,
     color: '#000000',
     textAlign: 'center',
-    lineHeight: 14,
+    lineHeight: 12,
     fontSize: 35,
     borderRadius: '0px 0px 0px 0px'
   },
   content: {
-    height: 45,
+    height: 40,
     width: 344,
     textAlign: 'center',
     color: '#000000',
@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content_color: {
-    height: 45,
+    height: 40,
     width: 344,
     textAlign: 'center',
     fontSize: 32,
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content2: {
-    height: 45,
+    height: 40,
     width: 100,
     fontSize: 30,
     textAlign: 'center',
@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content3: {
-    height: 45,
+    height: 40,
     width: 244,
     fontSize: 30,
     textAlign: 'center',
@@ -71,18 +71,18 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content4: {
-    height: 180,
+    height: 160,
     width: 100,
     fontSize: 30,
     textAlign: 'center',
-    lineHeight: 6,
+    lineHeight: 5,
     background: '#6699ff',
     color: '#000000',
     float: 'left',
     borderRadius: '0px 0px 0px 0px'
   },
   content5: {
-    height: 180,
+    height: 160,
     width: 244,
     fontSize: 30,
     textAlign: 'center',
@@ -91,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content6: {
-    height: 45,
+    height: 40,
     width: 145,
     fontSize: 30,
     textAlign: 'center',
@@ -100,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content7: {
-    height: 45,
+    height: 40,
     width: 199,
     textAlign: 'right',
     color: '#000000',
@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content8: {
-    height: 360,
+    height: 320,
     width: 344,
     textAlign: 'center',
     color: '#000000',
@@ -116,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content9: {
-    height: 45,
+    height: 40,
     width: 280,
     textAlign: 'center',
     color: '#000000',
@@ -124,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content9_color: {
-    height: 45,
+    height: 40,
     width: 280,
     textAlign: 'center',
     fontSize: 32,
@@ -135,6 +135,11 @@ const useStyles = makeStyles((theme) => ({
   figure: {
     float: 'left',
   },
+  add: {
+    height: 30,
+    width: 1328,
+    borderRadius: '0px 0px 0px 0px'
+  }
 }));
 export default function CenteredGrid() {
   const classes = useStyles();
@@ -148,7 +153,7 @@ export default function CenteredGrid() {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.number}>1</Paper>
+              <Paper className={classes.number} variant="outlined">1</Paper>
             </Grid>
         </Grid>
       </div>
@@ -320,6 +325,16 @@ export default function CenteredGrid() {
               <Grid>
                 <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid> 
+            </Grid>
+          </div>
+          <div>
+          <Grid
+  container
+  direction="column"
+  justify="flex-start"
+  alignItems="baseline"
+>
+              <Paper className={classes.add}></Paper>
             </Grid>
           </div>
     </div>
