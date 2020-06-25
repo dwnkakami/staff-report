@@ -47,7 +47,7 @@ const DialogContent = withStyles((theme) => ({
 const CaseList = () => {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => getCaseData() );
+  useEffect(() => getCaseData());
 
   const getCaseData = () => {
     if (posts.length === 0) {
@@ -62,7 +62,11 @@ const CaseList = () => {
         })
     }
   }
-  
+
+  const getData = posts.filter((data) => {
+    return data.id === 1 ;
+  });
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -82,14 +86,15 @@ const CaseList = () => {
           案件詳細
         </DialogTitle>
         <DialogContent dividers >
-          <Typography gutterBottom>
+        {getData.map((data) => (
+          <Typography gutterBottom key={data.id}>
             <table>
               <tr>
                 <th>案件名</th>
                 <th>案件保有会社</th>
               </tr>
               <tr>
-                <td>データ</td>
+                <td>{data.name}</td>
                 <td>データ</td>
               </tr>
               <tr>
@@ -97,8 +102,8 @@ const CaseList = () => {
                 <th>勤務地</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.unit_cost}</td>
+                <td>{data.workplace}</td>
               </tr>
               </table>
               <table>
@@ -108,9 +113,9 @@ const CaseList = () => {
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.number_of_persons}</td>
+                <td>{data.start}</td>
+                <td>{data.end}</td>
               </tr>
             </table>
             <table>
@@ -118,7 +123,7 @@ const CaseList = () => {
                 <th>業務内容</th>
               </tr>
               <tr>
-                <td class='wide-td1'>データ</td>
+                <td class='wide-td1'>{data.business_content}</td>
               </tr>
             </table>
             <table>
@@ -127,11 +132,12 @@ const CaseList = () => {
                 <th>備考欄</th>
               </tr>
               <tr>
-                <td class='wide-td2'>データ</td>
-                <td>データ</td>
+                <td class='wide-td2'>{data.skill_level_column}</td>
+                <td>{data.note}</td>
               </tr>
             </table>
           </Typography>
+        ))}
         </DialogContent>
       </Dialog>
     </div>
