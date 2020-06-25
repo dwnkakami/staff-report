@@ -30,6 +30,7 @@ export const getData =
       "company_id":"データウェアネットワーク株式会社",
       "area_id":"関東",
       "occupation_id":"事務職",
-      "employment_system_id":"サポート"
+      "employment_system_id":"サポート",
+      "aaa":"sss",
     },
   ];
