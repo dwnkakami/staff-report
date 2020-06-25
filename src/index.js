@@ -4,7 +4,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
 import Themes from "./themes";
 import App from "./components/App";
-import StaffList005 from '../src/pages/staffList005/StaffList005';
+import StaffList005 from '../src/pages/staffList005/S_005';
 import StaffList005_figure from '../src/pages/staffList005/StaffList005_figure';
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
