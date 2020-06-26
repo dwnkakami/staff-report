@@ -10,11 +10,22 @@ import'./stafflist.css';
 import PageTitle from "../../components/PageTitle/PageTitle";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+// import { makeStyles } from "@material-ui/core";
 // import Widget from "../../components/Widget/Widget";
 // import Table from "../dashboard/components/Table/Table";
 
 // data
 // import mock from "../dashboard/mock";
+
+// const useStyles = makeStyles({
+//   root: {
+//     overflowX: "auto",
+//     whiteSpace: "nowrap"
+//   },
+//   table: {
+//     tableLayout: "fixed"
+//   }
+// });
 
 // export default StaffList
 // const datatableData = [
