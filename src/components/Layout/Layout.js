@@ -25,7 +25,7 @@ import Charts from "../../pages/charts";
 
 // import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
-//  import StaffAdd from "../../pages/StaffAdd/Staff addition";
+// import StaffAdd from "../../pages/staffadd";
 
 //import CaseList from "../../pages/caselist";
 //import CaseSearch from "../../pages/casesearch";
@@ -65,7 +65,7 @@ function Layout(props) {
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
-              {/* { <Route path="/staff-report/staffadd/001" component={StaffAdd} /> } */}
+              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
               {/* <Route path="/staff-report/casasearch/001" component={CaseSearch} /> */}
