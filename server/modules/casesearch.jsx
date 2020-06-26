@@ -20,7 +20,7 @@ exports.getData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql ="select * from staff_report.m_matter where id =1"// + req;
+    const sql ="select * from staff_report.m_matter where id =" + req;
 
     con.query(sql, (err, result, fields) => {
       if (err) throw err;
