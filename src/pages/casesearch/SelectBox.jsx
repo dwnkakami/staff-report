@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
+// import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+// import SelectItem from './SelectItem';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -23,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SelectBox(props) {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
+  // const [age, setAge] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setAge(event.target.value);
+  // };
 
   return (
     <div>
@@ -37,16 +38,20 @@ export default function SelectBox(props) {
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={age}
-          onChange={handleChange}
+          value={props.value}
+          onChange={props.handleChange}
           label="Age"
           className={classes.select}
         >
-          <MenuItem value="">
+          {/* <MenuItem value="">
             <em>None</em>
-          </MenuItem>
-          <MenuItem value={1}>{props.choice}</MenuItem>
-          <MenuItem value={2}>{props.choice2}</MenuItem>
+          </MenuItem> */}
+
+          {/* <MenuItem key={props.key} value={props.value1}>
+            {props.choice}
+          </MenuItem> */}
+
+          {/* <MenuItem value={2}>{props.choice2}</MenuItem>
           <MenuItem value={3}>{props.choice3}</MenuItem>
           <MenuItem value={4}>{props.choice4}</MenuItem>
           <MenuItem value={5}>{props.choice5}</MenuItem>
@@ -54,9 +59,14 @@ export default function SelectBox(props) {
           <MenuItem value={7}>{props.choice7}</MenuItem>
           <MenuItem value={8}>{props.choice8}</MenuItem>
           <MenuItem value={9}>{props.choice9}</MenuItem>
-          <MenuItem value={91}>{props.choice10}</MenuItem>
+          <MenuItem value={91}>{props.choice10}</MenuItem> */}
+
+          {/* <SelectItem key={props.key} value={props.value1} choice={props.choice} /> */}
+
         </Select>
       </FormControl>
     </div>
   );
-}
+};
+
+

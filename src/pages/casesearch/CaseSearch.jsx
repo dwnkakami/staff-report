@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
+// import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import { Paper } from '@material-ui/core';
 
 //import Component
 import KeywordSearch from './KeywordSearch';
@@ -11,6 +12,7 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
+import SelectItem from './SelectItem';
 // import SelectBox2 from './SelectBox2';
 
 
@@ -38,30 +40,36 @@ end: {
   },
 });
 
-// const language = [
-//   {
-//     "id":1,
-//     "lang":"Java",
-//   },
-//   {
-//     "id":2,
-//     "lang":"JavaScript",
-//   },
-//   {
-//     "id":3,
-//     "lang":"PHP",
-//   },
-//   {
-//     "id":4,
-//     "lang":"MySQL",
-//   },
-// ]
+const language = [
+  {
+    id:1,
+    lang:"Java",
+  },
+  {
+    id:2,
+    lang:"JavaScript",
+  },
+  {
+    id:3,
+    lang:"PHP",
+  },
+  {
+    id:4,
+    lang:"MySQL",
+  },
+];
 
 export default function CaseSearch() {
   const classes = useStyles();
 
+  const [state,setState] = React.useState("");
+
+  const handleChange = (event) => {
+    setState(event.target.value);
+  };
+
   return (
-    <Card className={classes.root} variant="outlined">
+    <Paper className={classes.root} variant="outlined">
       <CardContent>
       <Typography variant="h3" component="h2">
         案件検索
@@ -99,13 +107,17 @@ export default function CaseSearch() {
 
         {/* {language.map((data)=>( */}
         <SelectBox name="スキルレベル" 
-        // key={data.length} num={data.id} 
-        choice="Java" 
-        choice2="C言語" 
-        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
-        choice7="Oracle" choice8="Python" choice9="JavaScript" 
-        />
-        {/* ))} */}
+        handleChange={handleChange} value={state} 
+        // choice2="C言語" 
+        // choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
+        // choice7="Oracle" choice8="Python" choice9="JavaScript" 
+        >
+          {language.map((data)=>(
+            <SelectItem 
+            key={data.id} value1={data.id} choice={data.lang} />
+          ))} 
+        </SelectBox>
+         {/* ))}  */}
 
         {/* <SelectBox2 /> */}
         <br className={classes.end} />
@@ -154,6 +166,6 @@ export default function CaseSearch() {
         <SearchButton />
 
       </CardContent>
-    </Card>
+    </Paper>
   );
 }
