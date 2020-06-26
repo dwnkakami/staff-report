@@ -20,18 +20,13 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 4,
     position: 'relative',
   },
-  add: {
-    height: 5,
-    width: 424,
-    borderRadius: '0px 0px 0px 0px'
-  },
   number: {
     height: 400,
     width: 80,
-    color: '#000000',
-    textAlign: 'center',
-    lineHeight: 12,
-    fontSize: 35,
+    // color: '#000000',
+    // textAlign: 'center',
+    // lineHeight: 12,
+    // fontSize: 35,
     borderRadius: '0px 0px 0px 0px'
   },
   content: {
@@ -153,7 +148,7 @@ const StaffList003_figure = (props) => {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.number} variant="outlined">{props.contents}</Paper>
+              <Paper className={classes.number} variant="outlined"><h4>{props.name}</h4></Paper>
             </Grid>
         </Grid>
       </div>
@@ -242,7 +237,7 @@ const StaffList003_figure = (props) => {
               <Paper className={classes.content_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content} variant="outlined"></Paper>
+              <Paper className={classes.content} variant="outlined">{props.name}</Paper>
             </Grid>
             <Grid>
               <Paper className={classes.content8} variant="outlined"></Paper>

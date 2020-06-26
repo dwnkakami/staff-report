@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import StaffList003_figure from './StaffList003_figure';
-import { render } from 'react-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,10 +88,7 @@ const StaffList003 = () => {
       <Button variant="contained"　className={classes.Button3}>引合登録</Button>
       </div>
       <div>
-        <StaffList003_figure />
-      </div>
-      <div>
-      {/* <StaffList003_figure /> */}
+      <StaffList003_figure />
       </div>
       <div>
         <Button className={classes.Button4}><AddIcon />追加</Button>
