@@ -1,5 +1,5 @@
 import React from 'react';
-import './Caselist.css';
+import './CaseDetail.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -62,7 +62,7 @@ export default function Caselist (props) {
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get('/api/casedetail')
+        .get('/api/casedetail/2')
         .then(response => {
           setUser(response.data);
         })
@@ -131,7 +131,7 @@ export default function Caselist (props) {
             {user.map((data) => (
             <table>
               <tr>
-                <th>スキルレベル</th>
+                <th>必須スキル</th>
                 <th>備考欄</th>
               </tr>
               <tr>
