@@ -141,9 +141,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   }
 }));
-export default function CenteredGrid() {
-  const classes = useStyles();
 
+const StaffList003_figure = (props) => {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <div className={classes.figure}>
@@ -153,7 +153,7 @@ export default function CenteredGrid() {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.number} variant="outlined">1</Paper>
+              <Paper className={classes.number} variant="outlined">{props.contents}</Paper>
             </Grid>
         </Grid>
       </div>
@@ -329,14 +329,15 @@ export default function CenteredGrid() {
           </div>
           <div>
           <Grid
-  container
-  direction="column"
-  justify="flex-start"
-  alignItems="baseline"
->
+            container
+            direction="column"
+            justify="flex-start"
+            alignItems="baseline">
               <Paper className={classes.add}></Paper>
             </Grid>
           </div>
     </div>
   );
 }
+
+export default StaffList003_figure;

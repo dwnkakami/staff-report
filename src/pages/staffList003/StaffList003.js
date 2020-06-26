@@ -92,7 +92,7 @@ const StaffList003 = () => {
         <StaffList003_figure />
       </div>
       <div>
-      <StaffList003_figure />
+      {/* <StaffList003_figure /> */}
       </div>
       <div>
         <Button className={classes.Button4}><AddIcon />追加</Button>
