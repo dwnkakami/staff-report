@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/paper';
+import './CaseSearchCSS.css';
 
 //import Component
 import KeywordSearch from './KeywordSearch';
@@ -61,7 +62,7 @@ export default function CaseSearch() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} variant="outlined">
+    <Paper elevation={3} id='paper2' className={classes.root} variant="outlined">
       <CardContent>
       <Typography variant="h3" component="h2">
         案件検索
@@ -154,6 +155,6 @@ export default function CaseSearch() {
         <SearchButton />
 
       </CardContent>
-    </Card>
+    </Paper>
   );
 }
