@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,12 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Grid　} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 
+import axios from 'axios';
 import './S_012.css';
-
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -32,33 +32,52 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-}
+// function createData(name, calories, fat, carbs, protein) {
+//     return { name, calories, fat, carbs, protein };
+// }
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-];
+// const rows = [
+//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+// ];
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 700,
+        minWidth: 7,
     },
 });
 
-export default function Referencelist() {
+export default function Referencelist(props) {
     const classes = useStyles();
+
+    const [posts, setPosts] =useState([]);
+
+useEffect(() => getData());
+
+const getData = () => {
+    if(posts.length === 0){
+        axios
+        .get('/api/referencelist')
+        .then(response =>{
+            setPosts(response.data);
+            console.log([response.data])
+        })
+        .catch(() => {
+            console.log("データがありません")
+        })
+    }
+}
 
     return (
         <Paper elevation={3} className="paper1">
             {/* <h1>引合リスト</h1> */}
-            <div className='title' style={{display:'flex'}}>
-            <DescriptionOutlinedIcon style={{fontSize:'40px',}} />
-            <Typography style={{fontSize:'30px'}}>引合リスト</Typography>
+            <div className='title' style={{ display: 'flex' }}>
+                <DescriptionOutlinedIcon style={{ fontSize: '40px', }} />
+                <Typography style={{ fontSize: '30px' }}>引合リスト</Typography>
             </div>
             <TableContainer >
                 <Grid container spacing={24} justify={"center"}>
                     <Grid className="table1">
+                        
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
@@ -70,15 +89,15 @@ export default function Referencelist() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
-                                    <StyledTableRow key={row.name}>
+                                {posts.map((data) => (
+                                    <StyledTableRow>
                                         <StyledTableCell component="th" scope="row">
-                                            {row.name}
+                                            {data.name}
                                         </StyledTableCell>
-                                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                                        <StyledTableCell align="right">{data.staff_id}</StyledTableCell>
+                                        <StyledTableCell align="right">{data.customer_abbreviation}</StyledTableCell>
+                                        <StyledTableCell align="right"></StyledTableCell>
+                                        <StyledTableCell align="right">{data.note}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
@@ -97,15 +116,15 @@ export default function Referencelist() {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
-                                    <StyledTableRow key={row.name}>
+                                {posts.map((data) => (
+                                    <StyledTableRow>
                                         <StyledTableCell component="th" scope="row">
-                                            {row.name}
+                                            {data.name}
                                         </StyledTableCell>
-                                        <StyledTableCell align="right">{row.calories}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.fat}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-                                        <StyledTableCell align="right">{row.protein}</StyledTableCell>
+                                        <StyledTableCell align="right">{data.staff_id}</StyledTableCell>
+                                        <StyledTableCell align="right">{data.company_abbreviation}</StyledTableCell>
+                                        <StyledTableCell align="right"></StyledTableCell>
+                                        <StyledTableCell align="right">{data.note}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
