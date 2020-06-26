@@ -1,7 +1,8 @@
-import React from "react";
+import React, {Component} from "react";
 import Paper from '@material-ui/core/paper';
 import './CaseListCSS.css';
 import Typography from '@material-ui/core/Typography';
+import {render} from 'react-dom';
 //テーブルマテリアルＵＩ
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -50,9 +51,65 @@ const StyledTableRow = withStyles((theme) => ({
   export default function CaseList() {
     const classes = useStyles();
 
-  //Case.sort();
+    handleSortByAscend((key) => {
+      const line = this.state.data.sort((a, b) => {
+       if (a[key] < b[key]) return -1;
+       if (a[key] > b[key]) return 1;
+        return 0;
+      });
+      this.setState({
+        data: line
+      });
+    });
 
-return(
+   handleSortByDescend((key) => {
+      const line = this.state.data.sort((a, b) => {
+        if (a[key] < b[key]) return 1;
+        if (a[key] > b[key]) return -1;
+        return 0;
+      });
+      this.setState({
+        data: line
+      });
+    });
+
+    let list = this.state.data.map((data) => (
+      <li key={data.id}>
+        {data.id}: {data.name}
+      </li>
+    ));
+    return (
+      <div>
+      <div>
+        <Form onFilterVal={this.handleFilterVal.bind(this)} />
+        {/* SortButtonコンポーネントを追加し、上記で定義したhandleSortByAscend()メソッドとhandleSortByDescend()メソッドを渡す */}
+        <SortButton
+          onSortByAscend={this.handleSortByAscend.bind(this)}
+          onSortByDescend={this.handleSortByDescend.bind(this)}
+        />
+        <ul>
+          {list}
+        </ul>
+      </div>
+    );
+  }
+}
+
+    Form.propTypes = {
+      onFilterVal: React.PropTypes.func.isRequired
+    };
+    class SortButton extends Component {
+      _sortByAscend(e) {
+        e.preventDefault();
+        this.props.handleSortByAscend(e.target.value);
+      }
+      _sortByDescend(e) {
+        e.preventDefault();
+        this.props.handleSortByDescend(e.target.value);
+      }
+    }
+
+  return(
     <Paper elevation={3} className='paper1'>
         <Typography variant="h3" component="h2">
         案件リスト
@@ -64,7 +121,9 @@ return(
             <StyledTableCell align="left">案件番号</StyledTableCell>
             <StyledTableCell align="left">案件名</StyledTableCell>
             <StyledTableCell align="left">顧客番号</StyledTableCell>
-            <StyledTableCell align="left">依頼単価&nbsp;<button >昇順</button><button >降順</button></StyledTableCell>
+            <StyledTableCell align="left">依頼単価&nbsp;
+            <button onClick={this._sortByAscend.bind(this)} value="uni_cost">昇順</button>
+            <button onClick={this._sortByDescend.bind(this)} value="uni_cost">降順</button></StyledTableCell>
             <StyledTableCell align="left">勤務地</StyledTableCell>
             <StyledTableCell align="left">募集人数</StyledTableCell>
             <StyledTableCell align="left">勤務開始日</StyledTableCell>
@@ -90,5 +149,5 @@ return(
       </Table>
     </TableContainer>
     </Paper>
-    )
-}
+    );
+  }
