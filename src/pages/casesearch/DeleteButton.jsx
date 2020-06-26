@@ -6,17 +6,18 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
+      float: 'left',
     },
   },
 }));
 
-export default function SearchButton() {
+export default function DeleteButton() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Button variant="contained" >
-        検索
+        クリア
       </Button>
     </div>
   );

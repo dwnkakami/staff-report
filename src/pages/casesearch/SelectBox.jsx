@@ -9,14 +9,19 @@ import Select from '@material-ui/core/Select';
 const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 140,
+    float:'left',
+    padding:5,
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
+  select: {
+    height:40,
+  },
 }));
 
-export default function SelectBox() {
+export default function SelectBox(props) {
   const classes = useStyles();
   const [age, setAge] = React.useState('');
 
@@ -28,20 +33,28 @@ export default function SelectBox() {
     <div>
  
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+      <InputLabel id="demo-simple-select-outlined-label">{props.name}</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={age}
           onChange={handleChange}
           label="Age"
+          className={classes.select}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          <MenuItem value={1}>{props.choice}</MenuItem>
+          <MenuItem value={2}>{props.choice2}</MenuItem>
+          <MenuItem value={3}>{props.choice3}</MenuItem>
+          <MenuItem value={4}>{props.choice4}</MenuItem>
+          <MenuItem value={5}>{props.choice5}</MenuItem>
+          <MenuItem value={6}>{props.choice6}</MenuItem>
+          <MenuItem value={7}>{props.choice7}</MenuItem>
+          <MenuItem value={8}>{props.choice8}</MenuItem>
+          <MenuItem value={9}>{props.choice9}</MenuItem>
+          <MenuItem value={91}>{props.choice10}</MenuItem>
         </Select>
       </FormControl>
     </div>
