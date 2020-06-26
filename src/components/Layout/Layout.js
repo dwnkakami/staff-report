@@ -63,7 +63,7 @@ function Layout(props) {
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
-              <Route path="/app/staff-report/caseadd/001" component={CaseAdd_Sasaki} />
+              <Route path="/staff-report/caseadd" component={CaseAdd_Sasaki} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
