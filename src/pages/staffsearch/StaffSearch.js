@@ -5,8 +5,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -14,6 +14,8 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { Grid } from '@material-ui/core/';
+import InputLabel from '@material-ui/core/InputLabel';
+import { getData }  from './StaffSearchdata';
 import './StaffSearch.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -80,6 +82,8 @@ export default function StaffSearch() {
       setValue({value:''})
     }
 
+  const occupation = getData.map((data) => (<li key={data.id}>{data.name}</li>))
+
 return (
     <Paper class="paper">
     <div>
@@ -141,8 +145,8 @@ return (
             name="selectA"
             label="資格"
           >
-            <MenuItem value="">
-            </MenuItem>
+            <Menu value={occupation}>
+            </Menu>
             <MenuItem value={"ITパスポート"}>ITパスポート</MenuItem>
             <MenuItem value={"基本情報技術者"}>基本情報技術者</MenuItem>
             <MenuItem value={"応用情報技術者"}>応用情報技術者</MenuItem>
@@ -153,7 +157,7 @@ return (
         <Grid container spacing={2}>
         <Grid item xs={6}>
 　　　   <FormControl variant="outlined" className={classes.formControl} >
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
@@ -173,7 +177,7 @@ return (
         </Grid>
       <Grid item xs={6}>
 　　　 <FormControl variant="outlined" className={classes.formControl}　>
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">レベル</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -205,7 +209,7 @@ return (
         <Grid container spacing={2}>
         <Grid item xs={6}>
       　　　 <FormControl variant="outlined" className={classes.formControl} >
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -225,7 +229,7 @@ return (
       </Grid>
       <Grid item xs={6}>
       　　　 <FormControl variant="outlined" className={classes.formControl} >
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">レベル</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -257,7 +261,7 @@ return (
         <Grid container spacing={2}>
         <Grid item xs={6}>
       　　　 <FormControl variant="outlined" className={classes.formControl} >
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
@@ -277,7 +281,7 @@ return (
       </Grid>
       <Grid item xs={6}>
       　　　 <FormControl variant="outlined" className={classes.formControl} >
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+        <InputLabel id="demo-simple-select-outlined-label">レベル</InputLabel>
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"

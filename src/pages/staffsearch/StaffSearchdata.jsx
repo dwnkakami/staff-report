@@ -1,0 +1,27 @@
+export const  getData =
+[
+    {
+        "id":1,
+        "name":"SE"
+    },
+    {
+        "id":2,
+        "name":"PG"
+    },
+    {
+        "id":3,
+        "name":"営業"
+    },
+    {
+        "id":4,
+        "name":"インフラSE"
+    },
+    {
+        "id":5,
+        "name":"サポート"
+    },
+    {
+        "id":6,
+        "name":"総務"
+    },
+];
