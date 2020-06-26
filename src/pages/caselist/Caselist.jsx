@@ -8,6 +8,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { useState , useEffect } from 'react';
+import axios from 'axios';
 
 const styles = (theme) => ({
   root: {
@@ -43,7 +45,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function Caselist () {
+export default function Caselist (props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -52,6 +54,23 @@ export default function Caselist () {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const [user, setUser] = useState([]);
+
+  useEffect(() => getCasedetailData());
+
+  const getCasedetailData = () => {
+    if(user.length === 0) {
+      axios
+        .get('/api/casedetail')
+        .then(response => {
+          setUser(response.data);
+        })
+         .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
 
   return (
     <div>
@@ -64,24 +83,28 @@ export default function Caselist () {
           </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
+            {user.map((data) => (
             <table>
               <tr>
                 <th>案件名</th>
                 <th>案件保有会社</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.name}</td>
+                <td>{data.customer_name}</td>
+                
               </tr>
               <tr>
                 <th>依頼単価</th>
                 <th>勤務地</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.unit_cost}</td>
+                <td>{data.workplace}</td>
               </tr>
               </table>
+            ))}
+            {user.map((data) => (
               <table>
               <tr>
                 <th>募集人数</th>
@@ -89,29 +112,34 @@ export default function Caselist () {
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.number_of_persons}</td>
+                <td>{data.matter_start}</td>
+                <td>{data.matter_end}</td>
               </tr>
             </table>
+            ))}
+            {user.map((data) => (
             <table>
               <tr>
                 <th>業務内容</th>
               </tr>
               <tr>
-                <td class='wide-td1'>データ</td>
+                <td class='wide-td1'>{data.business_content}</td>
               </tr>
             </table>
+            ))}
+            {user.map((data) => (
             <table>
               <tr>
                 <th>スキルレベル</th>
                 <th>備考欄</th>
               </tr>
               <tr>
-                <td class='wide-td2'>データ</td>
-                <td>データ</td>
+                <td class='wide-td2'>{data.skill_level_column}</td>
+                <td>{data.note}</td>
               </tr>
             </table>
+          ))}
           </Typography>
         </DialogContent>
       </Dialog>
