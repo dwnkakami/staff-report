@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 // import { Grid } from "@material-ui/core";
 import { Scrollbars } from 'react-custom-scrollbars';
 // import MUIDataTable from "mui-datatables";
@@ -17,14 +18,14 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 // data
 // import mock from "../dashboard/mock";
 
-// const useStyles = makeStyles({
-//   root: {
-//     overflowX: "auto",
-//     whiteSpace: "nowrap"
-//   },
-//   table: {
-//     tableLayout: "fixed"
-//   }
+const LinkButton = props => {
+  return <Link {...props} />;
+};
+
+
+// const mapStateToProps = state => ({
+//   columns: state.columns,
+//   info: state.info,
 // });
 
 // export default StaffList
@@ -62,7 +63,7 @@ export default function Tables() {
             </tr>
 
             <tr>
-            <td>1</td><td>佐藤テスト</td><td>男</td><td>社長</td><td>1998-04-01</td><td>1960-06-23</td><td>60</td><td>○○大学</td><td>080-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>4</td><td>1</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
+            <td>1</td><td><LinkButton to="localhost:3000/#/staff-report/staffsearch/001">佐藤テスト</LinkButton></td><td>男</td><td>社長</td><td>1998-04-01</td><td>1960-06-23</td><td>60</td><td>○○大学</td><td>080-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>4</td><td>1</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
             </tr>
             <tr>
             <td>2</td><td>後藤テスト</td><td>男</td><td>課長</td><td>2000-04-01</td><td>1965-10-11</td><td>55</td><td>○○大学</td><td>090-○○○○-○○○○</td><td>○○駅</td><td>1</td><td>9</td><td>2</td><td>1</td><td>2018-07-14 00:00:00</td><td>2020-05-10 00:00:00</td><td>佐藤</td>
