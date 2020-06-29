@@ -1,5 +1,7 @@
 .title{
     margin: 20px;
+    padding: 3px 0 3px 5px;
+    height: 10px;
 }
 
 .table1{
@@ -12,9 +14,9 @@ width: 100%;
 margin: 50px;
 }
 
-.paper1{
+/* .paper1{
     position: relative;
     margin: 50px;
     min-height:80vh;
     border: 1px solid black;
-}
+} */

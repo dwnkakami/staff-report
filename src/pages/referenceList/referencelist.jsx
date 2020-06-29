@@ -12,12 +12,13 @@ import Typography from '@material-ui/core/Typography';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 
 import axios from 'axios';
-import './S_012.css';
+import './referencelist.css';
+import { Link } from 'react-router-dom';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.common.white,
+        backgroundColor: "#eee",
+        color: theme.palette.common.black,
     },
     body: {
         fontSize: 14,
@@ -31,14 +32,6 @@ const StyledTableRow = withStyles((theme) => ({
         },
     },
 }))(TableRow);
-
-// function createData(name, calories, fat, carbs, protein) {
-//     return { name, calories, fat, carbs, protein };
-// }
-
-// const rows = [
-//     createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-// ];
 
 const useStyles = makeStyles({
     table: {
@@ -77,15 +70,14 @@ const getData = () => {
             <TableContainer >
                 <Grid container spacing={24} justify={"center"}>
                     <Grid className="table1">
-                        
                         <Table className={classes.table} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
                                     <StyledTableCell>案件名</StyledTableCell>
                                     <StyledTableCell align="right">スタッフ名</StyledTableCell>
                                     <StyledTableCell align="right">発注元会社</StyledTableCell>
-                                    <StyledTableCell align="right">回答期限</StyledTableCell>
-                                    <StyledTableCell align="right">その他</StyledTableCell>
+                                    <StyledTableCell align="right">状態</StyledTableCell>
+                                    <StyledTableCell align="right">詳細</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -96,33 +88,6 @@ const getData = () => {
                                         </StyledTableCell>
                                         <StyledTableCell align="right">{data.staff_id}</StyledTableCell>
                                         <StyledTableCell align="right">{data.customer_abbreviation}</StyledTableCell>
-                                        <StyledTableCell align="right"></StyledTableCell>
-                                        <StyledTableCell align="right">{data.note}</StyledTableCell>
-                                    </StyledTableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-                    </Grid>
-
-                    <Grid className="table2" item xs={10}>
-                        <Table className={classes.table} aria-label="customized table">
-                            <TableHead>
-                                <TableRow>
-                                    <StyledTableCell>案件名</StyledTableCell>
-                                    <StyledTableCell align="right">スタッフ名</StyledTableCell>
-                                    <StyledTableCell align="right">スタッフ所属</StyledTableCell>
-                                    <StyledTableCell align="right">状態</StyledTableCell>
-                                    <StyledTableCell align="right">その他</StyledTableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {posts.map((data) => (
-                                    <StyledTableRow>
-                                        <StyledTableCell component="th" scope="row">
-                                            {data.name}
-                                        </StyledTableCell>
-                                        <StyledTableCell align="right">{data.staff_id}</StyledTableCell>
-                                        <StyledTableCell align="right">{data.company_abbreviation}</StyledTableCell>
                                         <StyledTableCell align="right"></StyledTableCell>
                                         <StyledTableCell align="right">{data.note}</StyledTableCell>
                                     </StyledTableRow>
