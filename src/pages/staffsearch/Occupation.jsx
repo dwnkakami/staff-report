@@ -1,4 +1,4 @@
-export const  getData =
+export const  occupations =
 [
     {
         "id":1,

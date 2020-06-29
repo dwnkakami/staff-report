@@ -6,7 +6,6 @@ import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -15,7 +14,10 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { Grid } from '@material-ui/core/';
 import InputLabel from '@material-ui/core/InputLabel';
-import { getData }  from './StaffSearchdata';
+// import { occupations }  from './Occupation';
+import { licenses } from './License';
+import { areas } from './Area';
+import { skills } from './Skill';
 import './StaffSearch.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +32,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StaffSearch() {
 
+// const occupation = occupations.map((data) => (<li>{data.name}</li>));
+
     const [check, setCheck] = React.useState({
       checkedA: false,
       checkedB: false,
@@ -40,21 +44,32 @@ export default function StaffSearch() {
     const handleChange = (event) => {
       setCheck({ ...check, [event.target.name]: event.target.checked });
     };
+
+    const [license, setLicense] = React.useState([]);
+
+    const handleChange2 = (event) => {
+      setLicense(event.target.value);
+    };
+
+    const [skill, setSkill] = React.useState({
+      selectA:'',
+      selectB:'',
+      selectC:'',
+    })
+  
+    const handleChange3 = (event) => {
+      setSkill({...skill, [event.target.name]:event.target.value});
+    };
     
     const classes = useStyles();
     const [state, setState] = React.useState({
-      selectA: '',
-      selectB: '',
-      selectC: '',
       selectD: '',
       selectE: '',
       selectF: '',
       selectG: '',
-      selectH: '',
-      selectI: '',
     });
 
-    const handleChange2 = (event) => {
+    const handleChange4 = (event) => {
       setState({ ...state, [event.target.name]: event.target.value });
     };
 
@@ -62,7 +77,7 @@ export default function StaffSearch() {
       text: ''
     });
 
-    const handleChange3 = (event) => {
+    const handleChange5 = (event) => {
       setText({ ...text, [event.target.name]: event.target.value });
     }
 
@@ -71,18 +86,18 @@ export default function StaffSearch() {
       radioB: '',
     });
 
-    const handleChange4 = (event) => {
+    const handleChange6 = (event) => {
       setValue({ ...value, [event.target.name]: event.target.value });
     };
 
     const Click = () => {
       setCheck({check:false});
+      setLicense({license:''});
+      setSkill({license:''});
       setState({state: ''});
       setText({text: ''});
-      setValue({value:''})
-    }
-
-  const occupation = getData.map((data) => (<li key={data.id}>{data.name}</li>))
+      setValue({value:''});
+      }
 
 return (
     <Paper class="paper">
@@ -102,6 +117,7 @@ return (
         }
         label="：ディレクター"
     />
+
     <FormControlLabel
         control={
           <Checkbox
@@ -138,42 +154,48 @@ return (
     </FormGroup>
       
     <Typography>資格</Typography>
-　　　   <FormControl variant="outlined" className={classes.formControl} >
-          <Select
-            value={state.selectA}
-            onChange={handleChange2}
-            name="selectA"
-            label="資格"
-          >
-            <Menu value={occupation}>
-            </Menu>
-            <MenuItem value={"ITパスポート"}>ITパスポート</MenuItem>
-            <MenuItem value={"基本情報技術者"}>基本情報技術者</MenuItem>
-            <MenuItem value={"応用情報技術者"}>応用情報技術者</MenuItem>
-          </Select>
-        </FormControl>
+
+<FormControl variant="outlined"　className={classes.formControl}>
+        <Select
+          // labelId="demo-mutiple-name-label"
+          // id="demo-mutiple-name"
+          // multiple
+          value={license}
+          onChange={handleChange2}
+          // input={<Input />}
+          // MenuProps={MenuProps}
+        >
+          {licenses.map((data) => (
+            <MenuItem key={data.name} value={data.name} >
+              {data.name}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
 
     <Typography>スキルレベル</Typography>
         <Grid container spacing={2}>
         <Grid item xs={6}>
-　　　   <FormControl variant="outlined" className={classes.formControl} >
-        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
-          <Select
-            labelId="demo-simple-select-outlined-label"
-            id="demo-simple-select-outlined"
-            value={state.selectB}
-            onChange={handleChange2}
-            name="selectB"
-            label="スキルレベル1"
-          >
-            <MenuItem value="">
-            {/* <em>None</em> */}
+
+<FormControl variant="outlined"　className={classes.formControl}>
+<InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
+        <Select
+          // labelId="demo-mutiple-name-label"
+          // id="demo-mutiple-name"
+          // multiple
+          value={skill.selectA}
+          onChange={handleChange3}
+          name="selectA"
+          // input={<Input />}
+          // MenuProps={MenuProps}
+        >
+          {skills.map((data) => (
+            <MenuItem key={data.name} value={data.name} >
+              {data.name}
             </MenuItem>
-            <MenuItem value={"Java"}>Java</MenuItem>
-            <MenuItem value={"C??"}>C??</MenuItem>
-            <MenuItem value={"C#"}>C#</MenuItem>
-          </Select>
-        </FormControl>
+          ))}
+        </Select>
+      </FormControl>
         </Grid>
       <Grid item xs={6}>
 　　　 <FormControl variant="outlined" className={classes.formControl}　>
@@ -181,9 +203,9 @@ return (
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={state.selectC}
-          onChange={handleChange2}
-          name="selectC"
+          value={state.selectD}
+          onChange={handleChange4}
+          name="selectD"
           label="スキルレベル2"
         >
           <MenuItem value="">
@@ -192,12 +214,19 @@ return (
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
           <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
+          <MenuItem value={8}>8</MenuItem>
+          <MenuItem value={9}>9</MenuItem>
+          <MenuItem value={10}>10</MenuItem>
         </Select>
       </FormControl>
       </Grid>
       </Grid>
       <FormControl component="fieldset">
-      <RadioGroup aria-label="gender" name="radioA" value={value.radioA} onChange={handleChange4}>
+      <RadioGroup aria-label="gender" name="radioA" value={value.radioA} onChange={handleChange6}>
       <FormControlLabel value="and" control={<Radio />} label="and" />
       <FormControlLabel value="or" control={<Radio />} label="or" />
       </RadioGroup>
@@ -208,22 +237,24 @@ return (
         </RadioGroup> */}
         <Grid container spacing={2}>
         <Grid item xs={6}>
-      　　　 <FormControl variant="outlined" className={classes.formControl} >
-        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
+
+<FormControl variant="outlined"　className={classes.formControl}>
+<InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={state.selectD}
-          onChange={handleChange2}
-          name="selectD"
-          label="スキルレベル3"
+          // labelId="demo-mutiple-name-label"
+          // id="demo-mutiple-name"
+          // multiple
+          value={skill.selectB}
+          onChange={handleChange3}
+          name="selectB"
+          // input={<Input />}
+          // MenuProps={MenuProps}
         >
-          <MenuItem value="">
-            {/* <em>None</em> */}
-          </MenuItem>
-          <MenuItem value={"Java"}>Java</MenuItem>
-          <MenuItem value={"C??"}>C??</MenuItem>
-          <MenuItem value={"C#"}>C#</MenuItem>
+          {skills.map((data) => (
+            <MenuItem key={data.name} value={data.name} >
+              {data.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       </Grid>
@@ -234,7 +265,7 @@ return (
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
           value={state.selectE}
-          onChange={handleChange2}
+          onChange={handleChange4}
           name="selectE"
           label="スキルレベル4"
         >
@@ -244,12 +275,19 @@ return (
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
           <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
+          <MenuItem value={8}>8</MenuItem>
+          <MenuItem value={9}>9</MenuItem>
+          <MenuItem value={10}>10</MenuItem>
         </Select>
       </FormControl>
       </Grid>
       </Grid>
       <FormControl component="fieldset">
-      <RadioGroup aria-label="gender" name="radioB" value={value.radioB} onChange={handleChange4}>
+      <RadioGroup aria-label="gender" name="radioB" value={value.radioB} onChange={handleChange6}>
       <FormControlLabel value="and" control={<Radio />} label="and" />
       <FormControlLabel value="or" control={<Radio />} label="or" />
       </RadioGroup>
@@ -260,22 +298,23 @@ return (
         </RadioGroup> */}
         <Grid container spacing={2}>
         <Grid item xs={6}>
-      　　　 <FormControl variant="outlined" className={classes.formControl} >
-        <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
+<FormControl variant="outlined"　className={classes.formControl}>
+<InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={state.selectF}
-          onChange={handleChange2}
-          name="selectF"
-          label="スキルレベル5"
+          // labelId="demo-mutiple-name-label"
+          // id="demo-mutiple-name"
+          // multiple
+          value={skill.selectC}
+          onChange={handleChange3}
+          name="selectC"
+          // input={<Input />}
+          // MenuProps={MenuProps}
         >
-          <MenuItem value="">
-            {/* <em>None</em> */}
-          </MenuItem>
-          <MenuItem value={"Java"}>Java</MenuItem>
-          <MenuItem value={"C??"}>C??</MenuItem>
-          <MenuItem value={"C#"}>C#</MenuItem>
+          {skills.map((data) => (
+            <MenuItem key={data.name} value={data.name} >
+              {data.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       </Grid>
@@ -285,9 +324,9 @@ return (
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={state.selectG}
-          onChange={handleChange2}
-          name="selectG"
+          value={state.selectF}
+          onChange={handleChange4}
+          name="selectF"
           label="スキルレベル6"
         >
           <MenuItem value="">
@@ -296,6 +335,13 @@ return (
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
           <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={4}>4</MenuItem>
+          <MenuItem value={5}>5</MenuItem>
+          <MenuItem value={6}>6</MenuItem>
+          <MenuItem value={7}>7</MenuItem>
+          <MenuItem value={8}>8</MenuItem>
+          <MenuItem value={9}>9</MenuItem>
+          <MenuItem value={10}>10</MenuItem>
         </Select>
       </FormControl>
       </Grid>
@@ -308,7 +354,7 @@ return (
         id="outlined-basic"
         variant="outlined"　
         value={text.text} name="text"
-        onChange={handleChange3} />
+        onChange={handleChange5} />
       </Grid>
 
       <Grid item xs={6}>
@@ -318,9 +364,9 @@ return (
         <Select
           labelId="demo-simple-select-outlined-label"
           id="demo-simple-select-outlined"
-          value={state.selectH}
-          onChange={handleChange2}
-          name="selectH"
+          value={state.selectG}
+          onChange={handleChange4}
+          name="selectG"
           label="性別"
         >
           <MenuItem value="">
@@ -336,22 +382,21 @@ return (
       <Grid container spacing={2}>
       <Grid item xs>
       <Typography>地域</Typography>
-      　　　 <FormControl variant="outlined" className={classes.formControl}>
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
+      <FormControl variant="outlined"　className={classes.formControl}>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={state.selectI}
+          // labelId="demo-mutiple-name-label"
+          // id="demo-mutiple-name"
+          // multiple
+          value={license}
           onChange={handleChange2}
-          name="selectI"
-          label="地域"
+          // input={<Input />}
+          // MenuProps={MenuProps}
         >
-          <MenuItem value="">
-            {/* <em>None</em> */}
-          </MenuItem>
-          <MenuItem value={"北海道"}>北海道</MenuItem>
-          <MenuItem value={"東北"}>東北</MenuItem>
-          <MenuItem value={"関東"}>関東</MenuItem>
+          {areas.map((data) => (
+            <MenuItem key={data.name} value={data.name} >
+              {data.name}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       </Grid>
