@@ -3,7 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 // import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { Paper } from '@material-ui/core';
+import { Paper, 
+        //  MenuItem, 
+        //  TextField
+         } from '@material-ui/core';
 
 //import Component
 import KeywordSearch from './KeywordSearch';
@@ -12,12 +15,12 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
-import SelectItem from './SelectItem';
+// import SelectItem from './SelectItem';
 // import SelectBox2 from './SelectBox2';
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
     // backgroundColor: 'lightgrey',
@@ -38,35 +41,50 @@ end: {
     width:'100%',
     clear:'both',
   },
-});
+  formControl: {
+    '& .MuiTextField-root': {
+    margin: theme.spacing(1),
+    width: '25ch',
+    // minWidth: 140,
+    float:'left',
+    // padding:5,
+    // height:20,
+    },
+  },
+}));
 
-const language = [
-  {
-    id:1,
-    lang:"Java",
-  },
-  {
-    id:2,
-    lang:"JavaScript",
-  },
-  {
-    id:3,
-    lang:"PHP",
-  },
-  {
-    id:4,
-    lang:"MySQL",
-  },
-];
+// const language = [
+//   {
+//     id:'1',
+//     lang:'Java',
+//   },
+//   {
+//     id:'2',
+//     lang:'JavaScript',
+//   },
+//   {
+//     id:'3',
+//     lang:'PHP',
+//   },
+//   {
+//     id:'4',
+//     lang:'MySQL',
+//   },
+// ];
 
 export default function CaseSearch() {
   const classes = useStyles();
 
-  const [state,setState] = React.useState("");
+  const [state,setState] = React.useState();
 
   const handleChange = (event) => {
     setState(event.target.value);
   };
+
+  // const skillItems = language.map((data,index) =>
+  //     <MenuItem key={index}
+  //             value={data.id}>{data.lang}</MenuItem>
+  // );
 
   return (
     <Paper className={classes.root} variant="outlined">
@@ -108,16 +126,36 @@ export default function CaseSearch() {
         {/* {language.map((data)=>( */}
         <SelectBox name="スキルレベル" 
         handleChange={handleChange} value={state} 
-        // choice2="C言語" 
-        // choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
-        // choice7="Oracle" choice8="Python" choice9="JavaScript" 
-        >
-          {language.map((data)=>(
+        choice2="C言語" 
+        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
+        choice7="Oracle" choice8="Python" choice9="JavaScript" 
+        > 
+          {/* {skillItems} */}
+          {/* {language.map((data,index)=>(
             <SelectItem 
-            key={data.id} value1={data.id} choice={data.lang} />
-          ))} 
+            id={index} value1={data.id} choice={data.lang} />
+          ))}  */}
         </SelectBox>
          {/* ))}  */}
+
+
+         {/* <TextField className={classes.formControl}
+          id="outlined-select-currency"
+          select
+          label="Select"
+          value={state}
+          onChange={handleChange}
+          // helperText="Please select your currency"
+          variant="outlined"
+        >
+          {language.map((option) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.lang}
+            </MenuItem>
+          ))}
+        </TextField> */}
+
+
 
         {/* <SelectBox2 /> */}
         <br className={classes.end} />
