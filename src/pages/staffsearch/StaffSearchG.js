@@ -57,10 +57,10 @@ export default function StaffSearch() {
   
   //チェックボックス項目
   const [check, setCheck] = useState({
-    checkedA: false,
-    checkedB: false,
-    checkedF: false,
-    checkedG: false,
+    checkeA: false,
+    // checkedB: false,
+    // checkedF: false,
+    // checkedG: false,
   });
 
   //チェック切り替え
@@ -129,7 +129,7 @@ export default function StaffSearch() {
       <FormControlLabel
         control={
           <Checkbox
-            checked={check.checkedA}
+            checked={check.checkeA}
             onChange={handleChange}
             name="checkedA"
             color="primary"
@@ -138,7 +138,7 @@ export default function StaffSearch() {
         label="：ディレクター"
       />
       
-      <FormControlLabel
+      {/* <FormControlLabel
         control={
           <Checkbox
             checked={check.checkedB}
@@ -172,7 +172,7 @@ export default function StaffSearch() {
           />
         }
         label="：その他"
-    />　
+    />　 */}
     </FormGroup>
 
     {/* 資格情報 */}

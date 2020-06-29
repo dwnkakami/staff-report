@@ -24,7 +24,8 @@ import Icons from "../../pages/icons/Icons";
 import Charts from "../../pages/charts/Charts";
 
 // import StaffList001 from "../pages/stafflist001";
- import StaffSearch_G from "../../pages/staffsearch/StaffSearch_G";
+// import StaffSearch_G from "../../pages/staffsearch/StaffSearch_G";
+import StaffSearch_G from "../../pages/staffsearch/StaffSearch_G";
 // import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
