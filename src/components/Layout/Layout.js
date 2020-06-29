@@ -31,7 +31,7 @@ import Charts from "../../pages/charts";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
-import ReferenceList from "../../pages/referencelist/referencelist";
+import ReferenceList from "../../pages/referencelist/Referencelist";
 // import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
