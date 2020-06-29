@@ -45,7 +45,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function Caselist (props) {
+export default function CaseDetail (props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {

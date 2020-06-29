@@ -27,9 +27,10 @@ import Charts from "../../pages/charts";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
-import Caselist from "../../pages/caselist/Caselist";
+// import Caselist from "../../pages/caselist/Caselist";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
+import CaseDetail from "../../pages/casedetail/CaseDetail";
 
 //import ReferenceList from "../../pages/referencelist";
 //import  from "../../pages/";　引合検索
@@ -67,7 +68,7 @@ function Layout(props) {
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
-              <Route path="/staff-report/caselist/001" component={Caselist} />
+              <Route path="/staff-report/caselist/001" component={CaseDetail} />
               {/* <Route path="/staff-report/casasearch/001" component={CaseSearch} /> */}
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
