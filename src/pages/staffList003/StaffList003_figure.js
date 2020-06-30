@@ -23,126 +23,181 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   number: {
-    height: 400,
-    width: 80,
+    height: 315,
+    width: 70,
     color: '#000000',
     textAlign: 'center',
-    lineHeight: 12,
-    fontSize: 35,
+    lineHeight: 10,
+    fontSize: 31,
     borderRadius: '0px 0px 0px 0px'
   },
   content: {
-    height: 40,
-    width: 344,
+    height: 35,
+    width: 320,
     textAlign: 'center',
     color: '#000000',
-    fontSize: 25,
+    fontSize: 20,
     borderRadius: '0px 0px 0px 0px'
   },
   content_day: {
-    height: 40,
-    width: 344,
+    height: 63,
+    width: 320,
     textAlign: 'center',
     color: '#000000',
-    fontSize: 18,
+    fontSize: 19,
+    lineHeight: 2,
     borderRadius: '0px 0px 0px 0px'
   },
   content_color: {
-    height: 40,
-    width: 344,
+    height: 35,
+    width: 320,
     textAlign: 'center',
-    fontSize: 32,
+    fontSize: 27,
     background: '#6699ff',
     color: '#000000',
     borderRadius: '0px 0px 0px 0px'
   },
-  content2: {
-    height: 40,
-    width: 100,
-    fontSize: 30,
+  content2_1: {
+    height: 49,
+    width: 90,
+    fontSize: 26,
+    lineHeight: 2,
     textAlign: 'center',
     float: 'left',
     background: '#6699ff',
     color: '#000000',
     borderRadius: '0px 0px 0px 0px'
   },
-  content3: {
-    height: 40,
-    width: 244,
+  content2_2: {
+    height: 49,
+    width: 230,
+    fontSize: 25,
+    lineHeight: 2,
+    textAlign: 'center',
+    color: '#000000',
+    float: 'left',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content2_3: {
+    height: 70,
+    width: 90,
+    fontSize: 26,
+    lineHeight: 2.5,
+    textAlign: 'center',
+    float: 'left',
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content2_4: {
+    height: 70,
+    width: 230,
     fontSize: 25,
     textAlign: 'center',
+    lineHeight: 1.5,
     color: '#000000',
     float: 'left',
     borderRadius: '0px 0px 0px 0px'
   },
-  content4: {
-    height: 160,
-    width: 100,
-    fontSize: 30,
-    textAlign: 'center',
-    lineHeight: 5,
-    background: '#6699ff',
-    color: '#000000',
-    float: 'left',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content5: {
-    height: 160,
-    width: 244,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#000000',
-    float: 'left',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content6: {
-    height: 40,
-    width: 145,
-    fontSize: 30,
+  content2_5: {
+    height: 49,
+    width: 135,
+    fontSize: 27,
+    lineHeight: 2,
     textAlign: 'center',
     background: '#6699ff',
     color: '#000000',
     borderRadius: '0px 0px 0px 0px'
   },
-  content7: {
-    height: 40,
-    width: 199,
+  content2_6: {
+    height: 49,
+    width: 185,
     textAlign: 'right',
     color: '#000000',
-    fontSize: 30,
+    fontSize: 27,
+    lineHeight: 2,
     borderRadius: '0px 0px 0px 0px'
   },
-  content8: {
-    height: 320,
-    width: 344,
+
+  content3_color: {
+    height: 35,
+    width: 340,
     textAlign: 'center',
-    color: '#000000',
-    fontSize: 25,
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content9: {
-    height: 40,
-    width: 280,
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 25,
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content9_color: {
-    height: 40,
-    width: 280,
-    textAlign: 'center',
-    fontSize: 32,
+    fontSize: 27,
     background: '#6699ff',
     color: '#000000',
     borderRadius: '0px 0px 0px 0px'
   },
+  content3_1: {
+    height: 50,
+    width: 340,
+    textAlign: 'center',
+    color: '#000000',
+    fontSize: 20,
+    lineHeight: 2,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content3_2: {
+    height:230,
+    width: 340,
+    textAlign: 'center',
+    color: '#000000',
+    fontSize: 20,
+    borderRadius: '0px 0px 0px 0px'
+  },
+
+  content4_color: {
+    height: 35,
+    width: 260,
+    textAlign: 'center',
+    fontSize: 27,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content4_1: {
+    height: 105,
+    width: 260,
+    textAlign: 'center',
+    lineHeight: 2,
+    color: '#000000',
+    fontSize: 23,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content4_2: {
+    height: 140,
+    width: 260,
+    textAlign: 'center',
+    lineHeight: 2,
+    color: '#000000',
+    fontSize: 23,
+    borderRadius: '0px 0px 0px 0px'
+  },
+
+  content5_color: {
+    height: 35,
+    width: 240,
+    textAlign: 'center',
+    fontSize: 27,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content5_1: {
+    height: 35,
+    width: 240,
+    textAlign: 'center',
+    color: '#000000',
+    fontSize: 25,
+    borderRadius: '0px 0px 0px 0px'
+  },
+
   figure: {
     float: 'left',
   },
   add: {
     height: 30,
-    width: 1328,
+    width: 1230,
     borderRadius: '0px 0px 0px 0px'
   }
 }));
@@ -166,6 +221,8 @@ const StaffList003_figure = () => {
                 console.log('connected error');
             })
 }}
+
+
 
   return (
     <div className={classes.root}>
@@ -200,10 +257,10 @@ const StaffList003_figure = () => {
             justify="flex-start"
             alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2} variant="outlined">職種</Paper>
+                <Paper className={classes.content2_1} variant="outlined">場所</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3} variant="outlined"key={data.経歴番号}>{data.職種}</Paper>
+                <Paper className={classes.content2_2} variant="outlined"key={data.経歴番号}>{data.場所}</Paper>
               </Grid>
               </Grid>
             <Grid
@@ -212,10 +269,10 @@ const StaffList003_figure = () => {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2} variant="outlined">業種</Paper>
+                <Paper className={classes.content2_3} variant="outlined">コスト</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3} variant="outlined"></Paper>
+                <Paper className={classes.content2_4} variant="outlined"　key={data.経歴番号}>{data.コスト}</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -224,22 +281,10 @@ const StaffList003_figure = () => {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content4} variant="outlined">工程</Paper>
+                <Paper className={classes.content2_5} variant="outlined">役割規模</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5} variant="outlined"></Paper>
-              </Grid>
-            </Grid>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="baseline">
-              <Grid>
-                <Paper className={classes.content6} variant="outlined">役割規模</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content7} variant="outlined" key={data.経歴番号}>{data.人数}人</Paper>
+                <Paper className={classes.content2_6} variant="outlined" key={data.経歴番号}>{data.人数}人</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -248,10 +293,10 @@ const StaffList003_figure = () => {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content2} variant="outlined">担当</Paper>
+                <Paper className={classes.content2_1} variant="outlined">担当</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3} variant="outlined"></Paper>
+                <Paper className={classes.content2_2} variant="outlined"></Paper>
               </Grid>
               </Grid>
           </Grid>
@@ -266,55 +311,16 @@ const StaffList003_figure = () => {
             justify="flex-start"
             alignItems="baseline">
             <Grid>
-              <Paper className={classes.content_color} variant="outlined">案件名</Paper>
+              <Paper className={classes.content3_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content} variant="outlined" key={data.経歴番号}>{data.案件名}</Paper>
+              <Paper className={classes.content3_1} variant="outlined" key={data.経歴番号}>{data.案件名}</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content8} variant="outlined" key={data.経歴番号}>{data.案件内容}</Paper>
+              <Paper className={classes.content3_2} variant="outlined" key={data.経歴番号}>{data.案件内容}</Paper>
             </Grid>
             </Grid>
               ))}
-          </div>
-
-          <div className={classes.figure}>
-            <Grid
-              container
-              direction="column"
-              justify="flex-start"
-              alignItems="baseline">
-              <Grid>
-                <Paper className={classes.content9_color} variant="outlined">環境使用/ソフト</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid>
-            </Grid>
           </div>
 
           <div className={classes.figure}>
@@ -325,35 +331,55 @@ const StaffList003_figure = () => {
               justify="flex-start"
               alignItems="baseline">
               <Grid>
-                <Paper className={classes.content9_color} variant="outlined">言語/その他</Paper>
+                <Paper className={classes.content4_color} variant="outlined">技能レベル</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined" key={data.経歴番号}>{data.言語}</Paper>
+                <Paper className={classes.content4_1} variant="outlined" key={data.経歴番号}>{data.技能レベル}</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content4_color} variant="outlined">備考</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content4_2} variant="outlined" key={data.経歴番号}>{data.備考}</Paper>
+              </Grid>
+            </Grid>
+              ))}
+          </div>
+
+          <div className={classes.figure}>
+          {user.map((data) => (
+            <Grid
+              container
+              direction="column"
+              justify="flex-start"
+              alignItems="baseline">
+              <Grid>
+                <Paper className={classes.content5_color} variant="outlined">言語/その他</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content5_1} variant="outlined" key={data.経歴番号}>{data.言語}</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
-              </Grid> 
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
+              </Grid>
+              <Grid>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
+              </Grid>
+              <Grid>
+                <Paper className={classes.content5_1} variant="outlined"></Paper>
+              </Grid>
             </Grid>
               ))}
           </div>

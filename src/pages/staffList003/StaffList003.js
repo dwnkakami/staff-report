@@ -1,59 +1,60 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-import AddIcon from '@material-ui/icons/Add';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddIcon from '@material-ui/icons/Add';
 import StaffList003_figure from './StaffList003_figure';
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
   root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
+    margin: 5,
+    padding: theme.spacing(2),
   },
-  margin: {
-    bottom: theme.spacing(16),
-    left: theme.spacing(5),
-    background:'#000000',
-    float: 'right',
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[50],
+    background: theme.palette.grey[800],
   },
-  icon: {
-    color: '#ffffff',
-  },
+});
+
+const useStyles = makeStyles((theme) => ({
   Button: {
     background:'rgb(120,144,156)',
     borderRadius: '0px 0px 0px 0px',
   },
   Button2: {
     background:'rgb(120,144,156)',
-    left: 45,
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
+    top:12,
     float: 'right',
   },
   Button3: {
     background:'rgb(120,144,156)',
-    left: 45,
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
+    top: 12,
     float: 'right',
   },
   Button4: {
-    top: theme.spacing(2),
-    right: theme.spacing(6),
     color: '#000000',
-    height: '30px',
   },
   ButtonGroup: {
     margin: '10px 200px 10px 0px',
     borderRadius: '0px 0px 0px 0px',
+  },
+  Button5: {
+    margin: '20px',
   },
   Paper: {
     padding: theme.spacing(7),
@@ -61,41 +62,76 @@ const useStyles = makeStyles((theme) => ({
     width: '95%',
     borderRadius: '12px 12px 12px 12px',
   },
-  title: {
-    margin: '10px 0px 10px 0px',
-  },
 }));
 
-const StaffList003 = () => {
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other} >
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
+
+export default function CustomizedDialogs() {
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
-    <div className={classes.root}>
-      <Paper variant="outlined" className={classes.Paper}>
-      <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
-      <Typography variant="h4">テスト太郎</Typography>
-      <IconButton aria-label="delete" className={classes.margin}>
-      <CloseIcon className={classes.icon} />
-      </IconButton>
-      <div>
-      <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
+        スタッフ経歴
+      </Button>
+      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg">
+        <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
+        <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>        </DialogTitle>
+        <DialogContent dividers>
+        <Typography variant="h6">テスト太郎</Typography>
+        <div>
+        <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
         <Button className={classes.Button}>経歴</Button>
         <Button className={classes.Button}>キャリアパス</Button>
         <Button className={classes.Button}>スタッフ情報</Button>
       </ButtonGroup>
-      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+      <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
+      <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
       </div>
       <div>
       <StaffList003_figure />
       </div>
-      <div>
-        <Button className={classes.Button4}><AddIcon />追加</Button>
-      </div>
-      </Paper>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleClose} className={classes.Button4}>
+          <AddIcon />追加
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
-
-  export default StaffList003;
