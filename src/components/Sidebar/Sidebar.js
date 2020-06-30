@@ -31,7 +31,7 @@ import {
 } from "../../context/LayoutContext";
 
 const structure = [
-  { id: 0, label: "ホーム", link: "/app/dashboard", icon: <HomeIcon /> },
+  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
   { id: 1,　type: "title", label: "メニュー", },
 
   {
@@ -59,7 +59,7 @@ const structure = [
     children: [
       { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
       { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
-      { label: "案件登録", link: "staff-report/caseadd/001", icon: <Dot size="small" />  },
+      { label: "案件登録", link: "/staff-report/caseadd/001", icon: <Dot size="small" />  },
     ],
   },
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },

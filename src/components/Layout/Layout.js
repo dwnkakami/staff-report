@@ -23,17 +23,17 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
-// import StaffList001 from "../pages/stafflist001";
-// import StaffSearch from "../../pages/staffsearch";
-// import StaffAdd from "../../pages/staffadd";
+// import StaffList001 from "../../pages/stafflist001/StaffList001";
+// import StaffSearch from "../../pages/staffsearch/StaffSearch";
+// import StaffAdd from "../../pages/staffadd/StaffAdd";
 
-//import CaseList from "../../pages/caselist";
-//import CaseSearch from "../../pages/casesearch";
-//import CaseAdd from "../../pages/caseadd";
+//import CaseList from "../../pages/caselist/CaseList";
+//import CaseSearch from "../../pages/casesearch/CaseSearch";
+//import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-//import ReferenceList from "../../pages/referencelist";
+//import ReferenceList from "../../pages/referencelist/ReferenceList";
 
-//import Billing from "../../pages/billing";
+//import Billing from "../../pages/billing/Billing";
 
 
 // context
@@ -57,7 +57,7 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               <Route path="/app/notifications" component={Notifications} />
