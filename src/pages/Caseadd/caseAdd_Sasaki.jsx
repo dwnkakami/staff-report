@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   cont: {
-    left: '300px',
+    left: '299px',
     width: '70ch',
   },
 
