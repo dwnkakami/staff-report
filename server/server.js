@@ -20,7 +20,7 @@ const billing = require('./modules/billing.jsx');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 4002;
 
 app.get('/api/login/:condition',(req,res) => {
     login.getData(req.params.condition,res);
