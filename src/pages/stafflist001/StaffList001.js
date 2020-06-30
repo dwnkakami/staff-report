@@ -16,8 +16,8 @@ import './StaffList001.css'
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.yellowgreen,
-      color: theme.palette.common.black,
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
     },
     body: {
       fontSize: 14,
