@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
 import '../Css/Search.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
-import {checkbox,license,skill1,skill2,skill3,status1,status2,status3,gender,areas} from '../../pages/staffsearch/StaffSearchData';
+import {occupations} from '../variables/Occupations';
+import {licenses} from '../variables/License';
+import {skill} from '../variables/Skill';
+import {area} from '../variables/Area';
+import {gender} from '../variables/Gender';
+import {status} from '../variables/Status';
+import CheckBox from './CheckBox';
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {
@@ -52,25 +56,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function StaffSearch() {
+const StaffSearch = () => {
   const classes = useStyles();
   
-  //チェックボックス項目
-  const [check, setCheck] = useState({
-    checkeA: false,
-    // checkedB: false,
-    // checkedF: false,
-    // checkedG: false,
-  });
+  // //チェックボックス項目
+  // const [check, setCheck] = useState({
+  //       checked: false,
+  // });
 
-  //チェック切り替え
-  const handleChange = (event) => {
-    setCheck({ ...check, [event.target.name]: event.target.checked });
-  };
+  // //チェック切り替え
+  // const handleChange = (event) => {
+  //   setCheck({ ...check, [event.target.name]: event.target.checked });
+  // };
+
+  const [license, setLicense] = useState([]);
+
+    const handleChange2 = (event) => {
+      setLicense(event.target.value);
+    };
 
   //セレクト項目
   const [state, setState] = useState({
-    li: '',
     sk1: '',
     sk2: '',
     sk3: '',
@@ -82,7 +88,7 @@ export default function StaffSearch() {
   });
 
   //セレクト切り替え
-  const handleChange2 = (event) => {
+  const handleChange3 = (event) => {
     setState({ ...state,[event.target.name]: event.target.value});
   };
 
@@ -92,7 +98,7 @@ export default function StaffSearch() {
   });
 
   //text更新
-  const handleChange3 = (event) => {
+  const handleChange4 = (event) => {
     setText(event.target.value);
   };
 
@@ -103,13 +109,14 @@ export default function StaffSearch() {
   });
 
   //radioボタン切り替え
-  const handleChange4 = (event) => {
+  const handleChange5 = (event) => {
     setValue({ ...value,[event.target.name]: event.target.value});
   };
 
   //リセット機能
   const Reset = () => {
-    setCheck({check:false});
+    // setCheck({check:false});
+    setLicense({license:''});
     setValue({value:''});
     setState({state:''});
     setText({label:''});
@@ -125,68 +132,26 @@ export default function StaffSearch() {
     <p class='font'>スタッフ検索</p>
     <p>職種</p>
     {/* 職種選択 */}
-    <FormGroup row>
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkeA}
-            onChange={handleChange}
-            name="checkedA"
-            color="primary"
-          />
-        }
-        label="：ディレクター"
-      />
-      
-      {/* <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-            color="primary"
-          />
-        }
-        label="：プログラマ"
-      />
-
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedF}
-            onChange={handleChange}
-            name="checkedF"
-            color="primary"
-          />
-        }
-        label="：サポート"
-      />
-
-　　<FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedG}
-            onChange={handleChange}
-            name="checkedG"
-            color="primary"
-          />
-        }
-        label="：その他"
-    />　 */}
-    </FormGroup>
+    <div>
+      <ul>
+        {occupations.map((data) => (
+        <CheckBox 
+          {...data}
+          
+        />))}
+      </ul>
+    </div>
 
     {/* 資格情報 */}
     <p>資格</p>
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          value={state.li}
+          value={license}
           onChange={handleChange2}
-          name="li"
-          label="資格"
         >
-          {license.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {licenses.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -197,13 +162,13 @@ export default function StaffSearch() {
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={state.sk1}
-          onChange={handleChange2}
+          onChange={handleChange3}
           name="sk1"
           label="スキルレベル１"
         >
-          {skill1.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {skill.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -213,19 +178,19 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           value={state.st1}
-          onChange={handleChange2}
+          onChange={handleChange3}
           name="st1"
         >
-         {status1.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+         {status.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
       </FormControl>
 
     {/* 絞り込みボタン */}
-    <RadioGroup row aria-label="position"  name="radioA" value={value.radioA} onChange={handleChange4} defaultValue="top">
+    <RadioGroup row aria-label="position"  name="radioA" value={value.radioA} onChange={handleChange5} defaultValue="top">
         <FormControlLabel
           value="and"
           control={<Radio color="primary" />}
@@ -243,15 +208,15 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={state.sk2}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'sk2',
             id: 'filled-age-native-simple',
           }}
         >
-          {skill2.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {skill.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -261,22 +226,22 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           value={state.st2}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'st2',
             id: 'filled-age-native-simple',
           }}
         >
-         {status2.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+         {status.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
       </FormControl>
     
      {/* 絞り込みボタン */}
-     <RadioGroup row aria-label="position"  name="radioB" value={value.radioB} onChange={handleChange4} defaultValue="top">
+     <RadioGroup row aria-label="position"  name="radioB" value={value.radioB} onChange={handleChange5} defaultValue="top">
         <FormControlLabel
           value="and"
           control={<Radio color="primary" />}
@@ -294,15 +259,15 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={state.sk3}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'sk3',
             id: 'filled-age-native-simple',
           }}
         >
-          {skill3.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {skill.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -312,15 +277,15 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
           value={state.st3}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'st3',
             id: 'filled-age-native-simple',
           }}
         >
-          {status3.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {status.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -329,7 +294,7 @@ export default function StaffSearch() {
     <p class='older'>年齢</p>
     <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-basic" variant="outlined" 
-        onChange={handleChange3}
+        onChange={handleChange4}
         value={text.label}
       />
     </form>
@@ -338,15 +303,15 @@ export default function StaffSearch() {
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
           value={state.ge}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'ge',
             id: 'filled-age-native-simple',
           }}
         >
           {gender.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -356,15 +321,15 @@ export default function StaffSearch() {
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
           value={state.areas}
-          onChange={handleChange2}
+          onChange={handleChange3}
           inputProps={{
             name: 'areas',
             id: 'filled-age-native-simple',
           }}
         >
-          {areas.map((data)=>(
-            <option key={data} value={data}>
-              {data}
+          {area.map((data)=>(
+            <option key={data.name} value={data.name}>
+              {data.name}
             </option>
           ))}
         </Select>
@@ -379,3 +344,5 @@ export default function StaffSearch() {
     </div>
   );
 }
+
+export default StaffSearch;

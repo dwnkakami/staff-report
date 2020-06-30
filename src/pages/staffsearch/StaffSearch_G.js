@@ -11,7 +11,7 @@ import '../Css/Search.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
-import {checkbox,license,skill1,skill2,skill3,status1,status2,status3,gender,areas} from '../../pages/staffsearch/StaffSearchData';
+
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {

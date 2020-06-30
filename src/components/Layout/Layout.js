@@ -24,7 +24,7 @@ import Icons from "../../pages/icons/Icons";
 import Charts from "../../pages/charts/Charts";
 
 // import StaffList001 from "../pages/stafflist001";
-import StaffSearch_G from "../../pages/staffsearch/StaffSearch_G";
+import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
 // import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
@@ -66,7 +66,7 @@ function Layout(props) {
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
-              <Route path="/staff-report/staffsearch/001" component={StaffSearch_G} />
+              <Route path="/staff-report/staffsearch/001" component={StaffSearchG} />
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}

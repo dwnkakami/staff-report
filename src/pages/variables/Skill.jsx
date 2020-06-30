@@ -1,0 +1,43 @@
+export const skill = 
+[
+    {
+        "id":1,
+        "name":"Java"
+    },
+    {
+        "id":2,
+        "name":"C++"
+    },
+    {
+        "id":3,
+        "name":"C#"
+    },
+    {
+        "id":4,
+        "name":"C++"
+    },
+    {
+        "id":5,
+        "name":"MySQL"
+    },
+    {
+        "id":6,
+        "name":"Ruby"
+    },
+    {
+        "id":7,
+        "name":"Oracle"
+    },
+    {
+        "id":8,
+        "name":"Python"
+    },
+    {
+        "id":9,
+        "name":"JavaScript"
+    },
+    {
+        "id":10,
+        "name":"PHP"
+    },
+];
