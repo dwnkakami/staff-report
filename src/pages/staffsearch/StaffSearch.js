@@ -1,6 +1,5 @@
 import React from 'react';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import FormGroup from '@material-ui/core/FormGroup';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -32,14 +31,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function StaffSearch() {
 
-// const occupation = occupations.map((data) => (<li>{data.name}</li>));
-
-    // const [check, setCheck] = React.useState({
-    //   checked:false
-    // });
+    // const [check, setCheck] = React.useState(false);
 
     // const handleChange = (event) => {
-    //   setCheck({ ...check, [event.target.name]: event.target.checked });
+    //   // setCheck({ ...check, [event.target.name]: event.target.checked });
     //   setCheck(event.target.value);
     // };
 
@@ -89,7 +84,7 @@ export default function StaffSearch() {
     };
 
     const Click = () => {
-      // setCheck({check:false});
+      // setCheck(false);
       setLicense({license:''});
       setSkill({license:''});
       setState({state: ''});
@@ -112,66 +107,13 @@ return (
         }
         </ul>
       </div>
-
-    {/* <FormGroup row　class="checkbox">
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedA}
-            onChange={handleChange}
-            name="checkedA"
-            color="primary"
-          />
-        }
-        label="：ディレクター"
-    />
-
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-            color="primary"
-          />
-        }
-        label="：プログラマー"
-    />
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedC}
-            onChange={handleChange}
-            name="checkedC"
-            color="primary"
-          />
-        }
-        label="：サポート"
-    />
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedD}
-            onChange={handleChange}
-            name="checkedD"
-            color="primary"
-          />
-        }
-        label="：その他"
-    />
-    </FormGroup> */}
       
     <Typography>資格</Typography>
 
 <FormControl variant="outlined"　className={classes.formControl}>
         <Select
-          // labelId="demo-mutiple-name-label"
-          // id="demo-mutiple-name"
-          // multiple
           value={license}
           onChange={handleChange2}
-          // input={<Input />}
-          // MenuProps={MenuProps}
         >
           {licenses.map((data) => (
             <MenuItem key={data.name} value={data.name} >
@@ -188,14 +130,9 @@ return (
 <FormControl variant="outlined"　className={classes.formControl}>
 <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
-          // labelId="demo-mutiple-name-label"
-          // id="demo-mutiple-name"
-          // multiple
           value={skill.selectA}
           onChange={handleChange3}
           name="selectA"
-          // input={<Input />}
-          // MenuProps={MenuProps}
         >
           {skills.map((data) => (
             <MenuItem key={data.name} value={data.name} >
@@ -217,7 +154,6 @@ return (
           label="スキルレベル2"
         >
           <MenuItem value="">
-            {/* <em>None</em> */}
           </MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
@@ -235,28 +171,19 @@ return (
       </Grid>
       <FormControl component="fieldset">
       <RadioGroup aria-label="gender" name="radioA" value={value.radioA} onChange={handleChange6}>
-      <FormControlLabel value="and" control={<Radio />} label="and" />
-      <FormControlLabel value="or" control={<Radio />} label="or" />
+      <FormControlLabel value="and" control={<Radio color="primary"/>} label="and" />
+      <FormControlLabel value="or" control={<Radio color="primary"/>} label="or" />
       </RadioGroup>
       </FormControl>
-      {/* <RadioGroup row aria-label="position" name="position" class="radio">
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="and" />
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="of" />
-        </RadioGroup> */}
         <Grid container spacing={2}>
         <Grid item xs={6}>
 
 <FormControl variant="outlined"　className={classes.formControl}>
 <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
-          // labelId="demo-mutiple-name-label"
-          // id="demo-mutiple-name"
-          // multiple
           value={skill.selectB}
           onChange={handleChange3}
           name="selectB"
-          // input={<Input />}
-          // MenuProps={MenuProps}
         >
           {skills.map((data) => (
             <MenuItem key={data.name} value={data.name} >
@@ -278,7 +205,6 @@ return (
           label="スキルレベル4"
         >
           <MenuItem value="">
-            {/* <em>None</em> */}
           </MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
@@ -296,27 +222,18 @@ return (
       </Grid>
       <FormControl component="fieldset">
       <RadioGroup aria-label="gender" name="radioB" value={value.radioB} onChange={handleChange6}>
-      <FormControlLabel value="and" control={<Radio />} label="and" />
-      <FormControlLabel value="or" control={<Radio />} label="or" />
+      <FormControlLabel value="and" control={<Radio color="primary"/>} label="and" />
+      <FormControlLabel value="or" control={<Radio color="primary"/>} label="or" />
       </RadioGroup>
       </FormControl>
-      {/* <RadioGroup row aria-label="position" name="position" class="radio">
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="and" />
-        <FormControlLabel value="end" control={<Radio color="primary" />} label="of" />
-        </RadioGroup> */}
         <Grid container spacing={2}>
         <Grid item xs={6}>
 <FormControl variant="outlined"　className={classes.formControl}>
 <InputLabel id="demo-simple-select-outlined-label">スキル</InputLabel>
         <Select
-          // labelId="demo-mutiple-name-label"
-          // id="demo-mutiple-name"
-          // multiple
           value={skill.selectC}
           onChange={handleChange3}
           name="selectC"
-          // input={<Input />}
-          // MenuProps={MenuProps}
         >
           {skills.map((data) => (
             <MenuItem key={data.name} value={data.name} >
@@ -338,7 +255,6 @@ return (
           label="スキルレベル6"
         >
           <MenuItem value="">
-            {/* <em>None</em> */}
           </MenuItem>
           <MenuItem value={1}>1</MenuItem>
           <MenuItem value={2}>2</MenuItem>
@@ -368,17 +284,13 @@ return (
       <Grid item xs={6}>
       <Typography>性別</Typography>
       　　　 <FormControl variant="outlined" className={classes.formControl}>
-        {/* <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel> */}
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
           value={state.selectG}
           onChange={handleChange4}
           name="selectG"
           label="性別"
         >
           <MenuItem value="">
-            {/* <em>None</em> */}
           </MenuItem>
           <MenuItem value={"男"}>男</MenuItem>
           <MenuItem value={"女"}>女</MenuItem>
@@ -392,13 +304,8 @@ return (
       <Typography>地域</Typography>
       <FormControl variant="outlined"　className={classes.formControl}>
         <Select
-          // labelId="demo-mutiple-name-label"
-          // id="demo-mutiple-name"
-          // multiple
           value={license}
           onChange={handleChange2}
-          // input={<Input />}
-          // MenuProps={MenuProps}
         >
           {areas.map((data) => (
             <MenuItem key={data.name} value={data.name} >
