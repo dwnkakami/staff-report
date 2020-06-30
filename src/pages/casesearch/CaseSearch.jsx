@@ -3,20 +3,27 @@ import { makeStyles } from '@material-ui/core/styles';
 // import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import FormControl from '@material-ui/core/FormControl';
+import ListItemText from '@material-ui/core/ListItemText';
+import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
 import { Paper, 
-        //  MenuItem, 
-        //  TextField
+         MenuItem, 
+         TextField
          } from '@material-ui/core';
 
 //import Component
 import KeywordSearch from './KeywordSearch';
-import SelectBox from './SelectBox';
+// import SelectBox from './SelectBox';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
-import CheckBox2 from './CheckBox2';
+// import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
-// import SelectItem from './SelectItem';
-// import SelectBox2 from './SelectBox2';
+
+//css
+import './CaseSearch.css';
 
 
 
@@ -25,9 +32,22 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 275,
     // backgroundColor: 'lightgrey',
   },
+  child:{
+    Bottom:0,
+    position:'absolute',
+    marginBottom:0,
+    margin:'auto',
+    // padding:0,
+    backgroundColor:'green',
+    verticalAlign:'bottom',
+  },
   left: {
     width:160,
     float:'left',
+    height:50,
+    position:'relative',
+    backgroundColor:'yellow',
+    verticalAlign:'bottom',
   },
   date: {
     width:30,
@@ -42,49 +62,110 @@ end: {
     clear:'both',
   },
   formControl: {
-    '& .MuiTextField-root': {
     margin: theme.spacing(1),
-    width: '25ch',
-    // minWidth: 140,
-    float:'left',
-    // padding:5,
-    // height:20,
-    },
+    minWidth: 120,
+    maxWidth: 300,
+  },
+  chips: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  chip: {
+    margin: 2,
+  },
+  noLabel: {
+    marginTop: theme.spacing(3),
   },
 }));
 
-// const language = [
-//   {
-//     id:'1',
-//     lang:'Java',
-//   },
-//   {
-//     id:'2',
-//     lang:'JavaScript',
-//   },
-//   {
-//     id:'3',
-//     lang:'PHP',
-//   },
-//   {
-//     id:'4',
-//     lang:'MySQL',
-//   },
-// ];
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
+  'ディレクター',
+  'プログラマー',
+  'サポート',
+  'その他',
+];
+
+const licenses = [
+  {
+    id:'1',
+    lang:'ITpass',
+  },
+  {
+    id:'2',
+    lang:'Oracle Gold',
+  },
+  {
+    id:'3',
+    lang:'Oracle Silver',
+  },
+  {
+    id:'4',
+    lang:'Oracle Bronz',
+  },
+  {
+    id:'5',
+    lang:'CCNA',
+  },
+];
+const language = [
+  {
+    id:'1',
+    lang:'Java',
+  },
+  {
+    id:'2',
+    lang:'JavaScript',
+  },
+  {
+    id:'3',
+    lang:'PHP',
+  },
+  {
+    id:'4',
+    lang:'MySQL',
+  },
+];
 
 export default function CaseSearch() {
   const classes = useStyles();
 
-  const [state,setState] = React.useState();
+  //job
+  const [jobName, setJobName] = React.useState([]);
 
-  const handleChange = (event) => {
-    setState(event.target.value);
+  const jobChange = (event) => {
+    setJobName(event.target.value);
   };
 
-  // const skillItems = language.map((data,index) =>
-  //     <MenuItem key={index}
-  //             value={data.id}>{data.lang}</MenuItem>
-  // );
+  //license
+  const [license,setLicense] = React.useState();
+  const licenseChange = (event) => {
+    setLicense(event.target.value);
+  };
+  const licenseItems = licenses.map((data,index) =>
+      <MenuItem key={index}
+              value={data.id}>{data.lang}</MenuItem>
+  );
+
+  //skill
+  const [skill,setSkill] = React.useState('');
+  const skillChange = (event) => {
+    setSkill(event.target.value);
+  };
+  const skillItems = language.map((data,index) =>
+      <MenuItem key={index}
+              value={data.id}>{data.lang}</MenuItem>
+  );
 
   return (
     <Paper className={classes.root} variant="outlined">
@@ -95,9 +176,11 @@ export default function CaseSearch() {
 
         <br className={classes.end}/>
 
-      <Typography className={classes.left} variant="h5" component="h2">
+      <div className={classes.left} id="left">
+      <Typography className={classes.child} id="child" variant="h5" component="h2">
         キーワード検索
         </Typography>
+      </div>  
 
         <KeywordSearch />
         <SearchButton />
@@ -107,15 +190,49 @@ export default function CaseSearch() {
         <Typography className={classes.left} variant="h5" component="h2">
           職種
         </Typography>
+
+
+        <div>
+          <FormControl className={classes.formControl}>
+            <InputLabel>希望職種</InputLabel>
+            <Select
+              multiple
+              value={jobName}
+              onChange={jobChange}
+              input={<Input />}
+              renderValue={(selected) => selected.join(', ')}
+              MenuProps={MenuProps}
+            >
+              {names.map((name) => (
+                <MenuItem key={name} value={name}>
+                  <Checkbox checked={jobName.indexOf(name) > -1} />
+                  <ListItemText primary={name} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div>
+
         {/* <CheckBox /> */}
-        <CheckBox2 />
+        {/* <CheckBox2 /> */}
 
 
         <Typography className={classes.left} variant="h5" component="h2">
           資格
         </Typography>
 
-        <SelectBox name="資格" choice="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" />
+        {/* <SelectBox name="資格" choice="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" /> */}
+        
+        <TextField className={classes.formControl}
+          select
+          label="license"
+          value={license}
+          onChange={licenseChange}
+          variant="outlined"
+        >
+          {licenseItems}
+        </TextField>
+        
         <br className={classes.end} />
         
 
@@ -123,41 +240,38 @@ export default function CaseSearch() {
           スキルレベル
         </Typography>
 
-        {/* {language.map((data)=>( */}
-        <SelectBox name="スキルレベル" 
-        handleChange={handleChange} value={state} 
-        choice2="C言語" 
-        choice3="C#" choice4="C++" choice5="MySQL" choice6="Ruby" 
-        choice7="Oracle" choice8="Python" choice9="JavaScript" 
-        > 
-          {/* {skillItems} */}
-          {/* {language.map((data,index)=>(
-            <SelectItem 
-            id={index} value1={data.id} choice={data.lang} />
-          ))}  */}
-        </SelectBox>
-         {/* ))}  */}
+        {/* <div>
+          <FormControl className={classes.formControl}>
+            <InputLabel>Skill</InputLabel>
+            <Select
+              multiple
+              value={skill}
+              onChange={skillChange}
+              input={<Input />}
+              renderValue={(selected) => selected.join(', ')}
+              MenuProps={MenuProps}
+            >
+              {language.map((data,index) => (
+                <MenuItem key={index} value={data.id}>
+                  <Checkbox checked={skill.indexOf(data) > -1} />
+                  <ListItemText primary={data.lang} />
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </div> */}
 
 
-         {/* <TextField className={classes.formControl}
-          id="outlined-select-currency"
+         <TextField className={classes.formControl}
           select
-          label="Select"
-          value={state}
-          onChange={handleChange}
-          // helperText="Please select your currency"
+          label="skill"
+          value={skill}
+          onChange={skillChange}
           variant="outlined"
         >
-          {language.map((option) => (
-            <MenuItem key={option.id} value={option.id}>
-              {option.lang}
-            </MenuItem>
-          ))}
-        </TextField> */}
+          {skillItems}
+        </TextField>
 
-
-
-        {/* <SelectBox2 /> */}
         <br className={classes.end} />
         
 
@@ -165,10 +279,6 @@ export default function CaseSearch() {
           期間
         </Typography>
         
-        {/* <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography> */}
-
         <DatePickers label="ここから" />
 
         <br className={classes.end} />
@@ -179,21 +289,15 @@ export default function CaseSearch() {
 
         <div className={classes.left}><br /></div>
 
-        {/* <SelectBox /><Typography className={classes.date} variant="body2" component="p">年</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">月</Typography>
-        <SelectBox /><Typography className={classes.date} variant="body2" component="p">日</Typography> */}
-
         <DatePickers label="ここまで"　/>
         
         <br className={classes.end} />
 
         <Typography className={classes.left} variant="h5" component="h2">
-          並び順
+          担当営業名
         </Typography>
 
-        <SelectBox name="並び順" choice="時期" choice2="スキル" choice3="職種" />
-        <Typography className={classes.other} variant="body2" component="p">を基準に</Typography>
-        <SelectBox name="降順" choice="昇順" choice2="降順" choice3="" />
+        <TextField className={classes.formControl} id="outlined-basic" label="担当営業名" variant="outlined" />
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
