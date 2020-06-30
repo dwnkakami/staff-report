@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -9,13 +9,14 @@ import '../Css/Search.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
-import {occupations} from '../variables/Occupations';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
 import {licenses} from '../variables/License';
 import {skill} from '../variables/Skill';
 import {area} from '../variables/Area';
 import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
-import CheckBox from './CheckBox';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {
@@ -59,15 +60,21 @@ const useStyles = makeStyles((theme) => ({
 const StaffSearch = () => {
   const classes = useStyles();
   
-  // //チェックボックス項目
-  // const [check, setCheck] = useState({
-  //       checked: false,
-  // });
+  //チェックボックス項目
+  const [check, setCheck] = useState({
+    checkedA: false,
+    checkedB: false,
+    checkedC: false,
+    checkedD: false,
+    checkedE: false,
+    checkedF: false,
+  });
 
-  // //チェック切り替え
-  // const handleChange = (event) => {
-  //   setCheck({ ...check, [event.target.name]: event.target.checked });
-  // };
+  //チェック切り替え
+  const handleChange = (event) => {
+    setCheck({ ...check, [event.target.name]: event.target.checked });
+  };
+
 
   const [license, setLicense] = useState([]);
 
@@ -115,35 +122,107 @@ const StaffSearch = () => {
 
   //リセット機能
   const Reset = () => {
-    // setCheck({check:false});
+    setCheck({check:false});
     setLicense({license:''});
     setValue({value:''});
     setState({state:''});
     setText({label:''});
   };
 
-  const Search=()=>{
-
+  const getUserData = () => {
+    axios
+     .get('/api/stafflist001/1')
+     .then(response => {
+      console.log([response.data]);
+                  
+      })
+      .catch(() => {
+        console.log('connected error');
+      })
   }
+  
 
   return (
     <div>
     <Card class='paper'>
     <p class='font'>スタッフ検索</p>
-    <p>職種</p>
+    <p class='font'>職種</p>
     {/* 職種選択 */}
-    <div>
-      <ul>
-        {occupations.map((data) => (
-        <CheckBox 
-          {...data}
-          
-        />))}
-      </ul>
-    </div>
+    <FormGroup row>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedA}
+            onChange={handleChange}
+            name="checkedA"
+            color="primary"
+          />
+        }
+        label="SE"
+      />
+      
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedB}
+            onChange={handleChange}
+            name="checkedB"
+            color="primary"
+          />
+        }
+        label="PG"
+      />
+
+    <FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedC}
+            onChange={handleChange}
+            name="checkedC"
+            color="primary"
+          />
+        }
+        label="営業"
+      />
+
+　　<FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedD}
+            onChange={handleChange}
+            name="checkedD"
+            color="primary"
+          />
+        }
+        label="インフラSE"
+    />　
+
+    <FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedE}
+            onChange={handleChange}
+            name="checkedE"
+            color="primary"
+          />
+        }
+        label="サポート"
+    />　
+    <FormControlLabel
+        control={
+          <Checkbox
+            checked={check.checkedF}
+            onChange={handleChange}
+            name="checkedF"
+            color="primary"
+          />
+        }
+        label="総務"
+    />　
+    </FormGroup>
 
     {/* 資格情報 */}
-    <p>資格</p>
+    <p class='font'>資格</p>
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={license}
@@ -158,7 +237,7 @@ const StaffSearch = () => {
     </FormControl>
 
       {/* スキル情報１ */}
-      <p>スキルレベル</p>
+      <p class='font'>スキルレベル</p>
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={state.sk1}
@@ -339,7 +418,7 @@ const StaffSearch = () => {
       <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
       
       {/* 検索ボタン */}
-      <Button class='search' variant="contained" onClick={Search}>検索</Button>
+      <Button class='search' variant="contained" onClick={() => getUserData()}>検索</Button>
     </Card>
     </div>
   );

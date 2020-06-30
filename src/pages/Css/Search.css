@@ -1,25 +1,32 @@
 .paper{
-    background-color: rgba(230, 173, 68, 0.712);
+    background-color: rgb(255, 255, 255);
+    overflow: auto;
+    padding:15px;
+    box-shadow:5px 5px 50px 5px rgb(77, 76, 76);
+    border-radius: 10px;
 }
 
 .font{
-    font-size: 20px;
+    font-weight: bolder;
 }
 
 .older{
     position: relative;
     top:60px;
+    font-weight: bolder;
 }
 
 .gender{
     position: relative;
     left:  350px;
-    top: -60px
+    top: -60px;
+    font-weight: bolder;
 }
 
 .area{
     position: relative;
     top:-70px;
+    font-weight: bolder;
 }
 
 .reset{
