@@ -136,9 +136,9 @@ export default function CaseDetail (props) {
                 <th>スキル3</th>
               </tr>
               <tr>
-                <td>データ</td>
-                <td>データ</td>
-                <td>データ</td>
+                <td>{data.skill1}</td>
+                <td>{data.skill2}</td>
+                <td>{data.skill3}</td>
               </tr>
             </table>
             ))}
