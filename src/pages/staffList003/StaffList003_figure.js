@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
   number: {
     height: 400,
     width: 80,
-    // color: '#000000',
-    // textAlign: 'center',
-    // lineHeight: 12,
-    // fontSize: 35,
+    color: '#000000',
+    textAlign: 'center',
+    lineHeight: 12,
+    fontSize: 35,
     borderRadius: '0px 0px 0px 0px'
   },
   content: {
@@ -34,7 +36,15 @@ const useStyles = makeStyles((theme) => ({
     width: 344,
     textAlign: 'center',
     color: '#000000',
-    fontSize: 30,
+    fontSize: 25,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content_day: {
+    height: 40,
+    width: 344,
+    textAlign: 'center',
+    color: '#000000',
+    fontSize: 18,
     borderRadius: '0px 0px 0px 0px'
   },
   content_color: {
@@ -59,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
   content3: {
     height: 40,
     width: 244,
-    fontSize: 30,
+    fontSize: 25,
     textAlign: 'center',
     color: '#000000',
     float: 'left',
@@ -79,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   content5: {
     height: 160,
     width: 244,
-    fontSize: 30,
+    fontSize: 25,
     textAlign: 'center',
     color: '#000000',
     float: 'left',
@@ -107,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     width: 344,
     textAlign: 'center',
     color: '#000000',
-    fontSize: 30,
+    fontSize: 25,
     borderRadius: '0px 0px 0px 0px'
   },
   content9: {
@@ -115,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
     width: 280,
     textAlign: 'center',
     color: '#000000',
-    fontSize: 30,
+    fontSize: 25,
     borderRadius: '0px 0px 0px 0px'
   },
   content9_color: {
@@ -137,8 +147,26 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StaffList003_figure = (props) => {
+
+const StaffList003_figure = () => {
+  const [user, setUser] = useState([]);
+
+  useEffect(() => getData());
+
   const classes = useStyles();
+
+  const getData = () => {
+    if(user.length === 0){
+        axios
+            .get('/api/stafflist003/4')
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(() => {
+                console.log('connected error');
+            })
+}}
+
   return (
     <div className={classes.root}>
       <div className={classes.figure}>
@@ -148,11 +176,13 @@ const StaffList003_figure = (props) => {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.number} variant="outlined"><h4>{props.name}</h4></Paper>
+              <Paper className={classes.number} variant="outlined">１</Paper>
             </Grid>
         </Grid>
       </div>
+
       <div className={classes.figure}>
+      {user.map((data) => (
         <Grid
           container
           direction="column"
@@ -162,7 +192,7 @@ const StaffList003_figure = (props) => {
               <Paper className={classes.content_color} variant="outlined">期間</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content} variant="outlined">~</Paper>
+              <Paper  className={classes.content_day} variant="outlined" key={data.経歴番号}>{data.開始日}~{data.終了日}</Paper>
             </Grid>
           <Grid
             container
@@ -173,7 +203,7 @@ const StaffList003_figure = (props) => {
                 <Paper className={classes.content2} variant="outlined">職種</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content3} variant="outlined"></Paper>
+                <Paper className={classes.content3} variant="outlined"key={data.経歴番号}>{data.職種}</Paper>
               </Grid>
               </Grid>
             <Grid
@@ -209,7 +239,7 @@ const StaffList003_figure = (props) => {
                 <Paper className={classes.content6} variant="outlined">役割規模</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content7} variant="outlined">人</Paper>
+                <Paper className={classes.content7} variant="outlined" key={data.経歴番号}>{data.人数}人</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -225,9 +255,11 @@ const StaffList003_figure = (props) => {
               </Grid>
               </Grid>
           </Grid>
+            ))}
         </div>
 
         <div className={classes.figure}>
+        {user.map((data) => (
           <Grid
             container
             direction="column"
@@ -237,12 +269,13 @@ const StaffList003_figure = (props) => {
               <Paper className={classes.content_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content} variant="outlined">{props.name}</Paper>
+              <Paper className={classes.content} variant="outlined" key={data.経歴番号}>{data.案件名}</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content8} variant="outlined"></Paper>
+              <Paper className={classes.content8} variant="outlined" key={data.経歴番号}>{data.案件内容}</Paper>
             </Grid>
             </Grid>
+              ))}
           </div>
 
           <div className={classes.figure}>
@@ -285,6 +318,7 @@ const StaffList003_figure = (props) => {
           </div>
 
           <div className={classes.figure}>
+          {user.map((data) => (
             <Grid
               container
               direction="column"
@@ -294,7 +328,7 @@ const StaffList003_figure = (props) => {
                 <Paper className={classes.content9_color} variant="outlined">言語/その他</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content9} variant="outlined"></Paper>
+                <Paper className={classes.content9} variant="outlined" key={data.経歴番号}>{data.言語}</Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content9} variant="outlined"></Paper>
@@ -321,6 +355,7 @@ const StaffList003_figure = (props) => {
                 <Paper className={classes.content9} variant="outlined"></Paper>
               </Grid> 
             </Grid>
+              ))}
           </div>
           <div>
           <Grid
