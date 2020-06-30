@@ -1,7 +1,6 @@
 import React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+// import FormGroup from '@material-ui/core/FormGroup';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,11 +13,12 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import { Grid } from '@material-ui/core/';
 import InputLabel from '@material-ui/core/InputLabel';
-// import { occupations }  from './Occupation';
+import { occupations }  from './Occupation';
 import { licenses } from './License';
 import { areas } from './Area';
 import { skills } from './Skill';
 import './StaffSearch.css';
+import  CheckBox  from './CheckBox';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -34,16 +34,14 @@ export default function StaffSearch() {
 
 // const occupation = occupations.map((data) => (<li>{data.name}</li>));
 
-    const [check, setCheck] = React.useState({
-      checkedA: false,
-      checkedB: false,
-      checkedC: false,
-      checkedD: false,
-    });
+    // const [check, setCheck] = React.useState({
+    //   checked:false
+    // });
 
-    const handleChange = (event) => {
-      setCheck({ ...check, [event.target.name]: event.target.checked });
-    };
+    // const handleChange = (event) => {
+    //   setCheck({ ...check, [event.target.name]: event.target.checked });
+    //   setCheck(event.target.value);
+    // };
 
     const [license, setLicense] = React.useState([]);
 
@@ -91,7 +89,7 @@ export default function StaffSearch() {
     };
 
     const Click = () => {
-      setCheck({check:false});
+      // setCheck({check:false});
       setLicense({license:''});
       setSkill({license:''});
       setState({state: ''});
@@ -105,7 +103,17 @@ return (
     <Typography variant="h2">スタッフ検索</Typography>
 
     <Typography>職種</Typography>
-    <FormGroup row　class="checkbox">
+    <div>
+        <ul>
+        {
+          occupations.map((data) => 
+            (<CheckBox {...data} />)
+          )
+        }
+        </ul>
+      </div>
+
+    {/* <FormGroup row　class="checkbox">
     <FormControlLabel
         control={
           <Checkbox
@@ -151,7 +159,7 @@ return (
         }
         label="：その他"
     />
-    </FormGroup>
+    </FormGroup> */}
       
     <Typography>資格</Typography>
 
