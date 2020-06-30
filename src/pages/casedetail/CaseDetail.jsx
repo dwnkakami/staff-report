@@ -62,7 +62,7 @@ export default function CaseDetail (props) {
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get('/api/casedetail/2')
+        .get('/api/casedetail/1')
         .then(response => {
           setUser(response.data);
         })
@@ -125,6 +125,20 @@ export default function CaseDetail (props) {
               </tr>
               <tr>
                 <td class='wide-td1'>{data.business_content}</td>
+              </tr>
+            </table>
+            ))}
+            {user.map((data) => (
+            <table>
+              <tr>
+                <th>スキル1</th>
+                <th>スキル2</th>
+                <th>スキル3</th>
+              </tr>
+              <tr>
+                <td>データ</td>
+                <td>データ</td>
+                <td>データ</td>
               </tr>
             </table>
             ))}
