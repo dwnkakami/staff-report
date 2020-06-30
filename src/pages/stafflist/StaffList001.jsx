@@ -59,7 +59,7 @@ export default function Tables() {
       <Scrollbars style={{ width: 800, height: 350}}>
         <table class="staff" border= "border-solid">
             <tr>
-            <th>Id</th><th>Name</th><th>Gender</th><th>Position</th><th>Joining_Day</th><th>Birthday</th><th>Age</th><th>School_Career</th><th>Phone_Number</th><th>Near_Staition</th><th>Company_Id</th><th>Area_Id</th><th>Occupattion_Id</th><th>Employment_System_Id</th><th>Entry_At</th><th>Update_At</th><th>Update_By</th>
+            <th>スタッフ番号</th><th>氏名</th><th>性別</th><th>役職</th><th>入社日</th><th>生年月日</th><th>年齢</th><th>School_Career</th><th>Phone_Number</th><th>Near_Staition</th><th>Company_Id</th><th>Area_Id</th><th>Occupattion_Id</th><th>Employment_System_Id</th><th>Entry_At</th><th>Update_At</th><th>Update_By</th>
             </tr>
 
             <tr>
