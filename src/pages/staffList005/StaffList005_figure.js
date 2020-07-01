@@ -67,7 +67,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText className={classes.content2_1} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ番号}</ListItemText>
+                  <ListItemText className={classes.content1_1} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ番号}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -75,7 +75,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                <ListItemText className={classes.content2_1} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ名}</ListItemText>
+                <ListItemText className={classes.content1_2} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ名}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -83,7 +83,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="一般職"/>
+                <ListItemText className={classes.content1_3} variant="outlimed" key={data.スタッフ番号}>{data.役職名}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -91,7 +91,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText　primary="1996/4/1"/>
+                <ListItemText className={classes.content1_4} variant="outlimed" key={data.スタッフ番号}>{data.生年月日}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -99,7 +99,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="男"/>
+                <ListItemText className={classes.content1_5} variant="outlimed" key={data.スタッフ番号}>{data.性別}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -107,7 +107,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="090-1234-5678"/>
+                <ListItemText className={classes.content1_6} variant="outlimed" key={data.スタッフ番号}>{data.連絡先}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -122,6 +122,7 @@ const StaffList005_figure = () => {
           ))}
         </div>
         <div className={classes.content2}>
+          {user.map((data) => (
             <List >
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -129,7 +130,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="正社員"/>
+                <ListItemText className={classes.content2_1} variant="outlimed" key={data.スタッフ番号}>{data.雇用形態}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -137,7 +138,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="データウェアネットワーク株式会社"/>
+                <ListItemText className={classes.content2_2} variant="outlimed" key={data.スタッフ番号}>{data.所属会社}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -145,7 +146,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="2018/4/1"/>
+                <ListItemText className={classes.content2_3} variant="outlimed" key={data.スタッフ番号}>{data.入社日}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -153,7 +154,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText　primary="22"/>
+                <ListItemText className={classes.content2_4} variant="outlimed" key={data.スタッフ番号}>{data.年齢}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -161,15 +162,15 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="〇〇大学"/>
+                <ListItemText className={classes.content2_5} variant="outlimed" key={data.スタッフ番号}>{data.最終学歴}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
-                  <ListItemText primary="最寄り駅"/>
+                  <ListItemText primary="最寄駅"/>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                  <ListItemText primary="新小岩駅"/>
+                <ListItemText className={classes.content2_6} variant="outlimed" key={data.スタッフ番号}>{data.最寄駅}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
@@ -181,6 +182,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
             </List>
+          ))}
         </div>
       </Paper>
     </div>
