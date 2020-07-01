@@ -8,6 +8,7 @@ import'./stafflist.css';
 
 
 // components
+import Button from '@material-ui/core/Button';
 import PageTitle from "../../components/PageTitle/PageTitle";
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import AssignmentIcon from '@material-ui/icons/Assignment';
@@ -183,6 +184,7 @@ export default function Tables() {
 
         </table>
   </Scrollbars>
+  <Button variant="contained">追加</Button>
       {/* <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable */}
