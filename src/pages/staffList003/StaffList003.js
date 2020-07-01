@@ -94,6 +94,8 @@ const DialogActions = withStyles((theme) => ({
 export default function CustomizedDialogs() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [add, setAdd] = ([]);
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -101,7 +103,12 @@ export default function CustomizedDialogs() {
   const handleClose = () => {
     setOpen(false);
   };
+  const handleChange = () => {
+    setAdd('/StaffList003_figure');
+  };
 
+  
+  
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
@@ -125,9 +132,18 @@ export default function CustomizedDialogs() {
       <div>
       <StaffList003_figure />
       </div>
+      <div>
+      {/* {(() => {
+        const flag = true;
+        if (flag === true) {
+            return <StaffList003_figure/>;
+        }
+        return false;
+    })()} */}
+      </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose} className={classes.Button4}>
+          <Button autoFocus onClick={handleChange} className={classes.Button4}>
           <AddIcon />追加
           </Button>
         </DialogActions>

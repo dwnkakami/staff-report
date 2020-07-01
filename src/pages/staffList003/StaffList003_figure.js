@@ -222,7 +222,14 @@ const StaffList003_figure = () => {
             })
 }}
 
+// for (let i = 0; i<2; i++;)
+// for (let i = 0; i<2; i++){
+//   console.log [i];
+// }
 
+// const List = [1,2,3]
+
+// for(let i = 0; i<List.length; i++)
 
   return (
     <div className={classes.root}>
@@ -233,7 +240,15 @@ const StaffList003_figure = () => {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-              <Paper className={classes.number} variant="outlined">１</Paper>
+            {(() => {
+        const items = [];
+        for (let i = 1; i < 5; i++) {
+            items.push(<li>{i}</li>)
+        }
+        return <ul>
+              <Paper className={classes.number} variant="outlined">{items}</Paper>
+              </ul>
+            })()};
             </Grid>
         </Grid>
       </div>
