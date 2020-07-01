@@ -129,18 +129,19 @@ const StaffSearch = () => {
     setText({label:''});
   };
 
-  const getUserData = () => {
-    axios
-     .get('/api/stafflist001/1')
-     .then(response => {
-      console.log([response.data]);
-                  
-      })
-      .catch(() => {
-        console.log('connected error');
-      })
+  const Search = () =>{
+    //const getUserData = () => {
+      axios
+       .get('/api/staffsearch/1')
+       .then(response => {
+        console.log([response.data]);
+                    
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    //}
   }
-  
 
   return (
     <div>
@@ -418,7 +419,7 @@ const StaffSearch = () => {
       <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
       
       {/* 検索ボタン */}
-      <Button class='search' variant="contained" onClick={() => getUserData()}>検索</Button>
+      <Button class='search' variant="contained" onClick={Search}>検索</Button>
     </Card>
     </div>
   );
