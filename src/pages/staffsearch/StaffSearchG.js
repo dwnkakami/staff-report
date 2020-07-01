@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -129,8 +129,9 @@ const StaffSearch = () => {
     setText({label:''});
   };
 
-  const Search = () =>{
-    //const getUserData = () => {
+  //const Search = () =>{
+    useEffect(() => getUserData());
+    const getUserData = () => {
       axios
        .get('/api/staffsearch/1')
        .then(response => {
@@ -140,8 +141,8 @@ const StaffSearch = () => {
         .catch(() => {
           console.log('connected error');
         })
-    //}
-  }
+    }
+  //}
 
   return (
     <div>
@@ -230,7 +231,7 @@ const StaffSearch = () => {
           onChange={handleChange2}
         >
           {licenses.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -247,7 +248,7 @@ const StaffSearch = () => {
           label="スキルレベル１"
         >
           {skill.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -262,7 +263,7 @@ const StaffSearch = () => {
           name="st1"
         >
          {status.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -295,7 +296,7 @@ const StaffSearch = () => {
           }}
         >
           {skill.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -313,7 +314,7 @@ const StaffSearch = () => {
           }}
         >
          {status.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -346,7 +347,7 @@ const StaffSearch = () => {
           }}
         >
           {skill.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -364,7 +365,7 @@ const StaffSearch = () => {
           }}
         >
           {status.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -390,7 +391,7 @@ const StaffSearch = () => {
           }}
         >
           {gender.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -408,7 +409,7 @@ const StaffSearch = () => {
           }}
         >
           {area.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -419,7 +420,7 @@ const StaffSearch = () => {
       <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
       
       {/* 検索ボタン */}
-      <Button class='search' variant="contained" onClick={Search}>検索</Button>
+      <Button class='search' variant="contained" onClick={()=>getUserData()}>検索</Button>
     </Card>
     </div>
   );
