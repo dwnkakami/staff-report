@@ -44,11 +44,14 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
     float:'left',
-    height:30,
+    // height:30,
     marginTop:10,
   },
   root: {
     paddingBottom:25,
+  },
+  label: {
+    fontSize:13,
   }
 }));
 
@@ -58,7 +61,7 @@ export default function KeywordSearch() {
   return (
       <div className={classes.root}>
         <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
+            <InputLabel className={classes.label} htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
             <BootstrapInput id="demo-customized-textbox" />
         </FormControl>
       </div>
