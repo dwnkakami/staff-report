@@ -22,9 +22,6 @@ import DeleteButton from './DeleteButton';
 // import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
 
-//css
-import './CaseSearch.css';
-
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,22 +29,11 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 275,
     // backgroundColor: 'lightgrey',
   },
-  child:{
-    Bottom:0,
-    position:'absolute',
-    marginBottom:0,
-    margin:'auto',
-    // padding:0,
-    backgroundColor:'green',
-    verticalAlign:'bottom',
-  },
   left: {
     width:160,
     float:'left',
     height:50,
-    position:'relative',
-    backgroundColor:'yellow',
-    verticalAlign:'bottom',
+    paddingTop:30,
   },
   date: {
     width:30,
@@ -176,11 +162,9 @@ export default function CaseSearch() {
 
         <br className={classes.end}/>
 
-      <div className={classes.left} id="left">
-      <Typography className={classes.child} id="child" variant="h5" component="h2">
+      <Typography className={classes.left} id="child" variant="h5" component="h2">
         キーワード検索
         </Typography>
-      </div>  
 
         <KeywordSearch />
         <SearchButton />
