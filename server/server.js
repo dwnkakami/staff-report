@@ -36,6 +36,8 @@ app.get('/api/stafflist002/:condition',(req,res) => {
 });
 app.get('/api/stafflist003/:condition',(req,res) => {
     stafflist003.getData(req.params.condition,res);
+    res.header('Content-Type', 'text/plain;charset=utf-8');
+    // res.json(results);
 });
 app.get('/api/stafflist004/:condition',(req,res) => {
     stafflist004.getData(req.params.condition,res);

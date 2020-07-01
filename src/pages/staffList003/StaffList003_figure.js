@@ -213,7 +213,7 @@ const StaffList003_figure = () => {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/4')
+            .get('/api/stafflist003/2')
             .then(response => {
                 setUser(response.data);
             })
