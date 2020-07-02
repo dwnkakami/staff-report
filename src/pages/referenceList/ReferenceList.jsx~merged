@@ -69,7 +69,11 @@ export default function Referencelist(props) {
     const getData = () => {
         if (posts.length === 0) {
             axios
+<<<<<<< HEAD
+                .get('/api/referencelist')
+=======
                 .get('/api/referencelist/1')
+>>>>>>> 3ce137a9e4ae0a43dbf49982e6670e96441105bb
                 .then(response => {
                     setPosts(response.data);
                     console.log([response.data])
