@@ -33,8 +33,8 @@ import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
-import ReferenceList from "../../pages/referencelist/ReferenceList";
-// import ReferenceList_not from "../../pages/referenceList/notData";
+import ReferenceList from "../../pages/referenceList/ReferenceList";
+//import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing";
