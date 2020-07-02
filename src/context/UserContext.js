@@ -56,14 +56,14 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setIsLoading(true);
 
   if (!!login && !!password) {
-    // setTimeout(() => {
-    //   localStorage.setItem('id_token', 1)
-    //   setError(null)
-    //   setIsLoading(false)
-    //   dispatch({ type: 'LOGIN_SUCCESS' })
+    setTimeout(() => {
+      localStorage.setItem('id_token', 1)
+      setError(null)
+      setIsLoading(false)
+      dispatch({ type: 'LOGIN_SUCCESS' })
 
-    //   history.push('/app/dashboard')
-    // }, 2000);
+      history.push('/app/dashboard')
+    }, 2000);
     let data = {
       name: login,
       password: password
