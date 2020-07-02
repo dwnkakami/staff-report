@@ -62,7 +62,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
       setIsLoading(false)
       dispatch({ type: 'LOGIN_SUCCESS' })
 
-      history.push('/app/dashboard')
+      history.push('/staff-report/dashboard')
     }, 2000);
     let data = {
       name: login,
@@ -80,7 +80,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
           localStorage.setItem('id_token', 1)
           dispatch({ type: 'LOGIN_SUCCESS' })
 
-          history.push('/app/dashboard')
+          history.push('/staff-report/dashboard')
         } else {
           alert('ユーザー　エラー')
         }
@@ -107,7 +107,7 @@ function registerUser(dispatch, password, history, setIsLoading, setError) {
       setIsLoading(false)
       dispatch({ type: 'LOGIN_SUCCESS' })
 
-      history.push('/app/dashboard')
+      history.push('/staff-report/dashboard')
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
