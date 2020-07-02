@@ -59,6 +59,9 @@ end: {
   noLabel: {
     marginTop: theme.spacing(3),
   },
+  brank: {
+    height:35,
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -216,6 +219,7 @@ export default function CaseSearch() {
           onChange={licenseChange}
           variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {licenseItems}
         </TextField>
         
@@ -233,6 +237,7 @@ export default function CaseSearch() {
           onChange={skill1Change}
           variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {skillItems}
         </TextField>
 
@@ -243,6 +248,7 @@ export default function CaseSearch() {
           onChange={skill2Change}
           variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {skillItems}
         </TextField>
 
@@ -253,6 +259,7 @@ export default function CaseSearch() {
           onChange={skill3Change}
           variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {skillItems}
         </TextField>
 
@@ -268,7 +275,7 @@ export default function CaseSearch() {
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.other}><br /></div>
-        <Typography variant="body2" component="p">～</Typography>
+        {/* <Typography variant="body2" component="p">～</Typography> */}
         <br className={classes.end} />
 
         <div className={classes.left}><br /></div>
