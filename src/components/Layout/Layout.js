@@ -19,11 +19,12 @@ import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
-// import StaffList from "../../pages/stafflist/StaffList001";
+import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-
 import StaffList001 from "../../pages/stafflist/stafflist001";
+
+// import StaffList001 from "../../pages/stafflist/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
@@ -31,7 +32,7 @@ import StaffList001 from "../../pages/stafflist/stafflist001";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
-import ReferenceList from "../../pages/referencelist/ReferenceList";
+import ReferenceList from "../../pages/referenceList/ReferenceList";
 // import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
@@ -40,7 +41,7 @@ import ReferenceList from "../../pages/referencelist/ReferenceList";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
-import Tables from "../../pages/tables/Tables";
+
 
 function Layout(props) {
   var classes = useStyles();

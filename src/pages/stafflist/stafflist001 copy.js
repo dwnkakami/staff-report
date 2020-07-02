@@ -1,4 +1,5 @@
-import React, { useState, useEffect }　from 'react';
+import React, { useState, useEffect, Component }　from 'react';
+import { render } from 'react-dom';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -13,6 +14,44 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 // import './StaffList001.css';
 import axios from 'axios';
+
+let data = [
+  {id:1, name: 'foo'},
+]
+
+render(
+  <App data={data} />, document.querySelector('.content')
+);
+
+class App extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: props.data
+    };
+  }
+  render() {
+
+    let list = this.state.data.map((data) => (
+      <li key={data.id}>
+      {data.id}: {data.name}
+      </li>
+    ));
+    return (
+      <div>
+        <ul>
+          
+          {list}
+        </ul>
+      </div>
+    );
+  }
+}
+
+App.propTypes = {
+  data: React.PropTypes.array.isRequired
+};
 const StyledTableCell = withStyles((theme) => ({
     head: {
       backgroundColor: theme.palette.common.black,
@@ -38,8 +77,6 @@ const StyledTableCell = withStyles((theme) => ({
     const classes = useStyles();
     const [staff, setStaff] = useState([]);
     useEffect(() => getStaffData());
-    const sortArray = [...StaffList001].sort((a, b) => a.name - b.name);
-    console.log(sortArray);
     const getStaffData = () => {
         if(staff.length === 0) {
             axios
@@ -79,7 +116,7 @@ return(
             </StyledTableRow>
           ))}
         </TableBody>
-      </Table>
+      </Table>      
     </TableContainer>
     </Grid>
 )
