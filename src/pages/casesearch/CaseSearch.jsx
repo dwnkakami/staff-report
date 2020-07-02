@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
@@ -16,10 +15,8 @@ import { Paper,
 
 //import Component
 import KeywordSearch from './KeywordSearch';
-// import SelectBox from './SelectBox';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
-// import CheckBox2 from './CheckBox2';
 import DatePickers from './DatePickers';
 
 
@@ -144,9 +141,17 @@ export default function CaseSearch() {
   );
 
   //skill
-  const [skill,setSkill] = React.useState('');
-  const skillChange = (event) => {
-    setSkill(event.target.value);
+  const [skill1,setSkill1] = React.useState('');
+  const skill1Change = (event) => {
+    setSkill1(event.target.value);
+  };
+  const [skill2,setSkill2] = React.useState('');
+  const skill2Change = (event) => {
+    setSkill2(event.target.value);
+  };
+  const [skill3,setSkill3] = React.useState('');
+  const skill3Change = (event) => {
+    setSkill3(event.target.value);
   };
   const skillItems = language.map((data,index) =>
       <MenuItem key={index}
@@ -197,15 +202,12 @@ export default function CaseSearch() {
           </FormControl>
         </div>
 
-        {/* <CheckBox /> */}
-        {/* <CheckBox2 /> */}
-
+        
 
         <Typography className={classes.left} variant="h5" component="h2">
           資格
         </Typography>
 
-        {/* <SelectBox name="資格" choice="ITパスポート" choice2="Oracle Master Gold" choice3="Oracle Master Silber" /> */}
         
         <TextField className={classes.formControl}
           select
@@ -224,33 +226,31 @@ export default function CaseSearch() {
           スキルレベル
         </Typography>
 
-        {/* <div>
-          <FormControl className={classes.formControl}>
-            <InputLabel>Skill</InputLabel>
-            <Select
-              multiple
-              value={skill}
-              onChange={skillChange}
-              input={<Input />}
-              renderValue={(selected) => selected.join(', ')}
-              MenuProps={MenuProps}
-            >
-              {language.map((data,index) => (
-                <MenuItem key={index} value={data.id}>
-                  <Checkbox checked={skill.indexOf(data) > -1} />
-                  <ListItemText primary={data.lang} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div> */}
-
+         <TextField className={classes.formControl}
+          select
+          label="skill①"
+          value={skill1}
+          onChange={skill1Change}
+          variant="outlined"
+        >
+          {skillItems}
+        </TextField>
 
          <TextField className={classes.formControl}
           select
-          label="skill"
-          value={skill}
-          onChange={skillChange}
+          label="skill②"
+          value={skill2}
+          onChange={skill2Change}
+          variant="outlined"
+        >
+          {skillItems}
+        </TextField>
+
+         <TextField className={classes.formControl}
+          select
+          label="skill③"
+          value={skill3}
+          onChange={skill3Change}
           variant="outlined"
         >
           {skillItems}
