@@ -1,367 +1,135 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-// import DeleteIcon from '@material-ui/icons/Delete';
-import CancelIcon from '@material-ui/icons/Cancel';
-// import AlarmIcon from '@material-ui/icons/Alarm';
-// import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-import { List } from '@material-ui/core';
-import { ComposedChart,Tooltip, Bar, CartesianGrid, XAxis, YAxis } from 'recharts';
-// import { static } from 'express';
-
-
-const useStyles = makeStyles((theme) => ({
+import Dialog from '@material-ui/core/Dialog';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import Typography from '@material-ui/core/Typography';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import AddIcon from '@material-ui/icons/Add';
+import Skill from './Staffskill2';
+const styles = (theme) => ({
   root: {
-    display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-      width: theme.spacing(200),
-      height: theme.spacing(80),
-    },
+    margin: 5,
+    padding: theme.spacing(2),
   },
-  title: {
-    position: "absolute",
-    fontSize: 40,
-    margin: 0,
-    left: 80,
-    top: 60,
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[50],
+    background: theme.palette.grey[800],
   },
-  icon: {
-    position: "absolute",
-    left: 1200,
-    top: 10,
+});
+const useStyles = makeStyles((theme) => ({
+  Button: {
+    background:'rgb(120,144,156)',
+    borderRadius: '0px 0px 0px 0px',
   },
-  name: {
-    position: "absolute",
-    top: 140,
-    left: 50,
-    fontSize: 20,
+  Button2: {
+    background:'rgb(120,144,156)',
+    color: '#FFFFFF',
+    borderRadius: '0px 0px 0px 0px',
+    top:12,
+    float: 'right',
   },
-  buttongroup: {
-    position: "absolute",
-    top: 170,
-    left: 50,
-    
+  Button3: {
+    background:'rgb(120,144,156)',
+    color: '#FFFFFF',
+    borderRadius: '0px 0px 0px 0px',
+    top: 12,
+    float: 'right',
   },
-  button1: {
-    position: "absolute",
-    top:170,
-    left: 850,
+  Button4: {
+    color: '#000000',
   },
-  button2: {
-    position: "absolute",
-    top: 170,
-    left: 1050,
+  ButtonGroup: {
+    margin: '10px 200px 10px 0px',
+    borderRadius: '0px 0px 0px 0px',
   },
-  list1: {
-    margin: 0,
+  Button5: {
+    margin: '20px',
   },
-  list2: {
-    margin: 0,
-    backgroundColor: "SkyBlue",
+  Paper: {
+    padding: theme.spacing(7),
+    margin: '16px',
+    width: '95%',
+    borderRadius: '12px 12px 12px 12px',
   },
-  background: {
-    position :"relative",
-    top: 200,
-    width: 1150,
-    left: 40,
-    margin: 0,
-   lineHeight: 30,
- 
-  },
-  title1: {
-    position: "relative",
-    top: -13,
-    left: 50,
-  },
-  title2: {
-    position: "relative",
-    top: -52,
-    left: 450,
-  },
-  title3: {
-    position: "relative",
-    top: -92,
-    left: 850,
-  },
-  graph1: {
-    position: "relative",
-    top: -130,
-    left: 35,
-  },
-  graph2: {
-    position: "relative",
-    top: -310,
-    left: 440,
-  },
-  graph3: {
-    position: "relative",
-    top: -490,
-    left: 840,
-  }
 }));
-  //表示させたいデータ群
-  const  data_event = [
-    { name: '国語', "点数": 500 },
-    { name: '数学', "点数": 168 },
-    { name: '理科', "点数": 397 },
-    { name: '社会', "点数": 480 },
-    { name: '英語', "点数": 20 },
-  ]
-
-export default function Variants() {
-  const classes = useStyles();
-
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, ...other } = props;
   return (
-    <div className={classes.root}>
-      <Paper variant="outlined">
-      <IconButton aria-label="delete">
-        <CancelIcon className={classes.icon}/>
-      </IconButton>
-      <div className={classes.title}>{"スタッフ詳細"}</div>
-      <div className={classes.name}>{"テスト 太郎"}</div>
-         <ButtonGroup className={classes.buttongroup} variant="contained" color="gray" aria-label="contained primary button group">
-         <Button>スキル</Button>
-        <Button>経歴</Button>
-        <Button>キャリアパス</Button>
-        <Button>スタッフ情報</Button>
-     </ButtonGroup>
-        <Button className={classes.button1} variant="contained" color="gray">
-         引き合い登録
-       </Button>
-       <Button className={classes.button2} variant="contained" color="gray">
-         スキルシート出力
-       </Button>
-       <div className={classes.background}>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-         <List className={classes.list1}></List>
-         <List className={classes.list2}></List>
-       </div>
-       <h3 className={classes.title1}>スキル</h3>
-       <h3 className={classes.title2}>経験年数</h3>
-       <h3 className={classes.title3}>自己評価</h3>
-       <div className={classes.graph1}>
-       <ComposedChart　　//グラフ全体のサイズや位置、データを指定。場合によってmarginで上下左右の位置を指定する必要あり。
-    width={350}  //グラフ全体の幅を指定
-    height={180}  //グラフ全体の高さを指定
-    layout="vertical" //グラフのX軸とY軸を入れ替え
-    data={data_event}   //Array型のデータを指定
-    margin={{ top: 20, right: 60, bottom: 0, left: 0 }}  //marginを指定
-  >
-    <XAxis  //X軸に関する設定
-      type="number" //データタイプをnumberに変更。デフォルトではcategoryになっている
-      domain={['dataMin - 100', 'dataMax + 10']} //軸の表示領域を指定
-    />
-    <YAxis //Y軸に関する設定
-      type="category" //データタイプをcategoryに変更
-      dataKey="name"  //Array型のデータの、Y軸に表示したい値のキーを指定
-    />
-    <Tooltip /> 
-    {/* hoverさせた時に具体的な値を表示させるように指定 */}
-    <CartesianGrid  //グラフのグリッドを指定
-      stroke="#f5f5f5"  //グリッド線の色を指定
-     /> 
-    <Bar
-      dataKey="点数"
-      barSize={20}
-      stroke="rgba(34, 80, 162, 0.2)"
-      fillOpacity={1}
-      fill="#2250A2"
-    />
-  </ComposedChart>
-  </div>
-  <div className={classes.graph2}>
-  <ComposedChart　　//グラフ全体のサイズや位置、データを指定。場合によってmarginで上下左右の位置を指定する必要あり。
-    width={350}  //グラフ全体の幅を指定
-    height={180}  //グラフ全体の高さを指定
-    layout="vertical" //グラフのX軸とY軸を入れ替え
-    data={data_event}   //Array型のデータを指定
-    margin={{ top: 20, right: 60, bottom: 0, left: 0 }}  //marginを指定
-  >
-    <XAxis  //X軸に関する設定
-      type="number" //データタイプをnumberに変更。デフォルトではcategoryになっている
-      domain={['dataMin - 100', 'dataMax + 10']} //軸の表示領域を指定
-    />
-    <YAxis //Y軸に関する設定
-      type="category" //データタイプをcategoryに変更
-      dataKey="name"  //Array型のデータの、Y軸に表示したい値のキーを指定
-    />
-    <Tooltip /> 
-    {/* hoverさせた時に具体的な値を表示させるように指定 */}
-    <CartesianGrid  //グラフのグリッドを指定
-      stroke="#f5f5f5"  //グリッド線の色を指定
-     /> 
-    <Bar
-      dataKey="点数"
-      barSize={20}
-      stroke="rgba(34, 80, 162, 0.2)"
-      fillOpacity={1}
-      fill="#2250A2"
-    />
-  </ComposedChart>
-  </div>
-  <div className={classes.graph3}>
-  <ComposedChart　　//グラフ全体のサイズや位置、データを指定。場合によってmarginで上下左右の位置を指定する必要あり。
-    width={350}  //グラフ全体の幅を指定
-    height={180}  //グラフ全体の高さを指定
-    layout="vertical" //グラフのX軸とY軸を入れ替え
-    data={data_event}   //Array型のデータを指定
-    margin={{ top: 20, right: 60, bottom: 0, left: 0 }}  //marginを指定
-  >
-    <XAxis  //X軸に関する設定
-      type="number" //データタイプをnumberに変更。デフォルトではcategoryになっている
-      domain={['dataMin - 100', 'dataMax + 10']} //軸の表示領域を指定
-    />
-    <YAxis //Y軸に関する設定
-      type="category" //データタイプをcategoryに変更
-      dataKey="name"  //Array型のデータの、Y軸に表示したい値のキーを指定
-    />
-    <Tooltip /> 
-    {/* hoverさせた時に具体的な値を表示させるように指定 */}
-    <CartesianGrid  //グラフのグリッドを指定
-      stroke="#f5f5f5"  //グリッド線の色を指定
-     /> 
-    <Bar
-      dataKey="点数"
-      barSize={20}
-      stroke="rgba(34, 80, 162, 0.2)"
-      fillOpacity={1}
-      fill="#2250A2"
-    />
-  </ComposedChart>
-  </div>
-      </Paper>
+    <MuiDialogTitle disableTypography className={classes.root} {...other} >
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
+const DialogContent = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(2),
+  },
+}))(MuiDialogContent);
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
+export default function CustomizedDialogs() {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+  const [add, setAdd] = ([]);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleChange = () => {
+    setAdd('/StaffList003_figure');
+  };
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
+        スタッフ経歴
+      </Button>
+      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg">
+        <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
+        <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>        </DialogTitle>
+        <DialogContent dividers>
+        <Typography variant="h6">テスト太郎</Typography>
+        <div>
+        <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
+        <Button className={classes.Button}>スキル</Button>
+        <Button className={classes.Button}>経歴</Button>
+        <Button className={classes.Button}>キャリアパス</Button>
+        <Button className={classes.Button}>スタッフ情報</Button>
+      </ButtonGroup>
+      <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
+      <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
+      </div>
+      <div>
+      <Skill />
+      </div>
+      <div>
+      </div>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleChange} className={classes.Button4}>
+          <AddIcon />追加
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
-};
-
-// const UseStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   },
-// }));
-
-// export default function IconButtons() {
-//   const classes = UseStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <IconButton aria-label="delete">
-//         <DeleteIcon />
-//       </IconButton>
-//       <IconButton aria-label="delete" disabled color="primary">
-//         <DeleteIcon />
-//       </IconButton>
-//       <IconButton color="secondary" aria-label="add an alarm">
-//         <AlarmIcon />
-//       </IconButton>
-//       <IconButton color="primary" aria-label="add to shopping cart">
-//         <AddShoppingCartIcon />
-//       </IconButton>
-//     </div>
-//   );
-// }
-
-
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     ...theme.typography.button,
-//     backgroundColor: theme.palette.background.paper,
-//     padding: theme.spacing(1),
-//   },
-// }));
-
-// export default function TypographyTheme() {
-//   const classes = useStyles();
-
-//   return <div className={classes.root}>{"This div's text looks like that of a button."}</div>;
-// }
-
-
-// import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
-
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     alignItems: 'center',
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   },
-// }));
-
-// export default function BasicButtonGroup() {
-//   const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <ButtonGroup color="primary" aria-label="outlined primary button group">
-//         <Button>One</Button>
-//         <Button>Two</Button>
-//         <Button>Three</Button>
-//       </ButtonGroup>
-//       <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-//         <Button>One</Button>
-//         <Button>Two</Button>
-//         <Button>Three</Button>
-//       </ButtonGroup>
-//       <ButtonGroup variant="text" color="primary" aria-label="text primary button group">
-//         <Button>One</Button>
-//         <Button>Two</Button>
-//         <Button>Three</Button>
-//       </ButtonGroup>
-//     </div>
-//   );
-// }
-
-// import React from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     '& > *': {
-//       margin: theme.spacing(1),
-//     },
-//   },
-// }));
-
-// export default function ContainedButtons() {
-//   const classes = useStyles();
-
-//   return (
-//     <div className={classes.root}>
-//       <Button variant="contained">Default</Button>
-//       <Button variant="contained" color="primary">
-//         Primary
-//       </Button>
-//       <Button variant="contained" color="secondary">
-//         Secondary
-//       </Button>
-//       <Button variant="contained" disabled>
-//         Disabled
-//       </Button>
-//       <Button variant="contained" color="primary" href="#contained-buttons">
-//         Link
-//       </Button>
-//     </div>
-//   );
-// }
+}

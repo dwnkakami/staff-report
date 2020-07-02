@@ -8,6 +8,7 @@ import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
 import Staffskill from "./pages/staffskill/Staffskill";
+// import Staffskill2 from "./pages/staffskill/Staffskill2";
 ReactDOM.render(
   <LayoutProvider>
     <UserProvider>
