@@ -19,14 +19,13 @@ const billing = require('./modules/billing.jsx');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const port = process.env.PORT || 4000;
-<<<<<<< HEAD
+
 app.get('/api/login',(req,res) => {
     login.getData(req,res);
-=======
+});
 
 app.get('/api/login/:condition',(req,res) => {
     login.getData(req.params.condition,res);
->>>>>>> 332173f7dfdee99a7fdf2417ab0eb12988b71ea3
 });
 app.get('/api/menu/:condition',(req,res) => {
     menu.getData(req.params.condition,res);
