@@ -132,7 +132,7 @@ const StaffSearch = () => {
   const [searh,setSearch]=useState([]);
 
     const getUserData = () => {
-      
+      if(searh.length===0){
       axios
        .get('/api/staffsearch/1')
        .then(response => {
@@ -143,6 +143,7 @@ const StaffSearch = () => {
           console.log('connected error');
         })
       }
+    }
 
   // const license_data = searh.filter((data) => {
   //     return data.id ===license;
