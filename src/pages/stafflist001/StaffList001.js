@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }　from 'react';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
@@ -8,11 +8,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { getData }  from './M_staff';
+// import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
-import './StaffList001.css'
-
-
+import Button from '@material-ui/core/Button';
+import './StaffList001.css';
+import axios from 'axios';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -39,11 +39,28 @@ const StyledTableCell = withStyles((theme) => ({
     },
   });
 
-export default function StaffList001 () {
+ export default function StaffList001 () {
     const classes = useStyles();
+
+    const [staff, setStaff] = useState([]);
+
+    useEffect(() => getStaffData());
+ 
+    const getStaffData = () => {
+        if(staff.length === 0) {
+            axios
+              .get('/api/stafflist001/1')
+              .then(response => {
+                console.log([response.data]);
+                setStaff([response.data]);
+              })
+              .catch(() => {
+                console.log('connected error');
+              })
+            }
+    }
+
 return(
-    
-//   <Paper>
 <Grid>
     <Typography variant="h2">スタッフリスト</Typography>
 
@@ -59,13 +76,12 @@ return(
           </TableRow>
         </TableHead>
         <TableBody>
-          {getData.map((data) => (
-            <StyledTableRow key={data.id}>
-            {/* <StyledTableCell component="th" scope="row"> */}
-              <StyledTableCell>
+          {staff.map((data) => (
+            <StyledTableRow >
+            <StyledTableCell component="th" scope="row">
                 {data.id}
               </StyledTableCell>
-              <StyledTableCell align="right">{data.name}</StyledTableCell>
+              <StyledTableCell align="right"><Button>{data.name}</Button></StyledTableCell>
               <StyledTableCell align="right">{data.position}</StyledTableCell>
               <StyledTableCell align="right">{data.company_abbreviation}</StyledTableCell>
               <StyledTableCell align="right">{data.matter_end}</StyledTableCell>
@@ -75,6 +91,5 @@ return(
       </Table>
     </TableContainer>
     </Grid>
-//   </Paper> 
 )
 };
