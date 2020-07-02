@@ -17,44 +17,46 @@ const useStyles = makeStyles((theme) => ({
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
       positon: 'absolute',
-      left: '250px',
-      top: '80px',
-      width: '40ch',
+      left: '20%',
+      top: '90px',
+      width: '25%',
       backgroundColor: 'white',
 
     }},
 
   button: {
-    left: '820px',
-    top: '760px',
+    left: '68%',
+    top: '83%',
     position: 'absolute',
-    width: '120px',
-  },
-
-  date: {
-    left: '646px',
-    top: '273px',
-    position: 'absolute',
-    backgroundColor: 'white',
+    width: 'auto',
   },
 
   skill1: {
-    width: '14ch',
+    width: '10%',
+    position: 'absolute',
+    top: '31%',
+    left: '49%',
   },
 
   skill2: {
-    width: '13ch',
+    position: 'absolute',
+    width: '10%',
+    top: '31%',
+    left: '59%',
   },
 
   skill3: {
-    width: '12ch',
+    width: '10%',
+    position: 'absolute',
+    top: '31%',
+    left: '69%',
   },
 
 
 
   cont: {
     left: '1px', 
-    width: '70ch',
+    width: '50%',
 
   },
 
@@ -66,48 +68,43 @@ const useStyles = makeStyles((theme) => ({
 
   h1: {
     position: 'absolute',
-    left: '180px',
-    top: '30px',
+    left: '20%',
+    top: '4%',
 
+  },
+
+  date: {
+    left: '21%',
+    top: '10%',
   },
 
   margin: {
     position: 'absolute',
-    left: '265px',
-    top: '445px',
-    width: '84ch',
+    left: '21%',
+    top: '50%',
+    width: '53%',
     height: 'available',
   },
 
   margin2: {
     position: 'absolute',
-    left: '265px',
-    top: '595px',
-    width: '84ch',
+    left: '21%',
+    top: '66%',
+    width: '53%',
+    height: 'available',
   },
 
 
   paper1: {
     position: 'relative',
-    width: '1300px',
+    width: 'auto',
+    minWidth: '50%',
     margin: '-10px',
     height: 'auto',
-    minHeight: '115vh',
-    border: '1px solid black',
+    minHeight: '120vh',
 },
 
   
-
-
-  //  f1: {
-  //    margin: theme.spacing(2),
-  //    position: 'absolute',
-  //    left: '250px',
-  //  },
-    // cont: {
-    //   margin: theme.spacing(1),
-    //    width: '50ch',
-    // },
 
     
 }));
@@ -137,6 +134,7 @@ export default function MultilineTextFields() {
     
     <Paper elevation={3} className = {classes.paper1}>
     <form className={classes.root} noValidate autoComplete="off">
+      <div>
       <div>
       <Typography className={classes.h1} variant="h2" gutterBottom>
         案件登録
@@ -170,7 +168,7 @@ export default function MultilineTextFields() {
           }}
           variant="outlined"
         />
-        <div className={classes.date}>
+        <div>
 <FormControl variant="outlined"　className={classes.skill1}  >
         <InputLabel htmlFor="outlined-age-native-simple">スキル①</InputLabel>
         <Select
@@ -197,7 +195,7 @@ export default function MultilineTextFields() {
         </Select>
       </FormControl>
        
-        <FormControl variant="outlined" >
+        <FormControl variant="outlined" className={classes.skill2}>
         <InputLabel htmlFor="outlined-age-native-simple">スキル②</InputLabel>
         <Select
           native
@@ -225,7 +223,7 @@ export default function MultilineTextFields() {
         </Select>
       </FormControl>
       
-      <FormControl variant="outlined" >
+      <FormControl variant="outlined" className={classes.skill3} >
         <InputLabel htmlFor="outlined-age-native-simple">スキル③</InputLabel>
         <Select
           native
@@ -252,13 +250,13 @@ export default function MultilineTextFields() {
       </FormControl>
       </div>
       </div>
-      <div>
+      
+      <div  className={classes.date}>
       <TextField
         id="date"
         label="案件開始日"
         type="date"
-        defaultValue="2017-05-24"
-        className={classes.textField}
+        defaultValue="2020-01-01"
         InputLabelProps={{
           shrink: true,
         }}
@@ -292,6 +290,7 @@ export default function MultilineTextFields() {
         <Button className={classes.button} variant="contained" size="large" >
         登録
       </Button>
+      </div>
       </div>
       </div>
       </form> 
