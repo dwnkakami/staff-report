@@ -126,6 +126,9 @@ const language = [
 export default function CaseSearch() {
   const classes = useStyles();
 
+  //KeywordSearch
+  const [keyWord, setKeyWord] = React.useState();
+
   //job
   const [jobName, setJobName] = React.useState([]);
 
@@ -134,7 +137,7 @@ export default function CaseSearch() {
   };
 
   //license
-  const [license,setLicense] = React.useState();
+  const [license,setLicense] = React.useState('');
   const licenseChange = (event) => {
     setLicense(event.target.value);
   };
@@ -161,6 +164,35 @@ export default function CaseSearch() {
               value={data.id}>{data.lang}</MenuItem>
   );
 
+  //startdate
+  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
+
+  const handleStartDateChange = (date) => {
+    setSelectedStartDate(date);
+  };
+  //enddate
+  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
+
+  const handleEndDateChange = (date) => {
+    setSelectedEndDate(date);
+  };
+
+  //settting salesman
+  const [salesMan, setSalesMan] = React.useState();
+
+  //clearButton
+  const clearAll = () => {
+    setKeyWord()
+    setJobName([])
+    setLicense('')
+    setSkill1('')
+    setSkill2('')
+    setSkill3('')
+    setSelectedStartDate()
+    setSelectedEndDate()
+    setSalesMan()
+  };
+
   return (
     <Paper className={classes.root} variant="outlined">
       <CardContent>
@@ -174,7 +206,7 @@ export default function CaseSearch() {
         キーワード検索
         </Typography>
 
-        <KeywordSearch />
+        <KeywordSearch value={keyWord} />
         <SearchButton />
 
         <br className={classes.end} />
@@ -270,7 +302,7 @@ export default function CaseSearch() {
           期間
         </Typography>
         
-        <DatePickers label="ここから" />
+        <DatePickers label="ここから" value={selectedStartDate} onChange={handleStartDateChange} />
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
@@ -280,7 +312,7 @@ export default function CaseSearch() {
 
         <div className={classes.left}><br /></div>
 
-        <DatePickers label="ここまで"　/>
+        <DatePickers label="ここまで" value={selectedEndDate} onChange={handleEndDateChange} />
         
         <br className={classes.end} />
 
@@ -288,14 +320,14 @@ export default function CaseSearch() {
           担当営業名
         </Typography>
 
-        <TextField className={classes.formControl} id="outlined-basic" label="担当営業名" variant="outlined" />
+        <TextField value={salesMan} className={classes.formControl} id="outlined-basic" label="担当営業名" variant="outlined" />
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>
 
-        <DeleteButton />
+        <DeleteButton onClick={clearAll} />
         <SearchButton />
 
       </CardContent>

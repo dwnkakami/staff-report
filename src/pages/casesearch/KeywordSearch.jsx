@@ -55,14 +55,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function KeywordSearch() {
+export default function KeywordSearch(props) {
   const classes = useStyles();
 
   return (
       <div className={classes.root}>
         <FormControl className={classes.margin}>
             <InputLabel className={classes.label} htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
-            <BootstrapInput id="demo-customized-textbox" />
+            <BootstrapInput value={props.value} id="demo-customized-textbox" />
         </FormControl>
       </div>
 
