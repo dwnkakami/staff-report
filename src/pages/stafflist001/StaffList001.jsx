@@ -15,16 +15,6 @@ import './StaffList001.css';
 import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
 
-// const StyledTableCell = withStyles((theme) => ({
-//     head: {
-//       backgroundColor: theme.palette.common.black,
-//       color: theme.palette.common.white,
-//     },
-//     body: {
-//       fontSize: 14,
-//     },
-//   }))(TableCell);
-
 const StyledTableCell = withStyles((theme) => ({
   head: {
       fontWeight: 'bolder',
