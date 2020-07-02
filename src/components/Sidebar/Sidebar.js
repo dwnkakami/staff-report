@@ -37,7 +37,6 @@ const structure = [
   {
     id: 2,
     label: "スタッフ",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
@@ -54,7 +53,6 @@ const structure = [
   {
     id: 3,
     label: "案件",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
@@ -66,7 +64,6 @@ const structure = [
   {
     id: 4,
     label: "引合",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" /> }
@@ -81,7 +78,6 @@ const structure = [
   {
     id: 5,
     label: "領収書",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" /> },
