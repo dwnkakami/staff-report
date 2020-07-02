@@ -43,6 +43,7 @@ const StyledTableCell = withStyles((theme) => ({
             axios
               .get('/api/stafflist001/:condition')
               .then(response => {
+                console.log([response.data]);
                 setStaff([response.data]);
               })
               .catch(() => {

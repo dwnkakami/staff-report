@@ -31,7 +31,8 @@ import StaffList001 from "../../pages/stafflist/stafflist001";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
-//import ReferenceList from "../../pages/referencelist";
+import ReferenceList from "../../pages/referencelist/ReferenceList";
+// import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing";
@@ -39,6 +40,7 @@ import StaffList001 from "../../pages/stafflist/stafflist001";
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
+import Tables from "../../pages/tables/Tables";
 
 function Layout(props) {
   var classes = useStyles();
@@ -60,7 +62,8 @@ function Layout(props) {
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              {/* <Route path="/app/tables" component={Tables} /> */}
+              <Route path="/app/tables" component={Tables} />
+              {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
@@ -71,7 +74,8 @@ function Layout(props) {
               {/* <Route path="/staff-report/casasearch/001" component={CaseSearch} /> */}
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
-              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
+              <Route path="/staff-report/referencelist/001" component={ReferenceList} />
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList_not} /> */}
               {/* <Route path="" component={} /> 引合検索  */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}

@@ -38,8 +38,8 @@ const StyledTableCell = withStyles((theme) => ({
     const classes = useStyles();
     const [staff, setStaff] = useState([]);
     useEffect(() => getStaffData());
-    // const sortArray = [...array].sort((a, b) => a.name - b.name);
-    // console.log(sortArray);
+    const sortArray = [...StaffList001].sort((a, b) => a.name - b.name);
+    console.log(sortArray);
     const getStaffData = () => {
         if(staff.length === 0) {
             axios
