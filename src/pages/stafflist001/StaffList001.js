@@ -62,7 +62,7 @@ const StyledTableCell = withStyles((theme) => ({
 
 return(
 <Grid>
-    <Typography variant="h2">スタッフリスト</Typography>
+    <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="customized table">
