@@ -1,4 +1,4 @@
-import React, { useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -129,18 +129,21 @@ const StaffSearch = () => {
     setText({label:''});
   };
 
+  //const [searh,setSearch]=useState([]);
+
   //const Search = () =>{
-    useEffect(() => getUserData());
     const getUserData = () => {
+      //if(searh.length===0){
       axios
        .get('/api/staffsearch/1')
        .then(response => {
         console.log([response.data]);
-                    
+        
         })
         .catch(() => {
           console.log('connected error');
         })
+      //}
     }
   //}
 
