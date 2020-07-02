@@ -240,15 +240,15 @@ const StaffList003_figure = () => {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-            {(() => {
+            {/* {(() => {
         const items = [];
         for (let i = 1; i < 5; i++) {
             items.push(<li>{i}</li>)
         }
-        return <ul>
-              <Paper className={classes.number} variant="outlined">{items}</Paper>
-              </ul>
-            })()};
+        return <ul> */}
+              <Paper className={classes.number} variant="outlined"></Paper>
+              {/* </ul> */}
+            {/* })()}; */}
             </Grid>
         </Grid>
       </div>

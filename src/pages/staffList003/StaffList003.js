@@ -133,13 +133,9 @@ export default function CustomizedDialogs() {
       <StaffList003_figure />
       </div>
       <div>
-      {/* {(() => {
-        const flag = true;
-        if (flag === true) {
-            return <StaffList003_figure/>;
-        }
-        return false;
-    })()} */}
+      <StaffList003_figure />
+      </div>
+      <div>
       </div>
         </DialogContent>
         <DialogActions>
