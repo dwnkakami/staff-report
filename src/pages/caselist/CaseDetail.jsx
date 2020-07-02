@@ -1,5 +1,6 @@
-import React, { useState,useEffect } from 'react';
-import './CaseList.css';
+import React from 'react';
+import './CaseDetail.css';
+import { useState , useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -44,29 +45,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const CaseList = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => getCaseData());
-
-  const getCaseData = () => {
-    if (posts.length === 0) {
-      axios
-        .get('/api/caselist/')
-        .then(response => {
-          setPosts([response.data]);
-        //   console.log([response.data]);
-        })
-        .catch(() => {
-          console.log('失敗しました');
-        })
-    }
-  }
-
-  const getData = posts.filter((data) => {
-    return data.id === 1 ;
-  });
-
+export default function CaseDetail (props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -76,18 +55,35 @@ const CaseList = () => {
     setOpen(false);
   };
 
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => getCasedetailData());
+
+  const getCasedetailData = () => {
+    if(posts.length === 0) {
+      axios
+        .get('/api/casedetail/')
+        .then(response => {
+          setPosts(response.data);
+        })
+         .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         案件リスト
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          案件詳細
-        </DialogTitle>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+            案件詳細
+          </DialogTitle>
         <DialogContent dividers >
-        {getData.map((data) => (
-          <Typography gutterBottom key={data.id}>
+          <Typography gutterBottom>
+            {posts.map((data) => (
             <table>
               <tr>
                 <th>案件名</th>
@@ -95,7 +91,8 @@ const CaseList = () => {
               </tr>
               <tr>
                 <td>{data.name}</td>
-                <td>データ</td>
+                <td>{data.customer_name}</td>
+                
               </tr>
               <tr>
                 <th>依頼単価</th>
@@ -106,6 +103,8 @@ const CaseList = () => {
                 <td>{data.workplace}</td>
               </tr>
               </table>
+            ))}
+            {posts.map((data) => (
               <table>
               <tr>
                 <th>募集人数</th>
@@ -114,10 +113,12 @@ const CaseList = () => {
               </tr>
               <tr>
                 <td>{data.number_of_persons}</td>
-                <td>{data.start}</td>
-                <td>{data.end}</td>
+                <td>{data.matter_start}</td>
+                <td>{data.matter_end}</td>
               </tr>
             </table>
+            ))}
+            {posts.map((data) => (
             <table>
               <tr>
                 <th>業務内容</th>
@@ -126,9 +127,25 @@ const CaseList = () => {
                 <td class='wide-td1'>{data.business_content}</td>
               </tr>
             </table>
+            ))}
+            {posts.map((data) => (
             <table>
               <tr>
-                <th>スキルレベル</th>
+                <th>スキル1</th>
+                <th>スキル2</th>
+                <th>スキル3</th>
+              </tr>
+              <tr>
+                <td>{data.skill_name1}</td>
+                <td>データ</td>
+                <td>データ</td>
+              </tr>　
+            </table>
+            ))}
+            {posts.map((data) => (
+            <table>
+              <tr>
+                <th>必須スキル</th>
                 <th>備考欄</th>
               </tr>
               <tr>
@@ -136,12 +153,10 @@ const CaseList = () => {
                 <td>{data.note}</td>
               </tr>
             </table>
+          ))}
           </Typography>
-        ))}
         </DialogContent>
       </Dialog>
     </div>
   );
 }
-
-export default CaseList

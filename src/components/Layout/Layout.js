@@ -27,7 +27,7 @@ import Charts from "../../pages/charts";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
-import CaseList from "../../pages/caselist/CaseList";
+import CaseList from "../../pages/caselist/CaseDetail";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 
