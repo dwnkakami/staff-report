@@ -1,85 +1,31 @@
 import React  from 'react';
 import Dashboard from './Dashboard';
+import Login from '../login';
 
 var ReactDOM = require('react-dom');
-
-const Test = () => {
 function UserGreeting(props) {
   return <Dashboard />;
 }
 
 function GuestGreeting(props) {
-  return <h1>Please sign up.</h1>;
+  return <Login />;
 }
 
-function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
-  if (isLoggedIn) {
-    return <UserGreeting />;
-  }
-  return <GuestGreeting />;
-}
+const Test = () => {
 
-ReactDOM.render(
-  // Try changing to isLoggedIn={true}:
-  <Greeting isLoggedIn={false} />,
-  document.getElementById('root')
-);
-
-function LoginButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Login
-    </button>
-  );
-}
-
-function LogoutButton(props) {
-  return (
-    <button onClick={props.onClick}>
-      Logout
-    </button>
-  );
-}
-
-class LoginControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
-    this.state = {isLoggedIn: false};
-  }
-
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
-  }
-
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
-  }
-
-  render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    let button;
+  function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
     if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
-    } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
+      return <UserGreeting />;
     }
-
-    return (
-      <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-        {button}
-      </div>
-    );
+    return <GuestGreeting />;
   }
-}
-
-ReactDOM.render(
-  <LoginControl />,
-  document.getElementById('root')
-);
+  
+  ReactDOM.render(
+    // Try changing to isLoggedIn={true}:
+    <Greeting isLoggedIn={false} />,
+    document.getElementById('root')
+  );
 }
 
 export default Test;

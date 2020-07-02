@@ -16,7 +16,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 // import Dashboard from "../../pages/dashboard";
-import Test from "../../pages/dashboard";
+import Test from "../../pages/dashboard/Test";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
