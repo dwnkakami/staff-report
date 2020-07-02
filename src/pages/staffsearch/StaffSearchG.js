@@ -129,23 +129,28 @@ const StaffSearch = () => {
     setText({label:''});
   };
 
-  //const [searh,setSearch]=useState([]);
+  const [searh,setSearch]=useState([]);
 
-  //const Search = () =>{
     const getUserData = () => {
-      //if(searh.length===0){
+      
       axios
        .get('/api/staffsearch/1')
        .then(response => {
         console.log([response.data]);
-        
+        setSearch(response.data);
         })
         .catch(() => {
           console.log('connected error');
         })
-      //}
-    }
-  //}
+      }
+
+  // const license_data = searh.filter((data) => {
+  //     return data.id ===license;
+  // });
+
+  // const state_data = searh.filter((data) => {
+  //   return data.id === state;
+  // });
 
   return (
     <div>
