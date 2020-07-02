@@ -91,7 +91,7 @@ const StaffList005_figure = () => {
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List}>
-                <ListItemText className={classes.content1_4} variant="outlimed" key={data.スタッフ番号}>{data.生年月日}</ListItemText>
+                <ListItemText className={classes.content1_4} variant="outlimed" key={data.スタッフ番号}>{data.誕生日}</ListItemText>
                 </ListItem>
                 <Divider />
                 <ListItem className={classes.List_color}>
