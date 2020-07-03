@@ -14,7 +14,7 @@ import { Paper,
          } from '@material-ui/core';
 
 //import Component
-import KeywordSearch from './KeywordSearch';
+// import KeywordSearch from './KeywordSearch';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import DatePickers from './DatePickers';
@@ -61,6 +61,21 @@ end: {
   },
   brank: {
     height:35,
+  },
+  inputForm: {
+    float:'left',
+    marginTop:15,
+  },
+  button: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+  keyButton: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+    paddingTop:15,
   },
 }));
 
@@ -180,9 +195,11 @@ export default function CaseSearch() {
   //settting salesman
   const [salesMan, setSalesMan] = React.useState();
 
+
+
   //clearButton
   const clearAll = () => {
-    setKeyWord()
+    setKeyWord('')
     setJobName([])
     setLicense('')
     setSkill1('')
@@ -190,7 +207,7 @@ export default function CaseSearch() {
     setSkill3('')
     setSelectedStartDate()
     setSelectedEndDate()
-    setSalesMan()
+    setSalesMan('')
   };
 
   return (
@@ -206,8 +223,11 @@ export default function CaseSearch() {
         キーワード検索
         </Typography>
 
-        <KeywordSearch value={keyWord} />
-        <SearchButton />
+        {/* <KeywordSearch value={keyWord} onChange={e => setKeyWord(e.target.value)} /> */}
+
+        <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" />
+
+        <SearchButton className={classes.keyButton} />
 
         <br className={classes.end} />
         
@@ -320,7 +340,7 @@ export default function CaseSearch() {
           担当営業名
         </Typography>
 
-        <TextField value={salesMan} className={classes.formControl} id="outlined-basic" label="担当営業名" variant="outlined" />
+        <TextField value={salesMan} onChange={e => setSalesMan(e.target.value)} className={classes.inputForm} id="outlined-basic" label="担当営業名" variant="outlined" />
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
@@ -328,7 +348,7 @@ export default function CaseSearch() {
         <div className={classes.left}><br /></div>
 
         <DeleteButton onClick={clearAll} />
-        <SearchButton />
+        <SearchButton  className={classes.button} />
 
       </CardContent>
     </Paper>

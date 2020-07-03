@@ -1,20 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
 
-export default function SearchButton() {
-  const classes = useStyles();
+
+export default function SearchButton(props) {
 
   return (
-    <div className={classes.root}>
+    <div className={props.className}>
       <Button variant="contained" >
         検索
       </Button>
