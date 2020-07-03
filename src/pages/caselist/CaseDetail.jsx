@@ -1,6 +1,5 @@
 import React from 'react';
 import './CaseDetail.css';
-import { useState , useEffect } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -9,6 +8,7 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
+import { useState , useEffect } from 'react';
 import axios from 'axios';
 
 const styles = (theme) => ({
@@ -55,16 +55,16 @@ export default function CaseDetail (props) {
     setOpen(false);
   };
 
-  const [posts, setPosts] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => getCasedetailData());
 
   const getCasedetailData = () => {
-    if(posts.length === 0) {
+    if(user.length === 0) {
       axios
-        .get('/api/casedetail/')
+        .get('/api/casedetail/1')
         .then(response => {
-          setPosts(response.data);
+          setUser(response.data);
         })
          .catch(() => {
           console.log('connected error');
@@ -83,7 +83,7 @@ export default function CaseDetail (props) {
           </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
-            {posts.map((data) => (
+            {user.map((data) => (
             <table>
               <tr>
                 <th>案件名</th>
@@ -104,7 +104,7 @@ export default function CaseDetail (props) {
               </tr>
               </table>
             ))}
-            {posts.map((data) => (
+            {user.map((data) => (
               <table>
               <tr>
                 <th>募集人数</th>
@@ -118,7 +118,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
             ))}
-            {posts.map((data) => (
+            {user.map((data) => (
             <table>
               <tr>
                 <th>業務内容</th>
@@ -128,7 +128,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
             ))}
-            {posts.map((data) => (
+            {user.map((data) => (
             <table>
               <tr>
                 <th>スキル1</th>
@@ -137,12 +137,12 @@ export default function CaseDetail (props) {
               </tr>
               <tr>
                 <td>{data.skill_name1}</td>
-                <td>データ</td>
-                <td>データ</td>
-              </tr>　
+                <td>{data.skill_name2}</td>
+                <td>{data.skill_name3}</td>
+              </tr>
             </table>
             ))}
-            {posts.map((data) => (
+            {user.map((data) => (
             <table>
               <tr>
                 <th>必須スキル</th>
