@@ -125,22 +125,19 @@ const StaffSearch = () => {
     setState({state:''});
   };
 
-  const [searh,setSearch]=useState([]);
+  
 
     const getUserData = () => {
-      if(searh.length===0){
-      axios
-       .get('/api/staffsearch/1')
+     axios
+       .get('/api/staffsearch/' + 'SELECT * FROM m_staff WHERE occupation_id = 1;')
        .then(response => {
         console.log([response.data]);
-        setSearch(response.data);
         })
         .catch(() => {
           console.log('connected error');
         })
-      }
-      
-    }
+    
+  }
 
   // const license_data = searh.filter((data) => {
   //     return data.id ===license;
