@@ -1,12 +1,13 @@
 .paper1 {
     position: relative;
     margin: -10px;
-    min-height:80vh;
-    border: 1px solid black; 
+    min-height:10vh; 
 }
 
-.table1 {
-    position: relative;
-    height: auto;
-    width: auto;
+.table1{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 30px;
 }
