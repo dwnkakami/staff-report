@@ -92,11 +92,11 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-import Paper from '@material-ui/core/Paper';
+// import CloseIcon from '@material-ui/icons/Close';
+// import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import StaffList005_figure from './StaffList005_figure';
+// import IconButton from '@material-ui/core/IconButton';
+// import StaffList005_figure from './StaffList005_figure';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -123,6 +123,7 @@ const styles = makeStyles((theme) => ({
   Button2: {
     background:'rgb(120,144,156)',
     left: 45,
+    marginRight: '25px',
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
     float: 'right',
