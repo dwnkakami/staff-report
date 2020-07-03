@@ -6,7 +6,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import '../Css/Search.css';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -16,6 +15,7 @@ import {skill} from '../variables/Skill';
 import {area} from '../variables/Area';
 import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
+import {older} from '../variables/Older';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -92,21 +92,12 @@ const StaffSearch = () => {
     st3: '',
     ge: '',
     areas:'',
+    older:'',
   });
 
   //セレクト切り替え
   const handleChange3 = (event) => {
     setState({ ...state,[event.target.name]: event.target.value});
-  };
-
-  //テキスト（年齢）
-  const [text,setText]= useState({
-    label: '',
-  });
-
-  //text更新
-  const handleChange4 = (event) => {
-    setText(event.target.value);
   };
 
   //radioボタン
@@ -126,7 +117,6 @@ const StaffSearch = () => {
     setLicense({license:''});
     setValue({value:''});
     setState({state:''});
-    setText({label:''});
   };
 
   const [searh,setSearch]=useState([]);
@@ -382,12 +372,26 @@ const StaffSearch = () => {
       </FormControl>
 
     <p class='older'>年齢</p>
-    <form className={classes.root} noValidate autoComplete="off">
+    {/* <form className={classes.root} noValidate autoComplete="off">
       <TextField id="outlined-basic" variant="outlined" 
         onChange={handleChange4}
         value={text.label}
       />
-    </form>
+    </form> */}
+     <FormControl variant="filled" className={classes.formControl1}>
+        <Select
+          value={state.older}
+          onChange={handleChange3}
+          name="older"
+          label="スキルレベル１"
+        >
+          {older.map((data)=>(
+            <option key={data.id} value={data.name}>
+              {data.name}
+            </option>
+          ))}
+        </Select>
+      </FormControl>
 
     <p class='gender'>性別</p>
     <FormControl variant="filled" className={classes.formControl3}>
