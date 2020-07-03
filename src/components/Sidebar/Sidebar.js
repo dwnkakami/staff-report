@@ -31,13 +31,12 @@ import {
 } from "../../context/LayoutContext";
 
 const structure = [
-  { id: 0, label: "Dashboard", link: "/staff-report/dashboard", icon: <HomeIcon /> },
+  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
   { id: 1,　type: "title", label: "メニュー", },
 
   {
     id: 2,
     label: "スタッフ",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
@@ -54,19 +53,17 @@ const structure = [
   {
     id: 3,
     label: "案件",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
       { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
-      { label: "案件登録", link: "staff-report/caseadd/001", icon: <Dot size="small" />  },
+      { label: "案件登録", link: "/staff-report/caseadd/001", icon: <Dot size="small" />  },
     ],
   },
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
     label: "引合",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" /> }
@@ -81,7 +78,6 @@ const structure = [
   {
     id: 5,
     label: "領収書",
-    link: "/staff-report/menu",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" /> },
