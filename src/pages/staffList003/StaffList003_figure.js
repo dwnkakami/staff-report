@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import axios from 'axios';
 import { useEffect } from 'react';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     width: 70,
     color: '#000000',
     textAlign: 'center',
-    lineHeight: 10,
+    lineHeight: 8,
     fontSize: 31,
     borderRadius: '0px 0px 0px 0px'
   },
@@ -213,7 +214,7 @@ const StaffList003_figure = () => {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/2')
+            .get('/api/stafflist003/4')
             .then(response => {
                 setUser(response.data);
             })
@@ -222,14 +223,7 @@ const StaffList003_figure = () => {
             })
 }}
 
-// for (let i = 0; i<2; i++;)
-// for (let i = 0; i<2; i++){
-//   console.log [i];
-// }
-
-// const List = [1,2,3]
-
-// for(let i = 0; i<List.length; i++)
+let i = 0
 
   return (
     <div className={classes.root}>
@@ -240,15 +234,10 @@ const StaffList003_figure = () => {
           justify="flex-start"
           alignItems="baseline">
             <Grid>
-            {/* {(() => {
-        const items = [];
-        for (let i = 1; i < 5; i++) {
-            items.push(<li>{i}</li>)
-        }
-        return <ul> */}
-              <Paper className={classes.number} variant="outlined"></Paper>
-              {/* </ul> */}
-            {/* })()}; */}
+              <Paper className={classes.number} variant="outlined">
+                <ul>{[i + 1].map((StaffList003_figure) => <p>{StaffList003_figure}</p>)}
+                </ul>
+              </Paper>
             </Grid>
         </Grid>
       </div>
@@ -408,7 +397,7 @@ const StaffList003_figure = () => {
             </Grid>
           </div>
     </div>
-  );
+);
 }
 
 export default StaffList003_figure;
