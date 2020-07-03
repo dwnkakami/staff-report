@@ -3,7 +3,6 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
-import AddIcon from '@material-ui/icons/Add';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
@@ -66,31 +65,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicButtonGroup() {
+// export default function BasicButtonGroup() {
+const StaffList005 = () => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Paper variant="outlined" className={classes.Paper}>
-      <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
-      <Typography variant="h5">テスト太郎</Typography>
-      <IconButton aria-label="delete" className={classes.margin}>
-      <CloseIcon className={classes.icon} />
-      </IconButton>
-      <div>
-      <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-        <Button className={classes.Button}>スキル</Button>
-        <Button className={classes.Button}>経歴</Button>
-        <Button className={classes.Button}>キャリアパス</Button>
-        <Button className={classes.Button}>スタッフ情報</Button>
-      </ButtonGroup>
-      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
-      </div>
-      <div>
-        <StaffList005_figure />
-      </div>
+        <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
+        <Typography variant="h5">テスト太郎</Typography>
+        <IconButton aria-label="delete" className={classes.margin}>
+          <CloseIcon className={classes.icon} />
+        </IconButton>
+        <div>
+          <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
+            <Button className={classes.Button}>スキル</Button>
+            <Button className={classes.Button}>経歴</Button>
+            <Button className={classes.Button}>キャリアパス</Button>
+            <Button className={classes.Button}>スタッフ情報</Button>
+          </ButtonGroup>
+          <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+          <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+        </div>
       </Paper>
     </div>
   );
-  }
+}
+    export default StaffList005;

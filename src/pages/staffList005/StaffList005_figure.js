@@ -1,12 +1,12 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+// import { withStyles } from '@material-ui/core/styles';
+// import Button from '@material-ui/core/Button';
+// import Dialog from '@material-ui/core/Dialog';
+// import MuiDialogTitle from '@material-ui/core/DialogTitle';
+// import MuiDialogContent from '@material-ui/core/DialogContent';
+// import IconButton from '@material-ui/core/IconButton';
+// import CloseIcon from '@material-ui/icons/Close';
+// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,21 +15,20 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
-import { TableBodyCell } from 'mui-datatables';
+// import { TableBodyCell } from 'mui-datatables';
 
-
-const styles = (theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(2),
-  },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
-  },
-});
+// const styles = (theme) => ({
+//   root: {
+//     margin: 0,
+//     padding: theme.spacing(2),
+//   },
+//   closeButton: {
+//     position: 'absolute',
+//     right: theme.spacing(1),
+//     top: theme.spacing(1),
+//     color: theme.palette.grey[500],
+//   },
+// });
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
@@ -68,35 +67,35 @@ const StaffList005_figure = () => {
   const classes = useStyles();
 
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
-  return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
-      {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-          <CloseIcon />
-        </IconButton>
-      ) : null}
-    </MuiDialogTitle>
-  );
-});
+// const DialogTitle = withStyles(styles)((props) => {
+//   const { children, classes, onClose, ...other } = props;
+//   return (
+//     <MuiDialogTitle disableTypography className={classes.root} {...other}>
+//       <Typography variant="h6">{children}</Typography>
+//       {onClose ? (
+//         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+//           <CloseIcon />
+//         </IconButton>
+//       ) : null}
+//     </MuiDialogTitle>
+//   );
+// });
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
+// const DialogContent = withStyles((theme) => ({
+//   root: {
+//     padding: theme.spacing(2),
+//   },
+// }))(MuiDialogContent);
 
 
-  const [open, setOpen] = React.useState(false);
+  // const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   const [user, setUser] = useState([]);
 
@@ -117,14 +116,14 @@ const DialogContent = withStyles((theme) => ({
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      {/* <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         スタッフ情報
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           スタッフ情報
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers> */}
 
        <div className={classes.root}>
        <Paper variant="outlined" className={classes.Paper}>
@@ -255,10 +254,9 @@ const DialogContent = withStyles((theme) => ({
          </div>
        </Paper>
      </div>
-        </DialogContent>
-      </Dialog>
+        {/* </DialogContent>
+      </Dialog> */}
     </div>
   );
 }
    export default StaffList005_figure;
-
