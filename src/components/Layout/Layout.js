@@ -15,8 +15,8 @@ import Header from "../Header";
 import Sidebar from "../Sidebar";
 
 // pages
-// import Dashboard from "../../pages/dashboard";
-import Test from "../../pages/dashboard/Test";
+import Dashboard from "../../pages/dashboard";
+// import Test from "../../pages/dashboard/Test";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
@@ -24,24 +24,18 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 
-<<<<<<< HEAD
-// import StaffList001 from "../../pages/stafflist001/StaffList001";
-// import StaffSearch from "../../pages/staffsearch/StaffSearch";
-// import StaffAdd from "../../pages/staffadd/StaffAdd";
-=======
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
->>>>>>> 3ce137a9e4ae0a43dbf49982e6670e96441105bb
 
 //import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 //import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-import ReferenceList from "../../pages/referenceList/ReferenceList";
-import ReferenceList_not from "../../pages/referenceList/notData";
+import ReferenceList from "../../pages/referencelist/ReferenceList";
+import ReferenceList_not from "../../pages/referencelist/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing/Billing";
@@ -68,8 +62,8 @@ function Layout(props) {
           >
             <div className={classes.fakeToolbar} />
             <Switch>
-              {/* <Route path="/staff-report/dashboard" component={Dashboard} /> */}
-              <Route path="/staff-report/dashboard" component={Test} />
+              <Route path="/staff-report/dashboard" component={Dashboard} />
+              {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
