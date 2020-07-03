@@ -4,6 +4,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
+import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import '../Css/Search.css';
 import Button from '@material-ui/core/Button';
@@ -17,6 +18,7 @@ import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
 import {older} from '../variables/Older';
 import axios from 'axios';
+import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {
@@ -59,6 +61,9 @@ const useStyles = makeStyles((theme) => ({
 
 const StaffSearch = () => {
   const classes = useStyles();
+
+  //KeywordSearch
+  const [keyword, setKeyWord] = useState();
   
   //チェックボックス項目
   const [check, setCheck] = useState({
@@ -113,6 +118,7 @@ const StaffSearch = () => {
 
   //リセット機能
   const Reset = () => {
+    setKeyWord();
     setCheck({check:false});
     setLicense({license:''});
     setValue({value:''});
@@ -133,6 +139,7 @@ const StaffSearch = () => {
           console.log('connected error');
         })
       }
+      
     }
 
   // const license_data = searh.filter((data) => {
@@ -221,6 +228,14 @@ const StaffSearch = () => {
         label="総務"
     />　
     </FormGroup>
+
+    <Typography variant="h5" component="h2">
+        キーワード検索
+        </Typography>
+
+        <Keyword value={keyword} />
+        {/* 検索ボタン */}
+      <Button variant="contained">検索</Button>
 
     {/* 資格情報 */}
     <p class='font'>資格</p>
