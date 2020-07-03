@@ -129,7 +129,9 @@ export default function CustomizedDialogs(props) {
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography variant="h6">テスト太郎</Typography>
+        {user.map((data) => (
+          <Typography variant="h6" key={data.スタッフ番号}>{data.スタッフ名}</Typography>
+          ))}
       <div>
         <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
           <Button className={classes.Button}>スキル</Button>

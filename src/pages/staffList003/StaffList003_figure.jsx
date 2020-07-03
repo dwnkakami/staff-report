@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content3_1: {
-    height: 50,
+    height: 63,
     width: 340,
     textAlign: 'center',
     color: '#000000',
@@ -139,7 +139,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content3_2: {
-    height:230,
+    height:182,
     width: 340,
     textAlign: 'center',
     color: '#000000',
@@ -157,7 +157,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content4_1: {
-    height: 105,
+    height: 112,
     width: 260,
     textAlign: 'center',
     lineHeight: 2,
@@ -166,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content4_2: {
-    height: 140,
+    height: 133,
     width: 260,
     textAlign: 'center',
     lineHeight: 2,
@@ -185,7 +185,24 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px'
   },
   content5_1: {
-    height: 35,
+    height: 37,
+    width: 240,
+    textAlign: 'center',
+    color: '#000000',
+    fontSize: 25,
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content5_color2: {
+    height: 45,
+    width: 240,
+    textAlign: 'center',
+    fontSize: 27,
+    background: '#6699ff',
+    color: '#000000',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  content5_2: {
+    height: 50,
     width: 240,
     textAlign: 'center',
     color: '#000000',
@@ -234,7 +251,7 @@ const StaffList003_figure = () => {
           alignItems="baseline">
           {user.map((data) => ( 
             <Grid>
-              <Paper className={classes.number} variant="outlined" key={data.スタッフ番号}>{data.経歴番号}</Paper>
+              <Paper className={classes.number} variant="outlined"></Paper>
             </Grid>
               ))}
         </Grid>
@@ -265,6 +282,18 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_2} variant="outlined"key={data.スタッフ番号}>{data.場所}</Paper>
               </Grid>
               </Grid>
+              <Grid
+            container
+            direction="row"
+            justify="flex-start"
+            alignItems="baseline">
+              <Grid>
+                <Paper className={classes.content2_1} variant="outlined">職種</Paper>
+              </Grid>
+              <Grid>
+                <Paper className={classes.content2_2} variant="outlined"key={data.スタッフ番号}>{data.職種}</Paper>
+              </Grid>
+              </Grid>
             <Grid
               container
               direction="row"
@@ -289,18 +318,6 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_6} variant="outlined" key={data.スタッフ番号}>{data.人数}人</Paper>
               </Grid>
             </Grid>
-            <Grid
-              container
-              direction="row"
-              justify="flex-start"
-              alignItems="baseline">
-              <Grid>
-                <Paper className={classes.content2_1} variant="outlined">担当</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content2_2} variant="outlined"></Paper>
-              </Grid>
-              </Grid>
           </Grid>
             ))}
         </div> 
@@ -317,6 +334,9 @@ const StaffList003_figure = () => {
             </Grid>
             <Grid>
               <Paper className={classes.content3_1} variant="outlined" key={data.スタッフ番号}>{data.案件名}</Paper>
+            </Grid>
+            <Grid>
+              <Paper className={classes.content3_color} variant="outlined">案件内容</Paper>
             </Grid>
             <Grid>
               <Paper className={classes.content3_2} variant="outlined" key={data.スタッフ番号}>{data.案件内容}</Paper>
@@ -374,13 +394,10 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5_1} variant="outlined"></Paper>
+                <Paper className={classes.content5_color2} variant="outlined">担当</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5_1} variant="outlined"></Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content5_1} variant="outlined"></Paper>
+                <Paper className={classes.content5_2} variant="outlined"></Paper>
               </Grid>
             </Grid>
               ))}
