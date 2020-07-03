@@ -6,7 +6,6 @@ import Themes from "./themes";
 import App from "./components/App";
 import StaffList005_figure from '../src/pages/staffList005/StaffList005_figure';
 import StaffList005 from '../src/pages/staffList005/StaffList005';
-import dialog_stafflist005 from '../src/pages/staffList005/dialog_stafflist005';
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
@@ -18,8 +17,7 @@ ReactDOM.render(
         <CssBaseline />
         {/* <App /> */}
         {/* <StaffList005_figure /> */}
-        {/* <StaffList005 /> */}
-        <dialog_stafflist005 />
+        <StaffList005 />
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
