@@ -5,7 +5,7 @@ const login = require('./modules/login.jsx');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
 const stafflist002 = require('./modules/stafflist002.jsx');
-const stafflist003 = require('./modules/stafflist003.jsx');
+const stafflist003 = require('./modules/stafflist003.js');
 const stafflist004 = require('./modules/stafflist004.jsx');
 const stafflist005 = require('./modules/stafflist005.jsx');
 const staffsearch = require('./modules/staffsearch.jsx');
@@ -36,7 +36,6 @@ app.get('/api/stafflist002/:condition',(req,res) => {
 });
 app.get('/api/stafflist003/:condition',(req,res) => {
     stafflist003.getData(req.params.condition,res);
-    // request.responseType = 'json';
 });
 app.get('/api/stafflist004/:condition',(req,res) => {
     stafflist004.getData(req.params.condition,res);

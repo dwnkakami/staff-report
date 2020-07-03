@@ -223,27 +223,25 @@ const StaffList003_figure = () => {
             })
 }}
 
-let i = 0
 
   return (
     <div className={classes.root}>
-      <div className={classes.figure}>
+      <div className={classes.figure}> 
         <Grid
           container
           direction="column"
           justify="flex-start"
           alignItems="baseline">
+          {user.map((data) => ( 
             <Grid>
-              <Paper className={classes.number} variant="outlined">
-                <ul>{[i + 1].map((StaffList003_figure) => <p>{StaffList003_figure}</p>)}
-                </ul>
-              </Paper>
+              <Paper className={classes.number} variant="outlined" key={data.スタッフ番号}>{data.経歴番号}</Paper>
             </Grid>
+              ))}
         </Grid>
       </div>
 
       <div className={classes.figure}>
-      {user.map((data) => (
+      {user.map((data) => ( 
         <Grid
           container
           direction="column"
@@ -253,7 +251,7 @@ let i = 0
               <Paper className={classes.content_color} variant="outlined">期間</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content_day} variant="outlined" key={data.経歴番号}>{data.開始日}~{data.終了日}</Paper>
+              <Paper  className={classes.content_day} variant="outlined" key={data.スタッフ番号}>{data.開始日}~{data.終了日}</Paper>
             </Grid>
           <Grid
             container
@@ -264,7 +262,7 @@ let i = 0
                 <Paper className={classes.content2_1} variant="outlined">場所</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_2} variant="outlined"key={data.経歴番号}>{data.場所}</Paper>
+                <Paper className={classes.content2_2} variant="outlined"key={data.スタッフ番号}>{data.場所}</Paper>
               </Grid>
               </Grid>
             <Grid
@@ -276,7 +274,7 @@ let i = 0
                 <Paper className={classes.content2_3} variant="outlined">コスト</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_4} variant="outlined"　key={data.経歴番号}>{data.コスト}</Paper>
+                <Paper className={classes.content2_4} variant="outlined"　key={data.スタッフ番号}>{data.コスト}</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -288,7 +286,7 @@ let i = 0
                 <Paper className={classes.content2_5} variant="outlined">役割規模</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_6} variant="outlined" key={data.経歴番号}>{data.人数}人</Paper>
+                <Paper className={classes.content2_6} variant="outlined" key={data.スタッフ番号}>{data.人数}人</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -305,7 +303,7 @@ let i = 0
               </Grid>
           </Grid>
             ))}
-        </div>
+        </div> 
 
         <div className={classes.figure}>
         {user.map((data) => (
@@ -318,10 +316,10 @@ let i = 0
               <Paper className={classes.content3_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content3_1} variant="outlined" key={data.経歴番号}>{data.案件名}</Paper>
+              <Paper className={classes.content3_1} variant="outlined" key={data.スタッフ番号}>{data.案件名}</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content3_2} variant="outlined" key={data.経歴番号}>{data.案件内容}</Paper>
+              <Paper className={classes.content3_2} variant="outlined" key={data.スタッフ番号}>{data.案件内容}</Paper>
             </Grid>
             </Grid>
               ))}
@@ -338,13 +336,13 @@ let i = 0
                 <Paper className={classes.content4_color} variant="outlined">技能レベル</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content4_1} variant="outlined" key={data.経歴番号}>{data.技能レベル}</Paper>
+                <Paper className={classes.content4_1} variant="outlined" key={data.スタッフ番号}>{data.技能レベル}</Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content4_color} variant="outlined">備考</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content4_2} variant="outlined" key={data.経歴番号}>{data.備考}</Paper>
+                <Paper className={classes.content4_2} variant="outlined" key={data.スタッフ番号}>{data.備考}</Paper>
               </Grid>
             </Grid>
               ))}
@@ -361,7 +359,7 @@ let i = 0
                 <Paper className={classes.content5_color} variant="outlined">言語/その他</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5_1} variant="outlined" key={data.経歴番号}>{data.言語}</Paper>
+                <Paper className={classes.content5_1} variant="outlined" key={data.スタッフ番号}>{data.言語}</Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content5_1} variant="outlined"></Paper>

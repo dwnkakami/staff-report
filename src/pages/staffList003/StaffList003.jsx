@@ -86,14 +86,14 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-// const DialogActions = withStyles((theme) => ({
-//   root: {
-//     margin: 0,
-//     padding: theme.spacing(1),
-//   },
-// }))(MuiDialogActions);
+const DialogActions = withStyles((theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1),
+  },
+}))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs(props) {
   const classes = useStyles();
   const [user, setUser] = useState([]);
   const [open, setOpen] = React.useState(false);
@@ -103,7 +103,7 @@ export default function CustomizedDialogs() {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/2')
+            .get('/api/stafflist003/4')
             .then(response => {
                 setUser(response.data);
             })
@@ -146,16 +146,13 @@ export default function CustomizedDialogs() {
       </div>
       ))}
       <div>
-          <Button><AddIcon />追加</Button>
-      </div>
-      <div>
       </div>
         </DialogContent>
-        {/* <DialogActions>
+        <DialogActions>
           <Button autoFocus onClick={handleClickOpen} className={classes.Button4}>
           <AddIcon />追加
           </Button>
-        </DialogActions> */}
+        </DialogActions>
       </Dialog>
     </div>
   );
