@@ -10,7 +10,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 // import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
 import './StaffList001.css';
 import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
@@ -55,7 +54,7 @@ const StyledTableCell = withStyles((theme) => ({
               .get('/api/stafflist001/1')
               .then(response => {
                 console.log([response.data]);
-                setPosts([response.data]);
+                setPosts(response.data);
               })
               .catch(() => {
                 console.log('connected error');
@@ -91,7 +90,7 @@ return(
             <StyledTableCell component="th" scope="row" align="center">
                 {data.id}
               </StyledTableCell>
-              <StyledTableCell align="center"><Button>{data.name}</Button></StyledTableCell>
+              <StyledTableCell align="center">{data.name}</StyledTableCell>
               <StyledTableCell align="center">{data.position}</StyledTableCell>
               <StyledTableCell align="center">{data.company_abbreviation}</StyledTableCell>
               <StyledTableCell align="center">{data.matter_end}</StyledTableCell>
