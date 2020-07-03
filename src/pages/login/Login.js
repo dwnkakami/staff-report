@@ -39,15 +39,15 @@ function Login(props) {
     setOpen(false);
   };
 
-  const submitAction = () => {
-    registerUser(
-      userDispatch,
-      passwordValue,
-      props.history,
-      setIsLoading,
-      setError,
-    )
-  }
+  // const submitAction = () => {
+  //   registerUser(
+  //     userDispatch,
+  //     passwordValue,
+  //     props.history,
+  //     setIsLoading,
+  //     setError,
+  //   )
+  // }
 
   var classes = useStyles();
 
@@ -269,7 +269,7 @@ function Login(props) {
                   <Button onClick={handleClose} color="primary">
                     キャンセル
                   </Button>
-                  <Button onClick={submitAction} color="primary">
+                  <Button  color="primary">
                     確認
                   </Button>
                 </DialogActions>

@@ -47,7 +47,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, registerUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 // ###########################################################
 
@@ -56,63 +56,42 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setIsLoading(true);
 
   if (!!login && !!password) {
-    setTimeout(() => {
-      localStorage.setItem('id_token', 1)
-      setError(null)
-      setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
 
-      history.push('/staff-report/dashboard')
-    }, 2000);
-    let data = {
-      name: login,
-      password: password
-    };
-    axios.post("http://127.0.0.1:8686/login", qs.stringify(data), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      }).then(res => {
-        setError(false)
-        setIsLoading(false)
-        if (res.data && res.data.code === 0) {
-          window.localStorage.setItem("X-AUTH-TOKEN", '0000')
-          localStorage.setItem('id_token', 1)
-          dispatch({ type: 'LOGIN_SUCCESS' })
-
-          history.push('/staff-report/dashboard')
+    let userData = [];
+      axios
+        .get('/api/login/' + login)
+        .then(response => {
+          userData = response.data;
+          console.log(userData[0].name);
+          if (userData[0].password === password) {
+            setTimeout(() => {
+            localStorage.setItem('id_token', 1)
+            setError(null)
+            setIsLoading(false)
+            dispatch({ type: 'LOGIN_SUCCESS' })
+            history.push('/staff-report/dashboard')
+          }, 2000);
         } else {
-          alert('ユーザー　エラー')
+          console.log('パスワードが一致しません');
         }
-      },
-      err => {
-        // console.log(err);
-      }
-    );
-  } else {
-    dispatch({ type: "LOGIN_FAILURE" })
-    setError(true);
-    setIsLoading(false);
-  }
-}
+        })
+        .catch(() => {
+          console.log('getData error');
+        })
 
-function registerUser(dispatch, password, history, setIsLoading, setError) {
-  setError(false);
-  setIsLoading(true);
 
-  if (!!password) {
-    setTimeout(() => {
-      localStorage.setItem('id_token', 1)
-      setError(null)
-      setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+  //   setTimeout(() => {
+  //     localStorage.setItem('id_token', 1)
+  //     setError(null)
+  //     setIsLoading(false)
+  //     dispatch({ type: 'LOGIN_SUCCESS' })
 
-      history.push('/staff-report/dashboard')
-    }, 2000);
-  } else {
-    dispatch({ type: "LOGIN_FAILURE" });
-    setError(true);
-    setIsLoading(false);
+  //     history.push('/app/dashboard')
+  //   }, 2000);
+  // } else {
+  //   dispatch({ type: "LOGIN_FAILURE" });
+  //   setError(true);
+  //   setIsLoading(false);
   }
 }
 
