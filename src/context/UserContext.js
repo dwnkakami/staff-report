@@ -1,5 +1,5 @@
 import React from "react";
-import qs from 'qs';
+// import qs from 'qs';
 import axios from "axios";
 
 var UserStateContext = React.createContext();
@@ -52,7 +52,7 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 // ###########################################################
 
 function loginUser(dispatch, login, password, history, setIsLoading, setError) {
-  setError(false);
+  // setError(false);
   setIsLoading(true);
 
   if (!!login && !!password) {
@@ -67,15 +67,19 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setTimeout(() => {
             localStorage.setItem('id_token', 1)
             setError(null)
-            setIsLoading(false)
+            setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
+          setError(true)
+          setIsLoading(false)
           console.log('パスワードが一致しません');
+          
         }
         })
         .catch(() => {
+          setError(true);
           console.log('getData error');
         })
 

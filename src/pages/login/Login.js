@@ -96,7 +96,7 @@ function Login(props) {
               {/* </div> */}
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
+                  ユーザーID・パスワードの入力に誤りがあるか、登録されていません。
                 </Typography>
               </Fade>
               <TextField
