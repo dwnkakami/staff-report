@@ -2,14 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
-import CloseIcon from '@material-ui/icons/Close';
-import AddIcon from '@material-ui/icons/Add';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import StaffList005_figure from './StaffList005_figure';
 
-const useStyles = makeStyles((theme) => ({
+const styles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -34,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   Button2: {
     background:'rgb(120,144,156)',
     left: 45,
+    marginRight: '25px',
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
     float: 'right',
@@ -66,31 +62,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function BasicButtonGroup() {
-  const classes = useStyles();
+const DialogButton = () => {
+  const classes = styles();
 
   return (
     <div className={classes.root}>
-      <Paper variant="outlined" className={classes.Paper}>
-      <Typography variant="h2" className={classes.title}>スタッフ詳細</Typography>
-      <Typography variant="h5">テスト太郎</Typography>
-      <IconButton aria-label="delete" className={classes.margin}>
-      <CloseIcon className={classes.icon} />
-      </IconButton>
-      <div>
-      <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-        <Button className={classes.Button}>スキル</Button>
-        <Button className={classes.Button}>経歴</Button>
-        <Button className={classes.Button}>キャリアパス</Button>
-        <Button className={classes.Button}>スタッフ情報</Button>
-      </ButtonGroup>
-      <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained"　className={classes.Button3}>引合登録</Button>
-      </div>
-      <div>
-        <StaffList005_figure />
-      </div>
-      </Paper>
+        <Typography variant="h5">テスト太郎</Typography>
+        <div>
+          <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
+            <Button className={classes.Button}>スキル</Button>
+            <Button className={classes.Button}>経歴</Button>
+            <Button className={classes.Button}>キャリアパス</Button>
+            <Button className={classes.Button}>スタッフ情報</Button>
+          </ButtonGroup>
+          <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+          <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+        </div>
     </div>
   );
-  }
+}
+    export default DialogButton;
