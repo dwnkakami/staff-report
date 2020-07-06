@@ -26,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
   number: {
     height: 315,
     width: 70,
+    // gridTemplateRows: '200px 100px',
+    // gridTemplateColumns: '200px 100px 100px',
     color: '#000000',
     textAlign: 'center',
     lineHeight: 8,
@@ -207,7 +209,9 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: '#000000',
     fontSize: 25,
-    borderRadius: '0px 0px 0px 0px'
+    borderRadius: '0px 0px 0px 0px',
+    gridRow: 1,
+    gridColumn: 1
   },
 
   figure: {

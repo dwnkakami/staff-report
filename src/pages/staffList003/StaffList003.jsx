@@ -9,11 +9,12 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import { useEffect } from 'react';
 import StaffList003_figure from './StaffList003_figure';
+import StaffButton from './StaffButton';
+
 
 const styles = (theme) => ({
   root: {
@@ -93,10 +94,12 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs(props) {
+export default function CustomizedDialogs() {
   const classes = useStyles();
   const [user, setUser] = useState([]);
   const [open, setOpen] = React.useState(false);
+  const [add, setAdd] =useState(false);
+
 
   useEffect(() => getData());
 
@@ -119,6 +122,11 @@ export default function CustomizedDialogs(props) {
     setOpen(false);
   };
 
+  const handleChange = () => {
+    setAdd(true);
+  };
+
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
@@ -130,28 +138,21 @@ export default function CustomizedDialogs(props) {
         </DialogTitle>
         <DialogContent dividers>
         {user.map((data) => (
-          <Typography variant="h6" key={data.スタッフ番号}>{data.スタッフ名}</Typography>
+          <Typography variant="h5" key={data.スタッフ番号}>{data.スタッフ名}</Typography>
           ))}
-      <div>
-        <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-          <Button className={classes.Button}>スキル</Button>
-          <Button className={classes.Button}>経歴</Button>
-          <Button className={classes.Button}>キャリアパス</Button>
-          <Button className={classes.Button}>スタッフ情報</Button>
-      </ButtonGroup>
-          <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
-          <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
+    <div>
+      <StaffButton />
       </div>
       {user.map((data) => (
       <div key={data.スタッフ番号}>
-      {data.案件名 ? <StaffList003_figure />:"データなし"}
+      {data.案件名 ? <StaffList003_figure/>:"データなし"}
       </div>
       ))}
       <div>
       </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClickOpen} className={classes.Button4}>
+          <Button autoFocus className={classes.Button4}>
           <AddIcon />追加
           </Button>
         </DialogActions>
