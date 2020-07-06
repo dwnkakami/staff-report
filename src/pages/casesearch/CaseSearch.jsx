@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +12,7 @@ import { Paper,
          MenuItem, 
          TextField
          } from '@material-ui/core';
+import axios from 'axios';
 
 //import Component
 // import KeywordSearch from './KeywordSearch';
@@ -90,12 +91,12 @@ const MenuProps = {
   },
 };
 
-const names = [
-  'ディレクター',
-  'プログラマー',
-  'サポート',
-  'その他',
-];
+// const names = [
+//   'ディレクター',
+//   'プログラマー',
+//   'サポート',
+//   'その他',
+// ];
 
 const licenses = [
   {
@@ -119,30 +120,49 @@ const licenses = [
     lang:'CCNA',
   },
 ];
-const language = [
-  {
-    id:'1',
-    lang:'Java',
-  },
-  {
-    id:'2',
-    lang:'JavaScript',
-  },
-  {
-    id:'3',
-    lang:'PHP',
-  },
-  {
-    id:'4',
-    lang:'MySQL',
-  },
-];
+// const language = [
+//   {
+//     id:'1',
+//     lang:'Java',
+//   },
+//   {
+//     id:'2',
+//     lang:'JavaScript',
+//   },
+//   {
+//     id:'3',
+//     lang:'PHP',
+//   },
+//   {
+//     id:'4',
+//     lang:'MySQL',
+//   },
+// ];
 
 export default function CaseSearch() {
   const classes = useStyles();
 
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => getCaseData());
+
+  const getCaseData = () => {
+      if(posts.length === 0) {
+          axios
+            .get('/api/casesearch/1')
+            .then(response => {
+              console.log([response.data]);
+              setPosts(response.data);
+            })
+            .catch(() => {
+              console.log('connected error');
+            })
+          }
+  }
+
   //KeywordSearch
   const [keyWord, setKeyWord] = React.useState();
+
 
   //job
   const [jobName, setJobName] = React.useState([]);
@@ -153,6 +173,11 @@ export default function CaseSearch() {
 
   //license
   const [license,setLicense] = React.useState('');
+
+  // const licenseData = posts.filter((data) =>{
+  //   return data.occupation_id = license;
+  // })
+
   const licenseChange = (event) => {
     setLicense(event.target.value);
   };
@@ -174,9 +199,11 @@ export default function CaseSearch() {
   const skill3Change = (event) => {
     setSkill3(event.target.value);
   };
-  const skillItems = language.map((data,index) =>
+
+
+  const skillItems = posts.map((data,index) =>
       <MenuItem key={index}
-              value={data.id}>{data.lang}</MenuItem>
+              value={data.id}>{data.name}</MenuItem>
   );
 
   //startdate
@@ -247,10 +274,10 @@ export default function CaseSearch() {
               renderValue={(selected) => selected.join(', ')}
               MenuProps={MenuProps}
             >
-              {names.map((name) => (
-                <MenuItem key={name} value={name}>
-                  <Checkbox checked={jobName.indexOf(name) > -1} />
-                  <ListItemText primary={name} />
+              {posts.map((name) => (
+                <MenuItem key={name.ocp_id} value={name.ocp_id}>
+                  <Checkbox checked={jobName.indexOf(name.ocp_id) > -1} />
+                  <ListItemText primary={name.ocp_name} />
                 </MenuItem>
               ))}
             </Select>
