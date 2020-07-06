@@ -4,7 +4,7 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
+//import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import '../Css/Search.css';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,7 @@ import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
 import {older} from '../variables/Older';
 import axios from 'axios';
-import Keyword from './Keyword';
+//import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {
@@ -63,7 +63,7 @@ const StaffSearch = () => {
   const classes = useStyles();
 
   //KeywordSearch
-  const [keyword, setKeyWord] = useState();
+  // const [keyword, setKeyWord] = useState();
   
   //チェックボックス項目
   const [check, setCheck] = useState({
@@ -79,7 +79,6 @@ const StaffSearch = () => {
   const handleChange = (event) => {
     setCheck({ ...check, [event.target.name]: event.target.checked });
   };
-
 
   const [license, setLicense] = useState([]);
 
@@ -118,7 +117,7 @@ const StaffSearch = () => {
 
   //リセット機能
   const Reset = () => {
-    setKeyWord();
+    //setKeyWord();
     setCheck({check:false});
     setLicense({license:''});
     setValue({value:''});
@@ -127,23 +126,50 @@ const StaffSearch = () => {
 
   
 
-    const getUserData = () => {
+  const getUserData = () => {
      axios
-       .get('/api/staffsearch/' + 'SELECT * FROM m_staff WHERE occupation_id = 1;')
+       .get('/api/staffsearch/1')
        .then(response => {
         console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
         })
-    
   }
 
-  // const license_data = searh.filter((data) => {
-  //     return data.id ===license;
-  // });
+  const current_data = licenses.filter((data) => {
+     return data.id === 1;
+  });
 
-  // const state_data = searh.filter((data) => {
+  const current_data2 = skill.filter((data) => {
+    return data.id === 1;
+  });
+
+  const current_data3 = status.filter((data) => {
+    return data.id === 1;
+  }); 
+
+  const current_data4 = area.filter((data) => {
+    return data.id === 1;
+  }); 
+
+  const current_data5 = gender.filter((data) => {
+    return data.id === 1;
+  }); 
+
+  const current_data6 = older.filter((data) => {
+    return data.id === 1;
+  }); 
+  const Search = () =>{
+    console.log(current_data);
+    console.log(current_data2);
+    console.log(current_data3);
+    console.log(current_data4);
+    console.log(current_data5);
+    console.log(current_data6);
+  }
+
+  // const state_data = state.filter((data) => {
   //   return data.id === state;
   // });
 
@@ -242,7 +268,7 @@ const StaffSearch = () => {
           onChange={handleChange2}
         >
           {licenses.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <option key={data.name} value={data.name}>
               {data.name}
             </option>
           ))}
@@ -398,8 +424,8 @@ const StaffSearch = () => {
           label="スキルレベル１"
         >
           {older.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
+            <option key={data.id} value={data.age}>
+              {data.age}
             </option>
           ))}
         </Select>
@@ -445,7 +471,7 @@ const StaffSearch = () => {
       <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
       
       {/* 検索ボタン */}
-      <Button class='search' variant="contained" onClick={()=>getUserData()}>検索</Button>
+      <Button class='search' variant="contained" onClick={Search}>検索</Button>
     </Card>
     </div>
   );
