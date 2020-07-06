@@ -163,6 +163,7 @@ const StyledTableRow = withStyles(() => ({
               <StyledTableCell align="left">募集人数</StyledTableCell>
               <StyledTableCell align="left">勤務開始日</StyledTableCell>
               <StyledTableCell align="left">勤務終了日</StyledTableCell>
+              <StyledTableCell align="left">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>

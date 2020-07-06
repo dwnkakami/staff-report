@@ -165,7 +165,7 @@ const useStyles = makeStyles((theme) => ({
     
 }));
 
-export default function MultilineTextFields() {
+export default function CaseAdd() {
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
  

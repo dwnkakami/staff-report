@@ -35,7 +35,7 @@ import CaseList from "../../pages/caselist/CaseList";
 
 //import CaseList from "../../pages/caselist";
 //import CaseSearch from "../../pages/casesearch";
-//import CaseAdd from "../../pages/caseadd";
+import CaseAdd from "../../pages/caseadd/caseAdd_Sasaki.jsx";
 
 //import ReferenceList from "../../pages/referencelist";
 //import  from "../../pages/";　引合検索
@@ -67,16 +67,15 @@ function Layout(props) {
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={CaseSearch} />
-              <Route path="/staff-report/CaseList" component={CaseList}/>
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
-              {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
+              <Route path="/staff-report/caselist/001" component={CaseList} />
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
-              {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
+              <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
               {/* <Route path="" component={} /> 引合検索  */}
