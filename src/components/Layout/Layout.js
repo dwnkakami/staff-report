@@ -23,7 +23,7 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-import StaffList001 from "../../pages/stafflist/StaffList001";
+import StaffList001 from "../../pages/stafflist/StaffList001 copy";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 

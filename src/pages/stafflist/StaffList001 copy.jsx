@@ -1,7 +1,7 @@
 // import React, { useState, useEffect }　from 'react';
 // import Paper from '@material-ui/core/Paper';
-// import { Typography } from '@material-ui/core';
-// import { withStyles, makeStyles } from '@material-ui/core/styles';
+// import { Typography, DialogTitle } from '@material-ui/core';
+// import { lighten, withStyles, makeStyles } from '@material-ui/core/styles';
 // import Table from '@material-ui/core/Table';
 // import TableBody from '@material-ui/core/TableBody';
 // import TableCell from '@material-ui/core/TableCell';
@@ -14,6 +14,24 @@
 // // import './StaffList001.css';
 // import axios from 'axios';
 
+
+// const StyledTableCell = withStyles((theme) => ({
+//     head: {
+//         fontWeight: 'border',
+//         backgroundColor: "#eee",
+//         color: theme.palette.common.black,
+//     },
+//     body: {
+//         color: "black",
+//         fontSize: 14,
+//     },
+// }))(TableCell);
+
+// const useStyles = makeStyles({
+//     table: {
+//         minWidth: 700,
+//     },
+// });
 
 //   function descendingComparator(a, b, orderBy) {
 //     if (b[orderBy] < a[orderBy]) {
@@ -48,10 +66,11 @@
 //   ];
 
 //   function EnhancedTableHead(props) {
-//     const { classes, onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+//     const {  order, orderBy, numSelected, rowCount, onRequestSort } = props;
 //     const createSortHandler = (property) => (event) => {
 //       onRequestSort(event, property);
 //     };
+
 //     return (
 //         <TableHead>
 //           <TableRow>
@@ -61,8 +80,8 @@
 //                 checked={rowCount > 0 && numSelected === rowCount}
 //                 onChange={onSelectAllClick}
 //                 inputProps={{ 'aria-label': 'select all desserts' }}
-//               />
-//             </TableCell> */}
+//               /> */}
+//             {/* </TableCell> */}
 //             {headCells.map((headCell) => (
 //               <TableCell
 //                 key={headCell.id}
@@ -75,12 +94,12 @@
 //                   direction={orderBy === headCell.id ? order : 'asc'}
 //                   onClick={createSortHandler(headCell.id)}
 //                 >
-//                   {headCell.label}
+//                   {/* {headCell.label}
 //                   {orderBy === headCell.id ? (
 //                     <span className={classes.visuallyHidden}>
 //                       {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
 //                     </span>
-//                   ) : null}
+//                   ) : null} */}
 //                 </TableSortLabel>
 //               </TableCell>
 //             ))}
@@ -88,7 +107,6 @@
 //         </TableHead>
 //       );
 //     }
-
 //     EnhancedTableHead.propTypes = {
 //         classes: PropTypes.object.isRequired,
 //         numSelected: PropTypes.number.isRequired,
@@ -99,10 +117,33 @@
 //         rowCount: PropTypes.number.isRequired,
 //       };
 
+//     //   const useToolbarStyles = makeStyles((theme) => ({
+//     //     root: {
+//     //       paddingLeft: theme.spacing(2),
+//     //       paddingRight: theme.spacing(1),
+//     //     },
+//     //     highlight:
+//     //       theme.palette.type === 'light'
+//     //         ? {
+//     //             color: theme.palette.secondary.main,
+//     //             backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+//     //           }
+//     //         : {
+//     //             color: theme.palette.text.primary,
+//     //             backgroundColor: theme.palette.secondary.dark,
+//     //           },
+//     //     // title: {
+//     //     //   flex: '1 1 100%',
+//     //     // },
+//     //   }));
+
+//     //   const EnhancedTableToolbar = (props) => {
+//     //     const classes = useToolbarStyles();
+//     //     const { numSelected } = props;
+
 //       EnhancedTableToolbar.propTypes = {
 //         numSelected: PropTypes.number.isRequired,
 //       };
-
 
 //  export default function StaffList001 () {
 //     const classes = useStyles();
@@ -112,20 +153,22 @@
 //     const [page, setPage] = React.useState(0);
 //     const [dense, setDense] = React.useState(false);
 //     const [rowsPerPage, setRowsPerPage] = React.useState(5);
+//     const [posts, setPosts] = useState([]);
 
 //     const handleRequestSort = (event, property) => {
 //         const isAsc = orderBy === property && order === 'asc';
 //         setOrder(isAsc ? 'desc' : 'asc');
 //         setOrderBy(property);
 //     };
-//     const [staff, setStaff] = useState([]);
+
 //     useEffect(() => getStaffData());
 //     const getStaffData = () => {
-//         if(staff.length === 0) {
+//         if(posts.length === 0) {
 //             axios
 //               .get('/api/stafflist001/1')
 //               .then(response => {
-//                 setStaff([response.data]);
+//                   console.log([response.data]);
+//                 setPosts(response.data);
 //               })
 //               .catch(() => {
 //                 console.log('connected error');
@@ -161,20 +204,51 @@
 
 //         setSelected(newSelected);
 //     };
+
+//     const handleChangePage = (event, newPage) => {
+//         setPage(newPage);
+//       };
+
+//     const handleChangeRowsPerPage = (event) => {
+//         setRowsPerPage(parseInt(event.target.value, 10));
+//         setPage(0);
+//       };
+
 //     const handleChangeDense = (event) => {
 //         setDense(event.target.checked);
 //       };
     
-//       const isSelected = (name) => selected.indexOf(name) !== -1;
+//     //   const isSelected = (name) => selected.indexOf(name) !== -1;
     
-//       const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+//     //   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 // return(
-// <Grid>
-//     <Typography variant="h2">スタッフリスト</Typography>
+//     <Paper elevation={3} >
+//     <DialogTitle id="customized-dialog-title">
+//     <div className='title' style={{ display: 'flex' }}>
+//         <PeopleIcon style={{ fontSize: '40px' }} />
+//         <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
+//     </div>
+//     </DialogTitle>
 //     <TableContainer component={Paper}>
+//         <Grid container spacing={24} justify={"center"}>
+//         <Grid className="tablel">
 //       <Table className={classes.table} aria-label="customized table">
-//         <TableHead>
-//           <TableRow>
+//         <TableHead
+//           classes={classes}
+//           numSelected={selected.length}
+//           order={order}
+//           orderBy={orderBy}
+//           onSelectAllClick={handleSelectAllClick}
+//           onRequestSort={handleRequestSort}
+//           rowCount={rows.length}>
+//           <TableRow
+//             hover
+//             onClick={(event) => handleClick(event, row.name)}
+//             // role="checkbox"
+//             aria-checked={isItemSelected}
+//             tabIndex={-1}
+//             key={row.name}
+//             selected={isItemSelected}>
 //             <StyledTableCell>スタッフID</StyledTableCell>
 //             <StyledTableCell align="right">スタッフ名</StyledTableCell>
 //             <StyledTableCell align="right">役職</StyledTableCell>
@@ -183,20 +257,46 @@
 //           </TableRow>
 //         </TableHead>
 //         <TableBody>
-//           {staff.map((data) => (
-//             <StyledTableRow key={data.id}>
-//             <StyledTableCell component="th" scope="row">
+//                {/* {stableSort(rows, getComparator(order, orderBy))
+//                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+//                 .map((row, index) => {
+//                   const isItemSelected = isSelected(row.name);
+//                   const labelId = `enhanced-table-checkbox-${index}`; */}
+//                   {/* return (
+//                     // <TableCell component="th" id={labelId} scope="row" padding="none">
+//                     //   {row.name}
+//                     // </TableCell> */}
+
+//           {posts.map((data) => (
+//             <StyledTableRow >
+//             <StyledTableCell component="th" scope="row" aligin="center">
 //                 {data.id}
 //               </StyledTableCell>
-//               <StyledTableCell align="right"><Button>{data.name}</Button></StyledTableCell>
-//               <StyledTableCell align="right">{data.position}</StyledTableCell>
-//               <StyledTableCell align="right">{data.company_abbreviation}</StyledTableCell>
-//               <StyledTableCell align="right">{data.matter_end}</StyledTableCell>
+//               <StyledTableCell align="center"><Button>{data.name}</Button></StyledTableCell>
+//               <StyledTableCell align="center">{data.position}</StyledTableCell>
+//               <StyledTableCell align="center">{data.company_abbreviation}</StyledTableCell>
+//               <StyledTableCell align="center">{data.matter_end}</StyledTableCell>
 //             </StyledTableRow>
-//           ))}
+//           ))}    
+    
 //         </TableBody>
-//       </Table>      
+//       </Table>
+//       </Grid>
+//       </Grid>    
 //     </TableContainer>
-//    </Grid>
-// )
+//     <TablePagination
+//         //   rowsPerPageOptions={[5, 10, 25]}
+//           component="div"
+//           count={rows.length}
+//           rowsPerPage={rowsPerPage}
+//           page={page}
+//           onChangePage={handleChangePage}
+//           onChangeRowsPerPage={handleChangeRowsPerPage}
+//         />
+//    </Paper>
+//     <FormControlLabel
+//         control={<Switch checked={dense} onChange={handleChangeDense} />}
+//         // label="Dense padding"
+//     />
+//  )
 // };
