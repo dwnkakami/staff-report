@@ -226,13 +226,13 @@ const StaffSearch = () => {
     />　
     </FormGroup>
 
-    <Typography variant="h5" component="h2">
+    {/* <Typography variant="h5" component="h2">
         キーワード検索
-        </Typography>
+        </Typography> */}
 
-        <Keyword value={keyword} />
+        {/* <Keyword value={keyword} /> */}
         {/* 検索ボタン */}
-      <Button variant="contained">検索</Button>
+      {/* <Button variant="contained">検索</Button> */}
 
     {/* 資格情報 */}
     <p class='font'>資格</p>
