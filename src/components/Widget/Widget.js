@@ -35,10 +35,10 @@ export default function Widget({
             header
           ) : (
             <React.Fragment>
-              <Typography variant="h5" color="textSecondary">
+              <Typography variant="h6" color="textSecondary">
                 {title}
               </Typography>
-              {!disableWidgetMenu && (
+              {/* {!disableWidgetMenu && (
                 <IconButton
                   color="primary"
                   classes={{ root: classes.moreButton }}
@@ -49,7 +49,7 @@ export default function Widget({
                 >
                   <MoreIcon />
                 </IconButton>
-              )}
+              )} */}
             </React.Fragment>
           )}
         </div>
