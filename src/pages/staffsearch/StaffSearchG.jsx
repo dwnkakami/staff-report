@@ -86,9 +86,15 @@ const StaffSearch = () => {
       setLicense(event.target.value);
     };
 
+  const [skill1,setSkill1] = useState([]);
+
+  const Change = (event) => {
+    setSkill1(event.target.value)
+  }
+
   //セレクト項目
   const [state, setState] = useState({
-    sk1: '',
+    // sk1: '',
     sk2: '',
     sk3: '',
     st1: '',
@@ -170,7 +176,8 @@ const StaffSearch = () => {
   });
 
   const current_data2 = skill.filter((data) => {
-    return data.id === 1;
+    if(skill1 === 'C++')
+    return data.id === 4;
   });
 
   const current_data3 = status.filter((data) => {
@@ -309,9 +316,9 @@ const StaffSearch = () => {
       <p class='font'>スキルレベル</p>
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          value={state.sk1}
-          onChange={handleChange3}
-          name="sk1"
+          value={skill1}
+          onChange={Change}
+          // name="sk1"
           label="スキルレベル１"
         >
           {skill.map((data)=>(
