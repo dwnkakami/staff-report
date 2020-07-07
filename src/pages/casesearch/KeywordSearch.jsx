@@ -3,7 +3,7 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import InputBase from '@material-ui/core/InputBase';
-import SearchButton from './SearchButton';
+// import SearchButton from './SearchButton';
 
 const BootstrapInput = withStyles((theme) => ({
   root: {
@@ -43,22 +43,27 @@ const BootstrapInput = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
-  },
-  button: {
     float:'left',
+    // height:30,
+    marginTop:10,
   },
+  root: {
+    paddingBottom:25,
+  },
+  label: {
+    fontSize:13,
+  }
 }));
 
 export default function KeywordSearch() {
   const classes = useStyles();
 
   return (
-      <div>
+      <div className={classes.root}>
         <FormControl className={classes.margin}>
-            <InputLabel htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
+            <InputLabel className={classes.label} htmlFor="demo-customized-textbox">キーワードを入力してください。</InputLabel>
             <BootstrapInput id="demo-customized-textbox" />
         </FormControl>
-        <SearchButton className={classes.button} />
       </div>
 
 
