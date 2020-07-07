@@ -98,28 +98,28 @@ const MenuProps = {
 //   'その他',
 // ];
 
-const licenses = [
-  {
-    id:'1',
-    lang:'ITpass',
-  },
-  {
-    id:'2',
-    lang:'Oracle Gold',
-  },
-  {
-    id:'3',
-    lang:'Oracle Silver',
-  },
-  {
-    id:'4',
-    lang:'Oracle Bronz',
-  },
-  {
-    id:'5',
-    lang:'CCNA',
-  },
-];
+// const licenses = [
+//   {
+//     id:'1',
+//     lang:'ITpass',
+//   },
+//   {
+//     id:'2',
+//     lang:'Oracle Gold',
+//   },
+//   {
+//     id:'3',
+//     lang:'Oracle Silver',
+//   },
+//   {
+//     id:'4',
+//     lang:'Oracle Bronz',
+//   },
+//   {
+//     id:'5',
+//     lang:'CCNA',
+//   },
+// ];
 // const language = [
 //   {
 //     id:'1',
@@ -172,19 +172,19 @@ export default function CaseSearch() {
   };
 
   //license
-  const [license,setLicense] = React.useState('');
+  // const [license,setLicense] = React.useState('');
 
   // const licenseData = posts.filter((data) =>{
   //   return data.occupation_id = license;
   // })
 
-  const licenseChange = (event) => {
-    setLicense(event.target.value);
-  };
-  const licenseItems = licenses.map((data,index) =>
-      <MenuItem key={index}
-              value={data.id}>{data.lang}</MenuItem>
-  );
+  // const licenseChange = (event) => {
+  //   setLicense(event.target.value);
+  // };
+  // const licenseItems = licenses.map((data,index) =>
+  //     <MenuItem key={index}
+  //             value={data.id}>{data.lang}</MenuItem>
+  // );
 
   //skill
   const [skill1,setSkill1] = React.useState('');
@@ -203,7 +203,7 @@ export default function CaseSearch() {
 
   const skillItems = posts.map((data,index) =>
       <MenuItem key={index}
-              value={data.id}>{data.name}</MenuItem>
+              value={data.skl_id}>{data.skl_name}</MenuItem>
   );
 
   //startdate
@@ -228,7 +228,7 @@ export default function CaseSearch() {
   const clearAll = () => {
     setKeyWord('')
     setJobName([])
-    setLicense('')
+    // setLicense('')
     setSkill1('')
     setSkill2('')
     setSkill3('')
@@ -275,9 +275,9 @@ export default function CaseSearch() {
               MenuProps={MenuProps}
             >
               {posts.map((name) => (
-                <MenuItem key={name.ocp_id} value={name.ocp_id}>
-                  <Checkbox checked={jobName.indexOf(name.ocp_id) > -1} />
-                  <ListItemText primary={name.ocp_name} />
+                <MenuItem key={name.skl_id} value={name.skl_name}>
+                  <Checkbox checked={jobName.indexOf(name.skl_name) > -1} />
+                  <ListItemText primary={name.skl_name} />
                 </MenuItem>
               ))}
             </Select>
@@ -286,7 +286,7 @@ export default function CaseSearch() {
 
         
 
-        <Typography className={classes.left} variant="h5" component="h2">
+        {/* <Typography className={classes.left} variant="h5" component="h2">
           資格
         </Typography>
 
@@ -300,7 +300,7 @@ export default function CaseSearch() {
         >
           <MenuItem className={classes.brank}></MenuItem>
           {licenseItems}
-        </TextField>
+        </TextField> */}
         
         <br className={classes.end} />
         
