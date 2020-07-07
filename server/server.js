@@ -13,7 +13,7 @@ const staffadd = require('./modules/staffadd.jsx');
 const caselist = require('./modules/caselist.jsx');
 const casedetail = require('./modules/casedetail.jsx');
 const casesearch = require('./modules/casesearch.jsx');
-const caseadd = require('./modules/caseadd.jsx');
+const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
 

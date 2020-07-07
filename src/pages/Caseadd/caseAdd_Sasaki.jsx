@@ -13,7 +13,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root2: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
       positon: 'absolute',
@@ -133,7 +133,7 @@ export default function MultilineTextFields() {
   return (
     
     <Paper elevation={3} className = {classes.paper1}>
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.root2} noValidate autoComplete="off">
       <div>
       <div>
       <Typography className={classes.h1} variant="h2" gutterBottom>
