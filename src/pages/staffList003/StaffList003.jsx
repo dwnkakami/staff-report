@@ -12,9 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import { useEffect } from 'react';
-import StaffList003_figure from './StaffList003_figure';
-import StaffButton from './StaffButton';
-
+import StaffList003_Button from './StaffList003_Button'
 
 const styles = (theme) => ({
   root: {
@@ -98,15 +96,13 @@ export default function CustomizedDialogs() {
   const classes = useStyles();
   const [user, setUser] = useState([]);
   const [open, setOpen] = React.useState(false);
-  const [add, setAdd] =useState(false);
-
 
   useEffect(() => getData());
 
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/4')
+            .get('/api/stafflist003/3')
             .then(response => {
                 setUser(response.data);
             })
@@ -120,10 +116,6 @@ export default function CustomizedDialogs() {
   };
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const handleChange = () => {
-    setAdd(true);
   };
 
 
@@ -140,14 +132,9 @@ export default function CustomizedDialogs() {
         {user.map((data) => (
           <Typography variant="h5" key={data.スタッフ番号}>{data.スタッフ名}</Typography>
           ))}
-    <div>
-      <StaffButton />
-      </div>
-      {user.map((data) => (
-      <div key={data.スタッフ番号}>
-      {data.案件名 ? <StaffList003_figure/>:"データなし"}
-      </div>
-      ))}
+        <div>
+          <StaffList003_Button />
+        </div>
       <div>
       </div>
         </DialogContent>

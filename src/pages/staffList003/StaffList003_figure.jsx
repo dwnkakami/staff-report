@@ -26,8 +26,6 @@ const useStyles = makeStyles((theme) => ({
   number: {
     height: 315,
     width: 70,
-    // gridTemplateRows: '200px 100px',
-    // gridTemplateColumns: '200px 100px 100px',
     color: '#000000',
     textAlign: 'center',
     lineHeight: 8,
@@ -235,7 +233,7 @@ const StaffList003_figure = () => {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/4')
+            .get('/api/stafflist003/3')
             .then(response => {
                 setUser(response.data);
             })
@@ -243,7 +241,6 @@ const StaffList003_figure = () => {
                 console.log('connected error');
             })
 }}
-
 
   return (
     <div className={classes.root}>
@@ -255,7 +252,7 @@ const StaffList003_figure = () => {
           alignItems="baseline">
           {user.map((data) => ( 
             <Grid>
-              <Paper className={classes.number} variant="outlined"></Paper>
+              <Paper className={classes.number} variant="outlined" key={data.スタッフ番号}></Paper>
             </Grid>
               ))}
         </Grid>
