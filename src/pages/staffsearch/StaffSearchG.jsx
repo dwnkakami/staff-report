@@ -110,6 +110,7 @@ const StaffSearch = () => {
     radioB: '',
   });
 
+
   //radioボタン切り替え
   const handleChange5 = (event) => {
     setValue({ ...value,[event.target.name]: event.target.value});
@@ -126,19 +127,19 @@ const StaffSearch = () => {
 
   
 
-  const getUserData = () => {
-     axios
-       .get('/api/staffsearch/1')
-       .then(response => {
-        console.log([response.data]);
-        })
-        .catch(() => {
-          console.log('connected error');
-        })
-  }
+  // const getUserData = () => {
+  //    axios
+  //      .get('/api/staffsearch/1')
+  //      .then(response => {
+  //       console.log([response.data]);
+  //       })
+  //       .catch(() => {
+  //         console.log('connected error');
+  //       })
+  // }
 
   const current_data = licenses.filter((data) => {
-     return data.id === 1;
+      return data.id === 1;
   });
 
   const current_data2 = skill.filter((data) => {
@@ -158,8 +159,10 @@ const StaffSearch = () => {
   }); 
 
   const current_data6 = older.filter((data) => {
-    return data.id === 1;
+    return data.id === 2;
   }); 
+
+ 
   const Search = () =>{
     console.log(current_data);
     console.log(current_data2);
@@ -268,7 +271,7 @@ const StaffSearch = () => {
           onChange={handleChange2}
         >
           {licenses.map((data)=>(
-            <option key={data.name} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
