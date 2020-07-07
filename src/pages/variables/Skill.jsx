@@ -6,7 +6,7 @@ export const skill =
     },
     {
         "id":2,
-        "name":"C++"
+        "name":"C言語"
     },
     {
         "id":3,

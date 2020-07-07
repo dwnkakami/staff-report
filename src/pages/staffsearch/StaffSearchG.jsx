@@ -125,8 +125,6 @@ const StaffSearch = () => {
     setState({state:''});
   };
 
-  
-
   // const getUserData = () => {
   //    axios
   //      .get('/api/staffsearch/1')
@@ -139,7 +137,36 @@ const StaffSearch = () => {
   // }
 
   const current_data = licenses.filter((data) => {
+    if(license==='ITパスポート'){
       return data.id === 1;
+    }
+    else if(license==='基本情報技術者'){
+      return data.id === 2;
+    }
+    else if(license==='応用情報技術者'){
+      return data.id === 3;
+    }
+    else if(license==='システムアーキテクト'){
+      return data.id === 4;
+    }
+    else if(license==='ネットワークスペシャリスト'){
+      return data.id === 5;
+    }
+    else if(license==='情報処理安全保障支援士'){
+      return data.id === 6;
+    }
+    else if(license==='データスペシャリスト'){
+      return data.id === 7;
+    }
+    else if(license==='エンべデットスペシャリスト'){
+      return data.id === 8;
+    }
+    else if(license==='AWS認定試験'){
+      return data.id === 9;
+    }
+    else if(license==='オラクルマスター'){
+      return data.id === 10;
+    }
   });
 
   const current_data2 = skill.filter((data) => {
