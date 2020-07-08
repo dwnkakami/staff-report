@@ -11,24 +11,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     position: 'relative',
   },
-  root2: {
-    flexGrow: 2,
-    position: 'relative',
-  },
-  root3: {
-    flexGrow: 3,
-    position: 'relative',
-  },
-  root4: {
-    flexGrow: 4,
-    position: 'relative',
-  },
   number: {
     height: 315,
     width: 70,
     color: '#000000',
     textAlign: 'center',
-    lineHeight: 8,
+    lineHeight: 10,
     fontSize: 31,
     borderRadius: '0px 0px 0px 0px'
   },
@@ -252,7 +240,7 @@ const StaffList003_figure = () => {
           alignItems="baseline">
           {user.map((data) => ( 
             <Grid>
-              <Paper className={classes.number} variant="outlined" key={data.スタッフ番号}></Paper>
+              <Paper className={classes.number} variant="outlined" key={data.staff_id}>1</Paper>
             </Grid>
               ))}
         </Grid>
@@ -269,7 +257,7 @@ const StaffList003_figure = () => {
               <Paper className={classes.content_color} variant="outlined">期間</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content_day} variant="outlined" key={data.スタッフ番号}>{data.開始日}~{data.終了日}</Paper>
+              <Paper  className={classes.content_day} variant="outlined" key={data.staff_id}>{data.start_day}~{data.end_day}</Paper>
             </Grid>
           <Grid
             container
@@ -280,7 +268,7 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_1} variant="outlined">場所</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_2} variant="outlined"key={data.スタッフ番号}>{data.場所}</Paper>
+                <Paper className={classes.content2_2} variant="outlined"key={data.staff_id}>{data.place}</Paper>
               </Grid>
               </Grid>
               <Grid
@@ -292,7 +280,7 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_1} variant="outlined">職種</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_2} variant="outlined"key={data.スタッフ番号}>{data.職種}</Paper>
+                <Paper className={classes.content2_2} variant="outlined"key={data.staff_id}>{data.occupation}</Paper>
               </Grid>
               </Grid>
             <Grid
@@ -304,7 +292,7 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_3} variant="outlined">コスト</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_4} variant="outlined"　key={data.スタッフ番号}>{data.コスト}</Paper>
+                <Paper className={classes.content2_4} variant="outlined"　key={data.staff_id}>{data.cost}</Paper>
               </Grid>
             </Grid>
             <Grid
@@ -316,7 +304,7 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content2_5} variant="outlined">役割規模</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content2_6} variant="outlined" key={data.スタッフ番号}>{data.人数}人</Paper>
+                <Paper className={classes.content2_6} variant="outlined" key={data.staff_id}>{data.people}人</Paper>
               </Grid>
             </Grid>
           </Grid>
@@ -334,13 +322,13 @@ const StaffList003_figure = () => {
               <Paper className={classes.content3_color} variant="outlined">案件名</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content3_1} variant="outlined" key={data.スタッフ番号}>{data.案件名}</Paper>
+              <Paper className={classes.content3_1} variant="outlined" key={data.staff_id}>{data.matter_name}</Paper>
             </Grid>
             <Grid>
               <Paper className={classes.content3_color} variant="outlined">案件内容</Paper>
             </Grid>
             <Grid>
-              <Paper className={classes.content3_2} variant="outlined" key={data.スタッフ番号}>{data.案件内容}</Paper>
+              <Paper className={classes.content3_2} variant="outlined" key={data.staff_id}>{data.matter_content}</Paper>
             </Grid>
             </Grid>
               ))}
@@ -357,13 +345,13 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content4_color} variant="outlined">技能レベル</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content4_1} variant="outlined" key={data.スタッフ番号}>{data.技能レベル}</Paper>
+                <Paper className={classes.content4_1} variant="outlined" key={data.staff_id}>{data.skill_level}</Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content4_color} variant="outlined">備考</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content4_2} variant="outlined" key={data.スタッフ番号}>{data.備考}</Paper>
+                <Paper className={classes.content4_2} variant="outlined" key={data.staff_id}>{data.remark}</Paper>
               </Grid>
             </Grid>
               ))}
@@ -380,7 +368,7 @@ const StaffList003_figure = () => {
                 <Paper className={classes.content5_color} variant="outlined">言語/その他</Paper>
               </Grid>
               <Grid>
-                <Paper className={classes.content5_1} variant="outlined" key={data.スタッフ番号}>{data.言語}</Paper>
+                <Paper className={classes.content5_1} variant="outlined" key={data.staff_id}>{data.language}</Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content5_1} variant="outlined"></Paper>
@@ -394,9 +382,6 @@ const StaffList003_figure = () => {
               <Grid>
                 <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
-              {/* <Grid>
-                <Paper className={classes.content5_color2} variant="outlined">担当</Paper>
-              </Grid> */}
               <Grid>
                 <Paper className={classes.content5_2} variant="outlined"></Paper>
               </Grid>

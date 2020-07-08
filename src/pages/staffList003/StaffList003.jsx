@@ -29,40 +29,15 @@ const styles = (theme) => ({
 });
 
 const useStyles = makeStyles((theme) => ({
-  Button: {
-    background:'rgb(120,144,156)',
-    borderRadius: '0px 0px 0px 0px',
-  },
-  Button2: {
-    background:'rgb(120,144,156)',
-    color: '#ffffff',
-    borderRadius: '0px 0px 0px 0px',
-    top:12,
-    float: 'right',
-  },
-  Button3: {
-    background:'rgb(120,144,156)',
-    color: '#ffffff',
-    borderRadius: '0px 0px 0px 0px',
-    top: 12,
-    float: 'right',
-  },
-  Button4: {
+  Button1: {
     color: '#000000',
   },
-  ButtonGroup: {
-    margin: '10px 200px 10px 0px',
-    borderRadius: '0px 0px 0px 0px',
-  },
-  Button5: {
+  Button2: {
     margin: '20px',
   },
-  Paper: {
-    padding: theme.spacing(7),
-    margin: '16px',
-    width: '95%',
-    borderRadius: '12px 12px 12px 12px',
-  },
+  dialog: {
+    height: theme.spacing(60),
+  }
 }));
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -118,19 +93,18 @@ export default function CustomizedDialogs() {
     setOpen(false);
   };
 
-
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button2}>
         スタッフ経歴
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg">
+      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers className={classes.dialog}>
         {user.map((data) => (
-          <Typography variant="h5" key={data.スタッフ番号}>{data.スタッフ名}</Typography>
+          <Typography variant="h5" key={data.staff_id}>{data.staff_name}</Typography>
           ))}
         <div>
           <StaffList003_Button />
@@ -139,7 +113,7 @@ export default function CustomizedDialogs() {
       </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus className={classes.Button4}>
+          <Button autoFocus className={classes.Button1}>
           <AddIcon />追加
           </Button>
         </DialogActions>

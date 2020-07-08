@@ -22,8 +22,8 @@ const StaffList003_map = () => {
   return (
     <div>
       {user.map((data) => (
-      <div key={data.スタッフ番号}>
-      {data.案件名 ? <StaffList003_figure/>:"データなし"}
+      <div key={data.staff_id}>
+      {data.matter_content ? <StaffList003_figure/>:"経歴データなし"}
       </div>
       ))}
     </div>
