@@ -33,6 +33,7 @@ import Charts from "../../pages/charts";
 
 import ReferenceList from "../../pages/referencelist/ReferenceList";
 // import ReferenceList_not from "../../pages/referenceList/notData";
+// import ReferenceDetail from "../../pages/referencedetail/ReferenceDetail";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing";
@@ -75,6 +76,7 @@ function Layout(props) {
 
               <Route path="/staff-report/referencelist/001" component={ReferenceList} />
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList_not} /> */}
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceDetail} /> */}
               {/* <Route path="" component={} /> 引合検索  */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}
