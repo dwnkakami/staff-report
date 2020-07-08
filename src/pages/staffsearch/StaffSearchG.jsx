@@ -17,7 +17,7 @@ import {area} from '../variables/Area';
 import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
 import {older} from '../variables/Older';
-import axios from 'axios';
+//import axios from 'axios';
 //import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
@@ -192,31 +192,31 @@ const StaffSearch = () => {
     if(license==='ITパスポート'){
       return data.id === 1;
     }
-    else if(license==='基本情報技術者'){
+    if(license==='基本情報技術者'){
       return data.id === 2;
     }
-    else if(license==='応用情報技術者'){
+    if(license==='応用情報技術者'){
       return data.id === 3;
     }
-    else if(license==='システムアーキテクト'){
+    if(license==='システムアーキテクト'){
       return data.id === 4;
     }
-    else if(license==='ネットワークスペシャリスト'){
+    if(license==='ネットワークスペシャリスト'){
       return data.id === 5;
     }
-    else if(license==='情報処理安全保障支援士'){
+    if(license==='情報処理安全保障支援士'){
       return data.id === 6;
     }
-    else if(license==='データスペシャリスト'){
+    if(license==='データスペシャリスト'){
       return data.id === 7;
     }
-    else if(license==='エンべデットスペシャリスト'){
+    if(license==='エンべデットスペシャリスト'){
       return data.id === 8;
     }
-    else if(license==='AWS認定試験'){
+    if(license==='AWS認定試験'){
       return data.id === 9;
     }
-    else if(license==='オラクルマスター'){
+    if(license==='オラクルマスター'){
       return data.id === 10;
     }
   });
@@ -225,31 +225,31 @@ const StaffSearch = () => {
     if(skill1 === 'Java'){
     return data.id === 1;
     }
-    else if(skill1 === 'C言語'){
+    if(skill1 === 'C言語'){
       return data.id === 2;
     }
-    else if(skill1 === 'C#'){
+    if(skill1 === 'C#'){
       return data.id === 3;
     }
-    else if(skill1 === 'C++'){
+    if(skill1 === 'C++'){
       return data.id === 4;
     }
-    else if(skill1 === 'MySQL'){
+    if(skill1 === 'MySQL'){
       return data.id === 5;
     }
-    else if(skill1 === 'Ruby'){
+    if(skill1 === 'Ruby'){
       return data.id === 6;
     }
-    else if(skill1 === 'Oracle'){
+    if(skill1 === 'Oracle'){
       return data.id === 7;
     }
-    else if(skill1 === 'Python'){
+    if(skill1 === 'Python'){
       return data.id === 8;
     }
-    else if(skill1 === 'JavaScript'){
+    if(skill1 === 'JavaScript'){
       return data.id === 9;
     }
-    else if(skill1 === 'PHP'){
+    if(skill1 === 'PHP'){
       return data.id === 10;
     }
   });
@@ -258,31 +258,31 @@ const StaffSearch = () => {
     if(status1 === '1'){
       return data.id === 1;
     }
-    else if(status1 === '2'){
+    if(status1 === '2'){
       return data.id === 2;
     }
-    else if(status1 === '3'){
+    if(status1 === '3'){
       return data.id === 3;
     }
-    else if(status1 === '4'){
+    if(status1 === '4'){
       return data.id === 4;
     }
-    else if(status1 === '5'){
+    if(status1 === '5'){
       return data.id === 5;
     }
-    else if(status1 === '6'){
+    if(status1 === '6'){
       return data.id === 6;
     }
-    else if(status1 === '7'){
+    if(status1 === '7'){
       return data.id === 7;
     }
-    else if(status1 === '8'){
+    if(status1 === '8'){
       return data.id === 8;
     }
-    else if(status1 === '9'){
+    if(status1 === '9'){
       return data.id === 9;
     }
-    else if(status1 === '10'){
+    if(status1 === '10'){
       return data.id === 10;
     }
     }); 
@@ -291,31 +291,31 @@ const StaffSearch = () => {
     if(skill2 === 'Java'){
       return data.id === 1;
       }
-      else if(skill2 === 'C言語'){
+    if(skill2 === 'C言語'){
         return data.id === 2;
       }
-      else if(skill2 === 'C#'){
+    if(skill2 === 'C#'){
         return data.id === 3;
       }
-      else if(skill2 === 'C++'){
+    if(skill2 === 'C++'){
         return data.id === 4;
       }
-      else if(skill2 === 'MySQL'){
+    if(skill2 === 'MySQL'){
         return data.id === 5;
       }
-      else if(skill2 === 'Ruby'){
+    if(skill2 === 'Ruby'){
         return data.id === 6;
       }
-      else if(skill2 === 'Oracle'){
+    if(skill2 === 'Oracle'){
         return data.id === 7;
       }
-      else if(skill2 === 'Python'){
+    if(skill2 === 'Python'){
         return data.id === 8;
       }
-      else if(skill2 === 'JavaScript'){
+    if(skill2 === 'JavaScript'){
         return data.id === 9;
       }
-      else if(skill2 === 'PHP'){
+    if(skill2 === 'PHP'){
         return data.id === 10;
       }
   });
@@ -324,31 +324,31 @@ const StaffSearch = () => {
     if(status2 === '1'){
       return data.id === 1;
     }
-    else if(status2 === '2'){
+    if(status2 === '2'){
       return data.id === 2;
     }
-    else if(status2 === '3'){
+    if(status2 === '3'){
       return data.id === 3;
     }
-    else if(status2 === '4'){
+    if(status2 === '4'){
       return data.id === 4;
     }
-    else if(status2 === '5'){
+    if(status2 === '5'){
       return data.id === 5;
     }
-    else if(status2 === '6'){
+    if(status2 === '6'){
       return data.id === 6;
     }
-    else if(status2 === '7'){
+    if(status2 === '7'){
       return data.id === 7;
     }
-    else if(status2 === '8'){
+    if(status2 === '8'){
       return data.id === 8;
     }
-    else if(status2 === '9'){
+    if(status2 === '9'){
       return data.id === 9;
     }
-    else if(status2 === '10'){
+    if(status2 === '10'){
       return data.id === 10;
     }
   });
@@ -357,31 +357,31 @@ const StaffSearch = () => {
     if(skill3 === 'Java'){
       return data.id === 1;
       }
-      else if(skill3 === 'C言語'){
+    if(skill3 === 'C言語'){
         return data.id === 2;
       }
-      else if(skill3 === 'C#'){
+    if(skill3 === 'C#'){
         return data.id === 3;
       }
-      else if(skill3 === 'C++'){
+    if(skill3 === 'C++'){
         return data.id === 4;
       }
-      else if(skill3 === 'MySQL'){
+    if(skill3 === 'MySQL'){
         return data.id === 5;
       }
-      else if(skill3 === 'Ruby'){
+    if(skill3 === 'Ruby'){
         return data.id === 6;
       }
-      else if(skill3 === 'Oracle'){
+    if(skill3 === 'Oracle'){
         return data.id === 7;
       }
-      else if(skill3 === 'Python'){
+    if(skill3 === 'Python'){
         return data.id === 8;
       }
-      else if(skill3 === 'JavaScript'){
+    if(skill3 === 'JavaScript'){
         return data.id === 9;
       }
-      else if(skill3 === 'PHP'){
+    if(skill3 === 'PHP'){
         return data.id === 10;
       }
   });
@@ -390,31 +390,31 @@ const StaffSearch = () => {
     if(status3 === '1'){
       return data.id === 1;
     }
-    else if(status3 === '2'){
+    if(status3 === '2'){
       return data.id === 2;
     }
-    else if(status3 === '3'){
+    if(status3 === '3'){
       return data.id === 3;
     }
-    else if(status3 === '4'){
+    if(status3 === '4'){
       return data.id === 4;
     }
-    else if(status3 === '5'){
+    if(status3 === '5'){
       return data.id === 5;
     }
-    else if(status3 === '6'){
+    if(status3 === '6'){
       return data.id === 6;
     }
-    else if(status3 === '7'){
+    if(status3 === '7'){
       return data.id === 7;
     }
-    else if(status3 === '8'){
+    if(status3 === '8'){
       return data.id === 8;
     }
-    else if(status3 === '9'){
+    if(status3 === '9'){
       return data.id === 9;
     }
-    else if(status3 === '10'){
+    if(status3 === '10'){
       return data.id === 10;
     }
   });
@@ -441,7 +441,7 @@ const StaffSearch = () => {
     if(ge === '男'){
       return data.id === 1;
     }
-    else if(ge === '女'){
+    if(ge === '女'){
       return data.id === 2;
     }
   });   
@@ -450,22 +450,22 @@ const StaffSearch = () => {
   if(areas === '北海道'){
     return data.id === 1;
   }
-  else if(areas === '東北'){
+  if(areas === '東北'){
     return data.id === 2;
   }
-  else if(areas === '関東'){
+  if(areas === '関東'){
     return data.id === 3;
   }
-  else if(areas === '中部'){
+  if(areas === '中部'){
     return data.id === 4;
   }
-  else if(areas === '近畿'){
+  if(areas === '近畿'){
     return data.id === 5;
   }
-  else if(areas === '中国'){
+  if(areas === '中国'){
     return data.id === 6;
   }
-  else if(areas === '九州'){
+  if(areas === '九州'){
     return data.id === 7;
   }
   }); 
