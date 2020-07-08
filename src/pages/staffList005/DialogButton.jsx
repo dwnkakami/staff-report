@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import StaffList005_figure from './StaffList005_figure';
+import { useState } from 'react';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -28,7 +30,7 @@ const styles = makeStyles((theme) => ({
   },
   Button2: {
     background:'rgb(120,144,156)',
-    left: 45,
+    left: 25,
     marginRight: '25px',
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
@@ -36,7 +38,7 @@ const styles = makeStyles((theme) => ({
   },
   Button3: {
     background:'rgb(120,144,156)',
-    left: 45,
+    left: 5,
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
     float: 'right',
@@ -64,19 +66,37 @@ const styles = makeStyles((theme) => ({
 
 const DialogButton = () => {
   const classes = styles();
+  const [staff, setStaff] = useState('スキル：データなし');
+
+  const handleClick = (selected) => {
+    if(selected === 1){
+      setStaff('スキル：データなし')
+    } else if(selected === 2){
+      setStaff('経歴：データなし');
+    } else if(selected === 3){
+      setStaff('キャリアパス：データなし');
+    } else {
+      setStaff(<StaffList005_figure />);
+    }
+  };
 
   return (
     <div className={classes.root}>
         <Typography variant="h5">テスト太郎</Typography>
         <div>
           <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-            <Button className={classes.Button}>スキル</Button>
-            <Button className={classes.Button}>経歴</Button>
-            <Button className={classes.Button}>キャリアパス</Button>
-            <Button className={classes.Button}>スタッフ情報</Button>
+              <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
+              <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
+              <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
+              <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
           </ButtonGroup>
-          <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-          <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+          <ButtonGroup>
+            <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
+            <Button variant="contained"　className={classes.Button3}>引合登録</Button>
+          </ButtonGroup>
+        </div>
+        <div>
+          {staff}
         </div>
     </div>
   );
