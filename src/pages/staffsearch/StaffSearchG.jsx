@@ -81,41 +81,78 @@ const StaffSearch = () => {
   };
 
   const [license, setLicense] = useState([]);
-
     const handleChange2 = (event) => {
       setLicense(event.target.value);
     };
 
   const [skill1,setSkill1] = useState([]);
+  const Skill1Change = (event) => {
+    setSkill1(event.target.value);
+  }
 
-  const Change = (event) => {
-    setSkill1(event.target.value)
+  const [skill2,setSkill2] = useState([]);
+  const Skill2Change = (event) => {
+    setSkill2(event.target.value);
+  }
+
+  const [skill3,setSkill3] = useState([]);
+  const Skill3Change = (event) => {
+    setSkill3(event.target.value);
+  }
+
+  const [status1,setStatus1] = useState([]);
+  const Status1Change = (event) => {
+    setStatus1(event.target.value);
+  }
+
+  const [status2,setStatus2] = useState([]);
+  const Status2Change = (event) => {
+    setStatus2(event.target.value);
+  }
+
+  const [status3,setStatus3] = useState([]);
+  const Status3Change = (event) => {
+    setStatus3(event.target.value);
+  }
+
+  const [areas,setAreas]=useState([]);
+  const aresChenge = (event) => {
+    setAreas(event.target.value);
+  }
+
+  const [ge,setGe]=useState([]);
+  const genderChange = (event) => {
+    setGe(event.target.value);
+  }
+
+  const [age,setAge] = useState([]);
+  const ageChange = (event) => {
+    setAge(event.target.value);
   }
 
   //セレクト項目
-  const [state, setState] = useState({
+  // const [state, setState] = useState({
     // sk1: '',
-    sk2: '',
-    sk3: '',
-    st1: '',
-    st2: '',
-    st3: '',
-    ge: '',
-    areas:'',
-    older:'',
-  });
+    // sk2: '',
+    // sk3: '',
+    // st1: '',
+    // st2: '',
+    // st3: '',
+    // ge: '',
+    // areas:'',
+    // older:'',
+  //});
 
   //セレクト切り替え
-  const handleChange3 = (event) => {
-    setState({ ...state,[event.target.name]: event.target.value});
-  };
+  // const handleChange3 = (event) => {
+  //   setState({ ...state,[event.target.name]: event.target.value});
+  // };
 
   //radioボタン
   const [value,setValue]=useState({
     radioA: '',
     radioB: '',
   });
-
 
   //radioボタン切り替え
   const handleChange5 = (event) => {
@@ -127,8 +164,17 @@ const StaffSearch = () => {
     //setKeyWord();
     setCheck({check:false});
     setLicense({license:''});
+    setSkill1({skill1:''});
+    setSkill2({skill2:''});
+    setSkill3({skill3:''});
+    setStatus1({status1:''});
+    setStatus2({status2:''});
+    setStatus3({status3:''});
+    setAreas({areas:''});
+    setGe({ge:''});
+    setAge({age:''});
     setValue({value:''});
-    setState({state:''});
+    // setState({state:''});
   };
 
   // const getUserData = () => {
@@ -176,27 +222,254 @@ const StaffSearch = () => {
   });
 
   const current_data2 = skill.filter((data) => {
-    if(skill1 === 'C++')
-    return data.id === 4;
+    if(skill1 === 'Java'){
+    return data.id === 1;
+    }
+    else if(skill1 === 'C言語'){
+      return data.id === 2;
+    }
+    else if(skill1 === 'C#'){
+      return data.id === 3;
+    }
+    else if(skill1 === 'C++'){
+      return data.id === 4;
+    }
+    else if(skill1 === 'MySQL'){
+      return data.id === 5;
+    }
+    else if(skill1 === 'Ruby'){
+      return data.id === 6;
+    }
+    else if(skill1 === 'Oracle'){
+      return data.id === 7;
+    }
+    else if(skill1 === 'Python'){
+      return data.id === 8;
+    }
+    else if(skill1 === 'JavaScript'){
+      return data.id === 9;
+    }
+    else if(skill1 === 'PHP'){
+      return data.id === 10;
+    }
   });
 
   const current_data3 = status.filter((data) => {
-    return data.id === 1;
+    if(status1 === '1'){
+      return data.id === 1;
+    }
+    else if(status1 === '2'){
+      return data.id === 2;
+    }
+    else if(status1 === '3'){
+      return data.id === 3;
+    }
+    else if(status1 === '4'){
+      return data.id === 4;
+    }
+    else if(status1 === '5'){
+      return data.id === 5;
+    }
+    else if(status1 === '6'){
+      return data.id === 6;
+    }
+    else if(status1 === '7'){
+      return data.id === 7;
+    }
+    else if(status1 === '8'){
+      return data.id === 8;
+    }
+    else if(status1 === '9'){
+      return data.id === 9;
+    }
+    else if(status1 === '10'){
+      return data.id === 10;
+    }
+    }); 
+
+  const current_data4 =skill.filter((data)=>{
+    if(skill2 === 'Java'){
+      return data.id === 1;
+      }
+      else if(skill2 === 'C言語'){
+        return data.id === 2;
+      }
+      else if(skill2 === 'C#'){
+        return data.id === 3;
+      }
+      else if(skill2 === 'C++'){
+        return data.id === 4;
+      }
+      else if(skill2 === 'MySQL'){
+        return data.id === 5;
+      }
+      else if(skill2 === 'Ruby'){
+        return data.id === 6;
+      }
+      else if(skill2 === 'Oracle'){
+        return data.id === 7;
+      }
+      else if(skill2 === 'Python'){
+        return data.id === 8;
+      }
+      else if(skill2 === 'JavaScript'){
+        return data.id === 9;
+      }
+      else if(skill2 === 'PHP'){
+        return data.id === 10;
+      }
+  });
+
+  const current_data5 = status.filter((data)=>{
+    if(status2 === '1'){
+      return data.id === 1;
+    }
+    else if(status2 === '2'){
+      return data.id === 2;
+    }
+    else if(status2 === '3'){
+      return data.id === 3;
+    }
+    else if(status2 === '4'){
+      return data.id === 4;
+    }
+    else if(status2 === '5'){
+      return data.id === 5;
+    }
+    else if(status2 === '6'){
+      return data.id === 6;
+    }
+    else if(status2 === '7'){
+      return data.id === 7;
+    }
+    else if(status2 === '8'){
+      return data.id === 8;
+    }
+    else if(status2 === '9'){
+      return data.id === 9;
+    }
+    else if(status2 === '10'){
+      return data.id === 10;
+    }
+  });
+
+  const current_data6 = skill.filter((data)=>{
+    if(skill3 === 'Java'){
+      return data.id === 1;
+      }
+      else if(skill3 === 'C言語'){
+        return data.id === 2;
+      }
+      else if(skill3 === 'C#'){
+        return data.id === 3;
+      }
+      else if(skill3 === 'C++'){
+        return data.id === 4;
+      }
+      else if(skill3 === 'MySQL'){
+        return data.id === 5;
+      }
+      else if(skill3 === 'Ruby'){
+        return data.id === 6;
+      }
+      else if(skill3 === 'Oracle'){
+        return data.id === 7;
+      }
+      else if(skill3 === 'Python'){
+        return data.id === 8;
+      }
+      else if(skill3 === 'JavaScript'){
+        return data.id === 9;
+      }
+      else if(skill3 === 'PHP'){
+        return data.id === 10;
+      }
+  });
+
+  const current_data7 = status.filter((data)=>{
+    if(status3 === '1'){
+      return data.id === 1;
+    }
+    else if(status3 === '2'){
+      return data.id === 2;
+    }
+    else if(status3 === '3'){
+      return data.id === 3;
+    }
+    else if(status3 === '4'){
+      return data.id === 4;
+    }
+    else if(status3 === '5'){
+      return data.id === 5;
+    }
+    else if(status3 === '6'){
+      return data.id === 6;
+    }
+    else if(status3 === '7'){
+      return data.id === 7;
+    }
+    else if(status3 === '8'){
+      return data.id === 8;
+    }
+    else if(status3 === '9'){
+      return data.id === 9;
+    }
+    else if(status3 === '10'){
+      return data.id === 10;
+    }
+  });
+
+  const current_data8 = older.filter((data) => {
+    if(age === '10~20'){
+      return data.id === 1;
+    }
+    else if(age === '21~30'){
+      return data.id === 2;
+    }
+    else if(age === '31~40'){
+      return data.id === 3;
+    }
+    else if(age === '41~50'){
+      return data.id === 4;
+    }
+    else if(age === '51~60'){
+      return data.id === 5;
+    }
   }); 
 
-  const current_data4 = area.filter((data) => {
-    return data.id === 1;
-  }); 
+  const current_data9 = gender.filter((data) => {
+    if(ge === '男'){
+      return data.id === 1;
+    }
+    else if(ge === '女'){
+      return data.id === 2;
+    }
+  });   
 
-  const current_data5 = gender.filter((data) => {
+  const current_data10 = area.filter((data) => {
+  if(areas === '北海道'){
     return data.id === 1;
-  }); 
-
-  const current_data6 = older.filter((data) => {
+  }
+  else if(areas === '東北'){
     return data.id === 2;
+  }
+  else if(areas === '関東'){
+    return data.id === 3;
+  }
+  else if(areas === '中部'){
+    return data.id === 4;
+  }
+  else if(areas === '近畿'){
+    return data.id === 5;
+  }
+  else if(areas === '中国'){
+    return data.id === 6;
+  }
+  else if(areas === '九州'){
+    return data.id === 7;
+  }
   }); 
 
- 
   const Search = () =>{
     console.log(current_data);
     console.log(current_data2);
@@ -204,6 +477,10 @@ const StaffSearch = () => {
     console.log(current_data4);
     console.log(current_data5);
     console.log(current_data6);
+    console.log(current_data7);
+    console.log(current_data8);
+    console.log(current_data9);
+    console.log(current_data10);
   }
 
   // const state_data = state.filter((data) => {
@@ -317,7 +594,7 @@ const StaffSearch = () => {
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={skill1}
-          onChange={Change}
+          onChange={Skill1Change}
           // name="sk1"
           label="スキルレベル１"
         >
@@ -332,9 +609,8 @@ const StaffSearch = () => {
       {/* ステータス１ */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          value={state.st1}
-          onChange={handleChange3}
-          name="st1"
+          value={status1}
+          onChange={Status1Change}
         >
          {status.map((data)=>(
             <option key={data.id} value={data.name}>
@@ -362,10 +638,10 @@ const StaffSearch = () => {
     {/* スキル情報２ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          value={state.sk2}
-          onChange={handleChange3}
+          value={skill2}
+          onChange={Skill2Change}
           inputProps={{
-            name: 'sk2',
+            // name: 'sk2',
             id: 'filled-age-native-simple',
           }}
         >
@@ -380,8 +656,8 @@ const StaffSearch = () => {
       {/* ステータス2 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          value={state.st2}
-          onChange={handleChange3}
+          value={status2}
+          onChange={Status2Change}
           inputProps={{
             name: 'st2',
             id: 'filled-age-native-simple',
@@ -413,10 +689,10 @@ const StaffSearch = () => {
     {/* スキル情報３ */}
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          value={state.sk3}
-          onChange={handleChange3}
+          value={skill3}
+          onChange={Skill3Change}
           inputProps={{
-            name: 'sk3',
+            // name: 'sk3',
             id: 'filled-age-native-simple',
           }}
         >
@@ -431,8 +707,8 @@ const StaffSearch = () => {
       {/* ステータス3 */}
       <FormControl variant="filled" className={classes.formControl2}>
         <Select
-          value={state.st3}
-          onChange={handleChange3}
+          value={status3}
+          onChange={Status3Change}
           inputProps={{
             name: 'st3',
             id: 'filled-age-native-simple',
@@ -455,10 +731,9 @@ const StaffSearch = () => {
     </form> */}
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
-          value={state.older}
-          onChange={handleChange3}
-          name="older"
-          label="スキルレベル１"
+          value={age}
+          onChange={ageChange}
+          // name="older"
         >
           {older.map((data)=>(
             <option key={data.id} value={data.age}>
@@ -471,10 +746,10 @@ const StaffSearch = () => {
     <p class='gender'>性別</p>
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
-          value={state.ge}
-          onChange={handleChange3}
+          value={ge}
+          onChange={genderChange}
           inputProps={{
-            name: 'ge',
+            // name: 'ge',
             id: 'filled-age-native-simple',
           }}
         >
@@ -489,10 +764,10 @@ const StaffSearch = () => {
       <p class='area'>地域</p>
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
-          value={state.areas}
-          onChange={handleChange3}
+          value={areas}
+          onChange={aresChenge}
           inputProps={{
-            name: 'areas',
+            // name: 'areas',
             id: 'filled-age-native-simple',
           }}
         >
