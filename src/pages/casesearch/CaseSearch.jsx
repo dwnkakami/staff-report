@@ -159,6 +159,7 @@ export default function CaseSearch() {
             })
           }
   }
+  
 
   //KeywordSearch
   const [keyWord, setKeyWord] = React.useState();
@@ -201,10 +202,12 @@ export default function CaseSearch() {
   };
 
 
-  const skillItems = posts.map((data,index) =>
-      <MenuItem key={index}
+  const skillItems = posts.map((data) => (
+    data.map((data) => 
+      <MenuItem key={data.skl_id}
               value={data.skl_id}>{data.skl_name}</MenuItem>
-  );
+    )
+  ));
 
   //startdate
   const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
@@ -275,10 +278,12 @@ export default function CaseSearch() {
               MenuProps={MenuProps}
             >
               {posts.map((name) => (
-                <MenuItem key={name.skl_id} value={name.skl_name}>
-                  <Checkbox checked={jobName.indexOf(name.skl_name) > -1} />
-                  <ListItemText primary={name.skl_name} />
+                name.map((name) => 
+                <MenuItem key={name.ocp_id} value={name.ocp_name}>
+                  <Checkbox checked={jobName.indexOf(name.ocp_name) > -1} />
+                  <ListItemText primary={name.ocp_name} />
                 </MenuItem>
+                )
               ))}
             </Select>
           </FormControl>
