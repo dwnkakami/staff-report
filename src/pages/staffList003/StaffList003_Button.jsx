@@ -9,46 +9,36 @@ const useStyles = makeStyles((theme) => ({
     background:'rgb(120,144,156)',
     borderRadius: '0px 0px 0px 0px',
   },
+  ButtonGroup: {
+    margin: '10px 10px 10px 0px',
+    borderRadius: '0px 0px 0px 0px',
+  },
+  ButtonGroup2: {
+    margin: '10px 10px 10px 0px',
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
+  },
   Button2: {
     background:'rgb(120,144,156)',
     color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
-    top:12,
-    float: 'right',
-  },
-  Button3: {
-    background:'rgb(120,144,156)',
-    color: '#ffffff',
-    borderRadius: '0px 0px 0px 0px',
-    top: 12,
-    float: 'right',
-  },
-  Button4: {
-    color: '#000000',
-  },
-  ButtonGroup: {
-    margin: '10px 200px 10px 0px',
-    borderRadius: '0px 0px 0px 0px',
-  },
-  Button5: {
-    margin: '20px',
   },
 }));
 
 
 const StaffList003_Button = () => {
   const classes = useStyles();
-  const [staff, setStaff] = useState('データなし１');
+  const [staff, setStaff] = useState('スキル：データなし');
 
   const handleClick = (selected) => {
     if(selected　=== 1){
-      setStaff('データなし１')
+      setStaff('スキル：データなし')
     } else if(selected　=== 2){
       setStaff(<StaffList003_map />);
       } else if(selected　=== 3){
-        setStaff('データなし３');
+        setStaff('キャリアパス：データなし');
       }else {
-      　setStaff("データなし４");
+      　setStaff('スタッフ情報：データなし');
     }
   };
 
@@ -61,8 +51,10 @@ const StaffList003_Button = () => {
           <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
           <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
       </ButtonGroup>
-          <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
-          <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
+      <ButtonGroup className={classes.ButtonGroup2}　size="small" variant="contained" aria-label="contained primary button group">
+          <Button　className={classes.Button2}>スキルシート出力</Button>
+          <Button className={classes.Button2}>引合登録</Button>
+          </ButtonGroup>
       </div>
       <div>
         {staff}

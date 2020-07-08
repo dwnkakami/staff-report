@@ -233,7 +233,7 @@ const StaffList003_figure = () => {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/3')
+            .get('/api/stafflist003/4')
             .then(response => {
                 setUser(response.data);
             })
@@ -394,8 +394,11 @@ const StaffList003_figure = () => {
               <Grid>
                 <Paper className={classes.content5_1} variant="outlined"></Paper>
               </Grid>
-              <Grid>
+              {/* <Grid>
                 <Paper className={classes.content5_color2} variant="outlined">担当</Paper>
+              </Grid> */}
+              <Grid>
+                <Paper className={classes.content5_2} variant="outlined"></Paper>
               </Grid>
               <Grid>
                 <Paper className={classes.content5_2} variant="outlined"></Paper>
