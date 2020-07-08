@@ -24,6 +24,7 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffList001 from "../../pages/stafflist001/StaffList001";
+import App from "../../pages/stafflist001/StaffList";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
@@ -71,7 +72,7 @@ function Layout(props) {
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
-              {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
+              <Route path="/staff-report/staffsearch/001" component={App} />
               {/* { <Route path="/staff-report/staffadd/001" component={StaffAdd} /> } */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}

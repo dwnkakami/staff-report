@@ -20,6 +20,7 @@ import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Tooltip from "@material-ui/core/Tooltip";
+import { render } from 'react-dom';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -147,23 +148,32 @@ const StyledTableCell = withStyles((theme) => ({
  export default function StaffList001 () {
     const classes = useStyles();
 
-    const [posts, setPosts] = useState([]);
+    // const [posts, setPosts] = useState([]);
 
-    useEffect(() => getStaffData());
+    const [staff = getData,setStaff] = useState([]);
+
+    const filterList = (e) => {
+      const updateList = staff.filter((data) => {
+        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+      })
+      setStaff(updateList)
+    };
+
+    // useEffect(() => getStaffData());
  
-    const getStaffData = () => {
-        if(posts.length === 0) {
-            axios
-              .get('/api/stafflist001/1')
-              .then(response => {
-                console.log([response.data]);
-                setPosts(response.data);
-              })
-              .catch(() => {
-                console.log('connected error');
-              })
-            }
-    }
+    // const getStaffData = () => {
+    //     if(posts.length === 0) {
+    //         axios
+    //           .get('/api/stafflist001/1')
+    //           .then(response => {
+    //             console.log([response.data]);
+    //             setPosts(response.data);
+    //           })
+    //           .catch(() => {
+    //             console.log('connected error');
+    //           })
+    //         }
+    // }
 
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -205,7 +215,7 @@ const StyledTableCell = withStyles((theme) => ({
   // };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
-
+ 
 return(
 <Paper elevation={3} >
 <DialogTitle id="customized-dialog-title">
@@ -215,14 +225,22 @@ return(
 </div>
 </DialogTitle>
 
-<Grid container spacing={1} alignItems="flex-end">
+　　　　　<Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SearchIcon />
           </Grid>
           <Grid item>
-            <TextField label="Search" />
+            <TextField onChange={filterList} label="Search" />
           </Grid>
         </Grid>
+        
+        {/* <div>
+          {staff.map((data) => {
+            return (
+              <li>{data}</li>
+            )  
+          })}
+        </div> */}
 
 <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -243,7 +261,7 @@ return(
             />
             <TableBody>
               {stableSort(getData, getComparator(order, orderBy))
-                .map((data, index) => {
+                .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
                   return (
@@ -268,5 +286,5 @@ return(
       </Paper>
     </div>
     </Paper>
-)
+);
 };
