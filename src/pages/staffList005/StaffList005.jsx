@@ -66,9 +66,9 @@ export default function CustomizedDialogs() {
           <div>
             <DialogButton />
           </div>
-          <div>
+          {/* <div>
             <StaffList005_figure />
-          </div>
+          </div> */}
         </DialogContent>
       </Dialog>
     </div>

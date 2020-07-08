@@ -64,7 +64,7 @@ const StaffList005_figure = () => {
 
   return (
     <div>
-       <div className={classes.root}>
+      <div className={classes.root}>
        <Paper variant="outlined" className={classes.Paper}>
        <div className={classes.content1}>
          {user.map((data) => (
