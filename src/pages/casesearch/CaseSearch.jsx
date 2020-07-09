@@ -164,6 +164,12 @@ export default function CaseSearch() {
   //KeywordSearch
   const [keyWord, setKeyWord] = React.useState();
 
+  //keywordSubmit
+  const keywordSubmit = () => {
+    console.log(keyWord)
+    window.alert("検索結果がありません。\n条件を変更してください。")
+  };
+
 
   //job
   const [jobName, setJobName] = React.useState([]);
@@ -238,6 +244,20 @@ export default function CaseSearch() {
     setSelectedStartDate()
     setSelectedEndDate()
     setSalesMan('')
+    window.alert("Clear Done")
+  };
+
+
+  //SearchButton
+  const formSubmit = () => {
+    console.log(jobName)
+    console.log(skill1)
+    console.log(skill2)
+    console.log(skill3)
+    console.log(selectedStartDate)
+    console.log(selectedEndDate)
+    console.log(salesMan)
+    window.alert("検索結果がありません。\n条件を変更してください。")
   };
 
   return (
@@ -255,9 +275,11 @@ export default function CaseSearch() {
 
         {/* <KeywordSearch value={keyWord} onChange={e => setKeyWord(e.target.value)} /> */}
 
-        <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" />
+        <form method="POST">
+          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" />
 
-        <SearchButton className={classes.keyButton} />
+          <SearchButton onClick={keywordSubmit} className={classes.keyButton} />
+        </form>
 
         <br className={classes.end} />
         
@@ -380,7 +402,7 @@ export default function CaseSearch() {
         <div className={classes.left}><br /></div>
 
         <DeleteButton onClick={clearAll} />
-        <SearchButton  className={classes.button} />
+        <SearchButton onClick={formSubmit} className={classes.button} />
 
       </CardContent>
     </Paper>

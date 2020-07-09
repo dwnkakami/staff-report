@@ -21,8 +21,6 @@ exports.getData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    // const sql ="select * from staff_report.m_matter where id =" + req;
-    // const sql ="select MM1.id,MM1.occupation_id,MO1.name as ocp_name,MS1.id as skill1_id,MS1.name as skill1_name,MS2.id as skill2_id,MS2.name as skill2_name,MS3.id as skill3_id,MS3.name as skill3_name from staff_report.m_matter MM1 left join staff_report.m_occupation MO1 on MM1.occupation_id = MO1.id left join staff_report.m_skill as MS1  on MM1.staff_skill_id1 = MS1.id left join staff_report.m_skill as MS2 on MM1.staff_skill_id2 = MS2.id left join staff_report.m_skill as MS3 on MM1.staff_skill_id3 = MS3.id group by MM1.id;";
     // const ocp ="select MO1.id as ocp_id,MO1.name as ocp_name from staff_report.m_occupation as MO1";
     // const skl ="select MS1.id as skl_id, MS1.name as skl_name from staff_report.m_skill as MS1";
     // const sql = ocp  skl;
@@ -34,3 +32,25 @@ exports.getData = (req, res) => {
     });
   });
 }
+
+// const http = require('http');
+// const html = require('fs').readFileSync('../../src/pages/casesearch/CaseSearch.jsx');
+
+// http.createServer(function(req,res) {
+
+//   if(req.method === 'GET') {
+//     res.writeHead(200, {'Content-Type' : 'text/html'});
+//     res.end(html);
+
+//   } else if(req.method === 'POST') {
+//     const data = '';
+
+//     //POSTデータを受け取る
+//     req.on('data',function(chunk) {data += chunk})
+//        .on('end',function() {
+
+//         console.log(data);
+//         res.end(html);
+//        })
+//   }
+// }).listen(3000);
