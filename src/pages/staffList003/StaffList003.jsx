@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
   },
   dialog: {
     height: theme.spacing(60),
+  },
+  title: {
+    color: '#000000',
   }
 }));
 
@@ -77,7 +80,7 @@ export default function CustomizedDialogs() {
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/4')
+            .get('/api/stafflist003/3')
             .then(response => {
                 setUser(response.data);
             })
@@ -104,7 +107,7 @@ export default function CustomizedDialogs() {
         </DialogTitle>
         <DialogContent dividers className={classes.dialog}>
         {user.map((data) => (
-          <Typography variant="h5" key={data.staff_id}>{data.staff_name}</Typography>
+          <Typography variant="h5" className={classes.title} key={data.staff_id}>{data.staff_name}</Typography>
           ))}
         <div>
           <StaffList003_Button />
