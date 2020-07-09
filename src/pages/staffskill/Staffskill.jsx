@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
-import Skill from './Staffskill2';
+import Staffskill2 from './Staffskill2';
 const styles = (theme) => ({
   root: {
     margin: 5,
@@ -105,7 +105,8 @@ export default function CustomizedDialogs() {
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg">
         <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
-        <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>        </DialogTitle>
+        <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>       
+         </DialogTitle>
         <DialogContent dividers>
         <Typography variant="h6">テスト太郎</Typography>
         <div>
@@ -119,7 +120,7 @@ export default function CustomizedDialogs() {
       <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
       </div>
       <div>
-      <Skill />
+      <Staffskill2 />
       </div>
       <div>
       </div>
