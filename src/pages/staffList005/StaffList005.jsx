@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import DialogButton from './DialogButton';
-import StaffList005_figure from './StaffList005_figure';
+// import StaffList005_figure from './StaffList005_figure';
 
 const styles = (theme) => ({
   root: {
@@ -40,6 +40,7 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
+    height: theme.spacing(95),
   },
 }))(MuiDialogContent);
 
@@ -58,7 +59,7 @@ export default function CustomizedDialogs() {
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         スタッフ詳細
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="lg">
+      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           スタッフ情報
         </DialogTitle>
