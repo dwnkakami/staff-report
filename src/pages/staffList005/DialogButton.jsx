@@ -27,6 +27,8 @@ const styles = makeStyles((theme) => ({
   Button: {
     background:'rgb(120,144,156)',
     borderRadius: '0px 0px 0px 0px',
+    height: '40px',
+    padding: '0px 20px 0px 20px',
   },
   Button2: {
     background:'rgb(120,144,156)',
@@ -50,7 +52,7 @@ const styles = makeStyles((theme) => ({
     height: '30px',
   },
   ButtonGroup: {
-    margin: '10px 200px 10px 0px',
+    margin: '20px 300px 10px 0px',
     borderRadius: '0px 0px 0px 0px',
   },
   Paper: {
@@ -83,7 +85,7 @@ const DialogButton = () => {
   return (
     <div className={classes.root}>
         <Typography variant="h5">テスト太郎</Typography>
-        <div>
+        <div widt='600px'>
           <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
               <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
               <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
