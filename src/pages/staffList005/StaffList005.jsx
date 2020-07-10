@@ -44,7 +44,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function CustomizedDialogs() {
+const StaffList005 = () => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -75,3 +75,4 @@ export default function CustomizedDialogs() {
     </div>
   );
 }
+  export default StaffList005;

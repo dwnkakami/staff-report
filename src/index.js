@@ -15,9 +15,9 @@ ReactDOM.render(
     <UserProvider>
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
-        {/* <App /> */}
+        <App />
         {/* <StaffList005_figure /> */}
-        <StaffList005 />
+        {/* <StaffList005 /> */}
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
