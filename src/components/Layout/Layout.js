@@ -20,9 +20,9 @@ import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
-import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
+import StaffList001 from "../../pages/stafflist001/StaffList001";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
@@ -65,13 +65,13 @@ function Layout(props) {
               <Route path="/staff-report/dashboard" component={Dashboard} />
               {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
+              {/* <Route path="/app/tables" component={Tables} /> */}
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
-              {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
+              <Route path="/staff-report/stafflist/001" component={StaffList001} />
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
-              {/* { <Route path="/staff-report/staffadd/001" component={StaffAdd} /> } */}
+              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
