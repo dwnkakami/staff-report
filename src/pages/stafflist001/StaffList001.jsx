@@ -8,19 +8,15 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { getData }  from './M_staff';
+// import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import TextField from '@material-ui/core/TextField';
-import IconButton from "@material-ui/core/IconButton";
-import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Tooltip from "@material-ui/core/Tooltip";
-import { render } from 'react-dom';
+// import TextField from '@material-ui/core/TextField';
+// import SearchIcon from '@material-ui/icons/Search';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -148,32 +144,32 @@ const StyledTableCell = withStyles((theme) => ({
  export default function StaffList001 () {
     const classes = useStyles();
 
-    // const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
-    const [staff = getData,setStaff] = useState([]);
+    // const [staff = getData,setStaff] = useState([]);
 
-    const filterList = (e) => {
-      const updateList = staff.filter((data) => {
-        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-      })
-      setStaff(updateList)
-    };
+    // const filterList = (e) => {
+    //   const updateList = staff.filter((data) => {
+    //     return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+    //   })
+    //   setStaff(updateList)
+    // };
 
-    // useEffect(() => getStaffData());
+    useEffect(() => getStaffData());
  
-    // const getStaffData = () => {
-    //     if(posts.length === 0) {
-    //         axios
-    //           .get('/api/stafflist001/1')
-    //           .then(response => {
-    //             console.log([response.data]);
-    //             setPosts(response.data);
-    //           })
-    //           .catch(() => {
-    //             console.log('connected error');
-    //           })
-    //         }
-    // }
+    const getStaffData = () => {
+        if(posts.length === 0) {
+            axios
+              .get('/api/stafflist001/1')
+              .then(response => {
+                console.log([response.data]);
+                setPosts(response.data);
+              })
+              .catch(() => {
+                console.log('connected error');
+              })
+            }
+    }
 
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -187,7 +183,7 @@ const StyledTableCell = withStyles((theme) => ({
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = getData.map((n) => n.id);
+      const newSelecteds = posts.map((n) => n.id);
       setSelected(newSelecteds);
       return;
     }
@@ -225,22 +221,14 @@ return(
 </div>
 </DialogTitle>
 
-　　　　　<Grid container spacing={1} alignItems="flex-end">
+{/* 　　　　　<Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SearchIcon />
           </Grid>
           <Grid item>
             <TextField onChange={filterList} label="Search" />
           </Grid>
-        </Grid>
-        
-        {/* <div>
-          {staff.map((data) => {
-            return (
-              <li>{data}</li>
-            )  
-          })}
-        </div> */}
+        </Grid> */}
 
 <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -257,10 +245,10 @@ return(
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={getData.length}
+              rowCount={posts.length}
             />
             <TableBody>
-              {stableSort(getData, getComparator(order, orderBy))
+              {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
