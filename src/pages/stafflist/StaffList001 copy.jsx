@@ -17,10 +17,11 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 // import './StaffList001.css';
-import App from './App';
+// import App from './App';
+import App3 from './pages/stafflist/App3';
 import axios from 'axios';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App3 />, document.getElementById('root'));
 const StyledTableCell = withStyles((theme) => ({
     head: {
         fontWeight: 'border',
@@ -170,109 +171,8 @@ const StyledTableRow = withStyles((theme) => ({
     //   EnhancedTableToolbar.propTypes = {
     //     numSelected: PropTypes.number.isRequired,
     //   };
-    
-    // class App extends Component {
-    //     constructor() {
-    //         super()
-    //         this.state = {
-    //             name: [
-    //                 "佐藤テスト",
-    
-    //                 "後藤テスト",
-    
-    //                 "菊池テスト",
-    
-    //                 "磯野テスト",
-    
-    //                 "鈴木テスト",
-    
-    //                 "高橋テスト",
-    
-    //                 "田中テスト",
-    
-    //                 "伊藤テスト",
-    
-    //                 "渡邉テスト",
-    
-    //                 "中村テスト",
-    
-    //                 "中野テスト",
-    
-    //                 "田村テスト",
-    
-    //                 "石田テスト",
-    
-    //                 "安達テスト",
-    
-    //                 "井上テスト",
-    
-    //                 "テスト佐藤",
-    
-    //                 "テスト後藤",
-    
-    //                 "テスト菊池",
-    
-    //                 "テスト磯野",
-    
-    //                 "テスト鈴木",
-    
-    //                 "テスト高橋",
-    
-    //                 "テスト田中",
-    
-    //                 "テスト伊藤",
-    
-    //                 "テスト渡邉",
-    
-    //                 "テスト中村",
-    
-    //                 "テスト中野",
-    
-    //                 "テスト田村",
-    
-    //                 "テスト石田",
-    
-    //                 "テスト安達",
-    
-    //                 "テスト井上"
-    //             ],
-    //             items: []
-    //         }
-    //     }
-    
-    //     componentDidMount() {
-    //         this.setState({items: this.state.name})
-    //     }
-    
-    //     filterList = (e) => {
-    //         const updateList = this.state.name.filter((name) => {
-    //             return name.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-    //         })
-    //         this.setState({items: updateList})
-    //     }
-    
-    
-    //     render() {
-    //         return (
-    //             <div>
-    //                 <form action="">
-    //                     <input type="text" placeholder="search" onChange={this.filterList}/>
-    //                 </form>
-    //             <div>
-    //             {this.state.items.map((name, index) => {
-    //                 return (
-    //                     <li key={index}>{name}</li>
-    //                 )
-    //             })}
-    //             </div>
-    //             </div>
-    //         );
-    //     }
-    // }
-    
-    // export {
-    //     App
-    // }
+
+
 
  export default function StaffList001 () {
     const classes = useStyles();
