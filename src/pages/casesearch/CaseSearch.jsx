@@ -276,9 +276,9 @@ export default function CaseSearch() {
         {/* <KeywordSearch value={keyWord} onChange={e => setKeyWord(e.target.value)} /> */}
 
         <form method="POST">
-          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" />
+          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
 
-          <SearchButton onClick={keywordSubmit} className={classes.keyButton} />
+          <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
         </form>
 
         <br className={classes.end} />

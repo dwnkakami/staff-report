@@ -34,7 +34,7 @@ exports.getData = (req, res) => {
 }
 
 // const http = require('http');
-// const html = require('fs').readFileSync('../../src/pages/casesearch/CaseSearch.jsx');
+// const html = require('fs').readFileSync('src/pages/casesearch/CaseSearch.jsx');
 
 // http.createServer(function(req,res) {
 
@@ -43,14 +43,14 @@ exports.getData = (req, res) => {
 //     res.end(html);
 
 //   } else if(req.method === 'POST') {
-//     const data = '';
+//     var keydata = '';
 
 //     //POSTデータを受け取る
-//     req.on('data',function(chunk) {data += chunk})
+//     req.on('data',function(chunk) {keydata += chunk})
 //        .on('end',function() {
 
-//         console.log(data);
+//         console.log(keydata);
 //         res.end(html);
 //        })
 //   }
-// }).listen(3000);
+// }).listen(8080);
