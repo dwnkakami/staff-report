@@ -189,12 +189,42 @@ const StaffSearch = () => {
     }
     if(!skill2.value === null){
       const data = data.filter((data) => {
-        return data.name === skill1.value;
+        return data.name === skill2.value;
        });
     }
     if(!skill3.value === null){
       const data = data.filter((data) => {
-        return data.name === skill1.value;
+        return data.name === skill3.value;
+       });
+    }
+    if(!status1.value === null){
+      const data = data.filter((data) => {
+        return data.name === status1.value;
+       });
+    }
+    if(!status2.value === null){
+      const data = data.filter((data) => {
+        return data.name === status2.value;
+       });
+    }
+    if(!status3.value === null){
+      const data = data.filter((data) => {
+        return data.name === status3.value;
+       });
+    }
+    if(!ge.value === null){
+      const data = data.filter((data) => {
+        return data.name === ge.value;
+       });
+    }
+    if(!age.value === null){
+      const data = data.filter((data) => {
+        return data.name === age.value;
+       });
+    }
+    if(!areas.value === null){
+      const data = data.filter((data) => {
+        return data.name === areas.value;
        });
     }
 
