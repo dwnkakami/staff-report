@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     color: '#000000',
+  },
+  name: {
+    color: '#000000',
   }
 }));
 
@@ -104,10 +107,10 @@ export default function CustomizedDialogs() {
       <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
-        </DialogTitle>
+        </DialogTitle> 
         <DialogContent dividers className={classes.dialog}>
         {user.map((data) => (
-          <Typography variant="h5" className={classes.title} key={data.staff_id}>{data.staff_name}</Typography>
+          <Typography variant="h5" className={classes.name} key={data.staff_id}>{data.staff_name}</Typography>
           ))}
         <div>
           <StaffList003_Button />

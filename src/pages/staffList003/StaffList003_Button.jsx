@@ -10,11 +10,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0px 0px 0px 0px',
   },
   ButtonGroup: {
-    margin: '10px 0px 10px 0px',
+    margin: '2px 0px 7px 0px',
     borderRadius: '0px 0px 0px 0px',
   },
   ButtonGroup2: {
-    margin: '10px 0px 10px 0px',
+    margin: '2px 0px 7px 0px',
     borderRadius: '0px 0px 0px 0px',
     float: 'right',
   },
