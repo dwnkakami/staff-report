@@ -17,7 +17,7 @@ import {area} from '../variables/Area';
 import {gender} from '../variables/Gender';
 import {status} from '../variables/Status';
 import {older} from '../variables/Older';
-//import axios from 'axios';
+import axios from 'axios';
 //import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
@@ -130,23 +130,7 @@ const StaffSearch = () => {
     setAge(event.target.value);
   }
 
-  //セレクト項目
-  // const [state, setState] = useState({
-    // sk1: '',
-    // sk2: '',
-    // sk3: '',
-    // st1: '',
-    // st2: '',
-    // st3: '',
-    // ge: '',
-    // areas:'',
-    // older:'',
-  //});
-
-  //セレクト切り替え
-  // const handleChange3 = (event) => {
-  //   setState({ ...state,[event.target.name]: event.target.value});
-  // };
+  const [post,setPost] = useState([]);
 
   //radioボタン
   const [value,setValue]=useState({
@@ -177,310 +161,44 @@ const StaffSearch = () => {
     // setState({state:''});
   };
 
-  // const getUserData = () => {
-  //    axios
-  //      .get('/api/staffsearch/1')
-  //      .then(response => {
-  //       console.log([response.data]);
-  //       })
-  //       .catch(() => {
-  //         console.log('connected error');
-  //       })
-  // }
-
-  const current_data = licenses.filter((data) => {
-    if(license==='ITパスポート'){
-      return data.id === 1;
+  const getUserData = () => {
+    if(post.length === 0){
+     axios
+       .post('/api/staffsearch')
+       .then(response => {
+        console.log([response.data]);
+        setPost(response.data);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
     }
-    if(license==='基本情報技術者'){
-      return data.id === 2;
-    }
-    if(license==='応用情報技術者'){
-      return data.id === 3;
-    }
-    if(license==='システムアーキテクト'){
-      return data.id === 4;
-    }
-    if(license==='ネットワークスペシャリスト'){
-      return data.id === 5;
-    }
-    if(license==='情報処理安全保障支援士'){
-      return data.id === 6;
-    }
-    if(license==='データスペシャリスト'){
-      return data.id === 7;
-    }
-    if(license==='エンべデットスペシャリスト'){
-      return data.id === 8;
-    }
-    if(license==='AWS認定試験'){
-      return data.id === 9;
-    }
-    if(license==='オラクルマスター'){
-      return data.id === 10;
-    }
-  });
-
-  const current_data2 = skill.filter((data) => {
-    if(skill1 === 'Java'){
-    return data.id === 1;
-    }
-    if(skill1 === 'C言語'){
-      return data.id === 2;
-    }
-    if(skill1 === 'C#'){
-      return data.id === 3;
-    }
-    if(skill1 === 'C++'){
-      return data.id === 4;
-    }
-    if(skill1 === 'MySQL'){
-      return data.id === 5;
-    }
-    if(skill1 === 'Ruby'){
-      return data.id === 6;
-    }
-    if(skill1 === 'Oracle'){
-      return data.id === 7;
-    }
-    if(skill1 === 'Python'){
-      return data.id === 8;
-    }
-    if(skill1 === 'JavaScript'){
-      return data.id === 9;
-    }
-    if(skill1 === 'PHP'){
-      return data.id === 10;
-    }
-  });
-
-  const current_data3 = status.filter((data) => {
-    if(status1 === '1'){
-      return data.id === 1;
-    }
-    if(status1 === '2'){
-      return data.id === 2;
-    }
-    if(status1 === '3'){
-      return data.id === 3;
-    }
-    if(status1 === '4'){
-      return data.id === 4;
-    }
-    if(status1 === '5'){
-      return data.id === 5;
-    }
-    if(status1 === '6'){
-      return data.id === 6;
-    }
-    if(status1 === '7'){
-      return data.id === 7;
-    }
-    if(status1 === '8'){
-      return data.id === 8;
-    }
-    if(status1 === '9'){
-      return data.id === 9;
-    }
-    if(status1 === '10'){
-      return data.id === 10;
-    }
-    }); 
-
-  const current_data4 =skill.filter((data)=>{
-    if(skill2 === 'Java'){
-      return data.id === 1;
-      }
-    if(skill2 === 'C言語'){
-        return data.id === 2;
-      }
-    if(skill2 === 'C#'){
-        return data.id === 3;
-      }
-    if(skill2 === 'C++'){
-        return data.id === 4;
-      }
-    if(skill2 === 'MySQL'){
-        return data.id === 5;
-      }
-    if(skill2 === 'Ruby'){
-        return data.id === 6;
-      }
-    if(skill2 === 'Oracle'){
-        return data.id === 7;
-      }
-    if(skill2 === 'Python'){
-        return data.id === 8;
-      }
-    if(skill2 === 'JavaScript'){
-        return data.id === 9;
-      }
-    if(skill2 === 'PHP'){
-        return data.id === 10;
-      }
-  });
-
-  const current_data5 = status.filter((data)=>{
-    if(status2 === '1'){
-      return data.id === 1;
-    }
-    if(status2 === '2'){
-      return data.id === 2;
-    }
-    if(status2 === '3'){
-      return data.id === 3;
-    }
-    if(status2 === '4'){
-      return data.id === 4;
-    }
-    if(status2 === '5'){
-      return data.id === 5;
-    }
-    if(status2 === '6'){
-      return data.id === 6;
-    }
-    if(status2 === '7'){
-      return data.id === 7;
-    }
-    if(status2 === '8'){
-      return data.id === 8;
-    }
-    if(status2 === '9'){
-      return data.id === 9;
-    }
-    if(status2 === '10'){
-      return data.id === 10;
-    }
-  });
-
-  const current_data6 = skill.filter((data)=>{
-    if(skill3 === 'Java'){
-      return data.id === 1;
-      }
-    if(skill3 === 'C言語'){
-        return data.id === 2;
-      }
-    if(skill3 === 'C#'){
-        return data.id === 3;
-      }
-    if(skill3 === 'C++'){
-        return data.id === 4;
-      }
-    if(skill3 === 'MySQL'){
-        return data.id === 5;
-      }
-    if(skill3 === 'Ruby'){
-        return data.id === 6;
-      }
-    if(skill3 === 'Oracle'){
-        return data.id === 7;
-      }
-    if(skill3 === 'Python'){
-        return data.id === 8;
-      }
-    if(skill3 === 'JavaScript'){
-        return data.id === 9;
-      }
-    if(skill3 === 'PHP'){
-        return data.id === 10;
-      }
-  });
-
-  const current_data7 = status.filter((data)=>{
-    if(status3 === '1'){
-      return data.id === 1;
-    }
-    if(status3 === '2'){
-      return data.id === 2;
-    }
-    if(status3 === '3'){
-      return data.id === 3;
-    }
-    if(status3 === '4'){
-      return data.id === 4;
-    }
-    if(status3 === '5'){
-      return data.id === 5;
-    }
-    if(status3 === '6'){
-      return data.id === 6;
-    }
-    if(status3 === '7'){
-      return data.id === 7;
-    }
-    if(status3 === '8'){
-      return data.id === 8;
-    }
-    if(status3 === '9'){
-      return data.id === 9;
-    }
-    if(status3 === '10'){
-      return data.id === 10;
-    }
-  });
-
-  const current_data8 = older.filter((data) => {
-    if(age === '10~20'){
-      return data.id === 1;
-    }
-    else if(age === '21~30'){
-      return data.id === 2;
-    }
-    else if(age === '31~40'){
-      return data.id === 3;
-    }
-    else if(age === '41~50'){
-      return data.id === 4;
-    }
-    else if(age === '51~60'){
-      return data.id === 5;
-    }
-  }); 
-
-  const current_data9 = gender.filter((data) => {
-    if(ge === '男'){
-      return data.id === 1;
-    }
-    if(ge === '女'){
-      return data.id === 2;
-    }
-  });   
-
-  const current_data10 = area.filter((data) => {
-  if(areas === '北海道'){
-    return data.id === 1;
   }
-  if(areas === '東北'){
-    return data.id === 2;
-  }
-  if(areas === '関東'){
-    return data.id === 3;
-  }
-  if(areas === '中部'){
-    return data.id === 4;
-  }
-  if(areas === '近畿'){
-    return data.id === 5;
-  }
-  if(areas === '中国'){
-    return data.id === 6;
-  }
-  if(areas === '九州'){
-    return data.id === 7;
-  }
-  }); 
 
   const Search = () =>{
-    console.log(current_data);
-    console.log(current_data2);
-    console.log(current_data3);
-    console.log(current_data4);
-    console.log(current_data5);
-    console.log(current_data6);
-    console.log(current_data7);
-    console.log(current_data8);
-    console.log(current_data9);
-    console.log(current_data10);
+   let data = getUserData();
+    if(!license.value === null){
+      const data = data.filter((data) => {
+       return data.name === license.value;
+      });
+    }
+    if(!skill1.value === null){
+      const data = data.filter((data) => {
+        return data.name === skill1.value;
+       });
+    }
+    if(!skill2.value === null){
+      const data = data.filter((data) => {
+        return data.name === skill1.value;
+       });
+    }
+    if(!skill3.value === null){
+      const data = data.filter((data) => {
+        return data.name === skill1.value;
+       });
+    }
+
+    console.log(data);
   }
 
   // const state_data = state.filter((data) => {
