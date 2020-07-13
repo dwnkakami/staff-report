@@ -130,7 +130,6 @@ const StaffSearch = () => {
     setAge(event.target.value);
   }
 
-  const [post,setPost] = useState([]);
 
   //radioボタン
   const [value,setValue]=useState({
@@ -162,69 +161,66 @@ const StaffSearch = () => {
   };
 
   const getUserData = () => {
-    if(post.length === 0){
      axios
-       .post('/api/staffsearch')
+       .get('/api/staffsearch/1')
        .then(response => {
         console.log([response.data]);
-        setPost(response.data);
         })
         .catch(() => {
           console.log('connected error');
         })
-    }
   }
 
   const Search = () =>{
-   let data = getUserData();
-    if(!license.value === null){
-      const data = data.filter((data) => {
-       return data.name === license.value;
+    const data = getUserData();
+    if(license !== null){
+     data = data.filter((data) => {
+       return data.name === license;
       });
     }
-    if(!skill1.value === null){
-      const data = data.filter((data) => {
-        return data.name === skill1.value;
+    if(skill1 !== null){
+      data = data.filter((data) => {
+        return data.name === skill1;
        });
     }
-    if(!skill2.value === null){
-      const data = data.filter((data) => {
-        return data.name === skill2.value;
+    if(skill2.value !== null){
+      data = data.filter((data) => {
+        return data.name === skill2;
        });
     }
-    if(!skill3.value === null){
-      const data = data.filter((data) => {
-        return data.name === skill3.value;
+    if(skill3.value !== null){
+      data = data.filter((data) => {
+        return data.name === skill3;
        });
     }
-    if(!status1.value === null){
-      const data = data.filter((data) => {
-        return data.name === status1.value;
+    if(status1.value !== null){
+      data = data.filter((data) => {
+        return data.name === status1;
        });
     }
-    if(!status2.value === null){
-      const data = data.filter((data) => {
-        return data.name === status2.value;
+    if(status2.value !== null){
+      data = data.filter((data) => {
+        return data.name === status2;
        });
     }
-    if(!status3.value === null){
-      const data = data.filter((data) => {
-        return data.name === status3.value;
+    if(status3.value !== null){
+      data = data.filter((data) => {
+        return data.name === status3;
        });
     }
-    if(!ge.value === null){
-      const data = data.filter((data) => {
-        return data.name === ge.value;
+    if(ge.value !== null){
+      data = data.filter((data) => {
+        return data.name === ge;
        });
     }
-    if(!age.value === null){
-      const data = data.filter((data) => {
-        return data.name === age.value;
+    if(age.value !== null){
+      data = data.filter((data) => {
+        return data.name === age;
        });
     }
-    if(!areas.value === null){
-      const data = data.filter((data) => {
-        return data.name === areas.value;
+    if(areas.value !== null){
+      data = data.filter((data) => {
+        return data.name === areas;
        });
     }
 
