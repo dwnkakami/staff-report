@@ -18,7 +18,7 @@ exports.getData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
     
-    const sql = 'SELECT * FROM m_staff AS S1 LEFT OUTER JOIN m_area AS A1 ON S1.area_id = A1.id LEFT OUTER JOIN m_license AS L1 ON S1.id = L1.id LEFT OUTER JOIN m_occupation AS O1 ON S1.occupation_id = O1.id LEFT OUTER JOIN m_company AS C1 ON S1.company_id = C1.id LEFT OUTER JOIN m_skill AS S2 ON S1.id = S2.id LEFT OUTER JOIN m_employment_system AS E1 ON S1.employment_system_id = E1.id LEFT OUTER JOIN t_license_holder AS TI ON S1.id = TI.staff_id LEFT OUTER JOIN t_staff_skill AS TS ON S1.id = TS.staff_id';
+    const sql = 'SELECT S1.id, S1.name, S1.gender, S1.position, S1.age, C1.company_abbreviation, A1.name AS "area", O1.name AS "occupation", L1.name AS "license", S2.name AS "skill" FROM m_staff S1 LEFT JOIN m_company C1 ON S1.company_id = C1.id LEFT JOIN m_area A1 ON S1.area_id = A1.id LEFT JOIN m_occupation O1 ON S1.occupation_id = O1.id LEFT JOIN t_license_holder LH1 ON S1.id = LH1.staff_id LEFT JOIN m_license L1 ON LH1.license_id = L1.id LEFT JOIN t_staff_skill SS1 ON S1.id = SS1.staff_id LEFT JOIN m_skill S2 ON SS1.skill_id = S2.id;'+req;
     console.log(sql);
     con.query(sql, (err, result, fields) => {
       if (err) throw err;

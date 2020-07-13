@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 //import Typography from '@material-ui/core/Typography';
@@ -35,15 +33,47 @@ const useStyles = makeStyles((theme) => ({
   formControl3: {
     margin: theme.spacing(1),
     minWidth: 120,
-    left: 400,
-    top:-120,
+    left: 435,
+    top:30,
   },
 
   formControl4: {
     margin: theme.spacing(1),
     minWidth: 120,
-    left: 80,
-    top:-120,
+    left: 0,
+    top:20,
+  },
+
+  formControl5: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: -272,
+    top:80,
+  },
+
+  formControl6: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: -545,
+    top:160,
+  },
+  formControl7: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    top:150,
+  },
+  formControl8: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: 28,
+    top:80,
+  },
+
+  formControl9: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    left: -244,
+    top:160,
   },
 
   selectEmpty: {
@@ -130,17 +160,7 @@ const StaffSearch = () => {
     setAge(event.target.value);
   }
 
-
-  //radioボタン
-  const [value,setValue]=useState({
-    radioA: '',
-    radioB: '',
-  });
-
-  //radioボタン切り替え
-  const handleChange5 = (event) => {
-    setValue({ ...value,[event.target.name]: event.target.value});
-  };
+  const [post,setPost]=useState([]);
 
   //リセット機能
   const Reset = () => {
@@ -156,80 +176,77 @@ const StaffSearch = () => {
     setAreas({areas:''});
     setGe({ge:''});
     setAge({age:''});
-    setValue({value:''});
-    // setState({state:''});
   };
 
   const getUserData = () => {
+    if(post.length === 0){
      axios
        .get('/api/staffsearch/1')
        .then(response => {
         console.log([response.data]);
+        setPost(response.data);
         })
         .catch(() => {
           console.log('connected error');
         })
+    }
   }
 
   const Search = () =>{
     const data = getUserData();
     if(license !== null){
      data = data.filter((data) => {
-       return data.name === license;
+       return data.name === license.value;
       });
     }
     if(skill1 !== null){
       data = data.filter((data) => {
-        return data.name === skill1;
+        return data.name === skill1.value;
        });
     }
     if(skill2.value !== null){
       data = data.filter((data) => {
-        return data.name === skill2;
+        return data.name === skill2.value;
        });
     }
     if(skill3.value !== null){
       data = data.filter((data) => {
-        return data.name === skill3;
+        return data.name === skill3.value;
        });
     }
     if(status1.value !== null){
       data = data.filter((data) => {
-        return data.name === status1;
+        return data.name === status1.value;
        });
     }
     if(status2.value !== null){
       data = data.filter((data) => {
-        return data.name === status2;
+        return data.name === status2.value;
        });
     }
     if(status3.value !== null){
       data = data.filter((data) => {
-        return data.name === status3;
+        return data.name === status3.value;
        });
     }
     if(ge.value !== null){
       data = data.filter((data) => {
-        return data.name === ge;
+        return data.name === ge.value;
        });
     }
     if(age.value !== null){
       data = data.filter((data) => {
-        return data.name === age;
+        return data.name === age.value;
        });
     }
     if(areas.value !== null){
       data = data.filter((data) => {
-        return data.name === areas;
+        return data.name === areas.value;
        });
     }
 
     console.log(data);
   }
-
-  // const state_data = state.filter((data) => {
-  //   return data.id === state;
-  // });
 
   return (
     <div>
@@ -364,23 +381,8 @@ const StaffSearch = () => {
         </Select>
       </FormControl>
 
-    {/* 絞り込みボタン */}
-    <RadioGroup row aria-label="position"  name="radioA" value={value.radioA} onChange={handleChange5} defaultValue="top">
-        <FormControlLabel
-          value="and"
-          control={<Radio color="primary" />}
-          label="and"
-        />
-
-        <FormControlLabel
-          value="or"
-          control={<Radio color="primary" />}
-          label="or"
-        />
-    </RadioGroup>
-
     {/* スキル情報２ */}
-    <FormControl variant="filled" className={classes.formControl1}>
+    <FormControl variant="filled" className={classes.formControl5}>
         <Select
           value={skill2}
           onChange={Skill2Change}
@@ -398,7 +400,7 @@ const StaffSearch = () => {
       </FormControl>
 
       {/* ステータス2 */}
-      <FormControl variant="filled" className={classes.formControl2}>
+      <FormControl variant="filled" className={classes.formControl8}>
         <Select
           value={status2}
           onChange={Status2Change}
@@ -414,24 +416,9 @@ const StaffSearch = () => {
           ))}
         </Select>
       </FormControl>
-    
-     {/* 絞り込みボタン */}
-     <RadioGroup row aria-label="position"  name="radioB" value={value.radioB} onChange={handleChange5} defaultValue="top">
-        <FormControlLabel
-          value="and"
-          control={<Radio color="primary" />}
-          label="and"
-        />
-
-        <FormControlLabel
-          value="or"
-          control={<Radio color="primary" />}
-          label="or"
-        />
-    </RadioGroup>
 
     {/* スキル情報３ */}
-    <FormControl variant="filled" className={classes.formControl1}>
+    <FormControl variant="filled" className={classes.formControl6}>
         <Select
           value={skill3}
           onChange={Skill3Change}
@@ -449,7 +436,7 @@ const StaffSearch = () => {
       </FormControl>
 
       {/* ステータス3 */}
-      <FormControl variant="filled" className={classes.formControl2}>
+      <FormControl variant="filled" className={classes.formControl9}>
         <Select
           value={status3}
           onChange={Status3Change}
@@ -467,13 +454,7 @@ const StaffSearch = () => {
       </FormControl>
 
     <p class='older'>年齢</p>
-    {/* <form className={classes.root} noValidate autoComplete="off">
-      <TextField id="outlined-basic" variant="outlined" 
-        onChange={handleChange4}
-        value={text.label}
-      />
-    </form> */}
-     <FormControl variant="filled" className={classes.formControl1}>
+     <FormControl variant="filled" className={classes.formControl7}>
         <Select
           value={age}
           onChange={ageChange}
