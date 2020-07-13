@@ -9,11 +9,11 @@ app.use(bodyParser.json());
 
 exports.postData = (req, res) => {
     const mysql = require('mysql');
-    let value = {
-        id: req.body.id,
-        name: req.name.id,
-        role_id: req.name.role_id
-    }
+    // let req = {
+    //     'id': req.body.id,
+    //     'name': req.body.name,
+    //     'role_id': req.body.role_id
+    // }
 
     const con = mysql.createConnection({
         host: 'localhost',
@@ -26,9 +26,11 @@ exports.postData = (req, res) => {
         console.log('Connected!');
 
         const sql = "insert into m_user values(?, ?, ?)"
-        con.query(sql,[value.id, value.name, value.role_id], (err, result, fields) => {
+        console.log(req.body);
+        con.query(sql,[req.body.id, req.body.name, req.body.role_id], (err, result, fields) => {
             if (err) throw err;
-            res.send(value);
+            
+            res.send('Success!!');
         });
     });
 }

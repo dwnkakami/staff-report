@@ -23,14 +23,10 @@ const Sample = () => {
     };
 
     const submit = () => {
-        const newValue = [];
-
-        newValue.push(
-            {"id":userId, "name":name, "role_id":role}
-        );
+        const newValue = {id:userId, name:name, role_id:role};
 
         axios
-            .post('/api/sample',newValue)
+            .post('/api/sample', newValue)
             .then(response => {
                 console.log(response.data);
             })

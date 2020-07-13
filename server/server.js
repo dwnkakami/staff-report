@@ -68,7 +68,7 @@ app.get('/api/referencelist/:condition',(req,res) => {
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
 });
-app.post('/api/sample',(req, res) => {
+app.post('/api/sample',(req, res) => {  
     sample.postData(req, res);
 });
 
