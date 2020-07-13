@@ -17,8 +17,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 // import './StaffList001.css';
-// import App from './App';
-import App3 from './pages/stafflist/App3';
+// import App from '../../components/App';
+import App3 from './App3';
 import axios from 'axios';
 
 ReactDOM.render(<App3 />, document.getElementById('root'));
