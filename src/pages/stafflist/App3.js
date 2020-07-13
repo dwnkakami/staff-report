@@ -1,4 +1,3 @@
-import './StaffList001 copy';
 import React, {Component} from 'react';
 class App extends Component {
     constructor() {

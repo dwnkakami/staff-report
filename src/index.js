@@ -5,6 +5,7 @@ import { CssBaseline } from "@material-ui/core";
 
 import Themes from "./themes";
 import App from "./components/App";
+import App3 from "../src/pages/stafflist/App3";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
@@ -15,6 +16,7 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         <App />
+        <App3 />
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
