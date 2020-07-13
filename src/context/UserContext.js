@@ -47,7 +47,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
 
 // ###########################################################
 
@@ -79,7 +79,8 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
         }
         })
         .catch(() => {
-          setError(true);
+          setError(true)
+          setIsLoading(false)
           console.log('getData error');
         })
 
@@ -103,4 +104,24 @@ function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
   history.push("/login");
+}
+
+function registerUser(dispatch, password, history, setIsLoading, setError) {
+  setError(false);
+  setIsLoading(true);
+
+  if (!!password) {
+    setTimeout(() => {
+      localStorage.setItem('id_token', 1)
+      setError(null)
+      setIsLoading(false)
+      dispatch({ type: 'LOGIN_SUCCESS' })
+
+      history.push('/staff-report/dashboard')
+    }, 2000);
+  } else {
+    dispatch({ type: "LOGIN_FAILURE" });
+    setError(true);
+    setIsLoading(false);
+  }
 }

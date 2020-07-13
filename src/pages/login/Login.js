@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   CircularProgress,
@@ -12,17 +12,19 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle
+  DialogTitle,
+  MenuItem
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
-import classnames from "classnames";
+import axios from "axios";
+// import classnames from "classnames";
 
 // styles
 import useStyles from "./styles";
 
 // logo
 import logo from "./logo.svg";
-import google from "../../images/google.svg";
+// import google from "../../images/google.svg";
 
 // context
 import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
@@ -33,21 +35,61 @@ function Login(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
+    const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
+
+    axios
+        .post('/api/register', newValue)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(() => {
+            console.log('submit error');
+        })
+
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  // const submitAction = () => {
-  //   registerUser(
-  //     userDispatch,
-  //     passwordValue,
-  //     props.history,
-  //     setIsLoading,
-  //     setError,
-  //   )
-  // }
+  const submitAction = () => {
+    registerUser(
+      userDispatch,
+      passwordValue,
+      props.history,
+      setIsLoading,
+      setError,
+    )
+  }
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => getRoleData());
+
+  const getRoleData = () =>{
+    if (posts.length === 0) {
+      axios
+        .get('/api/role/1')
+        .then(response => {
+          console.log([response.data]);
+          setPosts(response.data);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [role, setRole] = useState("")
+
+  // const handleChange = (event) => {
+  //   setRole(event.target.value);
+  // };
+
+ 
+
+
+
 
   var classes = useStyles();
 
@@ -61,6 +103,20 @@ function Login(props) {
   var [nameValue, setNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
+
+//   const submit = () => {
+//     const newValue = {id:loginValue, name:nameValue, role_id:role};
+
+//     axios
+//         .post('/api/sample', newValue)
+//         .then(response => {
+//             console.log(response.data);
+//         })
+//         .catch(() => {
+//             console.log('submit error');
+//         })
+// };
+
 
   return (
     <Grid container className={classes.container}>
@@ -175,6 +231,21 @@ function Login(props) {
                 </Typography>
               </Fade>
               <TextField
+                id="id"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={loginValue}
+                onChange={e => setLoginValue(e.target.value)}
+                margin="normal"
+                placeholder="ユーザーID"
+                type="text"
+                fullWidth
+              />
+              <TextField
                 id="name"
                 InputProps={{
                   classes: {
@@ -185,7 +256,7 @@ function Login(props) {
                 value={nameValue}
                 onChange={e => setNameValue(e.target.value)}
                 margin="normal"
-                placeholder="ユーザーID"
+                placeholder="ユーザー名"
                 type="text"
                 fullWidth
               />
@@ -219,6 +290,20 @@ function Login(props) {
                 type="password"
                 fullWidth
               />
+              <TextField
+          id="standard-select-currency"
+          select
+          label="Select"
+          value={role}
+          onChange={e => setRole(e.target.value)}
+          helperText="役割を選んでください"
+        >
+          {posts.map((option) => (
+            <MenuItem key={option.id} value={option.id}>
+              {option.name}
+            </MenuItem>
+          ))}
+        </TextField>
               <div className={classes.creatingButtonContainer}>
                 {isLoading ? (
                   <CircularProgress size={26} />
@@ -228,7 +313,7 @@ function Login(props) {
                       handleClickOpen()
                       // loginUser(
                       //   userDispatch,
-                      //   // loginValue,
+                      //   loginValue,
                       //   passwordValue,
                       //   props.history,
                       //   setIsLoading,
@@ -269,7 +354,7 @@ function Login(props) {
                   <Button onClick={handleClose} color="primary">
                     キャンセル
                   </Button>
-                  <Button  color="primary">
+                  <Button  onClick={submitAction} color="primary">
                     確認
                   </Button>
                 </DialogActions>
