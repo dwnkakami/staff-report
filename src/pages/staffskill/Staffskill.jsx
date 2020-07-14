@@ -9,9 +9,11 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+// import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
 import Staffskill2 from './Staffskill2';
+import Staffskillbotton from './Staffskillbotton';
+
 const styles = (theme) => ({
   root: {
     margin: 5,
@@ -109,7 +111,8 @@ export default function CustomizedDialogs() {
          </DialogTitle>
         <DialogContent dividers>
         <Typography variant="h6">テスト太郎</Typography>
-        <div>
+        <Staffskillbotton />
+        {/* <div>
         <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
         <Button className={classes.Button}>スキル</Button>
         <Button className={classes.Button}>経歴</Button>
@@ -118,7 +121,7 @@ export default function CustomizedDialogs() {
       </ButtonGroup>
       <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
       <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
-      </div>
+      </div> */}
       <div>
       <Staffskill2 />
       </div>
