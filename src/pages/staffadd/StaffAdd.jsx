@@ -74,7 +74,7 @@ const handleChange = e => {
 
 const submit = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company:company, area:area, occupation:occupation, employment:employment}
+    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment}
 
     axios
         .post('/api/staffadd', newValue)
