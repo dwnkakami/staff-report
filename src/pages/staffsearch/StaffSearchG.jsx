@@ -196,24 +196,16 @@ const StaffSearch = () => {
       searchData = data.filter(item => item.license === license);
     }
     // if(skill1 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === skill1;
-    //    });
+    //   searchData = data.filter(item => item.skill === skill1);
     // }
     // if(skill2 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === skill2;
-    //    });
+    //   searchData = data.filter(item => item.skill === skill2);
     // }
     // if(skill3 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === skill3;
-    //    });
+    //   searchData = data.filter(item => item.skill === skill3);
     // }
     // if(status1 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === status1.value;
-    //    });
+    //   searchData = data.filter(item => item.status === status1);
     // }
     // if(status2 !== null){
     //   data = data.filter((data) => {
@@ -226,26 +218,20 @@ const StaffSearch = () => {
     //    });
     // }
     // if(ge !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === ge;
-    //    });
+    //   searchData = data.filter(item => item.gender === ge);
     // }
     // if(age !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === age;
-    //    });
+    //   searchData = data.filter(item => item.age === age);
     // }
     // if(areas !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === areas;
-    //    });
+    //   searchData = data.filter(item => item.area === areas);
     // }
 
     console.log(searchData);
   }
 
   return (
-    <div>
+    <div class='body'>
     <Card class='paper'>
     <p class='font'>スタッフ検索</p>
     <p class='font'>職種</p>
