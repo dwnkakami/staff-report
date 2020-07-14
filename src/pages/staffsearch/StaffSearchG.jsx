@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -178,7 +178,7 @@ const StaffSearch = () => {
     setAge({age:''});
   };
 
-  const getUserData = () => {
+  useEffect(() => {
 
      axios
        .get('/api/staffsearch')
@@ -188,19 +188,12 @@ const StaffSearch = () => {
         .catch(() => {
           console.log('connected error');
         })
-  }
+  },[]);
 
   const Search = () =>{
-    getUserData();
     let searchData = [];
     if(license !== null){
-
-      console.log(license);
-     searchData = data.filter((data) => {
-      console.log(data.license);
-       return data.license === license;
-      });
-      setData(searchData);
+      searchData = data.filter(item => item.license === license);
     }
     // if(skill1 !== null){
     //   data = data.filter((data) => {
@@ -248,7 +241,7 @@ const StaffSearch = () => {
     //    });
     // }
 
-    console.log(data);
+    console.log(searchData);
   }
 
   return (
