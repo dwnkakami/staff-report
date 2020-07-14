@@ -27,13 +27,13 @@ import Charts from "../../pages/charts";
 // import StaffSearch from "../../pages/staffsearch/StaffSearch";
 // import StaffAdd from "../../pages/staffadd/StaffAdd";
 
-//import CaseList from "../../pages/caselist/CaseList";
-//import CaseSearch from "../../pages/casesearch/CaseSearch";
-//import CaseAdd from "../../pages/caseadd/CaseAdd";
+// import CaseList from "../../pages/caselist/CaseList";
+// import CaseSearch from "../../pages/casesearch/CaseSearch";
+// import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-//import ReferenceList from "../../pages/referencelist/ReferenceList";
+// import ReferenceList from "../../pages/referencelist/ReferenceList";
 
-//import Billing from "../../pages/billing/Billing";
+// import Billing from "../../pages/billing/Billing";
 
 
 // context
