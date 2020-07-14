@@ -32,7 +32,10 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: theme.palette.action.hover,
+            backgroundColor: "#fff"
+        },
+        '&:nth-of-type(even)': {
+            backgroundColor: "#eee"
         },
     },
 }))(TableRow);
@@ -66,7 +69,7 @@ function stableSort(array, comparator) {
 const headCells = [
     { id: 'name', numeric: false, disablePadding: true, label: '案件名' },
     { id: 'staff_name', numeric: true, disablePadding: false, label: 'スタッフ名' },
-    { id: 'coustomer', numeric: true, disablePadding: false, label: '発注元会社' },
+    { id: 'customer_abbreviation', numeric: true, disablePadding: false, label: '発注元会社' },
     { id: 'status', numeric: true, disablePadding: false, label: '状態' },
     { id: 'detail', numeric: true, disablePadding: false, label: '詳細' },
 ];
@@ -108,11 +111,6 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
     classes: PropTypes.object.isRequired,
-    numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    onSelectAllClick: PropTypes.func.isRequired,
-    order: PropTypes.oneOf(['asc', 'desc']).isRequired,
-    orderBy: PropTypes.string.isRequired,
     rowCount: PropTypes.number.isRequired,
 };
 
@@ -142,12 +140,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ReferenceList() {
     const classes = useStyles();
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => getReferenceData());
+    useEffect(() => { getReferenceData(); console.log("connected") },[]);
 
     const getReferenceData = () => {
         if (posts.length === 0) {
@@ -162,22 +157,6 @@ export default function ReferenceList() {
                 })
         }
     }
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
-
-    const handleSelectAllClick = (event) => {
-        if (event.target.checked) {
-            const newSelecteds = posts.map((n) => n.name);
-            setSelected(newSelecteds);
-            return;
-        }
-        setSelected([]);
-    };
-
-    const isSelected = (name) => selected.indexOf(name) !== -1;
 
     return (
         <Paper elevation={3} >
@@ -187,34 +166,26 @@ export default function ReferenceList() {
                     <Typography style={{ fontSize: '30px' }}>引合リスト</Typography>
                 </div>
             </DialogTitle>
-
+​
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <TableContainer>
-                        <Grid container spacing={24} justify={"center"}>
+                        <Grid container justify={"center"}>
                             <Grid className="table1">
                                 <Table
                                     className={classes.table}
                                 >
                                     <EnhancedTableHead
                                         classes={classes}
-                                        numSelected={selected.length}
-                                        order={order}
-                                        orderBy={orderBy}
-                                        onSelectAllClick={handleSelectAllClick}
-                                        onRequestSort={handleRequestSort}
                                         rowCount={posts.length}
                                     />
                                     <TableBody>
-                                        {stableSort(posts, getComparator(order, orderBy))
-                                            .map((data, index) => {
-                                                const isItemSelected = isSelected(data.id);
-
+                                        {stableSort(posts, getComparator())
+                                            .map((data) => {
                                                 return (
-                                                    <TableRow
+                                                    <StyledTableRow
                                                         hover
-                                                        // onClick={(event) => handleClick(event, data.id)}
-                                                        selected={isItemSelected}
+                                                        key={data.id}
                                                     >
                                                         <TableCell align="center">{data.name}</TableCell>
                                                         <TableCell align="center">{data.staff_name}</TableCell>
@@ -223,7 +194,7 @@ export default function ReferenceList() {
                                                         <TableCell align="center">
                                                             <ReferenceDetail />
                                                         </TableCell>
-                                                    </TableRow>
+                                                    </StyledTableRow>
                                                 );
                                             })}
                                     </TableBody>

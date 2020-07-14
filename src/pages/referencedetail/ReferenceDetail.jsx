@@ -46,7 +46,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function ReferenceDetail(props) {
+export default function ReferenceDetail() {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -58,9 +58,9 @@ export default function ReferenceDetail(props) {
 
   const [user, setUser] = useState([]);
 
-  useEffect(() => getCasedetailData());
-
-  const getCasedetailData = () => {
+  useEffect(() => { getReferenceData(); console.log("connected") },[]);
+  
+  const getReferenceData = () => {
     if (user.length === 0) {
       axios
         .get('/api/referencedetail/1')
