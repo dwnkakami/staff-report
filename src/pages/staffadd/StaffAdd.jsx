@@ -5,6 +5,7 @@ import { Typography, DialogTitle } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
+import DatePickers from './DatePickers';
 
 export default function StaffAdd () {
 
@@ -103,7 +104,7 @@ const submit = () => {
             <Typography>役職</Typography>
             <TextField variant="outlined" name="position" value={position} onChange={handleChange}/>
             <Typography>入社日</Typography>
-            <TextField variant="outlined" name="join" value={join} onChange={handleChange}/>
+            <DatePickers variant="outlined" name="join" value={join} onChange={handleChange}/>
             <Typography>生年月日</Typography>
             <TextField variant="outlined" name="birthday" value={birthday} onChange={handleChange}/>
             <Typography>年齢</Typography>
