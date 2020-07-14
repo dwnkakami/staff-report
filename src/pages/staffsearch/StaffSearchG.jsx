@@ -160,7 +160,7 @@ const StaffSearch = () => {
     setAge(event.target.value);
   }
 
-  const [post,setPost]=useState([]);
+  const[data,setData] = useState([]);
 
   //リセット機能
   const Reset = () => {
@@ -179,71 +179,74 @@ const StaffSearch = () => {
   };
 
   const getUserData = () => {
-    if(post.length === 0){
+
      axios
-       .get('/api/staffsearch/1')
+       .get('/api/staffsearch')
        .then(response => {
-        console.log([response.data]);
-        setPost(response.data);
+        setData(response.data);
         })
         .catch(() => {
           console.log('connected error');
         })
-    }
   }
 
   const Search = () =>{
-    const data = getUserData();
+    getUserData();
+    let searchData = [];
     if(license !== null){
-     data = data.filter((data) => {
-       return data.name === license.value;
+
+      console.log(license);
+     searchData = data.filter((data) => {
+      console.log(data.license);
+       return data.license === license;
       });
+      setData(searchData);
     }
-    if(skill1 !== null){
-      data = data.filter((data) => {
-        return data.name === skill1.value;
-       });
-    }
-    if(skill2.value !== null){
-      data = data.filter((data) => {
-        return data.name === skill2.value;
-       });
-    }
-    if(skill3.value !== null){
-      data = data.filter((data) => {
-        return data.name === skill3.value;
-       });
-    }
-    if(status1.value !== null){
-      data = data.filter((data) => {
-        return data.name === status1.value;
-       });
-    }
-    if(status2.value !== null){
-      data = data.filter((data) => {
-        return data.name === status2.value;
-       });
-    }
-    if(status3.value !== null){
-      data = data.filter((data) => {
-        return data.name === status3.value;
-       });
-    }
-    if(ge.value !== null){
-      data = data.filter((data) => {
-        return data.name === ge.value;
-       });
-    }
-    if(age.value !== null){
-      data = data.filter((data) => {
-        return data.name === age.value;
-       });
-    }
-    if(areas.value !== null){
-      data = data.filter((data) => {
-        return data.name === areas.value;
-       });
-    }
+    // if(skill1 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === skill1;
+    //    });
+    // }
+    // if(skill2 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === skill2;
+    //    });
+    // }
+    // if(skill3 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === skill3;
+    //    });
+    // }
+    // if(status1 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === status1.value;
+    //    });
+    // }
+    // if(status2 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === status2;
+    //    });
+    // }
+    // if(status3 !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === status3;
+    //    });
+    // }
+    // if(ge !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === ge;
+    //    });
+    // }
+    // if(age !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === age;
+    //    });
+    // }
+    // if(areas !== null){
+    //   data = data.filter((data) => {
+    //     return data.name === areas;
+    //    });
+    // }
 
     console.log(data);
   }

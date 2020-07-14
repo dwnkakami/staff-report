@@ -8,7 +8,7 @@ const stafflist002 = require('./modules/stafflist002.jsx');
 const stafflist003 = require('./modules/stafflist003.jsx');
 const stafflist004 = require('./modules/stafflist004.jsx');
 const stafflist005 = require('./modules/stafflist005.jsx');
-const staffsearch = require('./modules/staffsearch.jsx');
+const staffsearch = require('./modules/staffsearch.js');
 const staffadd = require('./modules/staffadd.jsx');
 const caselist = require('./modules/caselist.jsx');
 const casedetail = require('./modules/casedetail.jsx');
@@ -43,8 +43,8 @@ app.get('/api/stafflist004/:condition',(req,res) => {
 app.get('/api/stafflist005/:condition',(req,res) => {
     stafflist005.getData(req.params.condition,res);
 });
-app.get('/api/staffsearch/:condition',(req,res) => {
-    staffsearch.getData(req.params.condition,res);
+app.get('/api/staffsearch',(req,res) => {
+    staffsearch.getData(req,res);
 });
 app.get('/api/staffadd/:condition',(req,res) => {
     staffadd.getData(req.params.condition,res);
