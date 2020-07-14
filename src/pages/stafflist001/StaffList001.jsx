@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 // import TextField from '@material-ui/core/TextField';
 // import SearchIcon from '@material-ui/icons/Search';
-import StafList005 from '../staffList005/StaffList005.jsx';
+import StaffList005 from '../staffList005/StaffList005.jsx';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -259,6 +259,8 @@ return(
                       onClick={(event) => handleClick(event, data.id)}
                       selected={isItemSelected}
                     >
+                      <StaffList005 />
+
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
