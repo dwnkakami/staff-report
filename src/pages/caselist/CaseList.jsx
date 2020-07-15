@@ -1,6 +1,4 @@
-import React
-// , { useState, useEffect } 
-from "react";
+import React, { useState, useEffect }from "react";
 import Paper from '@material-ui/core/paper';
 import './CaseListCSS.css';
 import Typography from '@material-ui/core/Typography';
@@ -15,6 +13,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import { Grid } from '@material-ui/core';
+
+import axios from 'axios';
 
 // const styles = (theme) => ({
 //   root: {
@@ -60,18 +60,6 @@ const StyledTableRow = withStyles(() => ({
       },
   },
 }))(TableRow);
-
-  function createData(number, casename, customerid, uni_cost, workplace, number_of_persons, matter_start, matter_end) {
-    return { number, casename, customerid, uni_cost, workplace, number_of_persons, matter_start, matter_end };
-  }
-  
-  const Case = [
-    createData(1, '金融システム開発プロジェクト', 1, '350000~400000', '渋谷', 2, '2020/06/01', '2020/08/31'),
-    createData(2, 'ゲーム開発プロジェクト', 2, '380000~420000', '新宿', 3, '2020/07/10', '2020/09/10'),
-    createData(3, 'ホームページのリデザイン', 3, '280000~330000', '神保町', 2, '2020/06/20', '2020/07/31'),
-    createData(4, 'ＡＢＣ開発プロジェクト',4, '350000~400000', '神田', 1, '2020/07/01', '2020/08/10'),
-    createData(5, 'テスト開発プロジェクト', 1, '350000~390000', '新宿', 3, '2020/07/01', '2020/09/30'),
-  ];
   
   const useStyles = makeStyles({
     table: {
@@ -82,7 +70,7 @@ const StyledTableRow = withStyles(() => ({
   export default function CaseList() {
     const classes = useStyles();
 
-  //   handleSortByAscend((key) => {
+  //   const handleSortByAscend = (key) => {
   //     const line = this.state.data.sort((a, b) => {
   //      if (a[key] < b[key]) return -1;
   //      if (a[key] > b[key]) return 1;
@@ -91,9 +79,9 @@ const StyledTableRow = withStyles(() => ({
   //     this.setState({
   //       data: line
   //     });
-  //   });
+  //   };
 
-  //  handleSortByDescend((key) => {
+  //   const handleSortByDescend = (key) => {
   //     const line = this.state.data.sort((a, b) => {
   //       if (a[key] < b[key]) return 1;
   //       if (a[key] > b[key]) return -1;
@@ -102,7 +90,7 @@ const StyledTableRow = withStyles(() => ({
   //     this.setState({
   //       data: line
   //     });
-  //   });
+  //   };
 
   //   let list = this.state.data.map((data) => (
   //     <li key={data.id}>
@@ -140,6 +128,24 @@ const StyledTableRow = withStyles(() => ({
   //     }
   //   }
 
+  const[Caselistmap ,setCaselist] = useState([]);
+
+  useEffect(() => getCaselistData());
+
+  const getCaselistData = () => {
+    if(Caselistmap.length === 0){
+    axios
+      .get('/api/caselist/1')
+      .then(response =>{
+        console.log('Accept')
+        setCaselist(response.data);
+      })
+      .catch(() => {
+       console.log('connected error');
+      })
+    }
+  }
+
   return(
     <Paper elevation={3} className='paper1'>
        <div className='title' style={{ display: 'flex' }}>
@@ -166,22 +172,21 @@ const StyledTableRow = withStyles(() => ({
               <StyledTableCell align="left">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
+          {Caselistmap.map((data) => (
           <TableBody>
-            {Case.map((row) => (
-              <StyledTableRow key={row.number}>
-                <StyledTableCell component="th" scope="row">
-                  {row.number}
+                <StyledTableRow key={data.id}/>
+                <StyledTableCell classname="tablecell" component="th" scope="row">
+                  {data.id}
                 </StyledTableCell>
-                <StyledTableCell align="left"><a href='https://www.google.com'>{row.casename}</a></StyledTableCell>
-                <StyledTableCell align="left">{row.customerid}</StyledTableCell>
-                <StyledTableCell align="left">{row.uni_cost}</StyledTableCell>
-                <StyledTableCell align="left">{row.workplace}</StyledTableCell>
-                <StyledTableCell align="left">{row.number_of_persons}</StyledTableCell>
-                <StyledTableCell align="left">{row.matter_start}</StyledTableCell>
-                <StyledTableCell align="left">{row.matter_end}</StyledTableCell>
-              </StyledTableRow>
-            ))}
+                <StyledTableCell classname="tablecell" align="left"><a href='https://www.google.com'>{data.name}</a></StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.customer_id}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.unit_cost}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.workplace}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
           </TableBody>
+          ))}
        </Table>
         </Grid>
       </Grid>

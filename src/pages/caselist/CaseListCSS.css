@@ -1,7 +1,7 @@
 .paper1 {
     position: relative;
     margin: -10px;
-    min-height:10vh; 
+    min-height:1vh; 
 }
 
 .table1{
@@ -10,4 +10,9 @@
     border-spacing: 0;
     table-layout: fixed;
     margin: 30px;
+}
+
+.tablecell{
+    position: relative;
+    min-height: 1vh;
 }
