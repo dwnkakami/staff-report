@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -105,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   paper1: {
     position: 'relative',
     width: 'auto',
-    minWidth: '50%',
+    minWidth: '80%',
     margin: '-10px',
     height: 'auto',
     minHeight: '120vh',
@@ -120,7 +121,73 @@ export default function LayoutTextFields() {
     name: 'hai',
   });
 
-;
+   const [name,setName] = useState("");
+   const [com,setCom] = useState("");
+   const [money,setMoney] = useState("");
+   const [place,setPLace] = useState ("");
+   const [persons,setPersons] = useState ("");
+   const [skill1,setSkill1] = useState ("");
+   const [skill2,setSkill2] = useState ("");
+   const [skill3,setSkill3] = useState ("");
+   const[date, setDate] = useState ("");
+   const [contents, setContents] = useState ("");
+   const [skillcontents,setSkillcontents] = useState ("");
+
+   const handleChange = e => {
+    switch (e.target.name) {
+        case 'name':
+            setName(e.target.value);
+            break;
+        case 'com':
+            setCom(e.target.value);
+            break;
+        case 'money':
+            setMoney(e.target.value);
+            break;
+         case 'place':
+            setPLace(e.target.value);
+            break;
+         case 'persons' :
+            setPersons(e.target.value);
+             break;
+         case 'skill1':
+            setSkill1(e.target.value);
+            break;
+        case 'skill2':
+            setSkill2(e.target.value);
+            break;
+        case 'skill3':
+            setSkill3(e.target.value);
+            break;
+         case 'date':
+            setDate(e.target.value);
+            break;
+         case 'contents' :
+            setContents(e.target.value);
+            break;
+         case 'skillcontents' :
+            setSkillcontents(e.target.value);
+            break;
+        default:
+            console.log('text not found');
+    }
+  
+  };
+
+  const submit = () => {
+    const newValue = {name:name, customer_id:com, unit_cost:money, workplace:place, number_of_persons:persons, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:date, business_content:contents, note:skillcontents};
+
+
+    axios
+        .post('/api/sample', newValue)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(() => {
+            console.log('submit error');
+        })
+};
+
 
   const handleChange2 = (event) => {
     const name = event.target.name;
@@ -132,127 +199,14 @@ export default function LayoutTextFields() {
 
   return (
     <div className={classes.root}>
+     
       <div>
-        <TextField
-          id="standard-full-width"
-          label="Label"
-          style={{ margin: 8 }}
-          placeholder="Placeholder"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-        <TextField
-          label="None"
-          id="margin-none"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-        />
-        <TextField
-          label="Dense"
-          id="margin-dense"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="dense"
-        />
-        <TextField
-          label="Normal"
-          id="margin-normal"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="normal"
-        />
       </div>
       <div>
-        <TextField
-          id="filled-full-width"
-          label="Label"
-          style={{ margin: 8 }}
-          placeholder="Placeholder"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="filled"
-        />
-        <TextField
-          label="None"
-          id="filled-margin-none"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          variant="filled"
-        />
-        <TextField
-          label="Dense"
-          id="filled-margin-dense"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="dense"
-          variant="filled"
-        />
-        <TextField
-          label="Normal"
-          id="filled-margin-normal"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="normal"
-          variant="filled"
-        />
-      </div>
-      <div>
-        <TextField
-          id="outlined-full-width"
-          label="Label"
-          style={{ margin: 8 }}
-          placeholder="Placeholder"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          variant="outlined"
-        />
-        <TextField
-          label="None"
-          id="outlined-margin-none"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          variant="outlined"
-        />
-        <TextField
-          label="Dense"
-          id="outlined-margin-dense"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="dense"
-          variant="outlined"
-        />
-        <TextField
-          label="Normal"
-          id="outlined-margin-normal"
-          defaultValue="Default Value"
-          className={classes.textField}
-          helperText="Some important text"
-          margin="normal"
-          variant="outlined"
-        />
+        
       </div>
       <Paper elevation={3} className = {classes.paper1}>
-    <form action="jdbc:sqlserver://[localhost[:4000]"className={classes.root2} noValidate autoComplete="off">
+    <form className={classes.root2} noValidate autoComplete="off" method="POST">
       <div>
       <div>
       <Typography className={classes.h1} variant="h2" gutterBottom>
@@ -260,28 +214,32 @@ export default function LayoutTextFields() {
       </Typography>
       </div>
       <div >
-      <TextField  id="name" label="案件名" variant="outlined" />
-      <TextField  id="" label="案件保有会社" variant="outlined" />
+      <TextField input type="text" name="name" label="案件名" variant="outlined" value={name} onChange={handleChange} />
+      <TextField input type="text" name="com" label="案件保有会社" variant="outlined" value={com} onChange={handleChange} />
       </div>
       <div>
       <TextField
-          id="outlined-number"
+          name="money"
           label="依頼単金"
           type="number"
+          value={money}
+          onChange={handleChange}
           InputProps={{
             startAdornment: <InputAdornment position="start">¥</InputAdornment>,
           }}
           variant="outlined"
         />
         <TextField
-        id="outlined-basic" label="勤務地"　placeholder='勤務地の住所を入力' variant="outlined" 
+        name="place" label="勤務地"　value={place} onChange={handleChange} placeholder='勤務地の住所を入力' variant="outlined" 
         >
         </TextField>
       <div>
       <TextField
-          id="outlined-number"
+          name="persons"
           label="募集人数"
           type="number"
+          value={persons}
+          onChange={handleChange}
           InputProps={{
            endAdornment: <InputAdornment position="end">人</InputAdornment>,
           }}
@@ -297,7 +255,7 @@ export default function LayoutTextFields() {
           label="skill1"
           inputProps={{
             name: 'skill1',
-            id: 'outlined-age-native-simple',
+            id: 'skill1',
           }}
         >
           <option aria-label="None" value="" />
@@ -325,7 +283,7 @@ export default function LayoutTextFields() {
           
           inputProps={{
             name: 'skill2',
-            id: 'outlined-age-native-simple',
+            id: 'skill2',
           }}
         >
           <option aria-label="None" value="" />
@@ -351,7 +309,7 @@ export default function LayoutTextFields() {
           label="skill3"
           inputProps={{
             name: 'skill3',
-            id: 'outlined-age-native-simple',
+            id: 'skill3',
           }}
         >
           <option aria-label="None" value="" />
@@ -372,7 +330,9 @@ export default function LayoutTextFields() {
       
       <div  className={classes.date}>
       <TextField
-        id="date"
+        name="date"
+        value={date}
+        onChange={handleChange}
         label="案件開始日"
         type="date"
         defaultValue="2020-01-01"
@@ -385,8 +345,10 @@ export default function LayoutTextFields() {
       <FormControl  className={classes.margin} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
-         id="filled-multiline-static"
+         name="contents"
          label="Multiline"
+         value={contents}
+         onChange={handleChange}
          multiline
          rows={4}
          variant="filled"/>
@@ -396,8 +358,10 @@ export default function LayoutTextFields() {
       <FormControl  className={classes.margin2} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
-         id="filled-multiline-static"
+         name="skillcontents"
          label="Multiline"
+         value={skillcontents}
+         onChange={handleChange}
          multiline
          rows={4}
          variant="filled"/>
@@ -406,9 +370,20 @@ export default function LayoutTextFields() {
         
         </div>
         <div >
-        <Button className={classes.button} variant="contained" size="large" >
+        <Button onClick={submit} className={classes.button} variant="contained" size="large" >
         登録
       </Button>
+      {/* {name}
+      {com}
+      {money}
+      {place}
+      {persons}]
+      {skill1}
+      {skill2}
+      {skill3}
+      {date}
+      {contents}
+      {skillcontents} */}
       </div>
       </div>
       </div>
