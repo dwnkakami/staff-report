@@ -175,11 +175,12 @@ export default function LayoutTextFields() {
   };
 
   const submit = () => {
-    const newValue = {name:name, customer_id:com, unit_cost:money, workplace:place, number_of_persons:persons, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:date, business_content:contents, note:skillcontents};
+    console.log(name)
+    const newValue = {name:name};
 
 
     axios
-        .post('/api/sample', newValue)
+        .post('/api/caseadd', newValue)
         .then(response => {
             console.log(response.data);
         })
@@ -190,10 +191,10 @@ export default function LayoutTextFields() {
 
 
   const handleChange2 = (event) => {
-    const name = event.target.name;
+    const skill = event.target.skill;
     setState({
       ...state,
-      [name]: event.target.value,
+      [skill]: event.target.value,
     });
   };
 

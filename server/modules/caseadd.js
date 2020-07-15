@@ -31,13 +31,13 @@ exports.getData = (req, res) => {
   });
 
   con.connect((err) => {
-    // if (err) throw err;
+    if (err) throw err;
     console.log('Connected!');
 
-    const sql ="insert into m_matter values(?,?,?,?,?,?,?,?,?,?,?)";
+    const sql ="select * from m_matter"
     console.log(req.body);
 
-    con.query(sql,[req.body.name, req.body.com, req.body.money, req.body.place, req.body.persons, req.body.skill1, req.body.skill2, req.body.skill3, req.body.date, req.body.contents, req.body.skillcontents],(err, result, fields) => {
+    con.query(sql,[req.body.name],(err, result, fields) => {
       if (err) throw err;
       res.send('Success!!');
     });
