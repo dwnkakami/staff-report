@@ -181,7 +181,7 @@ const StaffSearch = () => {
   useEffect(() => {
 
      axios
-       .get('/api/staffsearch')
+       .post('/api/staffsearch')
        .then(response => {
         setData(response.data);
         })

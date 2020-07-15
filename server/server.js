@@ -43,8 +43,8 @@ app.get('/api/stafflist004/:condition',(req,res) => {
 app.get('/api/stafflist005/:condition',(req,res) => {
     stafflist005.getData(req.params.condition,res);
 });
-app.get('/api/staffsearch',(req,res) => {
-    staffsearch.getData(req,res);
+app.post('/api/staffsearch',(req,res) => {
+    staffsearch.postData(req,res);
 });
 app.get('/api/staffadd/:condition',(req,res) => {
     staffadd.getData(req.params.condition,res);
