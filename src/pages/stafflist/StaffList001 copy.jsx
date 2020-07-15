@@ -1,5 +1,4 @@
 // import React, { useState, useEffect }　from 'react';
-// // import MaterialTable from 'material-table';
 // import PropTypes from 'prop-types';
 // import Paper from '@material-ui/core/Paper';
 // import { Typography, DialogTitle } from '@material-ui/core';
@@ -144,20 +143,26 @@
 //         },
 //       }));
 
+//        componentDidMount() {
+//         this.setState({data: this.state.data.name})
+//       }
+  
+//       filterList = (e) => {
+//         const updateList = this.state.data.filter((item) => {
+//           return item.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+//         })
+//         this.setState({data: updateList})
+//       }
+
 //  export default function StaffList001 () {
 //     const classes = useStyles();
 //     const [posts, setPosts] = useState([]);
-//     useEffect(() => getStaffData());
-//     const [state, setState] = React.useState({
-//         colums: [
-//             { title: 'スタッフID', field: 'staffid' },
-//             { title: 'スタッフ名', field: 'staffname' },
-//             { title: '役職', field:'position' },
-//             { title: '所属会社', field: 'company_abbreviation' },
-//             { title: '案件終了日', field: 'matter_end' },
-//         ]
-        
-//      getStaffData = () => {
+//     const [order, setOrder] = React.useState('asc');
+//     const [orderBy, setOrderBy] = React.useState('id');
+//     const [selected, setSelected] = React.useState([]);
+
+//      useEffect(() => getStaffData());
+//     const getStaffData = () => {
 //         if(posts.length === 0) {
 //             axios
 //               .get('/api/stafflist001/1')
@@ -170,19 +175,13 @@
 //               })
 //             }
 //     }
-//     // const [order, setOrder] = React.useState('asc');
-//     // const [orderBy, setOrderBy] = React.useState('id');
-//     // const [selected, setSelected] = React.useState([]);
-//     // const handleRequestSort = (event, property) => {
-//     //     const isAsc = orderBy === property && order === 'asc';
-//     //     setOrder(isAsc ? 'desc' : 'asc');
-//     //     setOrderBy(property);
-//     // };
-//     // const [page, setPage] = React.useState(0);
-//     // // const [dense, setDense] = React.useState(false);
-//     // const [rowsPerPage, setRowsPerPage] = React.useState(5);
-// });
-//      handleSelectAllClick = (event) => {
+//     const handleRequestSort = (event, property) => {
+//         const isAsc = orderBy === property && order === 'asc';
+//         setOrder(isAsc ? 'desc' : 'asc');
+//         setOrderBy(property);
+//       };
+
+//     const handleSelectAllClick = (event) => {
 //         if (event.target.checked) {
 //           const newSelecteds = posts.map((n) => n.id);
 //           setSelected(newSelecteds);
@@ -190,11 +189,8 @@
 //         }
 //         setSelected([]);
 //       };
-    
-    
 
 //       const isSelected = (id) => selected.indexOf(id) !== -1;
- 
     
 //     //   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 // return(
@@ -206,13 +202,13 @@
 //         <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 //         </div>
 //     </DialogTitle>
-//     {/* <TableContainer component={Paper}> */}
 //         <Grid container spacing={1} alignItems="flex-end">
 //         <Grid item>
 //             <SearchIcon />
 //             </Grid>
 //         <Grid item>
 //             <TextField label="Search" />
+//             <input onChange={this.filterList}/>
 //             </Grid>
 //         </Grid>
 //       <div className={classes.root}>
@@ -234,28 +230,10 @@
 //           />
 //          <TableBody>
 //           {stableSort(posts, getComparator(order, orderBy))
-//         //    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 //            .map((data, index) => {
 //            const isItemSelected = isSelected(data.id);
-//           //   const labelId = `enhanced-table-checkbox-${index}`;
 //            return (
 //           <TableRow
-//               editable={{
-//       onRowUpdate: (newData, oldData) =>
-//       new Promise((resolve) => {
-//         setTimeout(() => {
-//           resolve();
-//           if (oldData) {
-//             setState((prevState) => {
-//               const data = [...prevState.data];
-//               data[data.indexOf(oldData)] = newData;
-//               return { ...prevState, data };
-//             });
-//     }
-//       }, 600);
-//     }),
-// }}
-
 //             hover
 //            selected={isItemSelected}
 //             >
