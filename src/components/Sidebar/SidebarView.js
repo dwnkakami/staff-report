@@ -20,6 +20,8 @@ import classNames from 'classnames';
 import SidebarLink from './components/SidebarLink/SidebarLinkContainer';
 import Dot from './components/Dot';
 
+import { Typography } from "../Wrappers";
+
 const structure = [
   { id: 0, label: 'Dashboard', link: '/app/dashboard', icon: <HomeIcon /> },
   { id: 1, label: 'Typography', link: '/app/typography', icon: <TypographyIcon /> },
@@ -48,7 +50,7 @@ const structure = [
   { id: 14, label: 'Background', link: '', icon: <Dot size="small" color="secondary" /> },
 ];
 
-const SidebarView = ({ classes, theme, toggleSidebar, isSidebarOpened, isPermanent, location }) => {
+const SidebarView = ({ classes, theme, toggleSidebar, isSidebarOpened, isPermanent, location , ...props }) => {
   return (
     <Drawer
       variant={isPermanent ? 'permanent' : 'temporary'}
@@ -74,6 +76,15 @@ const SidebarView = ({ classes, theme, toggleSidebar, isSidebarOpened, isPermane
       <List className={classes.sidebarList}>
         {structure.map(link => <SidebarLink key={link.id} location={location} isSidebarOpened={isSidebarOpened} {...link} />)}
       </List>
+      <div className={classes.profileMenuUser}>
+          <Typography
+            className={classes.profileMenuLink}
+            color="primary"
+            onClick={props.signOut}
+          >
+            Sign Out
+          </Typography>
+        </div>
     </Drawer>
   );
 }

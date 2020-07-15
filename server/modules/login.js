@@ -1,4 +1,3 @@
-
 // ライブラリ読み込み
 const express = require('express');
 const app = express();
