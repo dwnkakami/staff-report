@@ -16,6 +16,10 @@ const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
+const casesearch001 = require('./modules/casesearch001.js');
+const casesearch002 = require('./modules/casesearch002.js');
+const casesearch003 = require('./modules/casesearch003.js');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -66,6 +70,15 @@ app.get('/api/referencelist/:condition',(req,res) => {
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
+});
+app.get('/api/casesearch001/:condition',(req,res) => {
+    casesearch001.getData(req.params.condition,res);
+});
+app.get('/api/casesearch002/:condition',(req,res) => {
+    casesearch002.getData(req.params.condition,res);
+});
+app.get('/api/casesearch003/:condition',(req,res) => {
+    casesearch003.getData(req.params.condition,res);
 });
 
 

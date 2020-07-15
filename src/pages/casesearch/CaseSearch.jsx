@@ -15,7 +15,6 @@ import { Paper,
 import axios from 'axios';
 
 //import Component
-// import KeywordSearch from './KeywordSearch';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import DatePickers from './DatePickers';
@@ -25,7 +24,6 @@ import DatePickers from './DatePickers';
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
-    // backgroundColor: 'lightgrey',
   },
   left: {
     width:160,
@@ -91,53 +89,6 @@ const MenuProps = {
   },
 };
 
-// const names = [
-//   'ディレクター',
-//   'プログラマー',
-//   'サポート',
-//   'その他',
-// ];
-
-// const licenses = [
-//   {
-//     id:'1',
-//     lang:'ITpass',
-//   },
-//   {
-//     id:'2',
-//     lang:'Oracle Gold',
-//   },
-//   {
-//     id:'3',
-//     lang:'Oracle Silver',
-//   },
-//   {
-//     id:'4',
-//     lang:'Oracle Bronz',
-//   },
-//   {
-//     id:'5',
-//     lang:'CCNA',
-//   },
-// ];
-// const language = [
-//   {
-//     id:'1',
-//     lang:'Java',
-//   },
-//   {
-//     id:'2',
-//     lang:'JavaScript',
-//   },
-//   {
-//     id:'3',
-//     lang:'PHP',
-//   },
-//   {
-//     id:'4',
-//     lang:'MySQL',
-//   },
-// ];
 
 export default function CaseSearch() {
   const classes = useStyles();
@@ -159,41 +110,97 @@ export default function CaseSearch() {
             })
           }
   }
+
+  const [sm,setSm] = useState([]);
+  useEffect(() => getSalesMandata());
+
+  const getSalesMandata = () => {
+    if(sm.length === 0) {
+      axios
+        .get('/api/casesearch003/1')
+        .then(response => {
+          console.log([response.data]);
+          setSm(response.data);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+      }
+  }
   
 
   //KeywordSearch
-  const [keyWord, setKeyWord] = React.useState();
+  const [keyWord, setKeyWord] = React.useState('');
 
   //keywordSubmit
   const keywordSubmit = () => {
-    console.log(keyWord)
-    window.alert("検索結果がありません。\n条件を変更してください。")
+    // const newKey = {keyWord:keyWord};
+
+    // axios
+    //     .post('/api/casesearch001',newKey)
+    //     .then(response => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(() => {
+    //       console.log('submit error');
+    //     })
+
+    const target = posts.filter((data)=>{
+      return (data.name.includes(keyWord));
+    });
+    if(target === 0){
+      window.alert("検索結果がありません。\n条件を変更してください。")
+    }else{
+      console.log(target);
+    }
   };
 
 
   //job
+
+  const [job, setJob] = useState([]);
+
+  useEffect(() => getJobData());
+
+  const getJobData = () => {
+      if(job.length === 0) {
+          axios
+            .get('/api/casesearch001/1')
+            .then(response => {
+              console.log([response.data]);
+              setJob(response.data);
+            })
+            .catch(() => {
+              console.log('connected error');
+            })
+          }
+  }
   const [jobName, setJobName] = React.useState([]);
 
   const jobChange = (event) => {
     setJobName(event.target.value);
   };
 
-  //license
-  // const [license,setLicense] = React.useState('');
-
-  // const licenseData = posts.filter((data) =>{
-  //   return data.occupation_id = license;
-  // })
-
-  // const licenseChange = (event) => {
-  //   setLicense(event.target.value);
-  // };
-  // const licenseItems = licenses.map((data,index) =>
-  //     <MenuItem key={index}
-  //             value={data.id}>{data.lang}</MenuItem>
-  // );
-
   //skill
+
+  const [getSkill, setGetSkill] = useState([]);
+
+  useEffect(() => getSkillData());
+
+  const getSkillData = () => {
+      if(getSkill.length === 0) {
+          axios
+            .get('/api/casesearch002/1')
+            .then(response => {
+              console.log([response.data]);
+              setGetSkill(response.data);
+            })
+            .catch(() => {
+              console.log('connected error');
+            })
+          }
+  }
+
   const [skill1,setSkill1] = React.useState('');
   const skill1Change = (event) => {
     setSkill1(event.target.value);
@@ -207,12 +214,9 @@ export default function CaseSearch() {
     setSkill3(event.target.value);
   };
 
-
-  const skillItems = posts.map((data) => (
-    data.map((data) => 
-      <MenuItem key={data.skl_id}
-              value={data.skl_id}>{data.skl_name}</MenuItem>
-    )
+  const skillItems = getSkill.map((data) => (
+      <MenuItem key={data.id}
+              value={data.id}>{data.name}</MenuItem>
   ));
 
   //startdate
@@ -229,9 +233,15 @@ export default function CaseSearch() {
   };
 
   //settting salesman
-  const [salesMan, setSalesMan] = React.useState();
+  const [salesMan, setSalesMan] = React.useState('');
+  const salesChange = (event) => {
+    setSalesMan(event.target.value);
+  };
 
-
+  const salesItems = sm.map((data) => (
+    <MenuItem key={data.id}
+            value={data.id}>{data.name}</MenuItem>
+));
 
   //clearButton
   const clearAll = () => {
@@ -250,14 +260,45 @@ export default function CaseSearch() {
 
   //SearchButton
   const formSubmit = () => {
-    console.log(jobName)
-    console.log(skill1)
-    console.log(skill2)
-    console.log(skill3)
-    console.log(selectedStartDate)
-    console.log(selectedEndDate)
-    console.log(salesMan)
-    window.alert("検索結果がありません。\n条件を変更してください。")
+
+    // const newValue = {job:jobName,skill1:skill1,skill2:skill2,skill3:skill3,startdate:selectedStartDate,enddate:selectedEndDate,salesMan:salesMan};
+
+    // axios
+    //     .post('/api/casesearch002',newValue)
+    //     .then(response => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(() => {
+    //       console.log('submit error');
+    //     })
+
+    const target1 = posts.filter((data)=>{
+      return (data.ocp_name === jobName);
+    });
+    console.log(target1);
+    const target2 = posts.filter((data)=>{
+      return (data.skill1_id === skill1 &&
+        data.user_id === salesMan);
+    });
+    console.log(target2);
+    const target3 = posts.filter((data)=>{
+      return ((((data.skill1_id === skill1) ||
+              (data.skill1_id === skill2) ||
+              (data.skill1_id === skill3)) ||
+              ((data.skill2_id === skill1) ||
+              (data.skill2_id === skill2) ||
+              (data.skill2_id === skill3)) ||
+              ((data.skill3_id === skill1) ||
+              (data.skill3_id === skill2) ||
+              (data.skill3_id === skill3))) &&
+              data.user_id === salesMan
+            );
+    });
+    console.log(target3);
+
+    console.log(jobName);
+    console.log(selectedEndDate);
+
   };
 
   return (
@@ -273,13 +314,10 @@ export default function CaseSearch() {
         キーワード検索
         </Typography>
 
-        {/* <KeywordSearch value={keyWord} onChange={e => setKeyWord(e.target.value)} /> */}
 
-        <form method="POST">
           <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
 
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
-        </form>
 
         <br className={classes.end} />
         
@@ -299,36 +337,17 @@ export default function CaseSearch() {
               renderValue={(selected) => selected.join(', ')}
               MenuProps={MenuProps}
             >
-              {posts.map((name) => (
-                name.map((name) => 
-                <MenuItem key={name.ocp_id} value={name.ocp_name}>
-                  <Checkbox checked={jobName.indexOf(name.ocp_name) > -1} />
-                  <ListItemText primary={name.ocp_name} />
+              {job.map((name) => (
+                <MenuItem key={name.id} value={name.name}>
+                  <Checkbox checked={jobName.indexOf(name.name) > -1} />
+                  <ListItemText primary={name.name} />
                 </MenuItem>
-                )
               ))}
             </Select>
           </FormControl>
         </div>
 
-        
-
-        {/* <Typography className={classes.left} variant="h5" component="h2">
-          資格
-        </Typography>
-
-        
-        <TextField className={classes.formControl}
-          select
-          label="license"
-          value={license}
-          onChange={licenseChange}
-          variant="outlined"
-        >
-          <MenuItem className={classes.brank}></MenuItem>
-          {licenseItems}
-        </TextField> */}
-        
+                
         <br className={classes.end} />
         
 
@@ -381,7 +400,6 @@ export default function CaseSearch() {
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.other}><br /></div>
-        {/* <Typography variant="body2" component="p">～</Typography> */}
         <br className={classes.end} />
 
         <div className={classes.left}><br /></div>
@@ -394,7 +412,18 @@ export default function CaseSearch() {
           担当営業名
         </Typography>
 
-        <TextField value={salesMan} onChange={e => setSalesMan(e.target.value)} className={classes.inputForm} id="outlined-basic" label="担当営業名" variant="outlined" />
+        {/* <TextField value={salesMan} onChange={e => setSalesMan(e.target.value)} className={classes.inputForm} id="outlined-basic" label="担当営業名" variant="outlined" /> */}
+
+        <TextField className={classes.formControl}
+          select
+          label="担当営業名"
+          value={salesMan}
+          onChange={salesChange}
+          variant="outlined"
+        >
+          <MenuItem className={classes.brank}></MenuItem>
+          {salesItems}
+        </TextField>
 
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
