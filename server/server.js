@@ -1,7 +1,7 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const login = require('./modules/login.jsx');
+const login = require('./modules/login.js');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
 const stafflist002 = require('./modules/stafflist002.jsx');
@@ -16,6 +16,8 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
+const role = require('./modules/role.js');
+const register = require('./modules/register.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -66,6 +68,12 @@ app.get('/api/referencelist/:condition',(req,res) => {
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
+});
+app.get('/api/role/:condition',(req,res) => {
+    role.getData(req.params.condition,res);
+});
+app.post('/api/register',(req,res) => {
+    register.postData(req,res);
 });
 
 
