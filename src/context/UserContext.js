@@ -11,6 +11,8 @@ function userReducer(state, action) {
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -103,25 +105,29 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
-  history.push("/login");
+  history.push("/staff-report/login");
 }
 
 function registerUser(dispatch, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
+  
 
   if (!!password) {
     setTimeout(() => {
       localStorage.setItem('id_token', 1)
       setError(null)
       setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+      dispatch({ type: "LOGIN_FAILURE" });
 
-      history.push('/staff-report/dashboard')
+      history.push('/staff-report/login')
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
+
+    history.push('/staff-report/login')
   }
+
 }
