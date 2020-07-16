@@ -85,7 +85,7 @@ const handleChange = e => {
     }
 };
 
-const submit = () => {
+const add = () => {
 
     const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry}
 
@@ -93,9 +93,11 @@ const submit = () => {
         .post('/api/staffadd', newValue)
         .then(response => {
             console.log(response.data);
+            window.alert("追加されました")
         })
         .catch(() => {
             console.log('submit error');
+            window.alert("追加できませんでした")
         });
 }
 
@@ -115,6 +117,23 @@ const getData = () => {
             console.log('connected error');
         })
     }
+}
+
+const clear = () => {
+    setStaffId("")
+    setName("")
+    setGender("")
+    setPosition("")
+    setJoin("")
+    setBirthday("")
+    setAge("")
+    setCareer("")
+    setPhone("")
+    setStation("")
+    setCompany("")
+    setArea("")
+    setOccupation("")
+    setEmployment("")
 }
 
 const classes = useStyles();
@@ -157,7 +176,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <Typography>連絡先(ハイフンを入れてください)</Typography>
-            <TextField variant="outlined" name="phone" value={phone} onChange={handleChange}/>
+            <TextField inputmode="url" variant="outlined" name="phone" value={phone} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             <Typography>最寄駅</Typography>
@@ -240,8 +259,11 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
-            <Button　variant="contained" onClick={submit} className="button">追加</Button>
+        <Grid item xs={2}>
+            <Button variant="contained" onClick={add} className="button">追加</Button>
+        </Grid>
+        <Grid item xs={2}>
+            <Button variant="contained" onClick={clear} className="button">クリア</Button>
         </Grid>
         </Grid>
         </Paper>
