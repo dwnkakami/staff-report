@@ -1,18 +1,22 @@
-import React, { useState　} from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-// import DatePickers from './DatePickers';
+import { makeStyles } from '@material-ui/core/styles';
+import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { companies } from './M_company'
-import { areas } from './M_area'
-import { occupations } from './M_occupation'
-import { employment_systems } from './M_employment_system'
+import './StaffAdd.css'
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+      minWidth: 195,
+    },
+}));
 
 export default function StaffAdd () {
 
@@ -30,6 +34,7 @@ const [company,setCompany] = useState("");
 const [area,setArea] = useState("");
 const [occupation,setOccupation] = useState("");
 const [employment,setEmployment] = useState("");
+const entry = new Date().toLocaleString();
 
 const handleChange = e => {
     switch (e.target.name) {
@@ -82,7 +87,7 @@ const handleChange = e => {
 
 const submit = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment}
+    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry}
 
     axios
         .post('/api/staffadd', newValue)
@@ -94,6 +99,26 @@ const submit = () => {
         });
 }
 
+const [state,setState] = useState([]);
+
+useEffect(() => getData());
+
+const getData = () => {
+    if(state.length === 0){
+    axios
+        .get('./api/staffadd2')
+        .then(response => {
+            setState(response.data);
+            console.log(response.data);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const classes = useStyles();
+
     return(
         <Paper elevation={3}>
         <DialogTitle id="customized-dialog-title">
@@ -102,23 +127,83 @@ const submit = () => {
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
         </DialogTitle>
+        <Grid container spacing={3} className="form">
+        <Grid item xs={4}>
             <Typography>スタッフID</Typography>
             <TextField variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
             <Typography>スタッフ名</Typography>
             <TextField variant="outlined" name="name" value={name} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
             <Typography>性別</Typography>
-            {/* <TextField variant="outlined" name="gender" value={gender} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
+            <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
             <Select name="gender" value={gender} onChange={handleChange}>
             <MenuItem value=""></MenuItem>
             <MenuItem value={"男"}>男</MenuItem>
             <MenuItem value={"女"}>女</MenuItem>
             </Select>
             </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>生年月日</Typography>
+            <TextField type="date" variant="outlined" name="birthday" value={birthday} onChange={handleChange} className={classes.formControl}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>年齢</Typography>
+            <TextField variant="outlined" type="number" name="age" value={age} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>連絡先(ハイフンを入れてください)</Typography>
+            <TextField variant="outlined" name="phone" value={phone} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>最寄駅</Typography>
+            <TextField variant="outlined" name="station" value={station} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>最終学歴（学校名）</Typography>
+            <TextField variant="outlined" name="career" value={career} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>入社日</Typography>
+            <TextField　type="date" variant="outlined" name="join" value={join} onChange={handleChange} className={classes.formControl}/>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>所属会社</Typography>
+            <FormControl variant="outlined"　className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
+            <Select name="company" value={company} onChange={handleChange} label="選択してください">
+            <MenuItem value=""></MenuItem>
+            {state.map((data) => (
+            <MenuItem key={data.company_id} value={data.company_id} >
+              {data.company}
+            </MenuItem>
+            ))}
+            </Select>
+            </FormControl>
+        </Grid>
+        <Grid item xs={4}>
+            <Typography>地域</Typography>
+            <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
+            <Select name="area" value={area} onChange={handleChange} label="選択してください">
+            <MenuItem value=""></MenuItem>
+            {state.map((data) => (
+            <MenuItem key={data.area_id} value={data.area_id} >
+              {data.area}
+            </MenuItem>
+            ))}
+            </Select>
+            </FormControl>
+        </Grid>
+        <Grid item xs={4}>
             <Typography>役職</Typography>
-            {/* <TextField variant="outlined" name="position" value={position} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
-            <Select name="position" value={position} onChange={handleChange}>
+            <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
+            <Select name="position" value={position} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             <MenuItem value={"プロデューサー"}>プロデューサー</MenuItem>
             <MenuItem value={"プログラマー"}>プログラマー</MenuItem>
@@ -126,68 +211,39 @@ const submit = () => {
             <MenuItem value={"営業"}>営業</MenuItem>
             </Select>
             </FormControl>
-            <Typography>入社日</Typography>
-            <TextField　type="date" variant="outlined" name="join" value={join} onChange={handleChange}/>
-            <Typography>生年月日</Typography>
-            <TextField type="date" variant="outlined" name="birthday" value={birthday} onChange={handleChange}/>
-            <Typography>年齢</Typography>
-            <TextField variant="outlined" type="number" name="age" value={age} onChange={handleChange}/>
-            <Typography>最終学歴</Typography>
-            <TextField variant="outlined" name="career" value={career} onChange={handleChange}/>
-            <Typography>連絡先（ハイフン入れてください）</Typography>
-            <TextField variant="outlined"　type="text" pattern="/d{2,4}-/d{2,4}-/d{3,4}" name="phone" value={phone} onChange={handleChange}/>
-            <Typography>最寄駅</Typography>
-            <TextField variant="outlined" name="station" value={station} onChange={handleChange}/>
-            <Typography>駅</Typography>
-            <Typography>所属会社</Typography>
-            {/* <TextField variant="outlined" name="company" value={company} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
-            <Select name="company" value={company} onChange={handleChange}>
-            <MenuItem value=""></MenuItem>
-            {companies.map((data) => (
-            <MenuItem value={data.id} >
-              {data.name}
-            </MenuItem>
-            ))}
-            </Select>
-            </FormControl>
-            <Typography>地域</Typography>
-            {/* <TextField variant="outlined" name="area" value={area} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
-            <Select name="area" value={area} onChange={handleChange}>
-            <MenuItem value=""></MenuItem>
-            {areas.map((data) => (
-            <MenuItem value={data.id} >
-              {data.name}
-            </MenuItem>
-            ))}
-            </Select>
-            </FormControl>
+        </Grid>
+        <Grid item xs={4}>
             <Typography>職種</Typography>
-            {/* <TextField variant="outlined" name="occupation" value={occupation} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
-            <Select name="occupation" value={occupation} onChange={handleChange}>
+            <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
+            <Select name="occupation" value={occupation} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {occupations.map((data) => (
-            <MenuItem value={data.id} >
-              {data.name}
+            {state.map((data) => (
+            <MenuItem key={data.occupation_id} value={data.occupation_id} >
+              {data.occupation}
             </MenuItem>
             ))}
             </Select>
             </FormControl>
+        </Grid>
+        <Grid item xs={4}>
             <Typography>雇用形態</Typography>
-            {/* <TextField variant="outlined" name="employment" value={employment} onChange={handleChange}/> */}
-            <FormControl variant="outlined">
-            <Select name="employment" value={employment} onChange={handleChange}>
+            <FormControl variant="outlined" className={classes.formControl}>
+            <InputLabel>選択してください</InputLabel>
+            <Select name="employment" value={employment} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {employment_systems.map((data) => (
-            <MenuItem value={data.id} >
-              {data.name}
+            {state.map((data) => (
+            <MenuItem key={data.employment_id} value={data.employment_id} >
+              {data.employment}
             </MenuItem>
             ))}
             </Select>
             </FormControl>
-            <Button　variant="contained" onClick={submit}>追加</Button>
+        </Grid>
+        <Grid item xs={4}>
+            <Button　variant="contained" onClick={submit} className="button">追加</Button>
+        </Grid>
+        </Grid>
         </Paper>
     )
 }
