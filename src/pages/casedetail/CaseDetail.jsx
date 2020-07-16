@@ -10,6 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
+import ReferenceAdd from '../referenceadd/ReferenceAdd';
 
 const styles = (theme) => ({
   root: {
@@ -22,13 +23,20 @@ const styles = (theme) => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
+  left: {
+    width:100,
+    float:'left',
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      {/* <div  style= {{ position: 'flex' }} > */}
+      <Typography className={classes.left} variant="h6">{children} </Typography>
+      <ReferenceAdd className={classes.left}></ReferenceAdd>
+      {/* </div> */}
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -78,12 +86,12 @@ export default function CaseDetail (props) {
         案件リスト
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose} >
             案件詳細
           </DialogTitle>
         <DialogContent dividers >
-          <Typography gutterBottom>
-            {user.map((data) => (
+        {user.map((data) => (
+          <Typography gutterBottom key={data.id}>
             <table>
               <tr>
                 <th>案件名</th>
@@ -103,8 +111,6 @@ export default function CaseDetail (props) {
                 <td>{data.workplace}</td>
               </tr>
               </table>
-            ))}
-            {user.map((data) => (
               <table>
               <tr>
                 <th>募集人数</th>
@@ -117,8 +123,6 @@ export default function CaseDetail (props) {
                 <td>{data.matter_end}</td>
               </tr>
             </table>
-            ))}
-            {user.map((data) => (
             <table>
               <tr>
                 <th>業務内容</th>
@@ -127,8 +131,6 @@ export default function CaseDetail (props) {
                 <td class='wide-td1'>{data.business_content}</td>
               </tr>
             </table>
-            ))}
-            {user.map((data) => (
             <table>
               <tr>
                 <th>スキル1</th>
@@ -141,8 +143,6 @@ export default function CaseDetail (props) {
                 <td>{data.skill3}</td>
               </tr>
             </table>
-            ))}
-            {user.map((data) => (
             <table>
               <tr>
                 <th>必須スキル</th>
@@ -153,8 +153,8 @@ export default function CaseDetail (props) {
                 <td>{data.note}</td>
               </tr>
             </table>
-          ))}
           </Typography>
+        ))}
         </DialogContent>
       </Dialog>
     </div>
