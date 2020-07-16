@@ -111,24 +111,24 @@ const StaffSearch = () => {
   };
 
   const [license, setLicense] = useState([]);
-    const handleChange2 = (event) => {
-      setLicense(event.target.value);
-    };
+    // const handleChange2 = (event) => {
+    //   setLicense(event.target.value);
+    // };
 
   const [skill1,setSkill1] = useState([]);
-  const Skill1Change = (event) => {
-    setSkill1(event.target.value);
-  }
+  // const Skill1Change = (event) => {
+  //   setSkill1(event.target.value);
+  // }
 
   const [skill2,setSkill2] = useState([]);
-  const Skill2Change = (event) => {
-    setSkill2(event.target.value);
-  }
+  // const Skill2Change = (event) => {
+  //   setSkill2(event.target.value);
+  // }
 
   const [skill3,setSkill3] = useState([]);
-  const Skill3Change = (event) => {
-    setSkill3(event.target.value);
-  }
+  // const Skill3Change = (event) => {
+  //   setSkill3(event.target.value);
+  // }
 
   const [status1,setStatus1] = useState([]);
   const Status1Change = (event) => {
@@ -146,21 +146,45 @@ const StaffSearch = () => {
   }
 
   const [areas,setAreas]=useState([]);
-  const aresChenge = (event) => {
-    setAreas(event.target.value);
-  }
+  // const aresChenge = (event) => {
+  //   setAreas(event.target.value);
+  // }
 
   const [ge,setGe]=useState([]);
-  const genderChange = (event) => {
-    setGe(event.target.value);
-  }
+  // const genderChange = (event) => {
+  //   setGe(event.target.value);
+  // }
 
   const [age,setAge] = useState([]);
   const ageChange = (event) => {
     setAge(event.target.value);
   }
-
-  const[data,setData] = useState([]);
+  // const[data,setData] = useState([]);
+  
+  const handle = (event) =>{
+    switch(event.target.name){
+      case 'license':
+        setLicense(event.target.value);
+        break;
+      case 'skill1':
+        setSkill1(event.target.value);
+        break;
+      case 'skill2':
+        setSkill2(event.target.value);
+        break;
+      case 'skill3':
+        setSkill3(event.target.value);
+        break;
+      case 'ge':
+        setGe(event.target.value);
+        break;
+      case 'areas':
+        setAreas(event.target.value);
+        break;
+      default:
+        console.log('text not found');
+    }
+  }
 
   //リセット機能
   const Reset = () => {
@@ -179,11 +203,13 @@ const StaffSearch = () => {
   };
 
   useEffect(() => {
-
+    const newValue=
+    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas}
      axios
-       .post('/api/staffsearch')
+       .post('/api/staffsearch',newValue)
        .then(response => {
-        setData(response.data);
+        //setData(response.data);
+        console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -192,18 +218,23 @@ const StaffSearch = () => {
 
   const Search = () =>{
     let searchData = [];
+    
     if(license !== null){
-      searchData = data.filter(item => item.license === license);
+     // searchData = data.filter(item => item.license === license);
+      searchData=license;
     }
-    // if(skill1 !== null){
-    //   searchData = data.filter(item => item.skill === skill1);
-    // }
-    // if(skill2 !== null){
-    //   searchData = data.filter(item => item.skill === skill2);
-    // }
-    // if(skill3 !== null){
-    //   searchData = data.filter(item => item.skill === skill3);
-    // }
+    if(skill1 !== null){
+    //  searchData = data.filter(item => item.skill === skill1);
+     searchData=skill1;
+   }
+    if(skill2 !== null){
+     // searchData = data.filter(item => item.skill === skill2);
+     searchData=skill2;
+    }
+    if(skill3 !== null){
+     // searchData = data.filter(item => item.skill === skill3);
+     searchData=skill3;
+   }
     // if(status1 !== null){
     //   searchData = data.filter(item => item.status === status1);
     // }
@@ -217,15 +248,17 @@ const StaffSearch = () => {
     //     return data.name === status3;
     //    });
     // }
-    // if(ge !== null){
-    //   searchData = data.filter(item => item.gender === ge);
-    // }
+    if(ge !== null){
+      //searchData = data.filter(item => item.gender === ge);
+     searchData=ge;
+    }
     // if(age !== null){
     //   searchData = data.filter(item => item.age === age);
     // }
-    // if(areas !== null){
-    //   searchData = data.filter(item => item.area === areas);
-    // }
+    if(areas !== null){
+     // searchData = data.filter(item => item.area === areas);
+      searchData=areas;
+   }
 
     console.log(searchData);
   }
@@ -322,7 +355,8 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={license}
-          onChange={handleChange2}
+          onChange={handle}
+          name = "license"
         >
           {licenses.map((data)=>(
             <option key={data.id} value={data.name}>
@@ -337,8 +371,8 @@ const StaffSearch = () => {
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={skill1}
-          onChange={Skill1Change}
-          // name="sk1"
+          onChange={handle}
+          name="skill1"
           label="スキルレベル１"
         >
           {skill.map((data)=>(
@@ -367,7 +401,8 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl5}>
         <Select
           value={skill2}
-          onChange={Skill2Change}
+          onChange={handle}
+          name="skill2"
           inputProps={{
             // name: 'sk2',
             id: 'filled-age-native-simple',
@@ -403,7 +438,8 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl6}>
         <Select
           value={skill3}
-          onChange={Skill3Change}
+          onChange={handle}
+          name="skill3"
           inputProps={{
             // name: 'sk3',
             id: 'filled-age-native-simple',
@@ -454,7 +490,8 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
           value={ge}
-          onChange={genderChange}
+          onChange={handle}
+          name="ge"
           inputProps={{
             // name: 'ge',
             id: 'filled-age-native-simple',
@@ -472,7 +509,8 @@ const StaffSearch = () => {
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
           value={areas}
-          onChange={aresChenge}
+          onChange={handle}
+          name="areas"
           inputProps={{
             // name: 'areas',
             id: 'filled-age-native-simple',
