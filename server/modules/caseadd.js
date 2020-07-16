@@ -34,30 +34,29 @@ exports.postData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql ="insert into m_matter (name,unit_cost,workplace,number_of_persons,staff_skill_id1,staff_skill_id2,staff_skill_id3,matter_start,business_content,note) values(?,?,?,?,?,?,?,?,?,?)"
+    const sql ="insert into m_matter (name,customer_id,unit_cost,workplace,number_of_persons,matter_start,matter_end,occupation_id,staff_skill_id1,staff_skill_id2,staff_skill_id3,skill_level_column,business_content,note,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     console.log(req.body); 
 
-    con.query(sql,[req.body.name, req.body.unit_cost, req.body.workplace, req.body.number_of_persons, req.body.staff_skill_id1, req.body.staff_skill_id2, req.body.staff_skill_id3, req.body.matter_start, req.body.business_content, req.body.note],(err, result, fields) => {
+    con.query(sql,[req.body.name, req.body.customer_id, req.body.unit_cost, req.body.workplace, req.body.number_of_persons, req.body.matter_start,req.body.matter_end, req.body.occupation_id, req.body.staff_skill_id1, req.body.staff_skill_id2, req.body.staff_skill_id3 , req.body.skill_level_column, req.body.business_content, req.body.note, req.body.user_id],(err, result, fields) => {
       if (err) throw err;
       res.send('Success!!');
 
-    const sql1 = "insert into m_company (name) values (?)"
-    console.log(req.body);
+    // const sql1 = "insert into m_matter (staff_skill_id1) select id from m_skill where m_skill.id=?"
+    // console.log(req.body);
 
-    con.query(sql1,[req.body.name],(err,result,fields)=>{
-      if (err) throw err;
-      res.send('Success!!');
-    })
+    // con.query(sql1,[req.body.staff_skill_id1],(err,result,fields)=>{
+    //   if (err) throw err;
+    //   res.send('Success!!');
+    // })
 
-    const sql2 = "insert into m_matter (customer_id) select id from m_company where m_company.id=m_company.name"
-    console.log(req.body);
+    // const sql2 = "insert into m_matter (customer_id) select id from m_company where m_company.id=m_company.name"
+    // console.log(req.body);
 
-    con.query(sql2,[req.body.customer_id],(err,result,fields)=>{
-      if (err) throw err;
-      res.send('success!!');
+    // con.query(sql2,[req.body.customer_id],(err,result,fields)=>{
+    //   if (err) throw err;
+    //   res.send('success!!');
 
     })
     });
    
-  });
-  }
+  };

@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/paper';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import MediaQuery from "react-responsive";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'white',
 
     }},
+
+  com: {
+    position: 'relative',
+    left:'21%',
+    top: '106px',
+    width:'25%',
+   metaname: 'viewport',
+  },
 
   button: {
     left: '68%',
@@ -163,8 +173,12 @@ export default function LayoutTextFields() {
    const [skill3,setSkill3] = useState ("");
    const[startdate, setStartdate] = useState ("");
    const[enddate, setEnddate] = useState ("") ;
-   const [contents, setContents] = useState ("");
+   const[job, setJob] = useState ("")
    const [skillcontents,setSkillcontents] = useState ("");
+   const [contents, setContents] = useState ("");
+   const [note,setNote] = useState ("");
+   const [user,setUser] = useState ("");
+   ;
 
    const handleChange = e => {
     switch (e.target.name) {
@@ -183,6 +197,15 @@ export default function LayoutTextFields() {
          case 'persons' :
             setPersons(e.target.value);
              break;
+         case 'startdate' :
+           setStartdate(e.target.value);
+             break;
+             case 'enddate' :
+              setEnddate(e.target.value);
+                break;
+         case 'job':
+           setJob(e.target.value);
+           break;
          case 'skill1':
             setSkill1(e.target.value);
             break;
@@ -192,18 +215,19 @@ export default function LayoutTextFields() {
         case 'skill3':
             setSkill3(e.target.value);
             break;
-         case 'startdate':
-            setStartdate(e.target.value);
-            break;
-         case 'enddate':
-            setEnddate(e.target.value);
-            break;
+            case 'skillcontents' :
+              setSkillcontents(e.target.value);
+              break;
          case 'contents' :
             setContents(e.target.value);
             break;
-         case 'skillcontents' :
-            setSkillcontents(e.target.value);
-            break;
+         case 'note' :
+           setNote(e.target.value);
+           break;
+         case 'user' :
+           setUser(e.target.value);
+           break;
+         
         default:
             console.log('text not found');
     }
@@ -212,7 +236,7 @@ export default function LayoutTextFields() {
 
   const submit = () => {
     console.log(name)
-    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, number_of_persons:persons, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:startdate,matter_end:enddate, business_content:contents, note:skillcontents};
+    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, number_of_persons:persons, occupation_id:job, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:startdate,matter_end:enddate, skill_level_column:skillcontents ,business_content:contents, note:note, user_id:user };
 
 
     axios
@@ -235,13 +259,9 @@ export default function LayoutTextFields() {
   };
 
   return (
+
     <div className={classes.root}>
-     
-      <div>
-      </div>
-      <div>
-        
-      </div>
+
       <Paper elevation={3} className = {classes.paper1}>
     <form className={classes.root2} noValidate autoComplete="off" method="POST">
       <div>
@@ -252,7 +272,35 @@ export default function LayoutTextFields() {
       </div>
       <div >
       <TextField input type="text" name="name" label="案件名" variant="outlined" value={name} onChange={handleChange} />
-      <TextField input type="text" name="com" label="案件保有会社" variant="outlined" value={com} onChange={handleChange} />
+      <FormControl variant="outlined"　className={classes.com}  >
+        <InputLabel htmlFor="outlined-age-native-simple" >案件保有会社名</InputLabel>
+        <Select
+          native
+          value={state.skill1}
+          onChange={handleChange}
+          label="com"
+          name="com"
+          inputProps={{
+            id: 'com',
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option value={1}>株式会社ABC</option>
+          <option value={2}>DEF食品株式会社</option>
+          <option value={3}>GH電気株式会社</option>
+          <option value={4}>IJK商事</option>
+          <option value={5}>LMN商店株式会社</option>
+          <option value={6}>OP商店株式会社</option>
+          <option value={7}>QR株式会社</option>
+          <option value={8}>ST事務所</option>
+          <option value={9}>株式会社UV</option>
+          <option value={10}>WXグループ株式会社</option>
+          <option value={11}>YZ電気株式会社acd</option>
+          <option value={12}>DB株式会社</option>
+          <option value={13}>YNZ株式会社</option>
+          <option value={14}>CaC株式会社</option>
+        </Select>
+      </FormControl>
       </div>
       <div>
       <TextField
@@ -287,24 +335,24 @@ export default function LayoutTextFields() {
         <Select
           native
           value={state.skill1}
-          onChange={handleChange2}
+          onChange={handleChange}
+          name='skill1'
           label="skill1"
           inputProps={{
-            name: 'skill1',
             id: 'skill1',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>1 Java</option>
-          <option value={20}>2 C言語</option>
-          <option value={30}>3 C#</option>
-          <option value={40}>4 C++</option>
-          <option value={50}>5 MySQL</option>
-          <option value={60}>6 Ruby</option>
-          <option value={70}>7 Oracle</option>
-          <option value={80}>8 Python</option>
-          <option value={90}>9 JavaScript</option>
-          <option value={100}>10 PHP</option>
+          <option value={1}>1 Java</option>
+          <option value={2}>2 C言語</option>
+          <option value={3}>3 C#</option>
+          <option value={4}>4 C++</option>
+          <option value={5}>5 MySQL</option>
+          <option value={6}>6 Ruby</option>
+          <option value={7}>7 Oracle</option>
+          <option value={8}>8 Python</option>
+          <option value={9}>9 JavaScript</option>
+          <option value={10}>10 PHP</option>
         </Select>
       </FormControl>
        
@@ -313,26 +361,25 @@ export default function LayoutTextFields() {
         <Select
           native
           value={state.skill2}
-         
-          onChange={handleChange2}
+          name='skill2'
+          onChange={handleChange}
           label="skill2"
           
           inputProps={{
-            name: 'skill2',
             id: 'skill2',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Java</option>
-          <option value={20}>C言語</option>
-          <option value={30}>C#</option>
-          <option value={40}>C++</option>
-          <option value={50}>MySQL</option>
-          <option value={60}>Ruby</option>
-          <option value={70}>Oracle</option>
-          <option value={80}>Python</option>
-          <option value={90}>JavaScript</option>
-          <option value={100}>PHP</option>
+          <option value={1}>Java</option>
+          <option value={2}>C言語</option>
+          <option value={3}>C#</option>
+          <option value={4}>C++</option>
+          <option value={5}>MySQL</option>
+          <option value={6}>Ruby</option>
+          <option value={7}>Oracle</option>
+          <option value={8}>Python</option>
+          <option value={9}>JavaScript</option>
+          <option value={10}>PHP</option>
         </Select>
       </FormControl>
       
@@ -341,24 +388,24 @@ export default function LayoutTextFields() {
         <Select
           native
           value={state.skill3}
-          onChange={handleChange2}
+          onChange={handleChange}
+          name="skill3"
           label="skill3"
           inputProps={{
-            name: 'skill3',
             id: 'skill3',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Java</option>
-          <option value={20}>C言語</option>
-          <option value={30}>C#</option>
-          <option value={40}>C++</option>
-          <option value={50}>MySQL</option>
-          <option value={60}>Ruby</option>
-          <option value={70}>Oracle</option>
-          <option value={80}>Python</option>
-          <option value={90}>JavaScript</option>
-          <option value={100}>PHP</option>
+          <option value={1}>Java</option>
+          <option value={2}>C言語</option>
+          <option value={3}>C#</option>
+          <option value={4}>C++</option>
+          <option value={5}>MySQL</option>
+          <option value={6}>Ruby</option>
+          <option value={7}>Oracle</option>
+          <option value={8}>Python</option>
+          <option value={9}>JavaScript</option>
+          <option value={10}>PHP</option>
         </Select>
       </FormControl>
       </div>
@@ -399,18 +446,18 @@ export default function LayoutTextFields() {
         <Select
           native
           value={state.skill3}
-          onChange={handleChange2}
+          onChange={handleChange}
           label="user"
+          name="user"
           inputProps={{
-            name: 'user',
             id: 'user',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>田中</option>
-          <option value={20}>佐藤</option>
-          <option value={30}>高橋</option>
-          <option value={40}>鈴木</option>
+          <option value={1}>田中</option>
+          <option value={2}>佐藤</option>
+          <option value={3}>高橋</option>
+          <option value={4}>鈴木</option>
         </Select>
       </FormControl>
       </div>
@@ -420,20 +467,20 @@ export default function LayoutTextFields() {
         <Select
           native
           value={state.skill3}
-          onChange={handleChange2}
+          onChange={handleChange}
           label="job"
+          name="job"
           inputProps={{
-            name: 'job',
             id: 'job',
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>SE</option>
-          <option value={20}>PG</option>
-          <option value={30}>営業</option>
-          <option value={40}>インフラSE</option>
-          <option value={50}>サポート</option>
-          <option value={60}>総務</option>
+          <option value={1}>SE</option>
+          <option value={2}>PG</option>
+          <option value={3}>営業</option>
+          <option value={4}>インフラSE</option>
+          <option value={5}>サポート</option>
+          <option value={6}>総務</option>
         </Select>
       </FormControl>
       </div>
@@ -468,9 +515,9 @@ export default function LayoutTextFields() {
       <FormControl  className={classes.memo} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">備考</InputLabel>
           <OutlinedInput
-         name="memo"
+         name="note"
          label="Multiline"
-         value={skillcontents}
+         value={note}
          onChange={handleChange}
          multiline
          rows={4}
