@@ -96,7 +96,7 @@ export default function CaseSearch() {
   const [posts, setPosts] = useState([]);
 
 
-  useEffect(() => getCaseData());
+  useEffect(() => getCaseData(),[]);
 
   const getCaseData = () => {
       if(posts.length === 0) {
@@ -113,7 +113,7 @@ export default function CaseSearch() {
   }
 
   const [sm,setSm] = useState([]);
-  useEffect(() => getSalesMandata());
+  useEffect(() => getSalesMandata(),[]);
 
   const getSalesMandata = () => {
     if(sm.length === 0) {
@@ -139,7 +139,7 @@ export default function CaseSearch() {
     const target = posts.filter((data)=>{
       return (data.name.includes(keyWord));
     });
-    if(target === -1){
+    if(target.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
       console.log(target);
@@ -163,7 +163,7 @@ export default function CaseSearch() {
 
   const [job, setJob] = useState([]);
 
-  useEffect(() => getJobData());
+  useEffect(() => getJobData(),[]);
 
   const getJobData = () => {
       if(job.length === 0) {
@@ -188,7 +188,7 @@ export default function CaseSearch() {
 
   const [getSkill, setGetSkill] = useState([]);
 
-  useEffect(() => getSkillData());
+  useEffect(() => getSkillData(),[]);
 
   const getSkillData = () => {
       if(getSkill.length === 0) {
@@ -276,14 +276,34 @@ export default function CaseSearch() {
     //     })
 
     const target1 = posts.filter((data)=>{
-      return (data.ocp_name === jobName);
+      return (((data.skill1_id === skill1) ||
+              (data.skill1_id === skill2) ||
+              (data.skill1_id === skill3))              
+      );
     });
     console.log(target1);
     const target2 = posts.filter((data)=>{
-      return (data.skill1_id === skill1 &&
-        data.user_id === salesMan);
+      return (((data.ocp_name === jobName[0]) ||
+                (data.ocp_name === jobName[1]) ||
+                (data.ocp_name === jobName[2])) &&
+                (((data.skill1_id === skill1) ||
+              (data.skill1_id === skill2) ||
+              (data.skill1_id === skill3)) ||
+              ((data.skill2_id === skill1) ||
+              (data.skill2_id === skill2) ||
+              (data.skill2_id === skill3)) ||
+              ((data.skill3_id === skill1) ||
+              (data.skill3_id === skill2) ||
+              (data.skill3_id === skill3))) &&
+                  data.user_id === salesMan );
     });
-    console.log(target2);
+        if(target2.length === 0){
+          window.alert("検索結果がありません。\n条件を変更してください。")
+        }else {
+          console.log(target2);
+        }
+
+    
     const target3 = posts.filter((data)=>{
       return ((((data.skill1_id === skill1) ||
               (data.skill1_id === skill2) ||
@@ -293,14 +313,13 @@ export default function CaseSearch() {
               (data.skill2_id === skill3)) ||
               ((data.skill3_id === skill1) ||
               (data.skill3_id === skill2) ||
-              (data.skill3_id === skill3))) &&
-              data.user_id === salesMan
+              (data.skill3_id === skill3))) 
             );
     });
     console.log(target3);
 
-    console.log(jobName);
-    console.log(selectedEndDate);
+    // console.log(jobName);
+    // console.log(selectedEndDate);
 
   };
 
