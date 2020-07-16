@@ -95,6 +95,7 @@ export default function CaseSearch() {
 
   const [posts, setPosts] = useState([]);
 
+
   useEffect(() => getCaseData());
 
   const getCaseData = () => {
@@ -134,28 +135,30 @@ export default function CaseSearch() {
 
   //keywordSubmit
   const keywordSubmit = () => {
-    // const newKey = {keyWord:keyWord};
-
-    // axios
-    //     .post('/api/casesearch001',newKey)
-    //     .then(response => {
-    //       console.log(response.data);
-    //     })
-    //     .catch(() => {
-    //       console.log('submit error');
-    //     })
 
     const target = posts.filter((data)=>{
       return (data.name.includes(keyWord));
     });
-    if(target === 0){
+    if(target === -1){
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
       console.log(target);
     }
+    // let task = posts;
+    
+
+    // task = task.filter(data => {
+    //   if(data.name.includes(keyWord)){
+    //     console.log(data);
+    //   }else {
+    //     window.alert("検索結果がありません。\n条件を変更してください。");
+    //   }
+    // });
+  
   };
 
 
+ 
   //job
 
   const [job, setJob] = useState([]);
