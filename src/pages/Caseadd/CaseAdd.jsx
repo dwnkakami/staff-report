@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   root2: {
     '& .MuiTextField-root': {
       margin: theme.spacing(2),
-      positon: 'absolute',
+      positon: 'relative',
       left: '20%',
       top: '90px',
       width: '25%',
@@ -34,30 +34,32 @@ const useStyles = makeStyles((theme) => ({
 
   button: {
     left: '68%',
-    top: '83%',
-    position: 'absolute',
+    top: '230px',
+    position: 'relative',
     width: 'auto',
   },
 
+  
+
   skill1: {
     width: '10%',
-    position: 'absolute',
-    top: '31%',
+    position: 'relative',
+    top: '20px',
     left: '49%',
   },
 
   skill2: {
-    position: 'absolute',
+    position: 'relative',
     width: '10%',
-    top: '31%',
-    left: '59%',
+    top: '20px',
+    left: '49%',
   },
 
   skill3: {
     width: '10%',
-    position: 'absolute',
-    top: '31%',
-    left: '69%',
+    position: 'relative',
+    top: '20px',
+    left: '49%',
   },
 
 
@@ -82,23 +84,53 @@ const useStyles = makeStyles((theme) => ({
   },
 
   date: {
-    left: '21%',
-    top: '10%',
+    position: 'relative',
+    left: '1%',
+    top: '-20px',
+  },
+
+  date2: {
+    position: 'relative',
+    left: '30%',
+    top: '2px',
+  },
+
+  user: {
+    position:'relative',
+    left:'21%',
+    top:'110px',
+    width:'25%',
+    
+  },
+
+  job: {
+     position: 'relative',
+     top:'55px',
+     left:'49%',
+     width: '25%',
   },
 
   margin: {
-    position: 'absolute',
+    position: 'relative',
     left: '21%',
-    top: '50%',
+    top: '100px',
     width: '53%',
     height: 'available',
   },
 
   margin2: {
-    position: 'absolute',
+    position: 'relative',
     left: '21%',
-    top: '66%',
+    top: '140px',
     width: '53%',
+    height: 'available',
+  },
+
+  memo: {
+    position: 'relative',
+    top: '180px',
+    width: '53%',
+    left: '21%',
     height: 'available',
   },
 
@@ -106,10 +138,10 @@ const useStyles = makeStyles((theme) => ({
   paper1: {
     position: 'relative',
     width: 'auto',
-    minWidth: '80%',
+    minWidth: '100%',
     margin: '-10px',
     height: 'auto',
-    minHeight: '120vh',
+    minHeight: '160vh',
 },
 
 }));
@@ -129,7 +161,8 @@ export default function LayoutTextFields() {
    const [skill1,setSkill1] = useState ("");
    const [skill2,setSkill2] = useState ("");
    const [skill3,setSkill3] = useState ("");
-   const[date, setDate] = useState ("");
+   const[startdate, setStartdate] = useState ("");
+   const[enddate, setEnddate] = useState ("") ;
    const [contents, setContents] = useState ("");
    const [skillcontents,setSkillcontents] = useState ("");
 
@@ -159,8 +192,11 @@ export default function LayoutTextFields() {
         case 'skill3':
             setSkill3(e.target.value);
             break;
-         case 'date':
-            setDate(e.target.value);
+         case 'startdate':
+            setStartdate(e.target.value);
+            break;
+         case 'enddate':
+            setEnddate(e.target.value);
             break;
          case 'contents' :
             setContents(e.target.value);
@@ -176,7 +212,7 @@ export default function LayoutTextFields() {
 
   const submit = () => {
     console.log(name)
-    const newValue = {name:name};
+    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, number_of_persons:persons, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:startdate,matter_end:enddate, business_content:contents, note:skillcontents};
 
 
     axios
@@ -222,7 +258,6 @@ export default function LayoutTextFields() {
       <TextField
           name="money"
           label="依頼単金"
-          type="number"
           value={money}
           onChange={handleChange}
           InputProps={{
@@ -246,9 +281,9 @@ export default function LayoutTextFields() {
           }}
           variant="outlined"
         />
-        <div>
+        <div className={classes.skill}>
 <FormControl variant="outlined"　className={classes.skill1}  >
-        <InputLabel htmlFor="outlined-age-native-simple">スキル①</InputLabel>
+        <InputLabel htmlFor="outlined-age-native-simple" >スキル①</InputLabel>
         <Select
           native
           value={state.skill1}
@@ -260,16 +295,16 @@ export default function LayoutTextFields() {
           }}
         >
           <option aria-label="None" value="" />
-          <option value={10}>Java</option>
-          <option value={20}>C言語</option>
-          <option value={30}>C#</option>
-          <option value={40}>C++</option>
-          <option value={50}>MySQL</option>
-          <option value={60}>Ruby</option>
-          <option value={70}>Oracle</option>
-          <option value={80}>Python</option>
-          <option value={90}>JavaScript</option>
-          <option value={100}>PHP</option>
+          <option value={10}>1 Java</option>
+          <option value={20}>2 C言語</option>
+          <option value={30}>3 C#</option>
+          <option value={40}>4 C++</option>
+          <option value={50}>5 MySQL</option>
+          <option value={60}>6 Ruby</option>
+          <option value={70}>7 Oracle</option>
+          <option value={80}>8 Python</option>
+          <option value={90}>9 JavaScript</option>
+          <option value={100}>10 PHP</option>
         </Select>
       </FormControl>
        
@@ -331,8 +366,9 @@ export default function LayoutTextFields() {
       
       <div  className={classes.date}>
       <TextField
-        name="date"
-        value={date}
+        name="startdate"
+        id = "date"
+        value={startdate}
         onChange={handleChange}
         label="案件開始日"
         type="date"
@@ -341,6 +377,65 @@ export default function LayoutTextFields() {
           shrink: true,
         }}
       />
+       <TextField
+        id ="date2"
+        name="enddate"
+        value={enddate}
+        onChange={handleChange}
+        label="案件終了日"
+        type="date"
+        defaultValue="2020-01-01"
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+      </div>
+      <div className={classes.date2}>
+     
+      </div>
+      <div>
+      <FormControl variant="outlined" className={classes.user} >
+        <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
+        <Select
+          native
+          value={state.skill3}
+          onChange={handleChange2}
+          label="user"
+          inputProps={{
+            name: 'user',
+            id: 'user',
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option value={10}>田中</option>
+          <option value={20}>佐藤</option>
+          <option value={30}>高橋</option>
+          <option value={40}>鈴木</option>
+        </Select>
+      </FormControl>
+      </div>
+      <div>
+      <FormControl variant="outlined" className={classes.job} >
+        <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
+        <Select
+          native
+          value={state.skill3}
+          onChange={handleChange2}
+          label="job"
+          inputProps={{
+            name: 'job',
+            id: 'job',
+          }}
+        >
+          <option aria-label="None" value="" />
+          <option value={10}>SE</option>
+          <option value={20}>PG</option>
+          <option value={30}>営業</option>
+          <option value={40}>インフラSE</option>
+          <option value={50}>サポート</option>
+          <option value={60}>総務</option>
+        </Select>
+      </FormControl>
       </div>
       <div>
       <FormControl  className={classes.margin} variant="outlined">
@@ -360,6 +455,20 @@ export default function LayoutTextFields() {
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"
+         label="Multiline"
+         value={skillcontents}
+         onChange={handleChange}
+         multiline
+         rows={4}
+         variant="filled"/>
+        </FormControl>
+      <div>
+
+      </div>
+      <FormControl  className={classes.memo} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-amount">備考</InputLabel>
+          <OutlinedInput
+         name="memo"
          label="Multiline"
          value={skillcontents}
          onChange={handleChange}
