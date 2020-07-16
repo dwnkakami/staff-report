@@ -275,13 +275,13 @@ export default function CaseSearch() {
     //       console.log('submit error');
     //     })
 
-    const target1 = posts.filter((data)=>{
-      return (((data.skill1_id === skill1) ||
-              (data.skill1_id === skill2) ||
-              (data.skill1_id === skill3))              
-      );
-    });
-    console.log(target1);
+    // const target1 = posts.filter((data)=>{
+    //   return (((data.skill1_id === skill1) ||
+    //           (data.skill1_id === skill2) ||
+    //           (data.skill1_id === skill3))              
+    //   );
+    // });
+    // console.log(target1);
     const target2 = posts.filter((data)=>{
       return (((data.ocp_name === jobName[0]) ||
                 (data.ocp_name === jobName[1]) ||
@@ -304,19 +304,19 @@ export default function CaseSearch() {
         }
 
     
-    const target3 = posts.filter((data)=>{
-      return ((((data.skill1_id === skill1) ||
-              (data.skill1_id === skill2) ||
-              (data.skill1_id === skill3)) ||
-              ((data.skill2_id === skill1) ||
-              (data.skill2_id === skill2) ||
-              (data.skill2_id === skill3)) ||
-              ((data.skill3_id === skill1) ||
-              (data.skill3_id === skill2) ||
-              (data.skill3_id === skill3))) 
-            );
-    });
-    console.log(target3);
+    // const target3 = posts.filter((data)=>{
+    //   return ((((data.skill1_id === skill1) ||
+    //           (data.skill1_id === skill2) ||
+    //           (data.skill1_id === skill3)) ||
+    //           ((data.skill2_id === skill1) ||
+    //           (data.skill2_id === skill2) ||
+    //           (data.skill2_id === skill3)) ||
+    //           ((data.skill3_id === skill1) ||
+    //           (data.skill3_id === skill2) ||
+    //           (data.skill3_id === skill3))) 
+    //         );
+    // });
+    // console.log(target3);
 
     // console.log(jobName);
     // console.log(selectedEndDate);
