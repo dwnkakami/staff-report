@@ -148,11 +148,7 @@ export default function ReferenceList() {
     const getReferenceData = () => {
         if (posts.length === 0) {
             axios
-<<<<<<< HEAD:src/pages/referencelist/ReferenceList.jsx
                 .get('/api/referencelist/2')
-=======
-                .get('/api/referencelist/1')
->>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8:src/pages/referenceList/ReferenceList.jsx
                 .then(response => {
                     setPosts(response.data);
                     console.log([response.data])

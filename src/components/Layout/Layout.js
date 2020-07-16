@@ -34,14 +34,9 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 //import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-<<<<<<< HEAD
 import ReferenceList from "../../pages/referencelist/ReferenceList";
 // import ReferenceList_not from "../../pages/referenceList/notData";
 // import ReferenceDetail from "../../pages/referencedetail/ReferenceDetail";
-=======
-import ReferenceList from "../../pages/referenceList/ReferenceList";
-import ReferenceList_not from "../../pages/referenceList/notData";
->>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing/Billing";
@@ -84,12 +79,8 @@ function Layout(props) {
               {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
 
               <Route path="/staff-report/referencelist/001" component={ReferenceList} />
-<<<<<<< HEAD
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList_not} /> */}
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceDetail} /> */}
-=======
-              <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
->>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8
               {/* <Route path="" component={} /> 引合検索  */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}
