@@ -9,6 +9,12 @@ const stafflist003 = require('./modules/stafflist003.jsx');
 const stafflist004 = require('./modules/stafflist004.jsx');
 const stafflist005 = require('./modules/stafflist005.jsx');
 const staffsearch = require('./modules/staffsearch.js');
+const staffsearch001 = require('./modules/staffsearch001.js');
+const staffsearch002 = require('./modules/staffsearch002.js');
+const staffsearch003 = require('./modules/staffsearch003.js');
+const staffsearch004 = require('./modules/staffsearch004.js');
+const staffsearch005 = require('./modules/staffsearch005.js');
+const staffsearch006 = require('./modules/staffsearch006.js');
 const staffadd = require('./modules/staffadd.jsx');
 const caselist = require('./modules/caselist.jsx');
 const casedetail = require('./modules/casedetail.jsx');
@@ -45,6 +51,24 @@ app.get('/api/stafflist005/:condition',(req,res) => {
 });
 app.post('/api/staffsearch',(req,res) => {
     staffsearch.postData(req,res);
+});
+app.post('/api/staffsearch001',(req,res) => {
+    staffsearch001.postData(req,res);
+});
+app.post('/api/staffsearch002',(req,res) => {
+    staffsearch002.postData(req,res);
+});
+app.post('/api/staffsearch003',(req,res) => {
+    staffsearch003.postData(req,res);
+});
+app.post('/api/staffsearch004',(req,res) => {
+    staffsearch004.postData(req,res);
+});
+app.post('/api/staffsearch005',(req,res) => {
+    staffsearch005.postData(req,res);
+});
+app.post('/api/staffsearch006',(req,res) => {
+    staffsearch006.postData(req,res);
 });
 app.get('/api/staffadd/:condition',(req,res) => {
     staffadd.getData(req.params.condition,res);

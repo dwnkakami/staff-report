@@ -9,12 +9,6 @@ import Button from '@material-ui/core/Button';
 import { Card } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import {licenses} from '../variables/License';
-import {skill} from '../variables/Skill';
-import {area} from '../variables/Area';
-import {gender} from '../variables/Gender';
-import {status} from '../variables/Status';
-import {older} from '../variables/Older';
 import axios from 'axios';
 //import Keyword from './Keyword';
 
@@ -111,24 +105,24 @@ const StaffSearch = () => {
   };
 
   const [license, setLicense] = useState([]);
-    // const handleChange2 = (event) => {
-    //   setLicense(event.target.value);
-    // };
+    const handleChange2 = (event) => {
+      setLicense(event.target.value);
+    };
 
   const [skill1,setSkill1] = useState([]);
-  // const Skill1Change = (event) => {
-  //   setSkill1(event.target.value);
-  // }
+  const Skill1Change = (event) => {
+    setSkill1(event.target.value);
+  }
 
   const [skill2,setSkill2] = useState([]);
-  // const Skill2Change = (event) => {
-  //   setSkill2(event.target.value);
-  // }
+  const Skill2Change = (event) => {
+    setSkill2(event.target.value);
+  }
 
   const [skill3,setSkill3] = useState([]);
-  // const Skill3Change = (event) => {
-  //   setSkill3(event.target.value);
-  // }
+  const Skill3Change = (event) => {
+    setSkill3(event.target.value);
+  }
 
   const [status1,setStatus1] = useState([]);
   const Status1Change = (event) => {
@@ -146,45 +140,44 @@ const StaffSearch = () => {
   }
 
   const [areas,setAreas]=useState([]);
-  // const aresChenge = (event) => {
-  //   setAreas(event.target.value);
-  // }
+  const aresChenge = (event) => {
+    setAreas(event.target.value);
+  }
 
   const [ge,setGe]=useState([]);
-  // const genderChange = (event) => {
-  //   setGe(event.target.value);
-  // }
+  const genderChange = (event) => {
+    setGe(event.target.value);
+  }
 
   const [age,setAge] = useState([]);
   const ageChange = (event) => {
     setAge(event.target.value);
   }
-  // const[data,setData] = useState([]);
   
-  const handle = (event) =>{
-    switch(event.target.name){
-      case 'license':
-        setLicense(event.target.value);
-        break;
-      case 'skill1':
-        setSkill1(event.target.value);
-        break;
-      case 'skill2':
-        setSkill2(event.target.value);
-        break;
-      case 'skill3':
-        setSkill3(event.target.value);
-        break;
-      case 'ge':
-        setGe(event.target.value);
-        break;
-      case 'areas':
-        setAreas(event.target.value);
-        break;
-      default:
-        console.log('text not found');
-    }
-  }
+  // const handle = (event) =>{
+  //   switch(event.target.name){
+  //     case 'license':
+  //       setLicense(event.target.value);
+  //       break;
+  //     case 'skill1':
+  //       setSkill1(event.target.value);
+  //       break;
+  //     case 'skill2':
+  //       setSkill2(event.target.value);
+  //       break;
+  //     case 'skill3':
+  //       setSkill3(event.target.value);
+  //       break;
+  //     case 'ge':
+  //       setGe(event.target.value);
+  //       break;
+  //     case 'areas':
+  //       setAreas(event.target.value);
+  //       break;
+  //     default:
+  //       console.log('text not found');
+  //   }
+  // }
 
   //リセット機能
   const Reset = () => {
@@ -201,63 +194,175 @@ const StaffSearch = () => {
     setGe({ge:''});
     setAge({age:''});
   };
-
+  const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
     {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas}
+    if(data.length===0){
      axios
        .post('/api/staffsearch',newValue)
        .then(response => {
-        //setData(response.data);
+        setData(response.data);
         console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
         })
+    }
   },[]);
+  
+  //useEffect(()=>getUseData());
+  // const getUseData = () =>{
+  //   if(data.length === 0){
+  //     axios
+  //      .post('/api/staffsearch')
+  //      .then(response => {
+  //       setData(response.data);
+  //       console.log([response.data]);
+  //       })
+  //       .catch(() => {
+  //         console.log('connected error');
+  //       })
+  //   }
+  // }
+
+  const [getSkill,setGetSkill] = useState([]);
+  useEffect(()=>getSkillData(),[]);
+  const getSkillData = ()=>{
+    if(getSkill.length===0){
+    axios
+       .post('/api/staffsearch001')
+       .then(response => {
+        setGetSkill(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getLicense,setGetLicense] = useState([]);
+  useEffect(()=>getLicenseData(),[]);
+  const getLicenseData = ()=>{
+    if(getLicense.length===0){
+    axios
+       .post('/api/staffsearch002')
+       .then(response => {
+        setGetLicense(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getArea,setGetArea] = useState([]);
+  useEffect(()=>getAreaData(),[]);
+  const getAreaData = () =>{
+    if(getArea.length===0){
+      axios
+       .post('/api/staffsearch003')
+       .then(response => {
+        setGetArea(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getStatus,setGetStatus] = useState([]);
+  useEffect(()=>getStatusData(),[]);
+  const getStatusData=()=>{
+    if(getStatus.length===0){
+      axios
+       .post('/api/staffsearch004')
+       .then(response => {
+        setGetStatus(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getGender,setGetGender] = useState([]);
+  useEffect(()=>getGenderData(),[]);
+  const getGenderData = () =>{
+    if(getGender.length===0){
+      axios
+       .post('/api/staffsearch005')
+       .then(response => {
+        setGetGender(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getAge,setGetAge] = useState([]);
+  useEffect(()=>getAgeData(),[]);
+  const getAgeData = () =>{
+    if(getAge.length===0){
+      axios
+       .post('/api/staffsearch006')
+       .then(response => {
+        setGetAge(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
 
   const Search = () =>{
     let searchData = [];
     
     if(license !== null){
-     // searchData = data.filter(item => item.license === license);
-      searchData=license;
+      searchData = data.filter(item => item.skill === skill1);
     }
     if(skill1 !== null){
-    //  searchData = data.filter(item => item.skill === skill1);
-     searchData=skill1;
+      searchData = data.filter(item => item.skill === skill1);
+     //searchData=skill1;
    }
     if(skill2 !== null){
-     // searchData = data.filter(item => item.skill === skill2);
-     searchData=skill2;
+      searchData = data.filter(item => item.skill === skill2);
+     //searchData=skill2;
     }
     if(skill3 !== null){
-     // searchData = data.filter(item => item.skill === skill3);
-     searchData=skill3;
+      searchData = data.filter(item => item.skill === skill3);
+     //searchData=skill3;
    }
-    // if(status1 !== null){
-    //   searchData = data.filter(item => item.status === status1);
-    // }
-    // if(status2 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === status2;
-    //    });
-    // }
-    // if(status3 !== null){
-    //   data = data.filter((data) => {
-    //     return data.name === status3;
-    //    });
-    // }
-    if(ge !== null){
-      //searchData = data.filter(item => item.gender === ge);
-     searchData=ge;
+    if(status1 !== null){
+      searchData = data.find(item => item.status === status1);
+      //searchData=status1;
     }
-    // if(age !== null){
-    //   searchData = data.filter(item => item.age === age);
-    // }
+    if(status2 !== null){
+      searchData = data.filter(item => item.status === status2);
+      //searchData=status2;
+    }
+    if(status3 !== null){
+      searchData = data.filter(item => item.status === status3);
+      //searchData=status3;
+    }
+    if(ge !== null){
+      searchData = data.filter(item => item.gender === ge);
+     //searchData=ge;
+    }
+    if(age !== null){
+      searchData = data.filter(item => item.age === age);
+      //searchData=age;
+    }
     if(areas !== null){
-     // searchData = data.filter(item => item.area === areas);
-      searchData=areas;
+      searchData = data.filter(item => item.area === areas);
+      //searchData=[areas];
    }
 
     console.log(searchData);
@@ -355,10 +460,10 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={license}
-          onChange={handle}
-          name = "license"
+          onChange={handleChange2}
+          //name = "license"
         >
-          {licenses.map((data)=>(
+          {getLicense.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
@@ -371,11 +476,11 @@ const StaffSearch = () => {
      <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={skill1}
-          onChange={handle}
-          name="skill1"
+          onChange={Skill1Change}
+          //name="skill1"
           label="スキルレベル１"
         >
-          {skill.map((data)=>(
+          {getSkill.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
@@ -389,9 +494,9 @@ const StaffSearch = () => {
           value={status1}
           onChange={Status1Change}
         >
-         {status.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
+         {getStatus.map((data)=>(
+            <option key={data.level} value={data.level}>
+              {data.level}
             </option>
           ))}
         </Select>
@@ -401,14 +506,14 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl5}>
         <Select
           value={skill2}
-          onChange={handle}
-          name="skill2"
+          onChange={Skill2Change}
+          //name="skill2"
           inputProps={{
             // name: 'sk2',
             id: 'filled-age-native-simple',
           }}
         >
-          {skill.map((data)=>(
+          {getSkill.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
@@ -422,13 +527,13 @@ const StaffSearch = () => {
           value={status2}
           onChange={Status2Change}
           inputProps={{
-            name: 'st2',
+          //  name: 'st2',
             id: 'filled-age-native-simple',
           }}
         >
-         {status.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
+         {getStatus.map((data)=>(
+            <option key={data.level} value={data.level}>
+              {data.level}
             </option>
           ))}
         </Select>
@@ -438,14 +543,14 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl6}>
         <Select
           value={skill3}
-          onChange={handle}
-          name="skill3"
+          onChange={Skill3Change}
+         // name="skill3"
           inputProps={{
             // name: 'sk3',
             id: 'filled-age-native-simple',
           }}
         >
-          {skill.map((data)=>(
+          {getSkill.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
@@ -459,13 +564,13 @@ const StaffSearch = () => {
           value={status3}
           onChange={Status3Change}
           inputProps={{
-            name: 'st3',
+          //  name: 'st3',
             id: 'filled-age-native-simple',
           }}
         >
-          {status.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
+          {getStatus.map((data)=>(
+            <option key={data.level} value={data.level}>
+              {data.level}
             </option>
           ))}
         </Select>
@@ -478,8 +583,8 @@ const StaffSearch = () => {
           onChange={ageChange}
           // name="older"
         >
-          {older.map((data)=>(
-            <option key={data.id} value={data.age}>
+          {getAge.map((data)=>(
+            <option key={data.age} value={data.age}>
               {data.age}
             </option>
           ))}
@@ -490,16 +595,16 @@ const StaffSearch = () => {
     <FormControl variant="filled" className={classes.formControl3}>
         <Select
           value={ge}
-          onChange={handle}
-          name="ge"
+          onChange={genderChange}
+         // name="ge"
           inputProps={{
             // name: 'ge',
             id: 'filled-age-native-simple',
           }}
         >
-          {gender.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
+          {getGender.map((data)=>(
+            <option key={data.gender} value={data.gender}>
+              {data.gender}
             </option>
           ))}
         </Select>
@@ -509,14 +614,14 @@ const StaffSearch = () => {
       <FormControl variant="filled" className={classes.formControl4}>
         <Select
           value={areas}
-          onChange={handle}
-          name="areas"
+          onChange={aresChenge}
+          //name="areas"
           inputProps={{
             // name: 'areas',
             id: 'filled-age-native-simple',
           }}
         >
-          {area.map((data)=>(
+          {getArea.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
