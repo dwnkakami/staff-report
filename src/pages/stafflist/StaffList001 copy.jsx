@@ -145,7 +145,8 @@ const StyledTableRow = withStyles((theme) => ({
     const [order, setOrder] = React.useState('asc');
     const [orderBy, setOrderBy] = React.useState('id');
     const [selected, setSelected] = React.useState([]);
-
+    const [keyWord, setKeyWord] = React.useState('');
+ 
      useEffect(() => getStaffData());
     const getStaffData = () => {
         if(posts.length === 0) {
@@ -160,6 +161,16 @@ const StyledTableRow = withStyles((theme) => ({
               })
             }
     }
+    const keywordSubmit = () => {
+      const target = posts.filter((data) =>{
+        return (data.name.includes(keyWord));
+      });
+      if(target.length === 0){
+        window.alert("検索結果がありません")
+      }else{
+        console.log(target);
+      }
+    }; 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -177,16 +188,16 @@ const StyledTableRow = withStyles((theme) => ({
       };
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
-    const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
+    // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
-  const filterItems = (arr, query) => {
-    return arr.filter(el => el.toLowerCase().indexOf( query.toLowerCase()) !== -1)
-  }
+  // const filterItems = (arr, query) => {
+  //   return arr.filter(el => el.toLowerCase().indexOf( query.toLowerCase()) !== -1)
+  // }
 // }
 
-console.log(filterItems(name, '佐藤'))
-console.log(filterItems(name, '後藤'))
+// console.log(filterItems(name, '佐藤'))
+// console.log(filterItems(name, '後藤'))
     
     //   const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
 return(
@@ -200,14 +211,12 @@ return(
     </DialogTitle>
         <Grid container spacing={1} alignItems="flex-end">
         <Grid item>
-            <SearchIcon />
+            <SearchIcon onClick={keywordSubmit} className={classes.keyButton} type="submit"  />
             </Grid>
         <Grid item>
-            <TextField label="Search" />
-            {/* <form action=""> */}
-            {/* <input onChange={filterList}/> */}
-            {/* </form> */}
-            </Grid>
+            <TextField label="Search" onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" variant="outlined" type="text" name="key" />
+
+        </Grid>
         </Grid>
       <div className={classes.root}>
           <Paper className={classes.paper}>
