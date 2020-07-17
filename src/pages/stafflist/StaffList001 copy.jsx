@@ -1,7 +1,7 @@
 import React, { useState, useEffect }　from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Button } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -161,14 +161,16 @@ const StyledTableRow = withStyles((theme) => ({
               })
             }
     }
+
     const keywordSubmit = () => {
       const target = posts.filter((data) =>{
-        return (data.name.includes(keyWord));
+        return (data.name.includes(keyWord), data.position.includes(keyWord), data.company_abbreviation.includes(keyWord));
       });
       if(target.length === 0){
         window.alert("検索結果がありません")
       }else{
         console.log(target);
+        setPosts(posts);
       }
     }; 
     const handleRequestSort = (event, property) => {
@@ -211,12 +213,14 @@ return(
     </DialogTitle>
         <Grid container spacing={1} alignItems="flex-end">
         <Grid item>
-            <SearchIcon onClick={keywordSubmit} className={classes.keyButton} type="submit"  />
+            <SearchIcon />
             </Grid>
         <Grid item>
             <TextField label="Search" onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" variant="outlined" type="text" name="key" />
-
         </Grid>
+        <Button onClick={keywordSubmit} type="submit">
+          検索
+        </Button>
         </Grid>
       <div className={classes.root}>
           <Paper className={classes.paper}>
