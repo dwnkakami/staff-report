@@ -12,12 +12,8 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-<<<<<<< HEAD
-  DialogTitle
-=======
   DialogTitle,
   MenuItem
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
@@ -39,8 +35,6 @@ function Login(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
-<<<<<<< HEAD
-=======
     const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
 
     axios
@@ -52,24 +46,12 @@ function Login(props) {
             console.log('submit error');
         })
 
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
   };
 
   const handleClose = () => {
     setOpen(false);
   };
 
-<<<<<<< HEAD
-  // const submitAction = () => {
-  //   registerUser(
-  //     userDispatch,
-  //     passwordValue,
-  //     props.history,
-  //     setIsLoading,
-  //     setError,
-  //   )
-  // }
-=======
   const submitAction = () => {
     registerUser(
       userDispatch,
@@ -108,7 +90,6 @@ function Login(props) {
 
 
 
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
 
   var classes = useStyles();
 
@@ -275,11 +256,7 @@ function Login(props) {
                 value={nameValue}
                 onChange={e => setNameValue(e.target.value)}
                 margin="normal"
-<<<<<<< HEAD
-                placeholder="ユーザーID"
-=======
                 placeholder="ユーザー名"
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
                 type="text"
                 fullWidth
               />
@@ -336,11 +313,7 @@ function Login(props) {
                       handleClickOpen()
                       // loginUser(
                       //   userDispatch,
-<<<<<<< HEAD
-                      //   // loginValue,
-=======
                       //   loginValue,
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
                       //   passwordValue,
                       //   props.history,
                       //   setIsLoading,
@@ -381,11 +354,7 @@ function Login(props) {
                   <Button onClick={handleClose} color="primary">
                     キャンセル
                   </Button>
-<<<<<<< HEAD
-                  <Button  color="primary">
-=======
                   <Button  onClick={submitAction} color="primary">
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
                     確認
                   </Button>
                 </DialogActions>

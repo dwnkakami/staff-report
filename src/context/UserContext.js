@@ -56,48 +56,6 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   setIsLoading(true);
 
   if (!!login && !!password) {
-<<<<<<< HEAD
-
-    let userData = [];
-      axios
-        .get('/api/login/' + login)
-        .then(response => {
-          userData = response.data;
-          console.log(userData[0].name);
-          if (userData[0].password === password) {
-            setTimeout(() => {
-            localStorage.setItem('id_token', 1)
-            setError(null)
-            setIsLoading(true)
-            dispatch({ type: 'LOGIN_SUCCESS' })
-            history.push('/staff-report/dashboard')
-          }, 2000);
-        } else {
-          setError(true)
-          setIsLoading(false)
-          console.log('パスワードが一致しません');
-          
-        }
-        })
-        .catch(() => {
-          setError(true);
-          console.log('getData error');
-        })
-
-
-  //   setTimeout(() => {
-  //     localStorage.setItem('id_token', 1)
-  //     setError(null)
-  //     setIsLoading(false)
-  //     dispatch({ type: 'LOGIN_SUCCESS' })
-
-  //     history.push('/app/dashboard')
-  //   }, 2000);
-  // } else {
-  //   dispatch({ type: "LOGIN_FAILURE" });
-  //   setError(true);
-  //   setIsLoading(false);
-=======
 
     let userData = [];
       axios
@@ -165,6 +123,5 @@ function registerUser(dispatch, password, history, setIsLoading, setError) {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
->>>>>>> 6b410672096a6d190ce67bfa128669eea2688070
   }
 }
