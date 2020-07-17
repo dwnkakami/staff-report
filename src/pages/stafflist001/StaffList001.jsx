@@ -17,9 +17,8 @@ import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-import Dialog from '@material-ui/core/Dialog';
-import Button from '@material-ui/core/Button';
 import StaffList003 from '../staffList003/StaffList003';
+import StaffList003_figure from '../staffList003/StaffList003_figure';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -73,6 +72,7 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
+    { id:'id',numeric: true, disablePadding: false, label: '詳細' },
   ];
 
   function EnhancedTableHead(props) {
@@ -213,25 +213,8 @@ const StyledTableCell = withStyles((theme) => ({
     setSelected(newSelected);
   };
 
-  // const [list003, setList003] = useState(false);
-  // const handleClickDialog = (selected) => {
-  //   if(selected === 1){
-  //     setList003(<StaffList003/>);
-  //     }else {
-  //     　setList003('');
-  //   }
-  // };
-
-  const [open, setOpen] = React.useState(false);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   const isSelected = (id) => selected.indexOf(id) !== -1;
- 
+
 return(
   <div>
 <Paper elevation={3} >
@@ -274,9 +257,7 @@ return(
                   return (
                     <TableRow
                       hover
-                      // onClick={() => handleClickDialog(1)}
-                      // onClick={(event) => handleClick(event, data.id)}
-                      onClick={handleClickOpen} 
+                      onClick={(event) => handleClick(event, data.id)}
                       selected={isItemSelected}
                       variant="outlined"
                     >
@@ -285,12 +266,13 @@ return(
                       <TableCell align="center">{data.position}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
-                      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
-                      <StaffList003 />
-                      </Dialog>    
+                      <TableCell align="center">
+                        <StaffList003 key={data.id}
+                          name={data.name}/>
+                        {/* <StaffList003_figure key={data.id}/>                              */}
+                      </TableCell>
                     </TableRow>
                   );
-            
                 })}</TableBody>
           </Table>
           </Grid>
@@ -303,6 +285,5 @@ return(
 );
 };
 
-// onClick={(event) => handleClick(event, data.id)}
 
 

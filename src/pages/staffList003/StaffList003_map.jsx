@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import StaffList003_figure from './StaffList003_figure';
 
-const StaffList003_map = () => {
+const StaffList003_map = (props) => {
     const [user, setUser] = useState([]);  
   
     useEffect(() => getData());
@@ -11,7 +11,7 @@ const StaffList003_map = () => {
     const getData = () => {
       if(user.length === 0){
           axios
-              .get('/api/stafflist003/1')
+              .get('/api/stafflist003/2')
               .then(response => {
                   setUser(response.data);
               })
@@ -22,7 +22,7 @@ const StaffList003_map = () => {
   return (
     <div>
       {user.map((data) => (
-      <div key={data.staff_id}>
+      <div key={props.id}>
       {data.matter_content ? <StaffList003_figure/>:"経歴データなし"}
       </div>
       ))}

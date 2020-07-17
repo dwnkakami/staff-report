@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
+import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -31,9 +31,6 @@ const styles = (theme) => ({
 const useStyles = makeStyles((theme) => ({
   Button1: {
     color: '#000000',
-  },
-  Button2: {
-    // margin: '20px',
   },
   title: {
     color: '#000000',
@@ -71,24 +68,25 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export default function CustomizedDialogs() {
+export default function CustomizedDialogs(props) {
   const classes = useStyles();
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [open, setOpen] = React.useState(false);
+  
 
-  useEffect(() => getData());
+//   useEffect(() => getData());
 
-  const getData = () => {
-    if(user.length === 0){
-        axios
-            .get('/api/stafflist003/1')
-            .then(response => {
-                setUser(response.data);
-            })
-            .catch(() => {
-                console.log('connected error');
-            })
-}}
+//   const getData = () => {
+//     if(user.length === 0){
+//         axios
+//             .get('/api/stafflist003/1')
+//             .then(response => {
+//                 setUser(response.data);
+//             })
+//             .catch(() => {
+//                 console.log('connected error');
+//             })
+// }}
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,17 +97,17 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-       {/* <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button2}>
+       <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button2}>
         詳細
-      </Button>  */}
-      {/* <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}> */}
+      </Button> 
+      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
         </DialogTitle> 
         <DialogContent dividers>
-        {user.map((data) => (
-          <Typography variant="h5" className={classes.name} key={data.staff_id}>{data.staff_name}</Typography>
-          ))}
+        {/* {user.map((data) => ( */}
+          <Typography variant="h5" className={classes.name}>{props.name}</Typography>
+          {/* ))} */}
         <div>
           <StaffList003_Button />
         </div>
@@ -121,7 +119,7 @@ export default function CustomizedDialogs() {
           <AddIcon />追加
           </Button>
         </DialogActions>
-      {/* </Dialog> */}
+      </Dialog>
     </div>
   );
 }

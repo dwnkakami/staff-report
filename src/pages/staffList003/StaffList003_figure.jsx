@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const StaffList003_figure = () => {
+const StaffList003_figure = (props) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => getData());
@@ -155,7 +155,7 @@ const StaffList003_figure = () => {
               <Paper className={classes.color_short} variant="outlined">案件先</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content1_4} variant="outlined" key={data.staff_id}>{data.customer}</Paper>
+              <Paper  className={classes.content1_4} variant="outlined" key={props.id}>{data.customer}</Paper>
             </Grid>
               <Grid>
                 <Paper className={classes.color_short} variant="outlined">場所</Paper>
