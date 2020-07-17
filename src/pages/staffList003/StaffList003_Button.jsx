@@ -32,7 +32,7 @@ const StaffList003_Button = () => {
 
   const handleClick = (selected) => {
     if(selected　=== 1){
-      setStaff('スキル：データなし')
+      setStaff('スキル：データなし');
     } else if(selected　=== 2){
       setStaff(<StaffList003_map />);
       } else if(selected　=== 3){

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
+// import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
@@ -13,33 +13,27 @@ import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import { useEffect } from 'react';
 import StaffList003_Button from './StaffList003_Button';
-import StaffList001 from '../stafflist001/StaffList001';
-import StaffListButton from './ListButton';
-import ListButton from './ListButton';
 
-// const styles = (theme) => ({
-//   root: {
-//     margin: 5,
-//     padding: theme.spacing(2),
-//   },
-//   closeButton: {
-//     position: 'absolute',
-//     right: theme.spacing(1),
-//     top: theme.spacing(1),
-//     color: theme.palette.grey[50],
-//     background: theme.palette.grey[800],
-//   },
-// });
+const styles = (theme) => ({
+  root: {
+    margin: 5,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[50],
+    background: theme.palette.grey[800],
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   Button1: {
     color: '#000000',
   },
   Button2: {
-    margin: '20px',
-  },
-  dialog: {
-    height: theme.spacing(60),
+    // margin: '20px',
   },
   title: {
     color: '#000000',
@@ -49,23 +43,24 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-// const DialogTitle = withStyles(styles)((props) => {
-//   const { children, classes, onClose, onClick, ...other } = props;
-//   return (
-//     <MuiDialogTitle disableTypography className={classes.root} {...other} >
-//       <Typography variant="h6">{children}</Typography>
-//       {onClose ? (
-//         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
-//           <CloseIcon />
-//         </IconButton>
-//       ) : null}
-//     </MuiDialogTitle>
-//   );
-// });
+const DialogTitle = withStyles(styles)((props) => {
+  const { children, classes, onClose, onClick, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other} >
+      <Typography variant="h6">{children}</Typography>
+      {onClose ? (
+        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </MuiDialogTitle>
+  );
+});
 
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
+    height: theme.spacing(60)
   },
 }))(MuiDialogContent);
 
@@ -79,14 +74,14 @@ const DialogActions = withStyles((theme) => ({
 export default function CustomizedDialogs() {
   const classes = useStyles();
   const [user, setUser] = useState([]);
-  // const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => getData());
 
   const getData = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/3')
+            .get('/api/stafflist003/1')
             .then(response => {
                 setUser(response.data);
             })
@@ -95,32 +90,23 @@ export default function CustomizedDialogs() {
             })
 }}
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
-       {/* <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button2} >
-         aaa
+       {/* <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button2}>
+        詳細
       </Button>  */}
-      {/* <ListButton /> */}
-      <Dialog   
-      // onClose={handleClose} 
-      // aria-labelledby="max-width-dialog-title"
-      //  open={open} maxWidth="lg" fullWidth={true}
-      >
-        {/* <DialogTitle 
-        id="max-width-dialog-title" 
-        onClose={handleClose}
-        > */}
+      {/* <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}> */}
+        <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
-        {/* </DialogTitle>  */}
-        <DialogContent dividers className={classes.dialog}>
+        </DialogTitle> 
+        <DialogContent dividers>
         {user.map((data) => (
           <Typography variant="h5" className={classes.name} key={data.staff_id}>{data.staff_name}</Typography>
           ))}
@@ -135,7 +121,7 @@ export default function CustomizedDialogs() {
           <AddIcon />追加
           </Button>
         </DialogActions>
-      </Dialog>
+      {/* </Dialog> */}
     </div>
   );
 }

@@ -8,15 +8,18 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-// import { getData }  from './M_staff';
+import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import TextField from '@material-ui/core/TextField';
-// import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+import Dialog from '@material-ui/core/Dialog';
+import Button from '@material-ui/core/Button';
+import StaffList003 from '../staffList003/StaffList003';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -146,14 +149,14 @@ const StyledTableCell = withStyles((theme) => ({
 
     const [posts, setPosts] = useState([]);
 
-    // const [staff = getData,setStaff] = useState([]);
+    const [staff = getData,setStaff] = useState([]);
 
-    // const filterList = (e) => {
-    //   const updateList = staff.filter((data) => {
-    //     return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-    //   })
-    //   setStaff(updateList)
-    // };
+    const filterList = (e) => {
+      const updateList = staff.filter((data) => {
+        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+      })
+      setStaff(updateList)
+    };
 
     useEffect(() => getStaffData());
  
@@ -190,29 +193,47 @@ const StyledTableCell = withStyles((theme) => ({
     setSelected([]);
   };
 
-  // const handleClick = (event, id) => {
-  //   const selectedIndex = selected.indexOf(id);
-  //   let newSelected = [];
+  const handleClick = (event, id) => {
+    const selectedIndex = selected.indexOf(id);
+    let newSelected = [];
 
-  //   if (selectedIndex === -1) {
-  //     newSelected = newSelected.concat(selected, id);
-  //   } else if (selectedIndex === 0) {
-  //     newSelected = newSelected.concat(selected.slice(1));
-  //   } else if (selectedIndex === selected.length - 1) {
-  //     newSelected = newSelected.concat(selected.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelected = newSelected.concat(
-  //       selected.slice(0, selectedIndex),
-  //       selected.slice(selectedIndex + 1),
-  //     );
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, id);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1),
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  // const [list003, setList003] = useState(false);
+  // const handleClickDialog = (selected) => {
+  //   if(selected === 1){
+  //     setList003(<StaffList003/>);
+  //     }else {
+  //     　setList003('');
   //   }
-
-  //   setSelected(newSelected);
   // };
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
  
 return(
+  <div>
 <Paper elevation={3} >
 <DialogTitle id="customized-dialog-title">
 <div className='title' style={{ display: 'flex' }}>
@@ -220,16 +241,14 @@ return(
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
-
-{/* 　　　　　<Grid container spacing={1} alignItems="flex-end">
+　　　　　<Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SearchIcon />
           </Grid>
           <Grid item>
             <TextField onChange={filterList} label="Search" />
           </Grid>
-        </Grid> */}
-
+        </Grid>
 <div className={classes.root}>
       <Paper className={classes.paper}>
         <TableContainer>
@@ -255,18 +274,24 @@ return(
                   return (
                     <TableRow
                       hover
+                      // onClick={() => handleClickDialog(1)}
                       // onClick={(event) => handleClick(event, data.id)}
+                      onClick={handleClickOpen} 
                       selected={isItemSelected}
+                      variant="outlined"
                     >
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
+                      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
+                      <StaffList003 />
+                      </Dialog>    
                     </TableRow>
                   );
-                })}
-            </TableBody>
+            
+                })}</TableBody>
           </Table>
           </Grid>
           </Grid>
@@ -274,5 +299,10 @@ return(
       </Paper>
     </div>
     </Paper>
+    </div>
 );
 };
+
+// onClick={(event) => handleClick(event, data.id)}
+
+
