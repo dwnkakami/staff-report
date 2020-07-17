@@ -83,7 +83,7 @@ export default function CaseDetail (props) {
   return (
     <div>
       <Button variant="outlined" color="" onClick={handleClickOpen}>
-        案件リスト
+        案件詳細
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
           <DialogTitle id="customized-dialog-title" onClose={handleClose} >

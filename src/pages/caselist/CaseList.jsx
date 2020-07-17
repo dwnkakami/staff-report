@@ -15,6 +15,7 @@ import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 import { Grid } from '@material-ui/core';
 
 import axios from 'axios';
+import CaseDetail from '../casedetail/CaseDetail';
 
 // const styles = (theme) => ({
 //   root: {
@@ -185,6 +186,7 @@ const StyledTableRow = withStyles(() => ({
                 <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left"><CaseDetail /></StyledTableCell>
           </TableBody>
           ))}
        </Table>

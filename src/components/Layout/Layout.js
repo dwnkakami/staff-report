@@ -26,11 +26,11 @@ import Charts from "../../pages/charts";
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
-// import StaffList001 from "../pages/stafflist001";
+// import StaffList001 from "../../pages/stafflist/StaffList001";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
-import Caselist from "../../pages/caselist/Caselist";
+import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
 import CaseDetail from "../../pages/casedetail/CaseDetail";
@@ -64,10 +64,8 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
-              {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
-              {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
