@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 //import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
 import '../Css/Search.css';
 import Button from '@material-ui/core/Button';
-import { Card } from '@material-ui/core';
+import { Card,MenuItem } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
+import Input from '@material-ui/core/Input';
+import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 //import Keyword from './Keyword';
 
@@ -83,25 +83,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
 const StaffSearch = () => {
   const classes = useStyles();
 
   //KeywordSearch
   // const [keyword, setKeyWord] = useState();
-  
-  //チェックボックス項目
-  const [check, setCheck] = useState({
-    checkedA: false,
-    checkedB: false,
-    checkedC: false,
-    checkedD: false,
-    checkedE: false,
-    checkedF: false,
-  });
 
   //チェック切り替え
+  const [ocq,setOcq] = useState([]);
   const handleChange = (event) => {
-    setCheck({ ...check, [event.target.name]: event.target.checked });
+    setOcq(event.target.value);
   };
 
   const [license, setLicense] = useState([]);
@@ -153,36 +155,11 @@ const StaffSearch = () => {
   const ageChange = (event) => {
     setAge(event.target.value);
   }
-  
-  // const handle = (event) =>{
-  //   switch(event.target.name){
-  //     case 'license':
-  //       setLicense(event.target.value);
-  //       break;
-  //     case 'skill1':
-  //       setSkill1(event.target.value);
-  //       break;
-  //     case 'skill2':
-  //       setSkill2(event.target.value);
-  //       break;
-  //     case 'skill3':
-  //       setSkill3(event.target.value);
-  //       break;
-  //     case 'ge':
-  //       setGe(event.target.value);
-  //       break;
-  //     case 'areas':
-  //       setAreas(event.target.value);
-  //       break;
-  //     default:
-  //       console.log('text not found');
-  //   }
-  // }
 
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setCheck({check:false});
+    setOcq([]);
     setLicense({license:''});
     setSkill1({skill1:''});
     setSkill2({skill2:''});
@@ -197,7 +174,7 @@ const StaffSearch = () => {
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
-    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas}
+    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas,ocq:ocq}
     if(data.length===0){
      axios
        .post('/api/staffsearch',newValue)
@@ -211,21 +188,6 @@ const StaffSearch = () => {
     }
   },[]);
   
-  //useEffect(()=>getUseData());
-  // const getUseData = () =>{
-  //   if(data.length === 0){
-  //     axios
-  //      .post('/api/staffsearch')
-  //      .then(response => {
-  //       setData(response.data);
-  //       console.log([response.data]);
-  //       })
-  //       .catch(() => {
-  //         console.log('connected error');
-  //       })
-  //   }
-  // }
-
   const [getSkill,setGetSkill] = useState([]);
   useEffect(()=>getSkillData(),[]);
   const getSkillData = ()=>{
@@ -322,51 +284,39 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = () =>{
-    let searchData = [];
-    
-    if(license !== null){
-      searchData = data.filter(item => item.skill === skill1);
+  const [getOcq,setGetOcq] = useState([]);
+  useEffect(()=>getOcqData(),[]);
+  const getOcqData = () =>{
+    if(getOcq.length===0){
+      axios
+       .post('/api/staffsearch007')
+       .then(response => {
+        setGetOcq(response.data);
+        console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
     }
-    if(skill1 !== null){
-      searchData = data.filter(item => item.skill === skill1);
-     //searchData=skill1;
-   }
-    if(skill2 !== null){
-      searchData = data.filter(item => item.skill === skill2);
-     //searchData=skill2;
-    }
-    if(skill3 !== null){
-      searchData = data.filter(item => item.skill === skill3);
-     //searchData=skill3;
-   }
-    if(status1 !== null){
-      searchData = data.find(item => item.status === status1);
-      //searchData=status1;
-    }
-    if(status2 !== null){
-      searchData = data.filter(item => item.status === status2);
-      //searchData=status2;
-    }
-    if(status3 !== null){
-      searchData = data.filter(item => item.status === status3);
-      //searchData=status3;
-    }
-    if(ge !== null){
-      searchData = data.filter(item => item.gender === ge);
-     //searchData=ge;
-    }
-    if(age !== null){
-      searchData = data.filter(item => item.age === age);
-      //searchData=age;
-    }
-    if(areas !== null){
-      searchData = data.filter(item => item.area === areas);
-      //searchData=[areas];
-   }
-
-    console.log(searchData);
   }
+
+  const Search = () =>{
+  const search = data.filter((data)=>{
+    return (((data.name === license) ||
+              (((data.name === skill1) ||
+            (data.name === skill2) ||
+            (data.name === skill3)) ||
+            ((data.level === status1) ||
+            (data.level === status2) ||
+            (data.level === status3)) ||
+            ((data.gender === ge) ||
+            (data.age === age) ||
+            (data.area === areas)))||
+            data.name === ocq));
+  });
+
+  console.log(search);
+}
 
   return (
     <div class='body'>
@@ -374,78 +324,23 @@ const StaffSearch = () => {
     <p class='font'>スタッフ検索</p>
     <p class='font'>職種</p>
     {/* 職種選択 */}
-    <FormGroup row>
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedA}
-            onChange={handleChange}
-            name="checkedA"
-            color="primary"
-          />
-        }
-        label="SE"
-      />
-      
-      <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedB}
-            onChange={handleChange}
-            name="checkedB"
-            color="primary"
-          />
-        }
-        label="PG"
-      />
-
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedC}
-            onChange={handleChange}
-            name="checkedC"
-            color="primary"
-          />
-        }
-        label="営業"
-      />
-
-　　<FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedD}
-            onChange={handleChange}
-            name="checkedD"
-            color="primary"
-          />
-        }
-        label="インフラSE"
-    />　
-
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedE}
-            onChange={handleChange}
-            name="checkedE"
-            color="primary"
-          />
-        }
-        label="サポート"
-    />　
-    <FormControlLabel
-        control={
-          <Checkbox
-            checked={check.checkedF}
-            onChange={handleChange}
-            name="checkedF"
-            color="primary"
-          />
-        }
-        label="総務"
-    />　
-    </FormGroup>
+    <FormControl className={classes.formControl1}>
+            <Select
+              multiple
+              value={ocq}
+              onChange={handleChange}
+              input={<Input />}
+              renderValue={(selected)=>selected.join(', ')}
+              MenuProps={MenuProps}
+            >
+              {getOcq.map((name) => (
+                <MenuItem key={name.name} value={name.name}>
+                  <Checkbox checked={ocq.indexOf(name.name) > -1} />
+                  <ListItemText primary={name.name} />
+                </MenuItem>
+              ))}
+            </Select>
+    </FormControl>
 
     {/* <Typography variant="h5" component="h2">
         キーワード検索
