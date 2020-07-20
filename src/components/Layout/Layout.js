@@ -16,6 +16,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
+// import Test from "../../pages/dashboard/Test";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
@@ -27,15 +28,21 @@ import Charts from "../../pages/charts";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffAdd from "../../pages/staffadd";
 
+<<<<<<< HEAD
 // import CaseList from "../../pages/caselist/Caselist";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
+=======
+//import CaseList from "../../pages/caselist/CaseList";
+//import CaseSearch from "../../pages/casesearch/CaseSearch";
+//import CaseAdd from "../../pages/caseadd/CaseAdd";
+>>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8
 
 import ReferenceList from "../../pages/referencelist/ReferenceList";
 // import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
-//import Billing from "../../pages/billing";
+//import Billing from "../../pages/billing/Billing";
 
 
 // context
@@ -60,6 +67,7 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
+              {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
               {/* <Route path="/app/tables" component={ReferenceList} /> */}

@@ -1,6 +1,7 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
+<<<<<<< HEAD
 const login = require('./modules/login.jsx');
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
@@ -16,6 +17,24 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.js');
 const billing = require('./modules/billing.jsx');
+=======
+const login = require('./modules/login.js');
+const menu = require('./modules/menu.js');
+const stafflist001 = require('./modules/stafflist001.js');
+const stafflist002 = require('./modules/stafflist002.js');
+const stafflist003 = require('./modules/stafflist003.js');
+const stafflist004 = require('./modules/stafflist004.js');
+const stafflist005 = require('./modules/stafflist005.js');
+const staffsearch = require('./modules/staffsearch.js');
+const staffadd = require('./modules/staffadd.js');
+const caselist = require('./modules/caselist.js');
+const casedetail = require('./modules/casedetail.js');
+const casesearch = require('./modules/casesearch.js');
+const caseadd = require('./modules/caseadd.js');
+const referencelist = require('./modules/referencelist.js');
+const billing = require('./modules/billing.js');
+
+>>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 const port = process.env.PORT || 4000;
