@@ -1,56 +1,66 @@
 import React, { useState } from 'react';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
-import Staffskill2 from './Staffskill2';
 import { makeStyles } from '@material-ui/core/styles';
-// import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import StaffList002_graph from './StaffList002_graph';
 
-const styles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexDirection: 'colomn',
-        alignItems: 'center',
-        '& > *': {
-            margin: theme.spacing(1),
-        },
-    },
-    margin: {
-        botton: theme.spacing(16),
-        left: theme.spacing(5),
-        background:'#000000',
-        float: 'right',
-    },
+const useStyles = makeStyles((theme) => ({
+  Button: {
+    background:'rgb(120,144,156)',
+    borderRadius: '0px 0px 0px 0px',
+  },
+  ButtonGroup: {
+    margin: '2px 0px 7px 0px',
+    borderRadius: '0px 0px 0px 0px',
+  },
+  ButtonGroup2: {
+    margin: '2px 0px 7px 0px',
+    borderRadius: '0px 0px 0px 0px',
+    float: 'right',
+  },
+  Button2: {
+    background:'rgb(120,144,156)',
+    color: '#ffffff',
+    borderRadius: '0px 0px 0px 0px',
+  },
 }));
+
+
 const Staffskillbotton = () => {
-    const classes = styles();
-    const [staff, setStaff] = useState(<Staffskill2 />);
+  const classes = useStyles();
+  const [staff, setStaff] = useState(<StaffList002_graph />);
 
-    const handleClick = (selected) => {
-        if(selected === 1){
-            setStaff(<Staffskill2 />);
-        } else if(selected === 2){
-            setStaff('詳細');
-        } else if(selected === 3){
-            setStaff('キャリアパス');
-        } else {
-            setStaff('スタッフ情報');
-        }
-    };
+  const handleClick = (selected) => {
+    if(selected　=== 1){
+      setStaff(<StaffList002_graph />)
+    } else if(selected　=== 2){
+      setStaff('詳細：データなし');
+      } else if(selected　=== 3){
+        setStaff('キャリアパス：データなし');
+      }else {
+      　setStaff('スタッフ情報：データなし');
+    }
+  };
 
-    return (
-        <div>
-        <div>
+  return (
+    <div>
+      <div>
         <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-        <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
-        <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
-        <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
-        <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
+          <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
+          <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
+          <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
+          <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
       </ButtonGroup>
-      <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
+      <ButtonGroup className={classes.ButtonGroup2}　size="small" variant="contained" aria-label="contained primary button group">
+          <Button　className={classes.Button2}>スキルシート出力</Button>
+          <Button className={classes.Button2}>引合登録</Button>
+          </ButtonGroup>
       </div>
-      <staff />
-        </div>
-    )
+      <div>
+        {staff}
+      </div>
+    </div>
+  );
 }
+
 export default Staffskillbotton;

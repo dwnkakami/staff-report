@@ -9,9 +9,8 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
 import AddIcon from '@material-ui/icons/Add';
-import Staffskill2 from './Staffskill2';
+// import StaffList002 from './StaffList002';
 import Staffskillbotton from './Staffskillbotton';
 
 const styles = (theme) => ({
@@ -28,24 +27,7 @@ const styles = (theme) => ({
   },
 });
 const useStyles = makeStyles((theme) => ({
-  Button: {
-    background:'rgb(120,144,156)',
-    borderRadius: '0px 0px 0px 0px',
-  },
-  Button2: {
-    background:'rgb(120,144,156)',
-    color: '#FFFFFF',
-    borderRadius: '0px 0px 0px 0px',
-    top:12,
-    float: 'right',
-  },
-  Button3: {
-    background:'rgb(120,144,156)',
-    color: '#FFFFFF',
-    borderRadius: '0px 0px 0px 0px',
-    top: 12,
-    float: 'right',
-  },
+
   Button4: {
     color: '#000000',
   },
@@ -61,6 +43,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '16px',
     width: '95%',
     borderRadius: '12px 12px 12px 12px',
+  },
+  Content: {
+    height: theme.spacing(60),
   },
 }));
 const DialogTitle = withStyles(styles)((props) => {
@@ -90,46 +75,32 @@ const DialogActions = withStyles((theme) => ({
 export default function CustomizedDialogs() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [add, setAdd] = ([]);
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
-  const handleChange = () => {
-    setAdd('/StaffList003_figure');
-  };
+
   return (
     <div>
       <Button variant="outlined" color="primary" onClick={handleClickOpen} className={classes.Button5}>
         スタッフ経歴
       </Button>
-      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg">
+      <Dialog onClose={handleClose} aria-labelledby="max-width-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="max-width-dialog-title" onClose={handleClose}>
         <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>       
          </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers className={classes.Content}>
         <Typography variant="h6">テスト太郎</Typography>
+        <div>
         <Staffskillbotton />
-        {/* <div>
-        <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-        <Button className={classes.Button}>スキル</Button>
-        <Button className={classes.Button}>経歴</Button>
-        <Button className={classes.Button}>キャリアパス</Button>
-        <Button className={classes.Button}>スタッフ情報</Button>
-      </ButtonGroup>
-      <Button variant="contained" size="small"　className={classes.Button2}>スキルシート出力</Button>
-      <Button variant="contained" size="small" className={classes.Button3}>引合登録</Button>
-      </div> */}
-      <div>
-      <Staffskill2 />
-      </div>
+        </div>
       <div>
       </div>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleChange} className={classes.Button4}>
+          <Button autoFocus  className={classes.Button4}>
           <AddIcon />追加
           </Button>
         </DialogActions>
