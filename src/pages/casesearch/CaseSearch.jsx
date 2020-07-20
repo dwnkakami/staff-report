@@ -252,75 +252,75 @@ export default function CaseSearch() {
   //SearchButton
   const formSubmit = () => {
 
-    //jobName None
-    const target1 = posts.filter((data)=>{
-      return ( (((data.skill1_id === skill1) ||
-      (data.skill1_id === skill2) ||
-      (data.skill1_id === skill3)) ||
-      ((data.skill2_id === skill1) ||
-      (data.skill2_id === skill2) ||
-      (data.skill2_id === skill3)) ||
-      ((data.skill3_id === skill1) ||
-      (data.skill3_id === skill2) ||
-      (data.skill3_id === skill3))) &&
-          data.user_id === salesMan              
-      );
-    });
-    //jobName only 
-    const target2 = posts.filter((data) => {
-      return (((data.ocp_name === jobName[0]) ||
-                (data.ocp_name === jobName[1]) ||
-                (data.ocp_name === jobName[2])))
-    });
+    // //jobName None
+    // const target1 = posts.filter((data)=>{
+    //   return ( (((data.skill1_id === skill1) ||
+    //   (data.skill1_id === skill2) ||
+    //   (data.skill1_id === skill3)) ||
+    //   ((data.skill2_id === skill1) ||
+    //   (data.skill2_id === skill2) ||
+    //   (data.skill2_id === skill3)) ||
+    //   ((data.skill3_id === skill1) ||
+    //   (data.skill3_id === skill2) ||
+    //   (data.skill3_id === skill3))) &&
+    //       data.user_id === salesMan              
+    //   );
+    // });
+    // //jobName only 
+    // const target2 = posts.filter((data) => {
+    //   return (((data.ocp_name === jobName[0]) ||
+    //             (data.ocp_name === jobName[1]) ||
+    //             (data.ocp_name === jobName[2])))
+    // });
 
-    //skill None
-    const target3 = posts.filter((data)=>{
-      return ( ((data.ocp_name === jobName[0]) ||
-                (data.ocp_name === jobName[1]) ||
-                (data.ocp_name === jobName[2])) &&
-                  data.user_id === salesMan              
-      );
-    });
-    //skill only
-    const target4 = posts.filter((data)=>{
-      return ( (((data.skill1_id === skill1) ||
-      (data.skill1_id === skill2) ||
-      (data.skill1_id === skill3)) ||
-      ((data.skill2_id === skill1) ||
-      (data.skill2_id === skill2) ||
-      (data.skill2_id === skill3)) ||
-      ((data.skill3_id === skill1) ||
-      (data.skill3_id === skill2) ||
-      (data.skill3_id === skill3)))            
-      );
-    });
+    // //skill None
+    // const target3 = posts.filter((data)=>{
+    //   return ( ((data.ocp_name === jobName[0]) ||
+    //             (data.ocp_name === jobName[1]) ||
+    //             (data.ocp_name === jobName[2])) &&
+    //               data.user_id === salesMan              
+    //   );
+    // });
+    // //skill only
+    // const target4 = posts.filter((data)=>{
+    //   return ( (((data.skill1_id === skill1) ||
+    //   (data.skill1_id === skill2) ||
+    //   (data.skill1_id === skill3)) ||
+    //   ((data.skill2_id === skill1) ||
+    //   (data.skill2_id === skill2) ||
+    //   (data.skill2_id === skill3)) ||
+    //   ((data.skill3_id === skill1) ||
+    //   (data.skill3_id === skill2) ||
+    //   (data.skill3_id === skill3)))            
+    //   );
+    // });
 
-    //salesMan None
-    const target5 = posts.filter((data)=>{
-      return ( (((data.skill1_id === skill1) ||
-                  (data.skill1_id === skill2) ||
-                  (data.skill1_id === skill3)) ||
-                  ((data.skill2_id === skill1) ||
-                  (data.skill2_id === skill2) ||
-                  (data.skill2_id === skill3)) ||
-                  ((data.skill3_id === skill1) ||
-                  (data.skill3_id === skill2) ||
-                  (data.skill3_id === skill3))) && 
-                  ((data.ocp_name === jobName[0]) ||
-                (data.ocp_name === jobName[1]) ||
-                (data.ocp_name === jobName[2]))       
-      );
-    });
-    //salesMan only
-    const target6 = posts.filter((data) => {
-      return (data.user_id === salesMan)
-    });
+    // //salesMan None
+    // const target5 = posts.filter((data)=>{
+    //   return ( (((data.skill1_id === skill1) ||
+    //               (data.skill1_id === skill2) ||
+    //               (data.skill1_id === skill3)) ||
+    //               ((data.skill2_id === skill1) ||
+    //               (data.skill2_id === skill2) ||
+    //               (data.skill2_id === skill3)) ||
+    //               ((data.skill3_id === skill1) ||
+    //               (data.skill3_id === skill2) ||
+    //               (data.skill3_id === skill3))) && 
+    //               ((data.ocp_name === jobName[0]) ||
+    //             (data.ocp_name === jobName[1]) ||
+    //             (data.ocp_name === jobName[2]))       
+    //   );
+    // });
+    // //salesMan only
+    // const target6 = posts.filter((data) => {
+    //   return (data.user_id === salesMan)
+    // });
 
     //all
     const target7 = posts.filter((data)=>{
       return (((data.ocp_name === jobName[0]) ||
                 (data.ocp_name === jobName[1]) ||
-                (data.ocp_name === jobName[2])) &&
+                (data.ocp_name === jobName[2])) ||
                 (((data.skill1_id === skill1) ||
               (data.skill1_id === skill2) ||
               (data.skill1_id === skill3)) ||
@@ -329,89 +329,61 @@ export default function CaseSearch() {
               (data.skill2_id === skill3)) ||
               ((data.skill3_id === skill1) ||
               (data.skill3_id === skill2) ||
-              (data.skill3_id === skill3))) &&
+              (data.skill3_id === skill3))) ||
                   data.user_id === salesMan );
     });
+    if(target7.length === 0) {
+      window.alert("検索結果がありません。\n条件を変更してください。");
+    }else{
+      console.log(target7);
+    }
        
     //if分岐処理
-        if(jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
-          if(target1.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target1);
-          }
-        }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan === undefined) {
-          if(target2.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target2);
-          }
-        }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
-          if(target3.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target3);
-          }
-        }else if (jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan === undefined) {
-          if(target4.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target4);
-          }
-        }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) &&  salesMan === undefined) {
-          if(target5.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target5);
-          }
-        }else if (jobName.length === 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
-          if(target6.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target6);
-          }
-        }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
-          if(target7.length === 0){
-            window.alert("検索結果がありません。\n条件を変更してください。");
-          }else{
-            console.log(target7);
-          }
-        }
-
-        // if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
+        // if(jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
+        //   if(target1.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target1);
+        //   }
+        // }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan === undefined) {
+        //   if(target2.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target2);
+        //   }
+        // }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
+        //   if(target3.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target3);
+        //   }
+        // }else if (jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan === undefined) {
+        //   if(target4.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target4);
+        //   }
+        // }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) &&  salesMan === undefined) {
+        //   if(target5.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target5);
+        //   }
+        // }else if (jobName.length === 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
+        //   if(target6.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target6);
+        //   }
+        // }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
         //   if(target7.length === 0){
         //     window.alert("検索結果がありません。\n条件を変更してください。");
         //   }else{
         //     console.log(target7);
         //   }
         // }
-        // //jobName only
-        // if(jobName.length !== 0) {
-        //   console.log(target6);
-        // }else{
-        //   console.log(target2);
-        // }
-        // //skill None
-        // if(skill1=== undefined && skill2 === undefined && skill3 === undefined) {
-        //   console.log(target3);
-        // }else{
-        //   console.log(target2);
-        // }
-        // //salesMan none
-        // if(salesMan === undefined) {
-        //   console.log(target4);
-        // }else{
-        //   console.log(target2);
-        // }
-        // //salesMan only
-        // if(target5 !== undefined) {
-        //   console.log(target5);
-        // }else{
-        //   console.log(target2);
-        // }
 
-    
-
+      
   };
 
   return (
