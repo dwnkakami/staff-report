@@ -35,6 +35,7 @@ const [area,setArea] = useState("");
 const [occupation,setOccupation] = useState("");
 const [employment,setEmployment] = useState("");
 const entry = new Date().toLocaleString();
+const update = new Date().toLocaleString();
 
 const handleChange = e => {
     switch (e.target.name) {
@@ -87,7 +88,7 @@ const handleChange = e => {
 
 const add = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry}
+    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update}
 
     axios
         .post('/api/staffadd', newValue)
@@ -141,7 +142,7 @@ const classes = useStyles();
     return(
         <Paper elevation={3}>
         <DialogTitle id="customized-dialog-title">
-            <div className='title' style={{ display: 'flex' }}>
+            <div  style={{ display: 'flex' }}>
             <PersonAddIcon style={{ fontSize: '40px', }}/>
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
