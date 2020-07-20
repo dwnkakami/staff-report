@@ -5,10 +5,10 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import '../Css/Search.css';
 import Button from '@material-ui/core/Button';
-import { Card,/*MenuItem*/ } from '@material-ui/core';
-//import Checkbox from '@material-ui/core/Checkbox';
-//import Input from '@material-ui/core/Input';
-//import ListItemText from '@material-ui/core/ListItemText';
+import { Card,MenuItem } from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 //import Keyword from './Keyword';
 
@@ -313,10 +313,15 @@ const StaffSearch = () => {
             ((data.gender === ge) ||
             (data.age === age) ||
             (data.area === areas)))||
-            (data.occupation === ocp)));
+            ((data.occupation === ocp[0])||
+            (data.occupation === ocp[1])||
+            (data.occupation === ocp[2])||
+            (data.occupation === ocp[3])||
+            (data.occupation === ocp[4])||
+            (data.occupation === ocp[5]))));
   });
-
-  console.log(search);
+  //history.push({ pathname: '[stafflist001]', state: { [search]: [data] }});
+   console.log(search);
 }
 
   return (
@@ -325,7 +330,7 @@ const StaffSearch = () => {
     <p class='font'>スタッフ検索</p>
     <p class='font'>職種</p>
     {/* 職種選択 */}
-    {/* <FormControl className={classes.formControl1}>
+    <FormControl className={classes.formControl1}>
             <Select
               multiple
               value={ocp}
@@ -341,9 +346,9 @@ const StaffSearch = () => {
                 </MenuItem>
               ))}
             </Select>
-    </FormControl> */}
+    </FormControl>
 
-      <FormControl variant="filled" className={classes.formControl1}>
+      {/* <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={ocp}
           onChange={handleChange}
@@ -355,7 +360,7 @@ const StaffSearch = () => {
             </option>
           ))}
         </Select>
-    </FormControl>
+    </FormControl> */}
 
     {/* <Typography variant="h5" component="h2">
         キーワード検索
