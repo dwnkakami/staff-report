@@ -163,17 +163,17 @@ const StyledTableRow = withStyles((theme) => ({
     }
 
     const keywordSubmit = () => {
-      const target = posts.filter((data) =>{
-        return (data.name.includes(keyWord), data.position.includes(keyWord), data.company_abbreviation.includes(keyWord));
+      const target = posts.filter((data)=>{
+        return (data.name.includes(keyWord));    
       });
       if(target.length === 0){
         window.alert("検索結果がありません")
       }else{
+        getStaffData(true);
         console.log(target);
-        setPosts(posts);
-        setPosts(true);
-        }
-    }; 
+
+      }
+    };
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
@@ -217,7 +217,7 @@ return(
             <SearchIcon />
             </Grid>
         <Grid item>
-            <TextField label="Search" onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" variant="outlined" type="text" name="key" />
+            <TextField label="Search" value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" variant="outlined" type="text" name="key" />
         </Grid>
         <Button onClick={keywordSubmit} type="submit">
           検索
