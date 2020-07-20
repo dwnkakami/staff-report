@@ -35,7 +35,8 @@ const [area,setArea] = useState("");
 const [occupation,setOccupation] = useState("");
 const [employment,setEmployment] = useState("");
 const entry = new Date().toLocaleString();
-const update = new Date().toLocaleString();
+const update_at = new Date().toLocaleString();
+// const update_by = profileMenuUser
 
 const handleChange = e => {
     switch (e.target.name) {
@@ -88,7 +89,9 @@ const handleChange = e => {
 
 const add = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update}
+    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at, 
+        // update_by:update_by
+    }
 
     axios
         .post('/api/staffadd', newValue)
@@ -102,17 +105,71 @@ const add = () => {
         });
 }
 
-const [state,setState] = useState([]);
+const [state1,setState1] = useState([]);
 
-useEffect(() => getData());
+useEffect(() => getAreaData(),[]);
 
-const getData = () => {
-    if(state.length === 0){
+const getAreaData = () => {
+    if(state1.length === 0){
     axios
-        .get('./api/staffadd2')
+        .get('./api/staffadd001')
         .then(response => {
-            setState(response.data);
-            console.log(response.data);
+            setState1(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state2,setState2] = useState([]);
+
+useEffect(() => getCompanyData(),[]);
+
+const getCompanyData = () => {
+    if(state2.length === 0){
+    axios
+        .get('./api/staffadd002')
+        .then(response => {
+            setState2(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state3,setState3] = useState([]);
+
+useEffect(() => getEmploymentData(),[]);
+
+const getEmploymentData = () => {
+    if(state3.length === 0){
+    axios
+        .get('./api/staffadd003')
+        .then(response => {
+            setState3(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state4,setState4] = useState([]);
+
+useEffect(() => getOccupationData(),[]);
+
+const getOccupationData = () => {
+    if(state4.length === 0){
+    axios
+        .get('./api/staffadd004')
+        .then(response => {
+            setState4(response.data);
+            console.log([response.data]);
         })
         .catch(() => {
             console.log('connected error');
@@ -197,7 +254,7 @@ const classes = useStyles();
             <InputLabel>選択してください</InputLabel>
             <Select name="company" value={company} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {state.map((data) => (
+            {state2.map((data) => (
             <MenuItem key={data.company_id} value={data.company_id} >
               {data.company}
             </MenuItem>
@@ -211,7 +268,7 @@ const classes = useStyles();
             <InputLabel>選択してください</InputLabel>
             <Select name="area" value={area} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {state.map((data) => (
+            {state1.map((data) => (
             <MenuItem key={data.area_id} value={data.area_id} >
               {data.area}
             </MenuItem>
@@ -238,7 +295,7 @@ const classes = useStyles();
             <InputLabel>選択してください</InputLabel>
             <Select name="occupation" value={occupation} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {state.map((data) => (
+            {state4.map((data) => (
             <MenuItem key={data.occupation_id} value={data.occupation_id} >
               {data.occupation}
             </MenuItem>
@@ -252,7 +309,7 @@ const classes = useStyles();
             <InputLabel>選択してください</InputLabel>
             <Select name="employment" value={employment} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            {state.map((data) => (
+            {state3.map((data) => (
             <MenuItem key={data.employment_id} value={data.employment_id} >
               {data.employment}
             </MenuItem>

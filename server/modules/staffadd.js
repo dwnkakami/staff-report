@@ -19,9 +19,9 @@ exports.postData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql = "INSERT INTO m_staff (id, name, gender, position, joining_day, birthday, age, school_career, phone_number, near_station, company_id, area_id, occupation_id, employment_system_id, entry_at, update_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO m_staff (id, name, gender, position, joining_day, birthday, age, school_career, phone_number, near_station, company_id, area_id, occupation_id, employment_system_id, entry_at, update_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     console.log(req.body);
-    con.query(sql,[req.body.id, req.body.name, req.body.gender, req.body.position, req.body.joining_day, req.body.birthday, req.body.age, req.body.school_career, req.body.phone_number, req.body.near_station, req.body.company_id, req.body.area_id, req.body.occupation_id, req.body.employment_system_id, req.body.entry_at, req.body.update_at], (err, result, fields) => {
+    con.query(sql,[req.body.id, req.body.name, req.body.gender, req.body.position, req.body.joining_day, req.body.birthday, req.body.age, req.body.school_career, req.body.phone_number, req.body.near_station, req.body.company_id, req.body.area_id, req.body.occupation_id, req.body.employment_system_id, req.body.entry_at, req.body.update_at, req.body.update_by], (err, result, fields) => {
       if (err) throw err;
       res.send('Success!');
     });
