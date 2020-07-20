@@ -144,17 +144,6 @@ export default function CaseSearch() {
     }else{
       console.log(target);
     }
-    // let task = posts;
-    
-
-    // task = task.filter(data => {
-    //   if(data.name.includes(keyWord)){
-    //     console.log(data);
-    //   }else {
-    //     window.alert("検索結果がありません。\n条件を変更してください。");
-    //   }
-    // });
-  
   };
 
 
@@ -250,7 +239,6 @@ export default function CaseSearch() {
   const clearAll = () => {
     setKeyWord('')
     setJobName([])
-    // setLicense('')
     setSkill1('')
     setSkill2('')
     setSkill3('')
@@ -264,18 +252,6 @@ export default function CaseSearch() {
   //SearchButton
   const formSubmit = () => {
 
-    // const newValue = {job:jobName,skill1:skill1,skill2:skill2,skill3:skill3,startdate:selectedStartDate,enddate:selectedEndDate,salesMan:salesMan};
-
-    // axios
-    //     .post('/api/casesearch002',newValue)
-    //     .then(response => {
-    //       console.log(response.data);
-    //     })
-    //     .catch(() => {
-    //       console.log('submit error');
-    //     })
-
-    
     //jobName None
     const target1 = posts.filter((data)=>{
       return ( (((data.skill1_id === skill1) ||
@@ -290,7 +266,6 @@ export default function CaseSearch() {
           data.user_id === salesMan              
       );
     });
-
     //jobName only 
     const target2 = posts.filter((data) => {
       return (((data.ocp_name === jobName[0]) ||
@@ -336,21 +311,12 @@ export default function CaseSearch() {
                 (data.ocp_name === jobName[2]))       
       );
     });
-
     //salesMan only
     const target6 = posts.filter((data) => {
       return (data.user_id === salesMan)
     });
 
-    
-
-
-    // if(target2.length === 0){
-    //   window.alert("検索結果がありません。\n条件を変更してください。")
-    // }else {
-    //   console.log(target1);
-    // }
-
+    //all
     const target7 = posts.filter((data)=>{
       return (((data.ocp_name === jobName[0]) ||
                 (data.ocp_name === jobName[1]) ||
@@ -366,36 +332,59 @@ export default function CaseSearch() {
               (data.skill3_id === skill3))) &&
                   data.user_id === salesMan );
     });
-        // if(target7.length === 0){
-        //   window.alert("検索結果がありません。\n条件を変更してください。")
-        // }else {
-        //   console.log(target7);
-        // }
-        //jobName None
+       
+    //if分岐処理
         if(jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
-          console.log(target1);
+          if(target1.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target1);
+          }
         }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan === undefined) {
-          console.log(target2);
+          if(target2.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target2);
+          }
         }else if (jobName.length !== 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
-          console.log(target3);
+          if(target3.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target3);
+          }
         }else if (jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan === undefined) {
-          console.log(target4);
+          if(target4.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target4);
+          }
         }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) &&  salesMan === undefined) {
-          console.log(target5);
+          if(target5.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target5);
+          }
         }else if (jobName.length === 0 && (skill1 === undefined && skill2 === undefined && skill3 === undefined) && salesMan !== undefined) {
-          console.log(target6);
+          if(target6.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target6);
+          }
         }else if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
-          console.log(target7);
-        }else if ((target1.length === 0) && (target2.length === 0) && (target3.length === 0) && (target4.length === 0) && (target5.length === 0) && (target6.length === 0) && (target7.length === 0)) {
-          window.alert("検索結果がありません。\n条件を変更してください。");
-        }else {
-          // console.log(target7);
-          window.alert("検索結果がありません。\n条件を変更してください。");
+          if(target7.length === 0){
+            window.alert("検索結果がありません。\n条件を変更してください。");
+          }else{
+            console.log(target7);
+          }
         }
 
-        if ((target1.length === 0) && (target2.length === 0) && (target3.length === 0) && (target4.length === 0) && (target5.length === 0) && (target6.length === 0) && (target7.length === 0)) {
-          window.alert("検索結果がありません。\n条件を変更してください。");
-        }
+        // if (jobName.length !== 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
+        //   if(target7.length === 0){
+        //     window.alert("検索結果がありません。\n条件を変更してください。");
+        //   }else{
+        //     console.log(target7);
+        //   }
+        // }
         // //jobName only
         // if(jobName.length !== 0) {
         //   console.log(target6);
@@ -536,7 +525,6 @@ export default function CaseSearch() {
           担当営業名
         </Typography>
 
-        {/* <TextField value={salesMan} onChange={e => setSalesMan(e.target.value)} className={classes.inputForm} id="outlined-basic" label="担当営業名" variant="outlined" /> */}
 
         <TextField className={classes.formControl}
           select
