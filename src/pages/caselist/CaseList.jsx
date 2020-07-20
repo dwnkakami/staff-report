@@ -16,6 +16,8 @@ import { Grid } from '@material-ui/core';
 
 import axios from 'axios';
 
+import CaseDetail from './casedetail/CaseDetail';
+
 // const styles = (theme) => ({
 //   root: {
 //       margin: 0,
@@ -174,17 +176,20 @@ const StyledTableRow = withStyles(() => ({
           </TableHead>
           {Caselistmap.map((data) => (
           <TableBody>
-                <StyledTableRow key={data.id}/>
+                <StyledTableRow key={data.id}
+                caseid={data.id}
+                />
                 <StyledTableCell classname="tablecell" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left"><a href='https://www.google.com'>{data.name}</a></StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.name}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.customer_id}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.unit_cost}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.workplace}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left"><CaseDetail/></StyledTableCell>
           </TableBody>
           ))}
        </Table>
