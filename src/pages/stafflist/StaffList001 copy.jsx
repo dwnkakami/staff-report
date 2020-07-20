@@ -171,7 +171,8 @@ const StyledTableRow = withStyles((theme) => ({
       }else{
         console.log(target);
         setPosts(posts);
-      }
+        setPosts(true);
+        }
     }; 
     const handleRequestSort = (event, property) => {
         const isAsc = orderBy === property && order === 'asc';
