@@ -33,7 +33,7 @@ const datatableData = [
 export default function Tables() {
   return (
     <>
-      <PageTitle title="Tables" />
+      <PageTitle title="スタッフ検索" />
       <Grid container spacing={4}>
         <Grid item xs={12}>
           <MUIDataTable
@@ -45,7 +45,7 @@ export default function Tables() {
             }}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid className='sheet' item xs={12}>
           <Widget title="Material-UI Table" upperTitle noBodyPadding>
             <Table data={mock.table} />
           </Widget>

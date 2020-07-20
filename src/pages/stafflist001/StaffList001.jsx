@@ -78,6 +78,14 @@ const StyledTableCell = withStyles((theme) => ({
       onRequestSort(event, property);
     };
   
+// class getData extends React.Component {
+//   render() {
+//     return (
+//       this.props.location.state.search
+//     )
+//   }
+// }
+  
     return (
       <TableHead>
         <StyledTableRow>

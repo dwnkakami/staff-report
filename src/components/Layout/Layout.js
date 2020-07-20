@@ -11,8 +11,8 @@ import classnames from "classnames";
 import useStyles from "./styles";
 
 // components
-import Header from "../Header";
-import Sidebar from "../Sidebar";
+import Header from "../Header/Header";
+import Sidebar from "../Sidebar/Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
@@ -29,6 +29,7 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
+import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
 //import CaseList from "../../pages/caselist/CaseList";
@@ -40,7 +41,6 @@ import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing/Billing";
-
 
 // context
 import { useLayoutState } from "../../context/LayoutContext";
@@ -66,13 +66,14 @@ function Layout(props) {
               <Route path="/staff-report/dashboard" component={Dashboard} />
               {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
-              <Route path="/app/tables" component={Tables} />
+              {/* <Route path="/app/tables" component={Tables} /> */}
+              {/* <Route path="/app/tables" component={Tables} /> */}
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
-              {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
-              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
+              <Route path="/staff-report/staffsearch/001" component={StaffSearchG} />
+              {/* { <Route path="/staff-report/staffadd/001" component={StaffAdd} /> } */}
 
               {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
