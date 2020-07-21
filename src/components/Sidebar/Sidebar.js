@@ -181,7 +181,7 @@ function Sidebar({ location }) {
 // })
 
 const menu = structure.filter ((data)=> {
-  if (getAccessData.access_id === 1) {
+  if (getAccessData.access_name === "スタッフリスト編集" && getAccessData.access_name === "スタッフリスト閲覧" && getAccessData.access_name === "スタッフリスト削除"  ) {
   return (
     (data.id === 0) ||
     (data.id === 1) ||
@@ -190,12 +190,14 @@ const menu = structure.filter ((data)=> {
     (data.id === 4) ||
     (data.id === 5) ||
     (data.id === 6)
-  )
-  } else {
-    return (data.id === 0) ||
+  );
+  }  else {
+    return (
+    (data.id === 0) ||
     (data.id === 1) ||
     (data.id === 2) ||
     (data.id === 3)
+    );
   }
 });
 
