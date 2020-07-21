@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 120,
     left: -244,
     top:160,
+    position:'relative',
   },
 
   selectEmpty: {
@@ -101,9 +102,9 @@ const StaffSearch = () => {
   // const [keyword, setKeyWord] = useState();
 
   //チェック切り替え
-  const [ocq,setOcq] = useState([]);
+  const [ocp,setOcp] = useState([]);
   const handleChange = (event) => {
-    setOcq(event.target.value);
+    setOcp(event.target.value);
   };
 
   const [license, setLicense] = useState([]);
@@ -159,7 +160,7 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setOcq([]);
+    setOcp([]);
     setLicense({license:''});
     setSkill1({skill1:''});
     setSkill2({skill2:''});
@@ -174,7 +175,7 @@ const StaffSearch = () => {
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
-    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas,ocq:ocq}
+    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas,occupation:ocp}
     if(data.length===0){
      axios
        .post('/api/staffsearch',newValue)
@@ -284,14 +285,14 @@ const StaffSearch = () => {
     }
   }
 
-  const [getOcq,setGetOcq] = useState([]);
-  useEffect(()=>getOcqData(),[]);
-  const getOcqData = () =>{
-    if(getOcq.length===0){
+  const [getOcp,setGetOcp] = useState([]);
+  useEffect(()=>getOcpData(),[]);
+  const getOcpData = () =>{
+    if(getOcp.length===0){
       axios
        .post('/api/staffsearch007')
        .then(response => {
-        setGetOcq(response.data);
+        setGetOcp(response.data);
         console.log([response.data]);
         })
         .catch(() => {
@@ -302,17 +303,22 @@ const StaffSearch = () => {
 
   const Search = () =>{
   const search = data.filter((data)=>{
-    return (((data.name === license) ||
-              (((data.name === skill1) ||
-            (data.name === skill2) ||
-            (data.name === skill3)) ||
+    return (((data.license === license) ||
+              (((data.skill === skill1) ||
+            (data.skill === skill2) ||
+            (data.skill === skill3)) ||
             ((data.level === status1) ||
             (data.level === status2) ||
             (data.level === status3)) ||
             ((data.gender === ge) ||
             (data.age === age) ||
             (data.area === areas)))||
-            data.name === ocq));
+            ((data.occupation === ocp[0])||
+            (data.occupation === ocp[1])||
+            (data.occupation === ocp[2])||
+            (data.occupation === ocp[3])||
+            (data.occupation === ocp[4])||
+            (data.occupation === ocp[5]))));
   });
   console.log(search);
 }
@@ -358,20 +364,34 @@ const StaffSearch = () => {
     <FormControl className={classes.formControl1}>
             <Select
               multiple
-              value={ocq}
+              value={ocp}
               onChange={handleChange}
               input={<Input />}
               renderValue={(selected)=>selected.join(', ')}
               MenuProps={MenuProps}
             >
-              {getOcq.map((name) => (
+              {getOcp.map((name) => (
                 <MenuItem key={name.name} value={name.name}>
-                  <Checkbox checked={ocq.indexOf(name.name) > -1} />
+                  <Checkbox checked={ocp.indexOf(name.name) > -1} />
                   <ListItemText primary={name.name} />
                 </MenuItem>
               ))}
             </Select>
     </FormControl>
+
+      {/* <FormControl variant="filled" className={classes.formControl1}>
+        <Select
+          value={ocp}
+          onChange={handleChange}
+          //name = "license"
+        >
+          {getOcp.map((data)=>(
+            <option key={data.id} value={data.name}>
+              {data.name}
+            </option>
+          ))}
+        </Select>
+    </FormControl> */}
 
     {/* <Typography variant="h5" component="h2">
         キーワード検索

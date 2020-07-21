@@ -1,6 +1,6 @@
 import React, { useState, useEffect }　from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, TextField, Button } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -219,6 +219,25 @@ const StyledTableCell = withStyles((theme) => ({
   // };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
+
+  const [keyWord, setKeyWord] = React.useState('');
+  const current_data = posts.map((data) => (<li>{data}</li>))
+  const [staff, setStaff] = React.useState(current_data);
+
+  const keywordSubmit = () => {
+
+    const target = posts.filter((data)=>{
+      return (data.name.includes(keyWord) || 
+              data.position.includes(keyWord) || 
+              data.company_abbreviation.includes(keyWord));
+    });
+    if(keyWord.length === 0){
+      window.alert("検索結果がありません。")
+    }else{
+      console.log(target);
+      setStaff(target)
+    }
+  };
  
 return(
 <Paper elevation={3} >
@@ -240,6 +259,8 @@ return(
 
 <div className={classes.root}>
       <Paper className={classes.paper}>
+      <TextField label="search" value={keyWord} onChange={e => setKeyWord(e.target.value)} variant="outlined"></TextField>
+      <Button onClick={keywordSubmit}>検索</Button>
         <TableContainer>
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
@@ -253,10 +274,10 @@ return(
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={posts.length}
+              rowCount={staff.length}
             />
             <TableBody>
-              {stableSort(posts, getComparator(order, orderBy))
+              {stableSort(staff, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
