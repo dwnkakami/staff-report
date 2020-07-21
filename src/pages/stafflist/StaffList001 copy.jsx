@@ -18,7 +18,6 @@ import SearchIcon from '@material-ui/icons/Search';
 // import './StaffList001.css';
 // import App from '../../components/App';
 import axios from 'axios';
-// import { SentimentSatisfied } from '@material-ui/icons';
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -146,6 +145,8 @@ const StyledTableRow = withStyles((theme) => ({
     const [orderBy, setOrderBy] = React.useState('id');
     const [selected, setSelected] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState('');
+    const [staff, setStaff] = React.useState([]);
+
  
      useEffect(() => getStaffData());
     const getStaffData = () => {
@@ -164,14 +165,15 @@ const StyledTableRow = withStyles((theme) => ({
 
     const keywordSubmit = () => {
       const target = posts.filter((data)=>{
-        return (data.name.includes(keyWord));    
+        return (data.name.includes(keyWord) ||
+                data.position.includes(keyWord) ||
+                data.company_abbreviation.includes(keyWord));    
       });
-      if(target.length === 0){
+      if(keyWord.length === 0){
         window.alert("検索結果がありません")
       }else{
-        getStaffData(true);
         console.log(target);
-
+        setStaff(target);
       }
     };
     const handleRequestSort = (event, property) => {
@@ -183,7 +185,7 @@ const StyledTableRow = withStyles((theme) => ({
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-          const newSelecteds = posts.map((n) => n.id);
+          const newSelecteds = staff.map((n) => n.id);
           setSelected(newSelecteds);
           return;
         }
@@ -191,6 +193,7 @@ const StyledTableRow = withStyles((theme) => ({
       };
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
+
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
@@ -238,10 +241,10 @@ return(
           orderBy={orderBy}
           onSelectAllClick={handleSelectAllClick}
           onRequestSort={handleRequestSort}
-          rowCount={posts.length}
+          rowCount={staff.length}
           />
          <TableBody>
-          {stableSort(posts, getComparator(order, orderBy))
+          {stableSort(staff, getComparator(order, orderBy))
            .map((data, index) => {
            const isItemSelected = isSelected(data.id);
            return (

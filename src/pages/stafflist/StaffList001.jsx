@@ -1,7 +1,7 @@
 import React, { useState, useEffect }　from 'react';
 import PropTypes from 'prop-types';
 import Paper from '@material-ui/core/Paper';
-import { Typography, DialogTitle, TextField, Button } from '@material-ui/core';
+import { Typography, DialogTitle, Button } from '@material-ui/core';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -12,6 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 // import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 // import Button from '@material-ui/core/Button';
 // import './StaffList001.css';
@@ -146,6 +147,8 @@ const StyledTableCell = withStyles((theme) => ({
     const [orderBy, setOrderBy] = React.useState('id');
     const [selected, setSelected] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState('');
+    const [staff, setStaff] = React.useState([]);
+
     useEffect(() => getStaffData());
     const getStaffData = () => {
         if(posts.length === 0) {
@@ -162,12 +165,15 @@ const StyledTableCell = withStyles((theme) => ({
     }
     const keywordSubmit = () => {
         const target = posts.filter((data) => {
-            return (data.name.includes(keyWord));
+            return (data.name.includes(keyWord) ||
+                    data.position.includes(keyWord) ||
+                    data.company_abbreviation.includes(keyWord));
         });
-        if (target.length === 0){
+        if (keyWord.length === 0){
             window.alert("検索結果がありません")
         }else{
             console.log(target);
+            setStaff(target)
         }
     };
     const handleRequestSort = (event, property) => {
@@ -199,12 +205,12 @@ return(
     <Grid item>
       <SearchIcon />
     </Grid>
-    <Button onClick={keywordSubmit} type="submit">
-        検索
-    </Button>
     <Grid item>
       <TextField label="Search" onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" variant="outlined" type="text" name="key" />
     </Grid>
+    <Button onClick={keywordSubmit} type="submit">
+        検索
+    </Button>
     </Grid>
     <div className={classes.root}>
       <Paper className={classes.paper}>
@@ -221,10 +227,10 @@ return(
           orderBy={orderBy}
           onSelectAllClick={handleSelectAllClick}
           onRequestSort={handleRequestSort}
-          rowCount={posts.length}
+          rowCount={staff.length}
           />
          <TableBody>
-          {stableSort(posts, getComparator(order, orderBy))
+          {stableSort(staff, getComparator(order, orderBy))
            .map((data, index) => {
            const isItemSelected = isSelected(data.id);
            return (
