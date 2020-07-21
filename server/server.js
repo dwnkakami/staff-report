@@ -83,6 +83,12 @@ app.get('/api/referencelist/:condition',(req,res) => {
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
 });
+app.get('/api/role/:condition',(req,res) => {
+    role.getData(req.params.condition,res);
+});
+app.post('/api/register',(req,res) => {
+    register.postData(req,res);
+});
 
 
 app.listen(port);

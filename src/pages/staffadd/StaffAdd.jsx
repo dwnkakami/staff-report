@@ -11,6 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
+import { UserProfile } from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function StaffAdd () {
+export default function StaffAdd (props) {
 
 const [staffId,setStaffId] = useState("");
 const [name,setName] = useState("");
@@ -36,7 +37,7 @@ const [occupation,setOccupation] = useState("");
 const [employment,setEmployment] = useState("");
 const entry = new Date().toLocaleString();
 const update_at = new Date().toLocaleString();
-// const update_by = profileMenuUser
+const update_by = UserProfile.getName()
 
 const handleChange = e => {
     switch (e.target.name) {
@@ -89,8 +90,8 @@ const handleChange = e => {
 
 const add = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at, 
-        // update_by:update_by
+    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
+        　update_by:update_by
     }
 
     axios
