@@ -201,22 +201,12 @@ function Sidebar({ location } ,props) {
   }
   const access_data = getAccessData.filter((data) => {
     if (data.access_name === "スタッフリスト編集") {
-      return access === 1;
+      return structure.access === 1;
     } else {
-      return access === 0;
+      return structure.access === 0;
     }
   })
 }
-
-
-
-const menu = structure.filter((data) => {
-  if (access === 1) {
-    return data.access === 1;
-  } else {
-    return data.access === 0;
-  }
-})
 
   // global
   var { isSidebarOpened } = useLayoutState();
@@ -260,7 +250,7 @@ const menu = structure.filter((data) => {
         </IconButton>
       </div>
       <List className={classes.sidebarList}>
-        {menu.map(link => (
+        {structure.map(link => (
           <SidebarLink
             key={link.id}
             location={location}
