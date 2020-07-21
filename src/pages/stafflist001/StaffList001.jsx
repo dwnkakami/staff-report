@@ -66,6 +66,7 @@ const StyledTableCell = withStyles((theme) => ({
   }
   
   const headCells = [
+    {},
     { id:'id', numeric: false, disablePadding: true, label: 'スタッフID' },
     { id:'name',numeric: true, disablePadding: false, label: 'スタッフ名' },
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
@@ -259,13 +260,16 @@ return(
                       onClick={(event) => handleClick(event, data.id)}
                       selected={isItemSelected}
                     >
-                      <StaffList005 />
+                      <TableCell>
+                        <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
+                      </TableCell>
 
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
+
                     </TableRow>
                   );
                 })}

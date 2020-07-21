@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
+import { getThemeProps } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,17 +43,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const StaffList005_figure = () => {
+const StaffList005_figure = (props) => {
   const classes = useStyles();
 
   const [user, setUser] = useState([]);
 
   useEffect(() => getCasedetailData());
 
-  const getCasedetailData = () => {
+  const getCasedetailData = (props) => {
     if(user.length === 0) {
       axios
-        .get('/api/stafflist005/3')
+        .get(`/api/stafflist005/${props.id}`)
         .then(response => {
           setUser(response.data);
         })
@@ -75,14 +76,14 @@ const StaffList005_figure = () => {
                  </ListItem>
                  <Divider />
                     <ListItem className={classes.List}>
-                    <ListItemText className={classes.content1_1} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ番号}</ListItemText>
+                    <ListItemText className={classes.content1_1} variant="outlimed">{props.id}</ListItemText>
                     </ListItem>
                  <ListItem className={classes.List_color}>
                    <ListItemText primary='氏名'/>
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List}>
-                   <ListItemText key={data.スタッフ番号}>{data.スタッフ名}</ListItemText>
+                   <ListItemText>{props.name}</ListItemText>
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List_color}>
@@ -90,7 +91,7 @@ const StaffList005_figure = () => {
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.役職名}</ListItemText>
+                 <ListItemText>{props.position}</ListItemText>
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List_color}>
@@ -185,7 +186,7 @@ const StaffList005_figure = () => {
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List}>
-                   <ListItemText primary="2019/3/31"/>
+                   <ListItemText>{props.matter_end}</ListItemText>
                  </ListItem>
                  <Divider />
              </List>

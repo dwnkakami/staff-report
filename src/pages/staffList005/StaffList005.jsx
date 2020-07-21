@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import DialogButton from './DialogButton';
+// import classes from '*.module.css';
 // import StaffList005_figure from './StaffList005_figure';
 
 const styles = (theme) => ({
@@ -44,7 +45,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-const StaffList005 = () => {
+const StaffList005 = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -64,8 +65,9 @@ const StaffList005 = () => {
           スタッフ情報
         </DialogTitle>
         <DialogContent dividers>
+          <Typography variant="h5">{props.name}</Typography>
           <div>
-            <DialogButton />
+            <DialogButton id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />
           </div>
           {/* <div>
             <StaffList005_figure />

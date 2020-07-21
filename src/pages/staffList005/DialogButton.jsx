@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import StaffList005_figure from './StaffList005_figure';
 import { useState } from 'react';
+import { getThemeProps } from '@material-ui/styles';
 
 const styles = makeStyles((theme) => ({
   root: {
@@ -66,7 +67,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const DialogButton = () => {
+const DialogButton = (props) => {
   const classes = styles();
   const [staff, setStaff] = useState('スキル：データなし');
 
@@ -78,13 +79,12 @@ const DialogButton = () => {
     } else if(selected === 3){
       setStaff('キャリアパス：データなし');
     } else {
-      setStaff(<StaffList005_figure />);
+      setStaff(<StaffList005_figure id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />);
     }
   };
 
   return (
     <div className={classes.root}>
-        <Typography variant="h5">テスト太郎</Typography>
         <div widt='600px'>
           <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
               <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
