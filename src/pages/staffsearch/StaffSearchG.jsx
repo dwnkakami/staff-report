@@ -301,7 +301,7 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = () =>{
+  const Search = (history) =>{
   const search = data.filter((data)=>{
     return (((data.license === license) ||
               (((data.skill === skill1) ||
@@ -320,40 +320,9 @@ const StaffSearch = () => {
             (data.occupation === ocp[4])||
             (data.occupation === ocp[5]))));
   });
-  console.log(search);
-}
-
-// const handleClick = (history) => {
-
-//   if (license = undefined) {
-//     history.push({ pathname: '/staff-report/stafflist/001', state: { search: data }})
-//   } else  {
-//     window.alert("検索結果が見つかりませんでした")
-//   }
-// }
-
-// const handleClick = (history) => {
-//   history.push({ pathname: '/staff-report/stafflist/001', state: { search: data }});
-// }
-
-// class gotoStaffList001 extends React.Component {
-//   constructor(props){
-//     super(props)
-//     this.handleClick = this.handleClick.bind(this)
-//   }
-
-//   handleClick(){
-//     this.props.history.push({ pathname: '/staff-report/stafflist/001', state: { search: data }});
-//   }
-
-//   render() {
-//     return (
-//       <Button onClick={this.handleClick}>検索</Button>
-//     )
-//   }
-// }
-
-// const gotostafflist001 = new gotoStaffList001
+    //console.log(search);
+    history.push({ pathname: '/staff-report/stafflist/001', state: { data: search }});
+  }
 
   return (
     <div class='body'>
