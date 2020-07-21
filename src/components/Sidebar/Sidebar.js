@@ -172,9 +172,18 @@ function Sidebar({ location }) {
   }
 }
 
+// const access_data = getAccessData.filter((data) => {
+//   if (data.access_name === "スタッフリスト編集") {
+//     return structure.access === 1;
+//   } else {
+//     return structure.access === 0;
+//   }
+// })
 
 const menu = structure.filter ((data)=> {
+  if (getAccessData.acces_id === 1) {
   return data.acces === 0
+  }
 });
 
   // global
