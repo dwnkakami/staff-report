@@ -190,7 +190,7 @@ function Sidebar({ location } ,props) {
   const getAccessData = () => {
     if(Access.length === 0){
     axios
-      .get('/api/menu/3')
+      .get('/api/menu/1')
       .then(response =>{
         console.log(response.data)
         setAccess(response.data);
@@ -199,15 +199,24 @@ function Sidebar({ location } ,props) {
         console.log('connected error');
       })
   }
+  const access_data = getAccessData.filter((data) => {
+    if (data.access_name === "スタッフリスト編集") {
+      return access === 1;
+    } else {
+      return access === 0;
+    }
+  })
 }
 
-  const menu = structure.filter((data) => {
-    if (getAccessData.access_name = "スタッフリスト編集") {
+
+
+const menu = structure.filter((data) => {
+  if (access === 1) {
     return data.access === 1;
   } else {
     return data.access === 0;
   }
-  });
+})
 
   // global
   var { isSidebarOpened } = useLayoutState();
