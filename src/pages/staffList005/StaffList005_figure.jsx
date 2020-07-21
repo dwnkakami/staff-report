@@ -10,18 +10,18 @@ import axios from 'axios';
 import { getThemeProps } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(0),
-      },
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(0),
     },
-      Paper: {
-    width: '1200px',
-    borderRadius: '0px 0px 0px 0px',
-},
+  },
+  Paper: {
+  width: '1200px',
+  borderRadius: '0px 0px 0px 0px',
+  },
   content1: {
     float: 'left',
     width:'50%',
@@ -50,7 +50,7 @@ const StaffList005_figure = (props) => {
 
   useEffect(() => getCasedetailData());
 
-  const getCasedetailData = (props) => {
+  const getCasedetailData = () => {
     if(user.length === 0) {
       axios
         .get(`/api/stafflist005/${props.id}`)
