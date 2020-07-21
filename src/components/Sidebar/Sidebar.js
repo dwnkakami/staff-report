@@ -32,8 +32,8 @@ import {
 import axios from "axios";
 
 const structure = [
-  { id: 0, acces: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
-  { id: 1, acces: 0,　type: "title", label: "メニュー", },
+  { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
+  { id: 1, access: 0,　type: "title", label: "メニュー", },
 
   {
     id: 2,
@@ -45,16 +45,16 @@ const structure = [
       { label: "スタッフ追加", link: "/staff-report/staffadd/001", icon: <Dot size="small" />  },
     ],
   },
-  {
-    id: 2,
-    acces: 0,
-    label: "スタッフ",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
-      { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
-    ],
-  },
+  // {
+  //   id: 2,
+  //   access: 0,
+  //   label: "スタッフ",
+  //   icon: <ArrowDropDownIcon />,
+  //   children: [
+  //     { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
+  //     { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
+  //   ],
+  // },
   // {
   //   id: 1,
   //   label: "Typography",
@@ -71,20 +71,20 @@ const structure = [
       { label: "案件登録", link: "/staff-report/caseadd/001", icon: <Dot size="small" />  },
     ],
   },
-  {
-    id: 3,
-    acces: 0,
-    label: "案件",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
-      { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
-    ],
-  },
+  // {
+  //   id: 3,
+  //   access: 0,
+  //   label: "案件",
+  //   icon: <ArrowDropDownIcon />,
+  //   children: [
+  //     { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
+  //     { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
+  //   ],
+  // },
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
-    acces: 0,
+    access: 0,
     label: "引合",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -99,7 +99,7 @@ const structure = [
   // },
   {
     id: 5,
-    acces: 0,
+    access: 0,
     label: "領収書",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -181,8 +181,21 @@ function Sidebar({ location }) {
 // })
 
 const menu = structure.filter ((data)=> {
-  if (getAccessData.acces_id === 1) {
-  return data.acces === 0
+  if (getAccessData.access_id === 1) {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) ||
+    (data.id === 6)
+  )
+  } else {
+    return (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 3)
   }
 });
 
