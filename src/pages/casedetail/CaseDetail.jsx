@@ -33,10 +33,8 @@ const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      {/* <div  style= {{ position: 'flex' }} > */}
       <Typography className={classes.left} variant="h6">{children} </Typography>
       <ReferenceAdd className={classes.left}></ReferenceAdd>
-      {/* </div> */}
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -91,7 +89,7 @@ export default function CaseDetail (props) {
           </DialogTitle>
         <DialogContent dividers >
         {user.map((data) => (
-          <Typography gutterBottom key={data.id}>
+          <Typography gutterBottom key={data.id} >
             <table>
               <tr>
                 <th>案件名</th>

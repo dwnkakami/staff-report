@@ -10,11 +10,14 @@ const stafflist004 = require('./modules/stafflist004.js');
 const stafflist005 = require('./modules/stafflist005.js');
 const staffsearch = require('./modules/staffsearch.js');
 const staffadd = require('./modules/staffadd.js');
+const staffadd2 = require('./modules/staffadd2.js');
 const caselist = require('./modules/caselist.js');
 const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
+const referencedetail = require('./modules/referencedetail.js');
+const referenceadd = require('./modules/referenceadd.js');
 const billing = require('./modules/billing.js');
 const sample = require('./modules/sample');
 
@@ -47,8 +50,11 @@ app.get('/api/stafflist005/:condition',(req,res) => {
 app.get('/api/staffsearch/:condition',(req,res) => {
     staffsearch.getData(req.params.condition,res);
 });
-app.get('/api/staffadd/:condition',(req,res) => {
-    staffadd.getData(req.params.condition,res);
+app.get('/api/staffadd',(req,res) => {
+    staffadd.postData(req,res);
+});
+app.get('/api/staffadd2',(req,res) => {
+    staffadd2.getData(req,res);
 });
 app.get('/api/caselist/:condition',(req,res) => {
     caselist.getData(req.params.condition,res);
@@ -67,6 +73,9 @@ app.get('/api/referencelist/:condition',(req,res) => {
 });
 app.get('/api/referencedetail/:condition',(req,res) => {
     referencedetail.getData(req.params.condition,res);
+});
+app.post('/api/referenceadd',(req, res) => {  
+    referenceadd.postData(req, res);
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
