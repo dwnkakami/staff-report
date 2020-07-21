@@ -84,7 +84,7 @@ export default function CaseDetail (props) {
             案件詳細
           </DialogTitle>
         <DialogContent dividers>
-          {user.map((props,data) => (
+          {user.map((data) => (
           <Typography gutterBottom key={props.caseid}>
             <table>
               <tr>
