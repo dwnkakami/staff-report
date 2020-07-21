@@ -250,7 +250,7 @@ export default function CaseSearch() {
 
 
   //SearchButton
-  const formSubmit = () => {
+  const formSubmit = (props) => {
 
     // //jobName None
     // const target1 = posts.filter((data)=>{
@@ -336,6 +336,10 @@ export default function CaseSearch() {
       window.alert("検索結果がありません。\n条件を変更してください。");
     }else{
       console.log(target7);
+      // props.history.push({
+      //   pathname:"/caselist",
+      //   state:{data:target7}
+      // });
     }
        
     //if分岐処理
