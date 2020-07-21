@@ -29,6 +29,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
+import axios from "axios";
 
 const structure = [
   { id: 0, acces: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
@@ -149,13 +150,32 @@ const structure = [
 //   },
 // ];
 
-const menu = structure.filter ((data) => {
-  return data.acces === 0;
-});
-
 function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
+
+  const[Access ,setAccess] = useState([]);
+
+  useEffect(() => getAccessData());
+
+  const getAccessData = () => {
+    if(Access.length === 0){
+    axios
+      .get('/api/menu/1')
+      .then(response =>{
+        console.log(response.data)
+        setAccess(response.data);
+      })
+      .catch(() => {
+        console.log('connected error');
+      })
+  }
+}
+
+
+const menu = structure.filter ((data)=> {
+  return data.acces === 0
+});
 
   // global
   var { isSidebarOpened } = useLayoutState();
