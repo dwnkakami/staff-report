@@ -33,7 +33,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+import { useUserDispatch, signOut, UserProfile } from "../../context/UserContext";
 
 const messages = [
   {
@@ -288,7 +288,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
+              {UserProfile.getName()}
             </Typography>
             <Typography
               className={classes.profileMenuLink}
