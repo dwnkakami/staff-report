@@ -36,13 +36,17 @@ import {
   toggleSidebar,
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
+import axios from 'axios';
 
 const structure = [
-  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, acces: 0 },
-  { id: 1,　type: "title", label: "メニュー", acces: 0 },
+  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, access: 0 },
+  { id: 1,　type: "title", label: "メニュー", access: 0 },
+  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, access: 1 },
+  { id: 1,　type: "title", label: "メニュー", access: 1 },
 
   {
     id: 2,
+    access: 1,
     label: "スタッフ",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -53,7 +57,7 @@ const structure = [
   },
   {
     id: 2,
-    acces: 0,
+    access: 0,
     label: "スタッフ",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -69,6 +73,7 @@ const structure = [
   // },
   {
     id: 3,
+    access: 1,
     label: "案件",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -79,7 +84,7 @@ const structure = [
   },
   {
     id: 3,
-    acces: 0,
+    access: 0,
     label: "案件",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -90,7 +95,16 @@ const structure = [
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
-    acces: 0,
+    access: 0,
+    label: "引合",
+    icon: <ArrowDropDownIcon />,
+    children: [
+      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" />}
+    ],
+  },
+  {
+    id: 4,
+    access: 1,
     label: "引合",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -105,7 +119,16 @@ const structure = [
   // },
   {
     id: 5,
-    acces: 0,
+    access: 0,
+    label: "領収書",
+    icon: <ArrowDropDownIcon />,
+    children: [
+      { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" />},
+    ],
+  },
+  {
+    id: 5,
+    access: 1,
     label: "領収書",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -156,13 +179,35 @@ const structure = [
 //   },
 // ];
 
-const menu = structure.filter ((data) => {
-   return data.acces === 0;
-});
-
 function Sidebar({ location } ,props) {
   var classes = useStyles();
   var theme = useTheme();
+
+  const[Access ,setAccess] = useState([]);
+
+  useEffect(() => getAccessData());
+
+  const getAccessData = () => {
+    if(Access.length === 0){
+    axios
+      .get('/api/menu/3')
+      .then(response =>{
+        console.log(response.data)
+        setAccess(response.data);
+      })
+      .catch(() => {
+        console.log('connected error');
+      })
+  }
+}
+
+  const menu = structure.filter((data) => {
+    if (getAccessData.access_name = "スタッフリスト編集") {
+    return data.access === 1;
+  } else {
+    return data.access === 0;
+  }
+  });
 
   // global
   var { isSidebarOpened } = useLayoutState();
