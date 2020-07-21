@@ -35,7 +35,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+import { useUserDispatch } from "../../context/UserContext";
 
 const structure = [
   { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
@@ -191,9 +191,18 @@ function Sidebar({ location } ,props) {
         
       </List>
       <div className={classes.profileMenuUser}>
-        <Typography className={classes.profileMenuLink}
+        {/* <Typography className={classes.profileMenuLink}
               color="primary"
               onClick={() => signOut(userDispatch, props.history) }>ログアウト
+        </Typography> */}
+        <Typography className={classes.profileMenuLink}
+              color="primary"
+              // onClick={() => signOut(userDispatch, props.history) }>ログアウト
+              onClick={() => {
+                  localStorage.removeItem("id_token");
+                  userDispatch({ type: "SIGN_OUT_SUCCESS" }); 
+                  window.location.href = '/login';
+                }}>ログアウト
         </Typography>
       </div>
     </Drawer>

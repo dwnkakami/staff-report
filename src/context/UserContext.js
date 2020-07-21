@@ -49,7 +49,24 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
+const UserProfile = (() => {
+  var userName = "";
+
+  var getName = () => {
+    return userName;
+  };
+
+  const setName = (name) => {
+    userName = name;
+  };
+
+  return {
+    getName: getName,
+    setName: setName
+  }
+})();
+
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile};
 
 // ###########################################################
 
@@ -71,6 +88,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setError(null)
             setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
+            UserProfile.setName(response.data[0].name)
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
