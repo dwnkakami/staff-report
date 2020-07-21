@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     height: 63,
     width: 307,
     fontSize: 22,
-    lineHeight: 2,
+    lineHeight: 1.5,
     textAlign: 'center',
     color: '#000000',
     borderRadius: '0px 0px 0px 0px'
@@ -126,14 +126,14 @@ const useStyles = makeStyles((theme) => ({
 const StaffList003_figure = (props) => {
   const [user, setUser] = useState([]);
 
-  useEffect(() => getData());
+  useEffect(() => getData003());
 
   const classes = useStyles();
 
-  const getData = () => {
+  const getData003 = () => {
     if(user.length === 0){
         axios
-            .get('/api/stafflist003/1')
+            .get(`/api/stafflist003/${props.id}`)
             .then(response => {
                 setUser(response.data);
             })
@@ -155,7 +155,7 @@ const StaffList003_figure = (props) => {
               <Paper className={classes.color_short} variant="outlined">案件先</Paper>
             </Grid>
             <Grid>
-              <Paper  className={classes.content1_4} variant="outlined" key={props.id}>{data.customer}</Paper>
+              <Paper  className={classes.content1_4} variant="outlined" key={data.staff_id}>{data.customer}</Paper>
             </Grid>
               <Grid>
                 <Paper className={classes.color_short} variant="outlined">場所</Paper>
@@ -207,8 +207,8 @@ const StaffList003_figure = (props) => {
             <Grid
             container
             direction="row"
-            justify="flex-start"
-            alignItems="baseline">
+            justify="center"
+            alignItems="stretch">
             <Grid>
               <Paper  className={classes.content1_1} variant="outlined" key={data.staff_id}>{data.start_day}~{data.end_day}</Paper>
             </Grid>
@@ -274,4 +274,33 @@ const StaffList003_figure = (props) => {
 );
 }
 
-export default StaffList003_figure;
+const StaffList003_map = (props) => {
+  const [user, setUser] = useState([]);  
+
+  useEffect(() => getData());
+
+  const getData = () => {
+    if(user.length === 0){
+        axios
+            .get(`/api/stafflist003/${props.id}`)
+            .then(response => {
+                setUser(response.data);
+            })
+            .catch(() => {
+                console.log('connected error');
+            })
+}}
+return (
+  <div>
+    {user.map((data) => (
+    <div key={props.id}>
+    {data.matter_name ? <StaffList003_figure id={props.id}/>:"経歴データなし"}
+    </div>
+    ))} 
+  </div>
+);
+}
+
+export default StaffList003_map;
+
+// export default StaffList003_figure;

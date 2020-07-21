@@ -10,8 +10,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import AddIcon from '@material-ui/icons/Add';
-import axios from 'axios';
-import { useEffect } from 'react';
 import StaffList003_Button from './StaffList003_Button';
 
 const styles = (theme) => ({
@@ -70,23 +68,7 @@ const DialogActions = withStyles((theme) => ({
 
 export default function CustomizedDialogs(props) {
   const classes = useStyles();
-  // const [user, setUser] = useState([]);
   const [open, setOpen] = React.useState(false);
-  
-
-//   useEffect(() => getData());
-
-//   const getData = () => {
-//     if(user.length === 0){
-//         axios
-//             .get('/api/stafflist003/1')
-//             .then(response => {
-//                 setUser(response.data);
-//             })
-//             .catch(() => {
-//                 console.log('connected error');
-//             })
-// }}
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -105,11 +87,9 @@ export default function CustomizedDialogs(props) {
           <Typography variant="h3" className={classes.title}>スタッフ詳細</Typography>
         </DialogTitle> 
         <DialogContent dividers>
-        {/* {user.map((data) => ( */}
           <Typography variant="h5" className={classes.name}>{props.name}</Typography>
-          {/* ))} */}
         <div>
-          <StaffList003_Button />
+          <StaffList003_Button id={props.id}/>
         </div>
       <div>
       </div>
@@ -123,6 +103,3 @@ export default function CustomizedDialogs(props) {
     </div>
   );
 }
-
-
-

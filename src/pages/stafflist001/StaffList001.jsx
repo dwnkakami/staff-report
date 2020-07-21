@@ -18,7 +18,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import StaffList003 from '../staffList003/StaffList003';
-import StaffList003_figure from '../staffList003/StaffList003_figure';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -253,7 +252,6 @@ return(
               {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
-
                   return (
                     <TableRow
                       hover
@@ -268,8 +266,8 @@ return(
                       <TableCell align="center">{data.matter_end}</TableCell>
                       <TableCell align="center">
                         <StaffList003 key={data.id}
+                          id={data.id}
                           name={data.name}/>
-                        {/* <StaffList003_figure key={data.id}/>                              */}
                       </TableCell>
                     </TableRow>
                   );

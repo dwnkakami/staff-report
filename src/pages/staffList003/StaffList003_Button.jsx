@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import StaffList003_map from './StaffList003_map';
+import StaffList003_map from './StaffList003_figure';
 
 const useStyles = makeStyles((theme) => ({
   Button: {
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const StaffList003_Button = () => {
+const StaffList003_Button = (props) => {
   const classes = useStyles();
   const [staff, setStaff] = useState('スキル：データなし');
 
@@ -34,7 +34,7 @@ const StaffList003_Button = () => {
     if(selected　=== 1){
       setStaff('スキル：データなし');
     } else if(selected　=== 2){
-      setStaff(<StaffList003_map />);
+      setStaff(<StaffList003_map id={props.id}/>);
       } else if(selected　=== 3){
         setStaff('キャリアパス：データなし');
       }else {
