@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/paper';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-import MediaQuery from "react-responsive";
+// import MediaQuery from "react-responsive";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -343,16 +343,16 @@ export default function LayoutTextFields() {
           }}
         >
           <option aria-label="None" value="" />
-          <option value={1}>1 Java</option>
-          <option value={2}>2 C言語</option>
-          <option value={3}>3 C#</option>
-          <option value={4}>4 C++</option>
-          <option value={5}>5 MySQL</option>
-          <option value={6}>6 Ruby</option>
-          <option value={7}>7 Oracle</option>
-          <option value={8}>8 Python</option>
-          <option value={9}>9 JavaScript</option>
-          <option value={10}>10 PHP</option>
+          <option value={1}>Java</option>
+          <option value={2}>C言語</option>
+          <option value={3}>C#</option>
+          <option value={4}>C++</option>
+          <option value={5}>MySQL</option>
+          <option value={6}>Ruby</option>
+          <option value={7}>Oracle</option>
+          <option value={8}>Python</option>
+          <option value={9}>JavaScript</option>
+          <option value={10}>PHP</option>
         </Select>
       </FormControl>
        

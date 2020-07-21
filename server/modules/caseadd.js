@@ -34,7 +34,7 @@ exports.postData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql ="insert into m_matter (name,customer_id,unit_cost,workplace,number_of_persons,matter_start,matter_end,occupation_id,staff_skill_id1,staff_skill_id2,staff_skill_id3,skill_level_column,business_content,note,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+    const sql ="insert into m_matter (name,customer_id,format(@unit_cost),workplace,number_of_persons,matter_start,matter_end,occupation_id,staff_skill_id1,staff_skill_id2,staff_skill_id3,skill_level_column,business_content,note,user_id) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
     console.log(req.body); 
 
     con.query(sql,[req.body.name, req.body.customer_id, req.body.unit_cost, req.body.workplace, req.body.number_of_persons, req.body.matter_start,req.body.matter_end, req.body.occupation_id, req.body.staff_skill_id1, req.body.staff_skill_id2, req.body.staff_skill_id3 , req.body.skill_level_column, req.body.business_content, req.body.note, req.body.user_id],(err, result, fields) => {
