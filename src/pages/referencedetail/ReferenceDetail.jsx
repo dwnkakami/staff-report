@@ -46,7 +46,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function ReferenceDetail() {
+export default function ReferenceDetail(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -83,18 +83,16 @@ export default function ReferenceDetail() {
           引合詳細
           </DialogTitle>
         <DialogContent dividers >
-          <Typography gutterBottom>
-            {user.map((data) => (
-              <table>
+        {/* {user.map((data) => ( */}
+          <Typography gutterBottom >
+            <table>
                 <tr>
                   <th>案件名</th>
                   <th>スタッフ名</th>
                 </tr>
                 <tr>
-                  <td>{data.name}</td>
-                  <td>{data.staff_name}</td>
-                  {/* <td>a</td>
-                <td>a</td> */}
+                  <td>{props.name}</td>
+                  <td>{props.staff_name}</td>
                 </tr>
                 <tr>
                   <th>職種名</th>
@@ -103,12 +101,8 @@ export default function ReferenceDetail() {
                 <tr>
                   <td>{data.occupation_name}</td>
                   <td>{data.position}</td>
-                  {/* <td>a</td>
-                <td>a</td> */}
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
               <table>
                 <tr>
                   <th>面談場所</th>
@@ -121,14 +115,8 @@ export default function ReferenceDetail() {
                   <td>{data.interview_date}</td>
                   <td>{data.interview_times}</td>
                   <tb>{data.entrance_date}</tb>
-                  {/* <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <tb>a</tb> */}
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
               <table>
                 <tr>
                   <th>登録日時</th>
@@ -139,24 +127,18 @@ export default function ReferenceDetail() {
                   <td>{data.entry_at}</td>
                   <tb>{data.update_at}</tb>
                   <tb></tb>
-                  {/* <td>a</td>
-                <tb>a</tb>
-                <tb>a</tb> */}
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
               <table>
                 <tr>
                   <th>備考欄</th>
                 </tr>
                 <tr>
                   <td class='wide-td1'>{data.skill_level_column}</td>
-                  {/* <td>a</td> */}
                 </tr>
               </table>
-            ))}
           </Typography>
+        {/* ))} */}
         </DialogContent>
       </Dialog>
     </div>

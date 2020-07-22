@@ -89,7 +89,7 @@ export default function CaseDetail (props) {
           </DialogTitle>
         <DialogContent dividers >
         {user.map((data) => (
-          <Typography gutterBottom key={data.id} >
+          <Typography gutterBottom key={data.id}>
             <table>
               <tr>
                 <th>案件名</th>
@@ -98,7 +98,6 @@ export default function CaseDetail (props) {
               <tr>
                 <td>{data.name}</td>
                 <td>{data.customer_name}</td>
-                
               </tr>
               <tr>
                 <th>依頼単価</th>
