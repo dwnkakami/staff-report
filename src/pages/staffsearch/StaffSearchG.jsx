@@ -323,7 +323,7 @@ const StaffSearch = () => {
   });
     console.log(search);
     ListData.setStaffData(search);
-    history.push('/staff-report/stafflist/001');
+    //history.push('/staff-report/stafflist/001');
   }
 
   return (
