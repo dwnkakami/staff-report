@@ -20,7 +20,7 @@ exports.getData = (req, res) => {
         if (err) throw err;
         console.log('Connected!');
 
-        const sql = "SELECT I1.id ,M1.name ,S1.name staff_name ,C1.customer_abbreviation ,I1.note ,C2.company_abbreviation FROM t_inquiry I1 JOIN m_matter M1 ON I1.matter_id = M1.id JOIN m_staff S1 ON I1.staff_id = S1.id JOIN m_customer C1 ON M1.customer_id = C1.id JOIN m_company C2 ON S1.company_id = C2.id WHERE S1.id =" + req;
+        const sql = "SELECT I1.id , M1.name , S1.name staff_name , C1.customer_abbreviation , C2.company_abbreviation , O1.name occupation_name , I1.position , I1.interview_times , I1.interview_location , I1.interview_date , I1.entrance_date , I1.note , I1.entry_at , I1.update_at , I1.update_by FROM t_inquiry I1 JOIN m_matter M1  ON I1.matter_id = M1.id JOIN m_staff S1 ON I1.staff_id = S1.id JOIN m_customer C1 ON M1.customer_id = C1.id JOIN m_company C2 ON S1.company_id = C2.id JOIN m_occupation O1 ON I1.occupation_id = O1.id WHERE S1.id = " + req;
         con.query(sql, (err, result, fields) => {
             if (err) throw err;
             res.json(result);

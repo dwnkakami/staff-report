@@ -26,20 +26,18 @@ import Charts from "../../pages/charts";
 
 // import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
-// import StaffAdd from "../../pages/staffadd";
+//import StaffAdd from "../../pages/staffadd";
 
-<<<<<<< HEAD
-// import CaseList from "../../pages/caselist/Caselist";
+import CaseList from "../../pages/caselist/Caselist";
 //import CaseSearch from "../../pages/casesearch";
 //import CaseAdd from "../../pages/caseadd";
-=======
 //import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 //import CaseAdd from "../../pages/caseadd/CaseAdd";
->>>>>>> 2efab5201e790464c2b5058a4c3dd78d011d32c8
+
 
 import ReferenceList from "../../pages/referencelist/ReferenceList";
-// import ReferenceList_not from "../../pages/referenceList/notData";
+//import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing/Billing";
