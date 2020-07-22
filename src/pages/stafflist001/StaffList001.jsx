@@ -15,6 +15,9 @@ import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+// import TextField from '@material-ui/core/TextField';
+// import SearchIcon from '@material-ui/icons/Search';
+import StaffList005 from '../staffList005/StaffList005.jsx';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import StaffList003 from '../staffList003/StaffList003';
@@ -157,7 +160,7 @@ const StyledTableCell = withStyles((theme) => ({
       setStaff(updateList)
     };
 
-    useEffect(() => getStaffData());
+    useEffect(() => getStaffData(),[]);
  
     const getStaffData = () => {
         if(posts.length === 0) {
@@ -259,15 +262,17 @@ return(
                       selected={isItemSelected}
                       variant="outlined"
                     >
+                      {/* <TableCell>
+                        <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
+                      </TableCell> */}
+
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
                       <TableCell align="center">
-                        <StaffList003 key={data.id}
-                          id={data.id}
-                          name={data.name}/>
+                        <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
                       </TableCell>
                     </TableRow>
                   );
