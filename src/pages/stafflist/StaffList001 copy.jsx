@@ -145,7 +145,7 @@ const StyledTableRow = withStyles((theme) => ({
     const [orderBy, setOrderBy] = React.useState('id');
     const [selected, setSelected] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState('');
-
+    // const [data, setData] = React.useState([]);
  
      useEffect(() => getStaffData());
     const getStaffData = () => {
@@ -154,7 +154,7 @@ const StyledTableRow = withStyles((theme) => ({
               .get('/api/stafflist001/1')
               .then(response => {
                   console.log([response.data]);
-                setPosts(response.data);
+                setPosts(response.data)
               })
               .catch(() => {
                 console.log('connected error');
@@ -193,9 +193,8 @@ const StyledTableRow = withStyles((theme) => ({
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    
-    // const cullom_data = posts.map((data) => (<li>{data}</li>));
-    const [staff, setStaff] = React.useState([getStaffData]);
+    // const cullom_data = posts.map((data) => getStaffData);
+    const [staff, setStaff] = React.useState([]);
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
@@ -246,7 +245,7 @@ return(
           rowCount={staff.length}
           />
          <TableBody>
-          {stableSort(staff, getComparator(order, orderBy))
+          {stableSort(posts, getComparator(order, orderBy))
            .map((data, index) => {
            const isItemSelected = isSelected(data.id);
            return (

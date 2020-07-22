@@ -3,12 +3,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const login = require('./modules/login.js');
 const menu = require('./modules/menu.js');
-const stafflist001 = require('./modules/stafflist001.jsx');
+const stafflist = require('./modules/stafflist.jsx');
+const stafflist001 = require('./modules/stafflist001.js');
 const stafflist002 = require('./modules/stafflist002.js');
 const stafflist003 = require('./modules/stafflist003.js');
 const stafflist004 = require('./modules/stafflist004.js');
 const stafflist005 = require('./modules/stafflist005.js');
-const staffsearch = require('./modules/staffsearch.js');
+const staffsearch = require('./modules/staffsearch.jsx');
 const staffsearch001 = require('./modules/staffsearch001.js');
 const staffsearch002 = require('./modules/staffsearch002.js');
 const staffsearch003 = require('./modules/staffsearch003.js');
@@ -26,6 +27,8 @@ const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
+const referencedetail = require('./modules/referencedetail.js');
+const referenceadd = require('./modules/referenceadd.js');
 const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
@@ -40,6 +43,9 @@ app.get('/api/login/:condition',(req,res) => {
 });
 app.get('/api/menu/:condition',(req,res) => {
     menu.getData(req.params.condition,res);
+});
+app.get('/api/stafflist/:condition',(req,res) => {
+    stafflist.getData(req.params.condition,res);
 });
 app.get('/api/stafflist001/:condition',(req,res) => {
     stafflist001.getData(req.params.condition,res);
@@ -109,6 +115,12 @@ app.post('/api/caseadd/',(req,res) => {
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
+});
+app.get('/api/referencedetail/:condition',(req,res) => {
+    referencedetail.getData(req.params.condition,res);
+});
+app.get('/api/referenceadd/:condition',(req,res) => {
+    referenceadd.getData(req.params.condition,res);
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
