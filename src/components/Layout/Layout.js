@@ -29,9 +29,9 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
-//import CaseList from "../../pages/caselist/CaseList";
+import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
-//import CaseAdd from "../../pages/caseadd/CaseAdd";
+import CaseAdd from "../../pages/caseadd/CaseAdd";
 
 import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
@@ -72,9 +72,9 @@ function Layout(props) {
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
               {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
 
-              {/* <Route path="/staff-report/caselist/001" component={CaseList} /> */}
+              <Route path="/staff-report/caselist/001" component={CaseList} />
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
-              {/* <Route path="/staff-report/caseadd/001" component={CaseAdd} /> */}
+              <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
               <Route path="/staff-report/referencelist/001" component={ReferenceList} />
               <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
