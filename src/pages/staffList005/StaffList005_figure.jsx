@@ -123,7 +123,7 @@ const StaffList005_figure = (props) => {
                  </ListItem>
                  <Divider />
                  <ListItem className={classes.List}>
-                   <ListItemText primary="〇〇〇〇株式会社ABC開発案件"/>
+                   <ListItemText primary=""/>
                  </ListItem>
                  <Divider />
              </List>
