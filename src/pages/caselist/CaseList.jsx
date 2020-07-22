@@ -12,10 +12,19 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
+<<<<<<< HEAD
 import { Grid } from '@material-ui/core';
 
 import axios from 'axios';
 import CaseDetail from '../casedetail/CaseDetail';
+=======
+import { Grid, Button } from '@material-ui/core';
+
+import axios from 'axios';
+
+import CaseDetail from '../casedetail/CaseDetail';
+import { getThemeProps } from "@material-ui/styles";
+>>>>>>> 27e8d1fda7489b4dbee2608933415f3bac3ccbfe
 
 // const styles = (theme) => ({
 //   root: {
@@ -147,6 +156,19 @@ const StyledTableRow = withStyles(() => ({
     }
   }
 
+<<<<<<< HEAD
+=======
+  // const [open, setOpen] = React.useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const getSelectline = () => {
+  //   caseid=data.id
+  // }
+
+>>>>>>> 27e8d1fda7489b4dbee2608933415f3bac3ccbfe
   return(
     <Paper elevation={3} className='paper1'>
        <div className='title' style={{ display: 'flex' }}>
@@ -175,18 +197,37 @@ const StyledTableRow = withStyles(() => ({
           </TableHead>
           {Caselistmap.map((data) => (
           <TableBody>
+<<<<<<< HEAD
                 <StyledTableRow key={data.id}/>
                 <StyledTableCell classname="tablecell" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left"><a href='https://www.google.com'>{data.name}</a></StyledTableCell>
+=======
+                <StyledTableRow/>
+                <StyledTableCell classname="tablecell" component="th" scope="row">
+                  {data.id}
+                </StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">{data.name}</StyledTableCell>
+>>>>>>> 27e8d1fda7489b4dbee2608933415f3bac3ccbfe
                 <StyledTableCell classname="tablecell" align="left">{data.customer_id}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.unit_cost}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.workplace}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
+<<<<<<< HEAD
                 <StyledTableCell classname="tablecell" align="left"><CaseDetail /></StyledTableCell>
+=======
+                <StyledTableCell classname="tablecell" align="left">
+                  {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
+                  {/* 案件リスト詳細 */}
+                  <CaseDetail key={data.id} caseid={data.id}
+                  // open = {open}
+                  />
+                  {/* </Button> */}
+                </StyledTableCell>
+>>>>>>> 27e8d1fda7489b4dbee2608933415f3bac3ccbfe
           </TableBody>
           ))}
        </Table>

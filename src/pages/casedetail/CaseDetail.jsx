@@ -12,6 +12,10 @@ import { useState , useEffect } from 'react';
 import axios from 'axios';
 import ReferenceAdd from '../referenceadd/ReferenceAdd';
 
+import '../caselist/CaseList';
+import { Line } from 'recharts';
+import { ListOutlined } from '@material-ui/icons';
+
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -57,6 +61,7 @@ export default function CaseDetail (props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  
   const handleClose = () => {
     setOpen(false);
   };
@@ -68,7 +73,7 @@ export default function CaseDetail (props) {
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get('/api/casedetail/1')
+        .get(`/api/casedetail/${props.caseid}`)
         .then(response => {
           setUser(response.data);
         })
@@ -78,18 +83,42 @@ export default function CaseDetail (props) {
     }
   }
 
+  // const [listline, setListline] = useState([]);
+
+  // useEffect(() => getCaselistLineData());
+
+  // const getCaselistLineData = () => {
+  //   if(listline.length === 0) {
+  //     axios
+  //       .get('/#/staff-report/caselist/001')
+  //       .then(response => {
+  //           setListline(response.data);
+  //           console.log('Line data')
+  //       })
+  //       .catch(() => {
+  //         console.log('Line connected error')
+  //       })
+  //   }
+  // }
+
+  // const [selectline, setLine] = React.useLineState(false);
+
+  // const ClickSelectLine = () => {
+  //   setLine(true);
+  // };
+
   return (
     <div>
       <Button variant="outlined" color="" onClick={handleClickOpen}>
         案件詳細
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose} >
+          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
             案件詳細
           </DialogTitle>
-        <DialogContent dividers >
-        {user.map((data) => (
-          <Typography gutterBottom key={data.id}>
+        <DialogContent dividers>
+          {user.map((data) => (
+          <Typography gutterBottom key={data.caseid}>
             <table>
               <tr>
                 <th>案件名</th>
@@ -151,7 +180,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
           </Typography>
-        ))}
+          ))}
         </DialogContent>
       </Dialog>
     </div>
