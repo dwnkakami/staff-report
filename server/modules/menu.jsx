@@ -20,10 +20,6 @@ exports.getData = (req, res) => {
     con.query(sql, (err, result, fields) => {
       if (err) throw err;
       res.json(result);
-    });
+    })
   });
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994

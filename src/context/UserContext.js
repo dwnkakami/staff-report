@@ -47,6 +47,23 @@ function useUserDispatch() {
   return context;
 }
 
+// const UserAccessData = (() => {
+//   var userAccess = "";
+
+//   var getAccess = () => {
+//     return userName;
+//   };
+
+//   const setAccess = (access) => {
+//     userAccess = access;
+//   };
+
+//   return {
+//     getAccess: getAccess,
+//     setAccess: setAccess
+//   }
+// })();
+
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
 
 // ###########################################################

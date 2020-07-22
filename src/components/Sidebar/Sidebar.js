@@ -10,6 +10,7 @@ import {
   // LibraryBooks as LibraryIcon,
   // HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
+  ContactSupportOutlined,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -23,54 +24,26 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import Dot from "./components/Dot";
 
-// components
-import { Typography } from "../Wrappers/Wrappers";
-// import Notification from "../Notification/Notification";
-// import UserAvatar from "../UserAvatar/UserAvatar";
-
-
 // context
 import {
   useLayoutState,
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-<<<<<<< HEAD
-import { useUserDispatch, signOut } from "../../context/UserContext";
-import axios from 'axios';
-
-const structure = [
-  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, access: 0 },
-  { id: 1,　type: "title", label: "メニュー", access: 0 },
-  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, access: 1 },
-  { id: 1,　type: "title", label: "メニュー", access: 1 },
-=======
 import axios from "axios";
 
 const structure = [
   { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
   { id: 1, access: 0,　type: "title", label: "メニュー", },
->>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
 
   {
     id: 2,
-    access: 1,
     label: "スタッフ",
     icon: <ArrowDropDownIcon />,
     children: [
       { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
       { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
       { label: "スタッフ追加", link: "/staff-report/staffadd/001", icon: <Dot size="small" />  },
-    ],
-  },
-  {
-    id: 2,
-    access: 0,
-    label: "スタッフ",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
-      { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
     ],
   },
   // {
@@ -91,27 +64,14 @@ const structure = [
   // },
   {
     id: 3,
-    access: 1,
     label: "案件",
     icon: <ArrowDropDownIcon />,
     children: [
-      { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" />},
-      { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" />},
+      { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
+      { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
       { label: "案件登録", link: "/staff-report/caseadd/001", icon: <Dot size="small" />  },
     ],
   },
-<<<<<<< HEAD
-  {
-    id: 3,
-    access: 0,
-    label: "案件",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" />},
-      { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" />},
-    ],
-  },
-=======
   // {
   //   id: 3,
   //   access: 0,
@@ -122,7 +82,6 @@ const structure = [
   //     { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
   //   ],
   // },
->>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
@@ -130,16 +89,7 @@ const structure = [
     label: "引合",
     icon: <ArrowDropDownIcon />,
     children: [
-      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" />}
-    ],
-  },
-  {
-    id: 4,
-    access: 1,
-    label: "引合",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" />}
+      { label: "引合リスト", link: "/staff-report/referencelist/001", icon: <Dot size="small" /> }
     ],
   },
   // {
@@ -154,16 +104,7 @@ const structure = [
     label: "領収書",
     icon: <ArrowDropDownIcon />,
     children: [
-      { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" />},
-    ],
-  },
-  {
-    id: 5,
-    access: 1,
-    label: "領収書",
-    icon: <ArrowDropDownIcon />,
-    children: [
-      { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" />},
+      { label: "領収書発行", link: "/staff-report/billing/001", icon: <Dot size="small" /> },
     ],
   },
   // {
@@ -177,11 +118,11 @@ const structure = [
   //     { label: "Maps", link: "/app/ui/maps" },
   //   ],
   // },
-  // {
-  //   id: 6,
-  //   label: "ログアウト",
-  //   link: "/login",
-  // },
+  {
+    id: 6,
+    label: "ログアウト",
+    link: "",
+  },
 ]
 //   { id: 5, type: "divider" },
 //   { id: 6, type: "title", label: "HELP" },
@@ -210,10 +151,10 @@ const structure = [
 //   },
 // ];
 
-function Sidebar({ location } ,props) {
+function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
-
+ 
   const[Access ,setAccess] = useState([]);
 
   useEffect(() => getAccessData());
@@ -223,33 +164,14 @@ function Sidebar({ location } ,props) {
     axios
       .get('/api/menu/1')
       .then(response =>{
-        console.log(response.data)
+        console.log(response.data);
         setAccess(response.data);
       })
       .catch(() => {
         console.log('connected error');
       })
   }
-<<<<<<< HEAD
-  const access_data = getAccessData.filter((data) => {
-    if (data.access_name === "スタッフリスト編集") {
-      return structure.access === 1;
-    } else {
-      return structure.access === 0;
-    }
-  })
 }
-
-=======
-}
-
-// const access_data = getAccessData.filter((data) => {
-//   if (data.access_name === "スタッフリスト編集") {
-//     return structure.access === 1;
-//   } else {
-//     return structure.access === 0;
-//   }
-// })
 
 const menu = structure.filter ((data)=> {
   if (getAccessData.access_id === 1 && getAccessData.access_id === 2 && getAccessData.access_id === 3) {
@@ -268,12 +190,10 @@ const menu = structure.filter ((data)=> {
     (data.id === 1) ||
     (data.id === 2) ||
     (data.id === 3) ||
-    (data.id === 4) ||
-    (data.id === 5) ||
     (data.id === 6)
     );
   }
-  else {
+  else if (getAccessData.access_id === 2) {
     return (
       (data.id === 0) ||
       (data.id === 1) ||
@@ -282,11 +202,9 @@ const menu = structure.filter ((data)=> {
   }
 });
 
->>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
   // global
   var { isSidebarOpened } = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
-  var userDispatch = useUserDispatch();
 
   // local
   var [isPermanent, setPermanent] = useState(true);
@@ -333,14 +251,7 @@ const menu = structure.filter ((data)=> {
             {...link}
           />
         ))}
-
       </List>
-      <div className={classes.profileMenuUser}>
-        <Typography className={classes.profileMenuLink}
-              color="primary"
-              onClick={() => signOut(userDispatch, props.history) }>ログアウト
-        </Typography>
-      </div>
     </Drawer>
   );
 
