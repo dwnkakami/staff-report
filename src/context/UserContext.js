@@ -11,6 +11,8 @@ function userReducer(state, action) {
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -47,6 +49,7 @@ function useUserDispatch() {
   return context;
 }
 
+<<<<<<< HEAD
 // const UserAccessData = (() => {
 //   var userAccess = "";
 
@@ -65,6 +68,26 @@ function useUserDispatch() {
 // })();
 
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
+=======
+const UserProfile = (() => {
+  var userName = "";
+
+  var getName = () => {
+    return userName;
+  };
+
+  const setName = (name) => {
+    userName = name;
+  };
+
+  return {
+    getName: getName,
+    setName: setName
+  }
+})();
+
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile};
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 
 // ###########################################################
 
@@ -86,6 +109,10 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setError(null)
             setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
+<<<<<<< HEAD
+=======
+            UserProfile.setName(response.data[0].name)
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
@@ -120,25 +147,43 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
+<<<<<<< HEAD
   history.push("/login");
+=======
+  history.push("/staff-report/login");
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 }
 
 function registerUser(dispatch, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
+<<<<<<< HEAD
+=======
+  
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 
   if (!!password) {
     setTimeout(() => {
       localStorage.setItem('id_token', 1)
       setError(null)
       setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+      dispatch({ type: "LOGIN_FAILURE" });
 
+<<<<<<< HEAD
       history.push('/staff-report/dashboard')
+=======
+      history.push('/staff-report/login')
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
+
+    history.push('/staff-report/login')
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 }

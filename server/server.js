@@ -2,6 +2,7 @@ const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const login = require('./modules/login.js');
+<<<<<<< HEAD
 const menu = require('./modules/menu.jsx');
 const stafflist001 = require('./modules/stafflist001.jsx');
 const stafflist002 = require('./modules/stafflist002.jsx');
@@ -16,6 +17,26 @@ const casesearch = require('./modules/casesearch.jsx');
 const caseadd = require('./modules/caseadd.jsx');
 const referencelist = require('./modules/referencelist.jsx');
 const billing = require('./modules/billing.jsx');
+=======
+const menu = require('./modules/menu.js');
+const stafflist001 = require('./modules/stafflist001.js');
+const stafflist002 = require('./modules/stafflist002.js');
+const stafflist003 = require('./modules/stafflist003.js');
+const stafflist004 = require('./modules/stafflist004.js');
+const stafflist005 = require('./modules/stafflist005.js');
+const staffsearch = require('./modules/staffsearch.js');
+const staffadd = require('./modules/staffadd.js');
+const staffadd001 = require('./modules/staffadd001.js');
+const staffadd002 = require('./modules/staffadd002.js');
+const staffadd003 = require('./modules/staffadd003.js');
+const staffadd004 = require('./modules/staffadd004.js');
+const caselist = require('./modules/caselist.js');
+const casedetail = require('./modules/casedetail.js');
+const casesearch = require('./modules/casesearch.js');
+const caseadd = require('./modules/caseadd.js');
+const referencelist = require('./modules/referencelist.js');
+const billing = require('./modules/billing.js');
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
 
@@ -48,8 +69,20 @@ app.get('/api/stafflist005/:condition',(req,res) => {
 app.get('/api/staffsearch/:condition',(req,res) => {
     staffsearch.getData(req.params.condition,res);
 });
-app.get('/api/staffadd/:condition',(req,res) => {
-    staffadd.getData(req.params.condition,res);
+app.post('/api/staffadd',(req,res) => {
+    staffadd.postData(req,res);
+});
+app.get('/api/staffadd001',(req,res) => {
+    staffadd001.getData(req,res);
+});
+app.get('/api/staffadd002',(req,res) => {
+    staffadd002.getData(req,res);
+});
+app.get('/api/staffadd003',(req,res) => {
+    staffadd003.getData(req,res);
+});
+app.get('/api/staffadd004',(req,res) => {
+    staffadd004.getData(req,res);
 });
 app.get('/api/caselist/:condition',(req,res) => {
     caselist.getData(req.params.condition,res);
@@ -60,8 +93,8 @@ app.get('/api/casedetail/:condition',(req,res) => {
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
 });
-app.get('/api/caseadd/:condition',(req,res) => {
-    caseadd.getData(req.params.condition,res);
+app.post('/api/caseadd/',(req,res) => {
+    caseadd.postData(req,res);
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);

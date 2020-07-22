@@ -35,6 +35,7 @@ function Login(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
+<<<<<<< HEAD
     const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
 
     axios
@@ -48,11 +49,34 @@ function Login(props) {
 
   };
 
+=======
+    // const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
+
+    // axios
+    //     .post('/api/register', newValue)
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(() => {
+    //         console.log('submit error');
+    //     })
+
+  };
+
+
+
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
   const handleClose = () => {
     setOpen(false);
   };
 
+<<<<<<< HEAD
   const submitAction = () => {
+=======
+
+  const submitAction = () => {
+    
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
     registerUser(
       userDispatch,
       passwordValue,
@@ -60,7 +84,34 @@ function Login(props) {
       setIsLoading,
       setError,
     )
+<<<<<<< HEAD
   }
+=======
+    const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
+
+    axios
+        .post('/api/register', newValue)
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(() => {
+            console.log('submit error');
+        })    
+  }
+
+  function submit () {
+  if(submitValue === "1111"){
+    submitAction(true)
+    alert("新しいユーザーが登録されました！")
+  }else{
+    setError(true)
+    
+  }
+}
+
+
+
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 
   const [posts, setPosts] = useState([]);
 
@@ -103,6 +154,9 @@ function Login(props) {
   var [nameValue, setNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
+  var [submitValue, setSubmitValue] = useState("");
+
+
 
 //   const submit = () => {
 //     const newValue = {id:loginValue, name:nameValue, role_id:role};
@@ -167,7 +221,11 @@ function Login(props) {
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
                 placeholder="ユーザーID"
+<<<<<<< HEAD
                 type="text"
+=======
+                type="number"
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
                 fullWidth
               />
               <TextField
@@ -205,18 +263,29 @@ function Login(props) {
                     }
                     variant="contained"
                     color="primary"
+<<<<<<< HEAD
                     size="middle"
                   >
                   ログイン<br/>する
+=======
+                    size="large"
+                    fullWidth
+                  >
+                  ログインする
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
                   </Button>
                 )}
-                <Button
+                {/* <Button
                   color="primary"
                   size="small"
                   className={classes.forgetButton}
                 >
                   パスワードをお忘れの場合はこちら
+<<<<<<< HEAD
                 </Button>
+=======
+                </Button> */}
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
               </div>
             </React.Fragment>
           )}
@@ -225,11 +294,30 @@ function Login(props) {
               {/* <Typography variant="h3" className={classes.subGreeting}>
                 ユーザーの追加
               </Typography> */}
+<<<<<<< HEAD
               <Fade in={error}>
+=======
+              {/* <Fade in={error}>
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
                 </Typography>
-              </Fade>
+              </Fade> */}
+              <TextField
+                id="id"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={loginValue}
+                onChange={e => setLoginValue(e.target.value)}
+                margin="normal"
+                placeholder="ユーザーID"
+                type="number"
+                fullWidth
+              />
               <TextField
                 id="id"
                 InputProps={{
@@ -348,6 +436,7 @@ function Login(props) {
                     label="パスワード"
                     type="password"
                     fullWidth
+<<<<<<< HEAD
                   />
                 </DialogContent>
                 <DialogActions>
@@ -355,6 +444,22 @@ function Login(props) {
                     キャンセル
                   </Button>
                   <Button  onClick={submitAction} color="primary">
+=======
+                    onChange={e => setSubmitValue(e.target.value)}
+                    value={submitValue}
+                  />
+                </DialogContent>
+                <DialogActions>
+                <Fade in={error}>
+                <Typography color="error" className={classes.errorMessage}>
+                  パスワードが間違っています。
+                </Typography>
+              </Fade>
+                  <Button onClick={handleClose} color="primary">
+                    キャンセル
+                  </Button>
+                  <Button  onClick={submit} color="primary">
+>>>>>>> f947333d49b4051071a525194cef55569ebc21fc
                     確認
                   </Button>
                 </DialogActions>
