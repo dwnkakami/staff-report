@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import StaffList005_figure from './StaffList005_figure';
 import StaffList003_map from '../staffList003/StaffList003_figure';
+import StaffList002_2 from '../staffskill/StaffList002_2';
 import { useState } from 'react';
 import { getThemeProps } from '@material-ui/styles';
 
@@ -70,11 +71,11 @@ const styles = makeStyles((theme) => ({
 
 const DialogButton = (props) => {
   const classes = styles();
-  const [staff, setStaff] = useState('スキル：データなし');
+  const [staff, setStaff] = useState(<StaffList002_2 />);
 
   const handleClick = (selected) => {
     if(selected === 1){
-      setStaff('スキル：データなし')
+      setStaff(<StaffList002_2 id={props.id} />)
     } else if(selected === 2){
       setStaff(<StaffList003_map id={props.id} />);
     } else if(selected === 3){
