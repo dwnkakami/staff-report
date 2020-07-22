@@ -145,7 +145,6 @@ const StyledTableRow = withStyles((theme) => ({
     const [orderBy, setOrderBy] = React.useState('id');
     const [selected, setSelected] = React.useState([]);
     const [keyWord, setKeyWord] = React.useState('');
-    const [staff, setStaff] = React.useState([]);
 
  
      useEffect(() => getStaffData());
@@ -194,6 +193,8 @@ const StyledTableRow = withStyles((theme) => ({
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
+    const ListData = posts.map((data) => (<li>{data}</li>));
+    const [staff, setStaff] = React.useState([ListData]);
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
