@@ -22,6 +22,7 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
+import StaffAdd from "../../pages/staffadd/StaffAdd";
 
 // import StaffList001 from "../../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";

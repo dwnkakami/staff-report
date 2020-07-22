@@ -47,8 +47,20 @@ app.get('/api/stafflist005/:condition',(req,res) => {
 app.get('/api/staffsearch/:condition',(req,res) => {
     staffsearch.getData(req.params.condition,res);
 });
-app.get('/api/staffadd/:condition',(req,res) => {
-    staffadd.getData(req.params.condition,res);
+app.post('/api/staffadd',(req,res) => {
+    staffadd.postData(req,res);
+});
+app.get('/api/staffadd001',(req,res) => {
+    staffadd001.getData(req,res);
+});
+app.get('/api/staffadd002',(req,res) => {
+    staffadd002.getData(req,res);
+});
+app.get('/api/staffadd003',(req,res) => {
+    staffadd003.getData(req,res);
+});
+app.get('/api/staffadd004',(req,res) => {
+    staffadd004.getData(req,res);
 });
 app.get('/api/caselist/:condition',(req,res) => {
     caselist.getData(req.params.condition,res);
@@ -70,6 +82,12 @@ app.post('/api/referenceadd/:condition',(req,res) => {
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
+});
+app.get('/api/role/:condition',(req,res) => {
+    role.getData(req.params.condition,res);
+});
+app.post('/api/register',(req,res) => {
+    register.postData(req,res);
 });
 
 
