@@ -20,6 +20,8 @@ const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
 const billing = require('./modules/billing.js');
+const role = require('./modules/role.js');
+const register = require('./modules/register.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
