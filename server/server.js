@@ -10,7 +10,6 @@ const stafflist004 = require('./modules/stafflist004.js');
 const stafflist005 = require('./modules/stafflist005.js');
 const staffsearch = require('./modules/staffsearch.js');
 const staffadd = require('./modules/staffadd.js');
-const staffadd2 = require('./modules/staffadd2.js');
 const staffadd001 = require('./modules/staffadd001.js');
 const staffadd002 = require('./modules/staffadd002.js');
 const staffadd003 = require('./modules/staffadd003.js');
@@ -56,9 +55,6 @@ app.get('/api/staffsearch/:condition',(req,res) => {
 });
 app.post('/api/staffadd',(req,res) => {
     staffadd.postData(req,res);
-});
-app.get('/api/staffadd2',(req,res) => {
-    staffadd2.getData(req,res);
 });
 app.get('/api/staffadd001',(req,res) => {
     staffadd001.getData(req,res);

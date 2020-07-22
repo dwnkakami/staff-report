@@ -77,7 +77,7 @@ export default function AlertDialog() {
   const getData = () => {
       if(user.length === 0){
         axios
-        .get('./api/staffadd2')
+        .get('./api/staffadd004')
         .then(response => {
             setUser(response.data);
             console.log(response.data);
