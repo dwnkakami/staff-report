@@ -10,6 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
+import ListData from './ListData';
 //import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
@@ -301,7 +302,7 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = () =>{
+  const Search = (history) =>{
   const search = data.filter((data)=>{
     return (((data.license === license) ||
               (((data.skill === skill1) ||
@@ -321,7 +322,8 @@ const StaffSearch = () => {
             (data.occupation === ocp[5]))));
   });
     console.log(search);
-    // props.history.push({ pathname: '/staff-report/stafflist/001', state: { data: search }});
+    ListData.setStaffData(search);
+    history.push('/staff-report/stafflist/001');
   }
 
   return (

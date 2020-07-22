@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 // import TextField from '@material-ui/core/TextField';
 // import SearchIcon from '@material-ui/icons/Search';
+import ListData from '../staffsearch/ListData';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -277,7 +278,7 @@ return(
               rowCount={staff.length}
             />
             <TableBody>
-              {stableSort(staff, getComparator(order, orderBy))
+              {stableSort(ListData.getStaffData(), getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
