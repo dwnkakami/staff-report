@@ -259,7 +259,7 @@ function Login(props) {
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="text"
+                type="number"
                 fullWidth
               />
               <TextField
