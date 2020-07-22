@@ -74,7 +74,11 @@ app.get('/api/casedetail/:condition',(req,res) => {
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
 });
+<<<<<<< HEAD
 app.post('/api/caseadd',(req,res) => {
+=======
+app.post('/api/caseadd/',(req,res) => {
+>>>>>>> 24ed5e80bb4901ba39b7fe2994eb703afa692af8
     caseadd.postData(req,res);
 });
 app.get('/api/referencelist/:condition',(req,res) => {
