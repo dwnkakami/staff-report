@@ -36,15 +36,12 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-<<<<<<< HEAD
-import axios from "axios";
-=======
 import { useUserDispatch } from "../../context/UserContext";
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
+import axios from 'axios';
 
 const structure = [
-  { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
-  { id: 1, access: 0,　type: "title", label: "メニュー", },
+  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
+  { id: 1, type: "title", label: "メニュー", },
 
   {
     id: 2,
@@ -95,7 +92,6 @@ const structure = [
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
-    access: 0,
     label: "引合",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -110,7 +106,6 @@ const structure = [
   // },
   {
     id: 5,
-    access: 0,
     label: "領収書",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -184,32 +179,16 @@ function Sidebar({ location } ,props) {
 }
 
 const menu = structure.filter ((data)=> {
-  if (getAccessData.access_id === 1 && getAccessData.access_id === 2 && getAccessData.access_id === 3) {
+  if (Access.access_id === 1) {
   return (
     (data.id === 0) ||
     (data.id === 1) ||
     (data.id === 2) ||
     (data.id === 3) ||
     (data.id === 4) ||
-    (data.id === 5) ||
-    (data.id === 6)
+    (data.id === 5) 
   );
-  }  else if (getAccessData.access_id === 1 && getAccessData === 2) {
-    return (
-    (data.id === 0) ||
-    (data.id === 1) ||
-    (data.id === 2) ||
-    (data.id === 3) ||
-    (data.id === 6)
-    );
-  }
-  else if (getAccessData.access_id === 2) {
-    return (
-      (data.id === 0) ||
-      (data.id === 1) ||
-      (data.id === 6)
-    )
-  }
+}
 });
 
   // global

@@ -49,26 +49,6 @@ function useUserDispatch() {
   return context;
 }
 
-<<<<<<< HEAD
-// const UserAccessData = (() => {
-//   var userAccess = "";
-
-//   var getAccess = () => {
-//     return userName;
-//   };
-
-//   const setAccess = (access) => {
-//     userAccess = access;
-//   };
-
-//   return {
-//     getAccess: getAccess,
-//     setAccess: setAccess
-//   }
-// })();
-
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
-=======
 const UserProfile = (() => {
   var userName = "";
 
@@ -87,7 +67,6 @@ const UserProfile = (() => {
 })();
 
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile};
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 
 // ###########################################################
 
@@ -109,10 +88,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setError(null)
             setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
-<<<<<<< HEAD
-=======
             UserProfile.setName(response.data[0].name)
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
@@ -147,20 +123,13 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
-<<<<<<< HEAD
-  history.push("/login");
-=======
   history.push("/staff-report/login");
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 }
 
 function registerUser(dispatch, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
-<<<<<<< HEAD
-=======
   
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 
   if (!!password) {
     setTimeout(() => {
@@ -169,11 +138,7 @@ function registerUser(dispatch, password, history, setIsLoading, setError) {
       setIsLoading(false)
       dispatch({ type: "LOGIN_FAILURE" });
 
-<<<<<<< HEAD
-      history.push('/staff-report/dashboard')
-=======
       history.push('/staff-report/login')
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
@@ -182,8 +147,4 @@ function registerUser(dispatch, password, history, setIsLoading, setError) {
 
     history.push('/staff-report/login')
   }
-<<<<<<< HEAD
-=======
-
->>>>>>> f947333d49b4051071a525194cef55569ebc21fc
 }
