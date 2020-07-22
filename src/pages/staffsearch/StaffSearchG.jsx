@@ -301,7 +301,7 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = (history) =>{
+  const Search = () =>{
   const search = data.filter((data)=>{
     return (((data.license === license) ||
               (((data.skill === skill1) ||
@@ -320,8 +320,8 @@ const StaffSearch = () => {
             (data.occupation === ocp[4])||
             (data.occupation === ocp[5]))));
   });
-    //console.log(search);
-    history.push({ pathname: '/staff-report/stafflist/001', state: { data: search }});
+    console.log(search);
+    // props.history.push({ pathname: '/staff-report/stafflist/001', state: { data: search }});
   }
 
   return (
