@@ -1,13 +1,6 @@
 {
-<<<<<<< HEAD
-    "name": "caseAdd",
-    "version": "1.0.0",
-    "private": true,
-    "main": "caseAdd_Sasaki.jsx"
-=======
     "name": "CaseAdd",
     "version": "1.0.0",
     "private": true,
     "main": "CaseAdd.jsx"
->>>>>>> 24ed5e80bb4901ba39b7fe2994eb703afa692af8
   }
