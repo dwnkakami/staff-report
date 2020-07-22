@@ -336,25 +336,12 @@ const MenuProps = {
                   data.user_id === salesMan );
     });
 
-    const listData = (() => {
-      var caseData = [];
-      var getCaseData = () => {
-        return caseData;
-      };
-      const setCaseData = (data) => {
-        caseData = data;
-      };
-      return {
-        getCaseData: getCaseData,
-        setCaseData: setCaseData
-      }
-    })();
+   
 
     if(target7.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
     }else{
       console.log(target7);
-     listData.setCaseData()
     //  history.push('/staff-report/caselist')
     }
 
