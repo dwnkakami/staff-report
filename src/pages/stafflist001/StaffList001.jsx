@@ -15,8 +15,6 @@ import axios from 'axios';
 import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import TextField from '@material-ui/core/TextField';
-// import SearchIcon from '@material-ui/icons/Search';
 import StaffList005 from '../staffList005/StaffList005.jsx';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
