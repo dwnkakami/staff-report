@@ -25,14 +25,14 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
 
-import CaseSearch from "../../pages/casesearch/CaseSearch";
+// import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
 import CaseList from "../../pages/caselist/CaseList";
-//import CaseSearch from "../../pages/casesearch/CaseSearch";
+import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/Caseadd/CaseAdd";
 
 import ReferenceList from "../../pages/referenceList/ReferenceList";
