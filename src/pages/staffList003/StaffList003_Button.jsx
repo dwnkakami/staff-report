@@ -1,67 +1,130 @@
-// import React, { useState } from 'react';
-// import { makeStyles } from '@material-ui/core/styles';
-// import Button from '@material-ui/core/Button';
-// import ButtonGroup from '@material-ui/core/ButtonGroup';
-// import StaffList003_map from './StaffList003_figure';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Paper from '@material-ui/core/Paper';
+import {ComposedChart, XAxis, YAxis, Tooltip, CartesianGrid, Bar} from 'recharts';
+import { makeStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles((theme) => ({
-//   Button: {
-//     background:'rgb(120,144,156)',
-//     borderRadius: '0px 0px 0px 0px',
-//   },
-//   ButtonGroup: {
-//     margin: '2px 0px 7px 0px',
-//     borderRadius: '0px 0px 0px 0px',
-//   },
-//   ButtonGroup2: {
-//     margin: '2px 0px 7px 0px',
-//     borderRadius: '0px 0px 0px 0px',
-//     float: 'right',
-//   },
-//   Button2: {
-//     background:'rgb(120,144,156)',
-//     color: '#ffffff',
-//     borderRadius: '0px 0px 0px 0px',
-//   },
-// }));
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    width: '100%',
+    height: '80%',
+    borderRadius: '0px 0px 0px 0px'
+  },
+  Graph: {
+    flexGrow: 1,
+    float: 'left',
+    width: '400px',
+    display:'center',
+    margin:'40px 0px 0px 120px'
+  },
+  Graph2: {
+    flexGrow: 2,
+    float: 'right',
+    width: '400px',
+    display:'center',
+    margin:'40px 120px 0px 0px'
+  },
+  experience: {
+    color: '#000000',
+  },
+}));
 
 
-// const StaffList003_Button = (props) => {
-//   const classes = useStyles();
-//   const [staff, setStaff] = useState('スキル：データなし');
-
-//   const handleClick = (selected) => {
-//     if(selected　=== 1){
-//       setStaff('スキル：データなし');
-//     } else if(selected　=== 2){
-//       setStaff(<StaffList003_map id={props.id}/>);
-//       } else if(selected　=== 3){
-//         setStaff('キャリアパス：データなし');
-//       }else {
-//       　setStaff('スタッフ情報：データなし');
-//     }
-//   };
-
-//   return (
+// const Tooltip = () => {
+//   return(
 //     <div>
-//       <div>
-//         <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
-//           <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
-//           <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
-//           <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
-//           <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
-//       </ButtonGroup>
-//       <ButtonGroup className={classes.ButtonGroup2}　size="small" variant="contained" aria-label="contained primary button group">
-//           <Button　className={classes.Button2}>スキルシート出力</Button>
-//           <Button className={classes.Button2}>引合登録</Button>
-//           </ButtonGroup>
-//       </div>
-//       <div>
-//         {staff}
-//       </div>
+      
 //     </div>
-//   );
+//   )
 // }
 
-// export default StaffList003_Button;
+const Graph = (props) =>  {
+    const [chartData, setChartData] = useState([]);
+    const [chartData2, setChartData2] = useState([]);
+    const classes = useStyles();
 
+    useEffect(() => {
+        setChartData(data_level);
+        setChartData2(data_assessment);
+    },[]);
+
+    const data_level = [
+      { name: `${props.skillname}`, "レベル": `${props.level}`,"経験年数":`${props.experience}`},
+  ];
+    const data_assessment= [
+      { name: `自己評価`,"レベル":`${props.assessment}`},
+  ];
+
+    return (
+        <div>
+
+        <Paper className={classes.paper}>
+          <div className={classes.Graph}>
+        <ComposedChart
+            width={400}
+          height={280}
+            layout="vertical"
+            data={chartData}
+            margin={{ top: 20, right: 0, bottom: 0, left: 10 }}
+        >
+        <XAxis  
+            type="number"
+            domain={[0, 'Max 10']}
+            ticks={[0,2,4,6,8,10]}  />
+        <YAxis
+            type="category"
+            dataKey="name"
+            dataKey2="経験年数"
+        />
+        <Tooltip/>
+        <CartesianGrid
+            stroke="#f5f5f5"
+            dataKey="name"
+        /> 
+        <Bar
+            dataKey="レベル"
+            barSize={20}
+            stroke="rgba(34, 80, 162, 0.2)"
+            fillOpacity={1}
+            fill="#2250A2"
+        />
+        </ComposedChart>
+        </div>
+
+        <div className={classes.Graph2}>
+        <ComposedChart
+            width={400}
+            height={280}
+            layout="vertical"
+            data={chartData2}
+            margin={{ top: 20, right: 10, bottom: 0, left: 0 }}
+        >
+        <XAxis
+            type="number"
+            domain={[0, 'Max 10']}
+            ticks={[0,2,4,6,8,10]} 
+        />
+        <YAxis
+            type="category"
+            dataKey="name"
+        />
+        <Tooltip/>
+        <CartesianGrid
+            stroke="#f5f5f5"
+        /> 
+        <Bar
+            dataKey="レベル"
+            barSize={20}
+            stroke="rgba(34, 80, 162, 0.2)"
+            fillOpacity={1}
+            fill="#2250A2"
+        />
+        </ComposedChart>
+        </div>
+      </Paper>
+
+      </div>
+    );
+}
+
+export default Graph;

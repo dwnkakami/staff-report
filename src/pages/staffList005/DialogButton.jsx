@@ -7,6 +7,7 @@ import StaffList005_figure from './StaffList005_figure';
 import StaffList003_map from '../staffList003/StaffList003_figure';
 import { useState } from 'react';
 import { getThemeProps } from '@material-ui/styles';
+import Graph003 from '../staffList003/Graph'
 
 const useStyles = makeStyles((theme) => ({
   Button: {
@@ -32,11 +33,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DialogButton = (props) => {
   const classes = useStyles();
-  const [staff, setStaff] = useState('スキル：データなし');
+  const [staff, setStaff] = useState(<Graph003 />);
 
   const handleClick = (selected) => {
     if(selected === 1){
-      setStaff('スキル：データなし')
+      setStaff(<Graph003 />)
     } else if(selected === 2){
       setStaff(<StaffList003_map id={props.id} />);
     } else if(selected === 3){

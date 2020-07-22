@@ -7,6 +7,8 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
+import Graph from './pages/staffList003/StaffList003_Button';
+import Graph003 from './pages/staffList003/Graph';
 
 
 ReactDOM.render(
@@ -15,6 +17,8 @@ ReactDOM.render(
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
         <App />
+        {/* <Graph /> */}
+        {/* <Graph003 /> */}
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
