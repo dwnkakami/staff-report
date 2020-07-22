@@ -31,7 +31,7 @@ exports.postData = (req, res) => {
         con.query(sql,[req.body.id, req.body.name, req.body.role_id, req.body.password], (err, result, fields) => {
             if (err) throw err;
             
-            res.send('Success!!');
+            res.send('Register Success!!');
         });
     });
 }

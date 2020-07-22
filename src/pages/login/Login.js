@@ -35,6 +35,35 @@ function Login(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
+    // const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
+
+    // axios
+    //     .post('/api/register', newValue)
+    //     .then(response => {
+    //         console.log(response.data);
+    //     })
+    //     .catch(() => {
+    //         console.log('submit error');
+    //     })
+
+  };
+
+
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+
+  const submitAction = () => {
+    
+    registerUser(
+      userDispatch,
+      passwordValue,
+      props.history,
+      setIsLoading,
+      setError,
+    )
     const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
 
     axios
@@ -44,23 +73,21 @@ function Login(props) {
         })
         .catch(() => {
             console.log('submit error');
-        })
-
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const submitAction = () => {
-    registerUser(
-      userDispatch,
-      passwordValue,
-      props.history,
-      setIsLoading,
-      setError,
-    )
+        })    
   }
+
+  function submit () {
+  if(submitValue === "1111"){
+    submitAction(true)
+    alert("新しいユーザーが登録されました！")
+  }else{
+    setError(true)
+    
+  }
+}
+
+
+
 
   const [posts, setPosts] = useState([]);
 
@@ -103,6 +130,9 @@ function Login(props) {
   var [nameValue, setNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
+  var [submitValue, setSubmitValue] = useState("");
+
+
 
 //   const submit = () => {
 //     const newValue = {id:loginValue, name:nameValue, role_id:role};
@@ -167,7 +197,7 @@ function Login(props) {
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="text"
+                type="number"
                 fullWidth
               />
               <TextField
@@ -205,18 +235,19 @@ function Login(props) {
                     }
                     variant="contained"
                     color="primary"
-                    size="middle"
+                    size="large"
+                    fullWidth
                   >
-                  ログイン<br/>する
+                  ログインする
                   </Button>
                 )}
-                <Button
+                {/* <Button
                   color="primary"
                   size="small"
                   className={classes.forgetButton}
                 >
                   パスワードをお忘れの場合はこちら
-                </Button>
+                </Button> */}
               </div>
             </React.Fragment>
           )}
@@ -225,11 +256,26 @@ function Login(props) {
               {/* <Typography variant="h3" className={classes.subGreeting}>
                 ユーザーの追加
               </Typography> */}
-              <Fade in={error}>
+              {/* <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
                   Something is wrong with your login or password :(
                 </Typography>
-              </Fade>
+              </Fade> */}
+              <TextField
+                id="id"
+                InputProps={{
+                  classes: {
+                    underline: classes.textFieldUnderline,
+                    input: classes.textField,
+                  },
+                }}
+                value={loginValue}
+                onChange={e => setLoginValue(e.target.value)}
+                margin="normal"
+                placeholder="ユーザーID"
+                type="number"
+                fullWidth
+              />
               <TextField
                 id="id"
                 InputProps={{
@@ -348,13 +394,20 @@ function Login(props) {
                     label="パスワード"
                     type="password"
                     fullWidth
+                    onChange={e => setSubmitValue(e.target.value)}
+                    value={submitValue}
                   />
                 </DialogContent>
                 <DialogActions>
+                <Fade in={error}>
+                <Typography color="error" className={classes.errorMessage}>
+                  パスワードが間違っています。
+                </Typography>
+              </Fade>
                   <Button onClick={handleClose} color="primary">
                     キャンセル
                   </Button>
-                  <Button  onClick={submitAction} color="primary">
+                  <Button  onClick={submit} color="primary">
                     確認
                   </Button>
                 </DialogActions>

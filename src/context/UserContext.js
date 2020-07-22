@@ -11,6 +11,8 @@ function userReducer(state, action) {
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -47,7 +49,24 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser};
+const UserProfile = (() => {
+  var userName = "";
+
+  var getName = () => {
+    return userName;
+  };
+
+  const setName = (name) => {
+    userName = name;
+  };
+
+  return {
+    getName: getName,
+    setName: setName
+  }
+})();
+
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile};
 
 // ###########################################################
 
@@ -69,6 +88,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setError(null)
             setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
+            UserProfile.setName(response.data[0].name)
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
@@ -103,25 +123,28 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
 function signOut(dispatch, history) {
   localStorage.removeItem("id_token");
   dispatch({ type: "SIGN_OUT_SUCCESS" });
-  history.push("/login");
+  history.push("/staff-report/login");
 }
 
 function registerUser(dispatch, password, history, setIsLoading, setError) {
   setError(false);
   setIsLoading(true);
+  
 
   if (!!password) {
     setTimeout(() => {
       localStorage.setItem('id_token', 1)
       setError(null)
       setIsLoading(false)
-      dispatch({ type: 'LOGIN_SUCCESS' })
+      dispatch({ type: "LOGIN_FAILURE" });
 
-      history.push('/staff-report/dashboard')
+      history.push('/staff-report/login')
     }, 2000);
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
+
+    history.push('/staff-report/login')
   }
 }
