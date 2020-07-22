@@ -1,0 +1,28 @@
+.title{
+    /* margin: 5px; */
+    /* padding: 3px 0 3px 5px; */
+    height: 25px;
+}
+
+
+
+.table1{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: 30px;
+}
+
+/* .table2 {
+    position: relative;
+    height: auto;
+    width: auto;
+} */
+
+.paper1 {
+    position: relative;
+    margin: -10px;
+    min-height:80vh;
+}
+

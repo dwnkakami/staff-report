@@ -3,6 +3,10 @@ import './CaseDetail.css';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +14,49 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
+import ReferenceAdd from '../referenceadd/ReferenceAdd';
+
+const AlertDialog = () => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        引合登録
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <MuiDialogTitle id="alert-dialog-title">{"引合登録"}</MuiDialogTitle>
+        <MuiDialogContent dividers>
+          {/* <DialogContentText id="alert-dialog-description">
+            引合リストを登録しますか？
+          </DialogContentText> */}
+          <ReferenceAdd />
+        </MuiDialogContent>
+        {/* <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            いいえ
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            はい
+          </Button>
+        </DialogActions> */}
+      </Dialog>
+    </div>
+  );
+}
 
 const styles = (theme) => ({
   root: {
@@ -46,6 +93,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export default function CaseDetail (props) {
+  
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -79,7 +127,7 @@ export default function CaseDetail (props) {
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            案件詳細
+            案件詳細  <AlertDialog />
           </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
