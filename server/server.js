@@ -20,6 +20,8 @@ const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
 const billing = require('./modules/billing.js');
+const role = require('./modules/role.js');
+const register = require('./modules/register.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -74,8 +76,8 @@ app.get('/api/casedetail/:condition',(req,res) => {
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
 });
-app.get('/api/caseadd/:condition',(req,res) => {
-    caseadd.getData(req.params.condition,res);
+app.post('/api/caseadd/',(req,res) => {
+    caseadd.postData(req,res);
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
