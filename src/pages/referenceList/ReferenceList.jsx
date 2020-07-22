@@ -142,7 +142,7 @@ export default function ReferenceList() {
     const classes = useStyles();
     const [posts, setPosts] = useState([]);
 
-    useEffect(() => { getReferenceData(); console.log("connected") },[]);
+    useEffect(() => { getReferenceData(); console.log("connected") }, []);
 
     const getReferenceData = () => {
         if (posts.length === 0) {
@@ -166,7 +166,7 @@ export default function ReferenceList() {
                     <Typography style={{ fontSize: '30px' }}>引合リスト</Typography>
                 </div>
             </DialogTitle>
-​
+
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <TableContainer>
@@ -192,7 +192,19 @@ export default function ReferenceList() {
                                                         <TableCell align="center">{data.customer_abbreviation}</TableCell>
                                                         <TableCell align="center"></TableCell>
                                                         <TableCell align="center">
-                                                            <ReferenceDetail />
+                                                            <ReferenceDetail key={data.id} 
+                                                            name={data.name}
+                                                            staff_name={data.staff_name}
+                                                            occupation_name={data.occupation_name}
+                                                            position={data.position}
+                                                            interview_location={data.interview_location}
+                                                            interview_date={data.interview_date}
+                                                            interview_times={data.interview_times}
+                                                            entrance_date={data.entrance_date}
+                                                            entry_at={data.entry_at}
+                                                            update_at={data.update_at}
+                                                            skill_level_column={data.skill_level_column}
+                                                            />
                                                         </TableCell>
                                                     </StyledTableRow>
                                                 );
