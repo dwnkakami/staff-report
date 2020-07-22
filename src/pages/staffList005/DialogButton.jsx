@@ -4,6 +4,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import StaffList005_figure from './StaffList005_figure';
+import StaffList003_map from '../staffList003/StaffList003_figure';
 import { useState } from 'react';
 import { getThemeProps } from '@material-ui/styles';
 
@@ -75,7 +76,7 @@ const DialogButton = (props) => {
     if(selected === 1){
       setStaff('スキル：データなし')
     } else if(selected === 2){
-      setStaff('経歴：データなし');
+      setStaff(<StaffList003_map id={props.id} />);
     } else if(selected === 3){
       setStaff('キャリアパス：データなし');
     } else {

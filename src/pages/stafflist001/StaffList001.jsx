@@ -8,7 +8,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-// import { getData }  from './M_staff';
+import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
@@ -18,6 +18,9 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 // import TextField from '@material-ui/core/TextField';
 // import SearchIcon from '@material-ui/icons/Search';
 import StaffList005 from '../staffList005/StaffList005.jsx';
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+import StaffList003 from '../staffList003/StaffList003';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -72,6 +75,7 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
+    { id:'id',numeric: true, disablePadding: false, label: '詳細' },
   ];
 
   function EnhancedTableHead(props) {
@@ -148,14 +152,14 @@ const StyledTableCell = withStyles((theme) => ({
 
     const [posts, setPosts] = useState([]);
 
-    // const [staff = getData,setStaff] = useState([]);
+    const [staff = getData,setStaff] = useState([]);
 
-    // const filterList = (e) => {
-    //   const updateList = staff.filter((data) => {
-    //     return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-    //   })
-    //   setStaff(updateList)
-    // };
+    const filterList = (e) => {
+      const updateList = staff.filter((data) => {
+        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+      })
+      setStaff(updateList)
+    };
 
     useEffect(() => getStaffData(),[]);
  
@@ -213,8 +217,9 @@ const StyledTableCell = withStyles((theme) => ({
   };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
- 
+
 return(
+  <div>
 <Paper elevation={3} >
 <DialogTitle id="customized-dialog-title">
 <div className='title' style={{ display: 'flex' }}>
@@ -222,16 +227,14 @@ return(
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
-
-{/* 　　　　　<Grid container spacing={1} alignItems="flex-end">
+　　　　　<Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SearchIcon />
           </Grid>
           <Grid item>
             <TextField onChange={filterList} label="Search" />
           </Grid>
-        </Grid> */}
-
+        </Grid>
 <div className={classes.root}>
       <Paper className={classes.paper}>
         <TableContainer>
@@ -253,12 +256,12 @@ return(
               {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
-
                   return (
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, data.id)}
                       selected={isItemSelected}
+                      variant="outlined"
                     >
                       <TableCell>
                         <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
@@ -269,11 +272,9 @@ return(
                       <TableCell align="center">{data.position}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
-
                     </TableRow>
                   );
-                })}
-            </TableBody>
+                })}</TableBody>
           </Table>
           </Grid>
           </Grid>
@@ -281,5 +282,9 @@ return(
       </Paper>
     </div>
     </Paper>
+    </div>
 );
 };
+
+
+
