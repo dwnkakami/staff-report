@@ -23,12 +23,19 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import Dot from "./components/Dot";
 
+// components
+import { Typography } from "../Wrappers/Wrappers";
+// import Notification from "../Notification/Notification";
+// import UserAvatar from "../UserAvatar/UserAvatar";
+
+
 // context
 import {
   useLayoutState,
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
+import { useUserDispatch } from "../../context/UserContext";
 
 const structure = [
   { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
@@ -94,11 +101,11 @@ const structure = [
   //     { label: "Maps", link: "/app/ui/maps" },
   //   ],
   // },
-  {
-    id: 6,
-    label: "ログアウト",
-    link: "",
-  },
+  // {
+  //   id: 6,
+  //   label: "ログアウト",
+  //   link: "/login",
+  // },
 ]
 //   { id: 5, type: "divider" },
 //   { id: 6, type: "title", label: "HELP" },
@@ -127,13 +134,14 @@ const structure = [
 //   },
 // ];
 
-function Sidebar({ location }) {
+function Sidebar({ location } ,props) {
   var classes = useStyles();
   var theme = useTheme();
 
   // global
   var { isSidebarOpened } = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
+  var userDispatch = useUserDispatch();
 
   // local
   var [isPermanent, setPermanent] = useState(true);
@@ -180,7 +188,23 @@ function Sidebar({ location }) {
             {...link}
           />
         ))}
+        
       </List>
+      <div className={classes.profileMenuUser}>
+        {/* <Typography className={classes.profileMenuLink}
+              color="primary"
+              onClick={() => signOut(userDispatch, props.history) }>ログアウト
+        </Typography> */}
+        <Typography className={classes.profileMenuLink}
+              color="primary"
+              // onClick={() => signOut(userDispatch, props.history) }>ログアウト
+              onClick={() => {
+                  localStorage.removeItem("id_token");
+                  userDispatch({ type: "SIGN_OUT_SUCCESS" }); 
+                  window.location.href = '/login';
+                }}>ログアウト
+        </Typography>
+      </div>
     </Drawer>
   );
 
