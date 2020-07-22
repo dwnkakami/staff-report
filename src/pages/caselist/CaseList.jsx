@@ -12,11 +12,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import { Grid } from '@material-ui/core';
+import { Grid, Button } from '@material-ui/core';
 
 import axios from 'axios';
 
-import CaseDetail from './casedetail/CaseDetail';
+import CaseDetail from '../casedetail/CaseDetail';
+import { getThemeProps } from "@material-ui/styles";
 
 // const styles = (theme) => ({
 //   root: {
@@ -148,6 +149,16 @@ const StyledTableRow = withStyles(() => ({
     }
   }
 
+  // const [open, setOpen] = React.useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const getSelectline = () => {
+  //   caseid=data.id
+  // }
+
   return(
     <Paper elevation={3} className='paper1'>
        <div className='title' style={{ display: 'flex' }}>
@@ -176,9 +187,7 @@ const StyledTableRow = withStyles(() => ({
           </TableHead>
           {Caselistmap.map((data) => (
           <TableBody>
-                <StyledTableRow key={data.id}
-                caseid={data.id}
-                />
+                <StyledTableRow/>
                 <StyledTableCell classname="tablecell" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
@@ -189,7 +198,14 @@ const StyledTableRow = withStyles(() => ({
                 <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left"><CaseDetail/></StyledTableCell>
+                <StyledTableCell classname="tablecell" align="left">
+                  {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
+                  {/* 案件リスト詳細 */}
+                  <CaseDetail key={data.id} caseid={data.id}
+                  // open = {open}
+                  />
+                  {/* </Button> */}
+                </StyledTableCell>
           </TableBody>
           ))}
        </Table>

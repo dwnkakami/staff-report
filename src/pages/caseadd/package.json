@@ -1,6 +1,6 @@
 {
-    "name": "caseAdd",
+    "name": "CaseAdd",
     "version": "1.0.0",
     "private": true,
-    "main": "caseAdd_Sasaki.jsx"
+    "main": "CaseAdd.jsx"
   }

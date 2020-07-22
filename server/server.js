@@ -80,8 +80,8 @@ app.get('/api/casedetail/:condition',(req,res) => {
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
 });
-app.get('/api/caseadd/:condition',(req,res) => {
-    caseadd.getData(req.params.condition,res);
+app.post('/api/caseadd/',(req,res) => {
+    caseadd.postData(req,res);
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
