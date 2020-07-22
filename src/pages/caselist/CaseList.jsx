@@ -199,12 +199,8 @@ const StyledTableRow = withStyles(() => ({
                 <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
                 <StyledTableCell classname="tablecell" align="left">
-                  {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
-                  {/* 案件リスト詳細 */}
                   <CaseDetail key={data.id} caseid={data.id}
-                  // open = {open}
                   />
-                  {/* </Button> */}
                 </StyledTableCell>
           </TableBody>
           ))}
