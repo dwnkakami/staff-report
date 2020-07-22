@@ -1,27 +1,28 @@
 const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const login = require('./modules/login.js');
-const menu = require('./modules/menu.js');
-const stafflist001 = require('./modules/stafflist001.js');
-const stafflist002 = require('./modules/stafflist002.js');
-const stafflist003 = require('./modules/stafflist003.js');
-const stafflist004 = require('./modules/stafflist004.js');
-const stafflist005 = require('./modules/stafflist005.js');
+const login = require('./modules/login.jsx');
+const menu = require('./modules/menu.jsx');
+const stafflist001 = require('./modules/stafflist001.jsx');
+const stafflist002 = require('./modules/stafflist002.jsx');
+const stafflist003 = require('./modules/stafflist003.jsx');
+const stafflist004 = require('./modules/stafflist004.jsx');
+const stafflist005 = require('./modules/stafflist005.jsx');
 const staffsearch = require('./modules/staffsearch.js');
-const staffadd = require('./modules/staffadd.js');
-const staffadd001 = require('./modules/staffadd001.js');
-const staffadd002 = require('./modules/staffadd002.js');
-const staffadd003 = require('./modules/staffadd003.js');
-const staffadd004 = require('./modules/staffadd004.js');
-const caselist = require('./modules/caselist.js');
-const casedetail = require('./modules/casedetail.js');
-const casesearch = require('./modules/casesearch.js');
-const caseadd = require('./modules/caseadd.js');
-const referencelist = require('./modules/referencelist.js');
-const billing = require('./modules/billing.js');
-const role = require('./modules/role.js');
-const register = require('./modules/register.js');
+const staffsearch001 = require('./modules/staffsearch001.js');
+const staffsearch002 = require('./modules/staffsearch002.js');
+const staffsearch003 = require('./modules/staffsearch003.js');
+const staffsearch004 = require('./modules/staffsearch004.js');
+const staffsearch005 = require('./modules/staffsearch005.js');
+const staffsearch006 = require('./modules/staffsearch006.js');
+const staffsearch007 = require('./modules/staffsearch007.js');
+const staffadd = require('./modules/staffadd.jsx');
+const caselist = require('./modules/caselist.jsx');
+const casedetail = require('./modules/casedetail.jsx');
+const casesearch = require('./modules/casesearch.jsx');
+const caseadd = require('./modules/caseadd.jsx');
+const referencelist = require('./modules/referencelist.jsx');
+const billing = require('./modules/billing.jsx');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -49,8 +50,29 @@ app.get('/api/stafflist004/:condition',(req,res) => {
 app.get('/api/stafflist005/:condition',(req,res) => {
     stafflist005.getData(req.params.condition,res);
 });
-app.get('/api/staffsearch/:condition',(req,res) => {
-    staffsearch.getData(req.params.condition,res);
+app.post('/api/staffsearch',(req,res) => {
+    staffsearch.postData(req,res);
+});
+app.post('/api/staffsearch001',(req,res) => {
+    staffsearch001.postData(req,res);
+});
+app.post('/api/staffsearch002',(req,res) => {
+    staffsearch002.postData(req,res);
+});
+app.post('/api/staffsearch003',(req,res) => {
+    staffsearch003.postData(req,res);
+});
+app.post('/api/staffsearch004',(req,res) => {
+    staffsearch004.postData(req,res);
+});
+app.post('/api/staffsearch005',(req,res) => {
+    staffsearch005.postData(req,res);
+});
+app.post('/api/staffsearch006',(req,res) => {
+    staffsearch006.postData(req,res);
+});
+app.post('/api/staffsearch007',(req,res) => {
+    staffsearch007.postData(req,res);
 });
 app.post('/api/staffadd',(req,res) => {
     staffadd.postData(req,res);
