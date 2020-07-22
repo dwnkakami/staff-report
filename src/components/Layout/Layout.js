@@ -34,7 +34,7 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/Caseadd/CaseAdd";
 
-import ReferenceList from "../../pages/referenceList/ReferenceList";
+// import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
 //import  from "../../pages/";　引合検索
 
@@ -68,7 +68,6 @@ function Layout(props) {
               <Route path="/app/tables" component={Tables} />
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
-              {/* <Route path="/staff-report/caseadd/001" component={CaseAdd_Sasaki} /> */}
 
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
@@ -78,7 +77,7 @@ function Layout(props) {
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
-              <Route path="/staff-report/referencelist/001" component={ReferenceList} />
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
               <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
               {/* <Route path="" component={} /> 引合検索  */}
               
