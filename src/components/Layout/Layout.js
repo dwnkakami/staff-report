@@ -23,11 +23,7 @@ import Maps from "../../pages/maps";
 import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-<<<<<<< HEAD
-import StaffList001 from "../../pages/stafflist/StaffList001 copy";
-=======
 import StaffAdd from "../../pages/staffadd/StaffAdd";
->>>>>>> 0aa562346e0489ab9d4a184f29d6cf9d9ced5e62
 
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
