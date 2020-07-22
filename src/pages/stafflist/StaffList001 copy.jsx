@@ -193,8 +193,9 @@ const StyledTableRow = withStyles((theme) => ({
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    const length = posts.map((data) => (<li>{data}</li>));
-    const [staff, setStaff] = React.useState([length]);
+    
+    // const length = posts.map((data) => (<li>{data}</li>));
+    const [staff, setStaff] = React.useState([getStaffData]);
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
