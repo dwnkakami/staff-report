@@ -4,8 +4,6 @@
     height: 25px;
 }
 
-
-
 .table1{
     width: 100%;
     border-collapse: collapse;
