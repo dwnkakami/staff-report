@@ -20,6 +20,8 @@ const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
 const billing = require('./modules/billing.js');
+const role = require('./modules/role.js');
+const register = require('./modules/register.js');
 
 const casesearch001 = require('./modules/casesearch001.js');
 const casesearch002 = require('./modules/casesearch002.js');
