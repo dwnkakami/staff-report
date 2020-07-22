@@ -33,7 +33,7 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
-import CaseAdd from "../../pages/caseadd/CaseAdd";
+import CaseAdd from "../../pages/Caseadd/CaseAdd";
 
 // import ReferenceList from "../../pages/referenceList/ReferenceList";
 // import ReferenceList_not from "../../pages/referenceList/notData";
