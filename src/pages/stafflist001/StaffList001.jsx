@@ -157,7 +157,7 @@ const StyledTableCell = withStyles((theme) => ({
     //   setStaff(updateList)
     // };
 
-    useEffect(() => getStaffData());
+    useEffect(() => getStaffData(),[]);
  
     const getStaffData = () => {
         if(posts.length === 0) {
