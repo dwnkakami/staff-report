@@ -195,7 +195,7 @@ const StyledTableRow = withStyles((theme) => ({
 
     
     // const cullom_data = posts.map((data) => (<li>{data}</li>));
-    const [staff, setStaff] = React.useState([]);
+    const [staff, setStaff] = React.useState([getStaffData]);
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {

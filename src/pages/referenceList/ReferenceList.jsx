@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Paper from '@material-ui/core/Paper';
+import { Typography, DialogTitle } from '@material-ui/core';
+import PropTypes from 'prop-types';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -6,22 +9,23 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { Grid } from '@material-ui/core';
-import Divider from '@material-ui/core/Divider';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import Typography from '@material-ui/core/Typography';
+// import Divider from '@material-ui/core/Divider';
+// import MuiDialogTitle from '@material-ui/core/DialogTitle';
+// import Typography from '@material-ui/core/Typography';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-
 import axios from 'axios';
-import './ReferenceList.css';
 
-const styles = (theme) => ({
-    root: {
-        margin: 0,
-        padding: theme.spacing(2),
-    },
-});
+import './ReferenceList.css';
+import ReferenceDetail from '../referencedetail/ReferenceDetail';
+
+// const styles = (theme) => ({
+//     root: {
+//         margin: 0,
+//         padding: theme.spacing(2),
+//     },
+// });
 
 const StyledTableCell = withStyles((theme) => ({
     head: {
@@ -155,12 +159,15 @@ export default function ReferenceList() {
                     setPosts(response.data);
                     console.log([response.data])
                 })
+                .catch(() => {
+                    console.log("connected error")
+                })
 
 // const useStyles = makeStyles({
 //     table: {
 //         minWidth: 70,
         
-    },
+    }
 }
 
 // const DialogTitle = withStyles(styles)((props) => {
