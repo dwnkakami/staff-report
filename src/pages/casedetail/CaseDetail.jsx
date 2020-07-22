@@ -10,10 +10,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
-
-import '../caselist/CaseList';
-import { Line } from 'recharts';
-import { ListOutlined } from '@material-ui/icons';
+import ReferenceAdd from '../referenceadd/ReferenceAdd';
 
 const styles = (theme) => ({
   root: {
@@ -26,13 +23,18 @@ const styles = (theme) => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
+  left: {
+    width:100,
+    float:'left',
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      <Typography className={classes.left} variant="h6">{children} </Typography>
+      <ReferenceAdd className={classes.left}></ReferenceAdd>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -55,7 +57,6 @@ export default function CaseDetail (props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
-  
   const handleClose = () => {
     setOpen(false);
   };
@@ -67,7 +68,7 @@ export default function CaseDetail (props) {
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get(`/api/casedetail/${props.caseid}`)
+        .get('/api/casedetail/1')
         .then(response => {
           setUser(response.data);
         })
@@ -77,49 +78,25 @@ export default function CaseDetail (props) {
     }
   }
 
-  // const [listline, setListline] = useState([]);
-
-  // useEffect(() => getCaselistLineData());
-
-  // const getCaselistLineData = () => {
-  //   if(listline.length === 0) {
-  //     axios
-  //       .get('/#/staff-report/caselist/001')
-  //       .then(response => {
-  //           setListline(response.data);
-  //           console.log('Line data')
-  //       })
-  //       .catch(() => {
-  //         console.log('Line connected error')
-  //       })
-  //   }
-  // }
-
-  // const [selectline, setLine] = React.useLineState(false);
-
-  // const ClickSelectLine = () => {
-  //   setLine(true);
-  // };
-
   return (
     <div>
       <Button variant="outlined" color="" onClick={handleClickOpen}>
         案件詳細
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          <DialogTitle id="customized-dialog-title" onClose={handleClose} >
             案件詳細
           </DialogTitle>
-        <DialogContent dividers>
-          {user.map((data) => (
-          <Typography gutterBottom key={data.caseid}>
+        <DialogContent dividers >
+        {user.map((data) => (
+          <Typography gutterBottom key={data.id}>
             <table>
               <tr>
                 <th>案件名</th>
                 <th>案件保有会社</th>
               </tr>
               <tr>
-              <td>{data.name}</td>
+                <td>{data.name}</td>
                 <td>{data.customer_name}</td>
               </tr>
               <tr>
@@ -174,7 +151,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
           </Typography>
-          ))}
+        ))}
         </DialogContent>
       </Dialog>
     </div>
