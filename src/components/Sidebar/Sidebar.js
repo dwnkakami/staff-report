@@ -35,6 +35,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
+<<<<<<< HEAD
 import { useUserDispatch, signOut } from "../../context/UserContext";
 import axios from 'axios';
 
@@ -43,6 +44,13 @@ const structure = [
   { id: 1,　type: "title", label: "メニュー", access: 0 },
   { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon />, access: 1 },
   { id: 1,　type: "title", label: "メニュー", access: 1 },
+=======
+import axios from "axios";
+
+const structure = [
+  { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
+  { id: 1, access: 0,　type: "title", label: "メニュー", },
+>>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
 
   {
     id: 2,
@@ -66,6 +74,16 @@ const structure = [
     ],
   },
   // {
+  //   id: 2,
+  //   access: 0,
+  //   label: "スタッフ",
+  //   icon: <ArrowDropDownIcon />,
+  //   children: [
+  //     { label: "スタッフリスト", link: "/staff-report/stafflist/001", icon: <Dot size="small" /> },
+  //     { label: "スタッフ検索", link: "/staff-report/staffsearch/001", icon: <Dot size="small" /> },
+  //   ],
+  // },
+  // {
   //   id: 1,
   //   label: "Typography",
   //   link: "/app/typography",
@@ -82,6 +100,7 @@ const structure = [
       { label: "案件登録", link: "/staff-report/caseadd/001", icon: <Dot size="small" />  },
     ],
   },
+<<<<<<< HEAD
   {
     id: 3,
     access: 0,
@@ -92,6 +111,18 @@ const structure = [
       { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" />},
     ],
   },
+=======
+  // {
+  //   id: 3,
+  //   access: 0,
+  //   label: "案件",
+  //   icon: <ArrowDropDownIcon />,
+  //   children: [
+  //     { label: "案件リスト", link: "/staff-report/caselist/001", icon: <Dot size="small" /> },
+  //     { label: "案件検索", link: "/staff-report/casasearch/001", icon: <Dot size="small" /> },
+  //   ],
+  // },
+>>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
@@ -199,6 +230,7 @@ function Sidebar({ location } ,props) {
         console.log('connected error');
       })
   }
+<<<<<<< HEAD
   const access_data = getAccessData.filter((data) => {
     if (data.access_name === "スタッフリスト編集") {
       return structure.access === 1;
@@ -208,6 +240,49 @@ function Sidebar({ location } ,props) {
   })
 }
 
+=======
+}
+
+// const access_data = getAccessData.filter((data) => {
+//   if (data.access_name === "スタッフリスト編集") {
+//     return structure.access === 1;
+//   } else {
+//     return structure.access === 0;
+//   }
+// })
+
+const menu = structure.filter ((data)=> {
+  if (getAccessData.access_id === 1 && getAccessData.access_id === 2 && getAccessData.access_id === 3) {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) ||
+    (data.id === 6)
+  );
+  }  else if (getAccessData.access_id === 1 && getAccessData === 2) {
+    return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) ||
+    (data.id === 6)
+    );
+  }
+  else {
+    return (
+      (data.id === 0) ||
+      (data.id === 1) ||
+      (data.id === 6)
+    )
+  }
+});
+
+>>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
   // global
   var { isSidebarOpened } = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
@@ -250,7 +325,7 @@ function Sidebar({ location } ,props) {
         </IconButton>
       </div>
       <List className={classes.sidebarList}>
-        {structure.map(link => (
+        {menu.map(link => (
           <SidebarLink
             key={link.id}
             location={location}

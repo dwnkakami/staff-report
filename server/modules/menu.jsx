@@ -22,4 +22,8 @@ exports.getData = (req, res) => {
       res.json(result);
     });
   });
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
