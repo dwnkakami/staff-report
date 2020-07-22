@@ -24,10 +24,10 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
-
+import StaffList001 from "../../pages/stafflist/StaffList001 copy";
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
-// import StaffList001 from "../pages/stafflist001";
+// import StaffList001 from "../../pages/stafflist001/StaffList001 copy";
 // import StaffSearch from "../../pages/staffsearch";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
