@@ -35,11 +35,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-<<<<<<< HEAD
-import { useUserDispatch, signOut } from "../../context/UserContext";
-=======
 import axios from "axios";
->>>>>>> 6defca2be06352c6e69f10e5a2fa4751b156e994
 
 const structure = [
   { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
