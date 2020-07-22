@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import StaffList002_graph from './StaffList002_graph';
+import StaffList002_2 from './StaffList002_2';
 
 const useStyles = makeStyles((theme) => ({
   Button: {
@@ -28,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Staffskillbotton = () => {
   const classes = useStyles();
-  const [staff, setStaff] = useState(<StaffList002_graph />);
+  const [staff, setStaff] = useState(<StaffList002_2 />);
 
   const handleClick = (selected) => {
     if(selected　=== 1){
-      setStaff(<StaffList002_graph />)
+      setStaff(<StaffList002_2 />)
     } else if(selected　=== 2){
       setStaff('詳細：データなし');
       } else if(selected　=== 3){
