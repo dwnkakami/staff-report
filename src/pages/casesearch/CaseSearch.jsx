@@ -18,6 +18,7 @@ import axios from 'axios';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import DatePickers from './DatePickers';
+import { withRouter } from 'react-router-dom';
 
 
 
@@ -90,7 +91,7 @@ const MenuProps = {
 };
 
 
-export default function CaseSearch() {
+ function CaseSearch() {
   const classes = useStyles();
 
   const [posts, setPosts] = useState([]);
@@ -250,7 +251,7 @@ export default function CaseSearch() {
 
 
   //SearchButton
-  const formSubmit = (props) => {
+  const formSubmit = (history) => {
 
     // //jobName None
     // const target1 = posts.filter((data)=>{
@@ -316,6 +317,8 @@ export default function CaseSearch() {
     //   return (data.user_id === salesMan)
     // });
 
+    
+
     //all
     const target7 = posts.filter((data)=>{
       return (((data.ocp_name === jobName[0]) ||
@@ -332,15 +335,30 @@ export default function CaseSearch() {
               (data.skill3_id === skill3))) ||
                   data.user_id === salesMan );
     });
+
+    const listData = (() => {
+      var caseData = [];
+      var getCaseData = () => {
+        return caseData;
+      };
+      const setCaseData = (data) => {
+        caseData = data;
+      };
+      return {
+        getCaseData: getCaseData,
+        setCaseData: setCaseData
+      }
+    })();
+
     if(target7.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
     }else{
       console.log(target7);
-      // props.history.push({
-      //   pathname:"/caselist",
-      //   state:{data:target7}
-      // });
+     listData.setCaseData()
+    //  history.push('/staff-report/caselist')
     }
+
+    
        
     //if分岐処理
         // if(jobName.length === 0 && (skill1 !== undefined || skill2 !== undefined || skill3 !== undefined) && salesMan !== undefined) {
@@ -400,7 +418,7 @@ export default function CaseSearch() {
         <br className={classes.end}/>
 
       <Typography className={classes.left} id="child" variant="h5" component="h2">
-        キーワード検索
+        案件名検索
         </Typography>
 
 
@@ -525,3 +543,6 @@ export default function CaseSearch() {
     </Paper>
   );
 }
+
+
+export default withRouter(CaseSearch);
