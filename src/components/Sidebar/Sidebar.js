@@ -161,7 +161,7 @@ function Sidebar({ location }) {
   const getAccessData = () => {
     if(Access.length === 0){
     axios
-      .get('/api/menu/1')
+      .get('/api/menu/3')
       .then(response =>{
         console.log(response.data)
         setAccess(response.data);
@@ -172,6 +172,43 @@ function Sidebar({ location }) {
   }
 }
 
+const access_data = Access.filter((data) => {
+  return data.access_name === "スタッフリスト編集"
+});
+
+const access_data1 = Access.filter((data) => {
+  return data.access_name === "スタッフリスト閲覧"
+});
+
+const menu = structure.filter ((data)=> {
+  if (access_data) {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) 
+  );
+} else if (access_data1) {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 5) 
+  );
+} else {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) 
+  );
+}
+});
+
+
 // const access_data = getAccessData.filter((data) => {
 //   if (data.access_name === "スタッフリスト編集") {
 //     return structure.access === 1;
@@ -180,36 +217,36 @@ function Sidebar({ location }) {
 //   }
 // })
 
-const menu = structure.filter ((data)=> {
-  if (getAccessData.access_id === 1 && getAccessData.access_id === 2 && getAccessData.access_id === 3) {
-  return (
-    (data.id === 0) ||
-    (data.id === 1) ||
-    (data.id === 2) ||
-    (data.id === 3) ||
-    (data.id === 4) ||
-    (data.id === 5) ||
-    (data.id === 6)
-  );
-  }  else if (getAccessData.access_id === 1 && getAccessData === 2) {
-    return (
-    (data.id === 0) ||
-    (data.id === 1) ||
-    (data.id === 2) ||
-    (data.id === 3) ||
-    (data.id === 4) ||
-    (data.id === 5) ||
-    (data.id === 6)
-    );
-  }
-  else {
-    return (
-      (data.id === 0) ||
-      (data.id === 1) ||
-      (data.id === 6)
-    )
-  }
-});
+// const menu = structure.filter ((data)=> {
+//   if (getAccessData.access_id === 1 && getAccessData.access_id === 2 && getAccessData.access_id === 3) {
+//   return (
+//     (data.id === 0) ||
+//     (data.id === 1) ||
+//     (data.id === 2) ||
+//     (data.id === 3) ||
+//     (data.id === 4) ||
+//     (data.id === 5) ||
+//     (data.id === 6)
+//   );
+//   }  else if (getAccessData.access_id === 1 && getAccessData === 2) {
+//     return (
+//     (data.id === 0) ||
+//     (data.id === 1) ||
+//     (data.id === 2) ||
+//     (data.id === 3) ||
+//     (data.id === 4) ||
+//     (data.id === 5) ||
+//     (data.id === 6)
+//     );
+//   }
+//   else {
+//     return (
+//       (data.id === 0) ||
+//       (data.id === 1) ||
+//       (data.id === 6)
+//     )
+//   }
+// });
 
   // global
   var { isSidebarOpened } = useLayoutState();
