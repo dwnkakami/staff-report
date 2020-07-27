@@ -23,13 +23,6 @@ const styles = (theme) => ({
     },
 });
 
-// const styles = (theme) => ({
-//     root: {
-//         margin: 0,
-//         padding: theme.spacing(2),
-//     },
-// });
-
 const StyledTableCell = withStyles((theme) => ({
     head: {
         fontWeight: 'bolder',
@@ -76,7 +69,7 @@ export default function Referencelist(props) {
     const getData = () => {
         if (posts.length === 0) {
             axios
-                .get('/api/referencelist/1')
+                .get('/api/referencelist')
                 .then(response => {
                     setPosts(response.data);
                     console.log([response.data])
@@ -84,45 +77,8 @@ export default function Referencelist(props) {
                 .catch(() => {
                     console.log("connected error")
                 })
-
-// const useStyles = makeStyles({
-//     table: {
-//         minWidth: 70,
-        
+        }
     }
-}
-
-// const DialogTitle = withStyles(styles)((props) => {
-//     const { children, classes, onClose, ...other } = props;
-//     return (
-//         <MuiDialogTitle disableTypography className={classes.root} {...other}>
-//             <Typography variant="h6">{children}</Typography>
-//         </MuiDialogTitle>
-//     );
-// });
-
-// export default function Referencelist(props) {
-//     const classes = useStyles();
-
-//     const [posts, setPosts] = useState([]);
-
-//     useEffect(() => getData());
-
-//     const getData = () => {
-//         if (posts.length === 0) {
-//             axios
-
-//                 .get('/api/referencelist')
-
-//                 .then(response => {
-//                     setPosts(response.data);
-//                     console.log([response.data])
-//                 })
-//                 .catch(() => {
-//                     console.log("connected error")
-//                 })
-//         }
-//     }
 
     return (
         <Paper elevation={3}>

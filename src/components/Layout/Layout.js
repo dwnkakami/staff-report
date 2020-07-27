@@ -20,11 +20,18 @@ import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
+<<<<<<< HEAD
 // import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffList from "../../pages/stafflist/StaffList001 copy";
 
+=======
+import Icons from "../../pages/icons";
+import Charts from "../../pages/charts";
+import StaffList001 from "../../pages/stafflist001/StaffList001";
+import StaffAdd from "../../pages/staffadd/StaffAdd";
+>>>>>>> c8cc99fa549396c1cc9ba40a4544f9a2705eaf3f
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../../pages/stafflist001/StaffList001 copy";
@@ -36,7 +43,7 @@ import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-import ReferenceList from "../../pages/referenceList/ReferenceList";
+// import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
 import ReferenceDetail from "../../pages/referencedetail/ReferenceDetail";
 import ReferenceAdd from "../../pages/referenceadd/ReferenceAdd";
@@ -70,6 +77,7 @@ function Layout(props) {
               {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
               {/* <Route path="/app/tables" component={Tables} /> */}
+<<<<<<< HEAD
               {/* <Route path="/app/tables" component={Tables} /> */}
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
@@ -77,12 +85,21 @@ function Layout(props) {
               <Route path="/staff-report/stafflist/001" component={StaffList} />
               <Route path="/staff-report/staffsearch/001" component={StaffSearchG} />
               <Route path="/staff-report/staffadd/001" component={StaffAdd} /> 
+=======
+              {/* <Route path="/app/tables" component={ReferenceList} /> */}
+              <Route path="/app/notifications" component={Notifications} />
+
+              <Route path="/staff-report/stafflist/001" component={StaffList001} />
+              {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
+              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
+              <Route path="/staff-report/staffadd/001" component={StaffAdd} />
+>>>>>>> c8cc99fa549396c1cc9ba40a4544f9a2705eaf3f
 
               <Route path="/staff-report/caselist/001" component={CaseList} />
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
-              <Route path="/staff-report/referencelist/001" component={ReferenceList} />
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
               <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
               <Route path="/staff-report/referencedetail/001" component={ReferenceDetail} />
               <Route path="/staff-report/referenceadd/001" component={ReferenceAdd} />
