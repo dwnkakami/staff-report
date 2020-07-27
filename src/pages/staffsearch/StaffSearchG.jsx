@@ -302,7 +302,7 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = (history) =>{
+  const Search = () =>{
   const search = data.filter((data)=>{
     return (((data.license === license) ||
               (((data.skill === skill1) ||
@@ -323,7 +323,7 @@ const StaffSearch = () => {
   });
     console.log(search);
     ListData.setStaffData(search);
-    //history.push('/staff-report/stafflist/001');
+    window.location.href = "/#/staff-report/stafflist/001";
   }
 
   return (
