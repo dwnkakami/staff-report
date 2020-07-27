@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import Paper from '@material-ui/core/Paper';
 import {ComposedChart, XAxis, YAxis, Tooltip, CartesianGrid, Bar} from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -113,9 +112,9 @@ const Graph = (props) =>  {
         />
         </ComposedChart>
         </div>
-        <div className={classes.experience}>
+        {/* <div className={classes.experience}>
           経験年数:{props.experience}
-        </div>
+        </div> */}
       </div>
     );
 }
