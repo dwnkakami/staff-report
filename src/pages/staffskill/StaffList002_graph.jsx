@@ -112,9 +112,9 @@ const Graph = (props) =>  {
         />
         </ComposedChart>
         </div>
-        {/* <div className={classes.experience}>
+        <div className={classes.experience}>
           経験年数:{props.experience}
-        </div> */}
+        </div>
       </div>
     );
 }
