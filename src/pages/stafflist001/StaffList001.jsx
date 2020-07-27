@@ -220,25 +220,22 @@ const StyledTableCell = withStyles((theme) => ({
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  const [keyWord, setKeyWord] = React.useState('');
-  // useEffect(() => getData());
-  // const getData = () => {
-  // posts.map((data) => {return data})}
-  const [staff, setStaff] = React.useState([]);
+  // const [keyWord, setKeyWord] = React.useState('');
+  // const [staff, setStaff] = React.useState([]);
 
-  const keywordSubmit = () => {
-    const target = posts.filter((data)=>{
-      return (data.name.includes(keyWord) || 
-              data.position.includes(keyWord) || 
-              data.company_abbreviation.includes(keyWord));
-    });
-    if(keyWord.length === 0){
-      window.alert("検索結果がありません。")
-    }else{
-      console.log(target);
-      setStaff(target)
-    }
-  };
+  // const keywordSubmit = () => {
+  //   const target = posts.filter((data)=>{
+  //     return (data.name.includes(keyWord) || 
+  //             data.position.includes(keyWord) || 
+  //             data.company_abbreviation.includes(keyWord));
+  //   });
+  //   if(keyWord.length === 0){
+  //     window.alert("検索結果がありません。")
+  //   }else{
+  //     console.log(target);
+  //     setStaff(target)
+  //   }
+  // };
  
 return(
 <Paper elevation={3} >
@@ -250,8 +247,8 @@ return(
 </DialogTitle>
 <div className={classes.root}>
       <Paper className={classes.paper}>
-      <TextField label="search" value={keyWord} onChange={e => setKeyWord(e.target.value)} variant="outlined"></TextField>
-      <Button variant="contained" onClick={keywordSubmit}>検索</Button>
+      {/* <TextField label="search" value={keyWord} onChange={e => setKeyWord(e.target.value)} variant="outlined"></TextField>
+      <Button variant="contained" onClick={keywordSubmit}>検索</Button> */}
         <TableContainer>
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
@@ -265,10 +262,10 @@ return(
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={staff.length}
+              rowCount={posts.length}
             />
             <TableBody>
-              {stableSort(staff, getComparator(order, orderBy))
+              {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
