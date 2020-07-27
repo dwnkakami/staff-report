@@ -319,7 +319,7 @@ const StaffSearch = () => {
   });
     console.log(search);
     ListData.setStaffData(search);
-    window.location.href = "/#/staff-report/stafflist-test/001";
+    window.location.href = "/#/staff-report/stafflist-result/001";
   }
 
   return (
