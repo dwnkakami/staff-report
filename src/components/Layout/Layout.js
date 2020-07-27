@@ -22,20 +22,20 @@ import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-import StaffList001 from "../../pages/stafflist001/StaffList001";
+import StaffList001 from "../../pages/stafflist/StaffList001 copy";
 // import StaffAdd from "../../pages/staffadd/StaffAdd";
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../../pages/stafflist001/StaffList001 copy";
 // import StaffSearch from "../../pages/staffsearch";
 // import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
- import StaffAdd from "../../pages/staffadd/staffAdd001";
+ import StaffAdd from "../../pages/staffadd/StaffAdd";
 
 import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-// import ReferenceList from "../../pages/referenceList/ReferenceList";
+import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
 import ReferenceDetail from "../../pages/referencedetail/ReferenceDetail";
 import ReferenceAdd from "../../pages/referenceadd/ReferenceAdd";
@@ -81,7 +81,7 @@ function Layout(props) {
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
-              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
+              <Route path="/staff-report/referencelist/001" component={ReferenceList} />
               <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
               <Route path="/staff-report/referencedetail/001" component={ReferenceDetail} />
               <Route path="/staff-report/referenceadd/001" component={ReferenceAdd} />
