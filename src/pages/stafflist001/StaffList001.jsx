@@ -16,7 +16,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
-import TextField from '@material-ui/core/TextField';
+// import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 
 const StyledTableCell = withStyles((theme) => ({
@@ -200,32 +200,31 @@ const StyledTableCell = withStyles((theme) => ({
     setSelected([]);
   };
 
-  const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+  // const handleClick = (event, id) => {
+  //   const selectedIndex = selected.indexOf(id);
+  //   let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, id);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(
+  //       selected.slice(0, selectedIndex),
+  //       selected.slice(selectedIndex + 1),
+  //     );
+  //   }
 
-    setSelected(newSelected);
-  };
+  //   setSelected(newSelected);
+  // };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-<<<<<<< HEAD
   const [keyWord, setKeyWord] = React.useState('');
-  const current_data = posts.map((data) => (<li>{data}</li>))
-  const [staff, setStaff] = React.useState(current_data);
+  // const current_data = posts.map((data) => (<li>{data}</li>))
+  // const [staff, setStaff] = React.useState(current_data);
 
   const keywordSubmit = () => {
 
@@ -242,8 +241,6 @@ const StyledTableCell = withStyles((theme) => ({
     }
   };
  
-=======
->>>>>>> c8cc99fa549396c1cc9ba40a4544f9a2705eaf3f
 return(
   <div>
 <Paper elevation={3} >
@@ -288,7 +285,7 @@ return(
                     <TableRow
                       hover
                       // onClick={(event) => handleClick(event, data.id)}
-                      // selected={isItemSelected}
+                      selected={isItemSelected}
                       variant="outlined"
                     >
                       {/* <TableCell>

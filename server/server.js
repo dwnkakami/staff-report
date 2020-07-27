@@ -18,6 +18,7 @@ const staffsearch005 = require('./modules/staffsearch005.js');
 const staffsearch006 = require('./modules/staffsearch006.js');
 const staffsearch007 = require('./modules/staffsearch007.js');
 const staffadd = require('./modules/staffadd.jsx');
+const staffadd1 = require('./modules/staffadd1.js');
 const staffadd001 = require('./modules/staffadd001.js');
 const staffadd002 = require('./modules/staffadd002.js');
 const staffadd003 = require('./modules/staffadd003.js');
@@ -88,6 +89,9 @@ app.post('/api/staffsearch007',(req,res) => {
 });
 app.post('/api/staffadd',(req,res) => {
     staffadd.postData(req,res);
+});
+app.post('/api/staffadd1',(req,res) => {
+    staffadd1.postData(req,res);
 });
 app.get('/api/staffadd001',(req,res) => {
     staffadd001.getData(req,res);
