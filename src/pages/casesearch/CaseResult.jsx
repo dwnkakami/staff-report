@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from "react";
 import Paper from '@material-ui/core/paper';
-import './CaseListCSS.css';
+import '../caselist/CaseListCSS.css';
 import Typography from '@material-ui/core/Typography';
 // import {render} from 'react-dom';
 //テーブルマテリアルＵＩ
@@ -71,7 +71,7 @@ const StyledTableRow = withStyles(() => ({
     },
   });
 
-  export default function CaseList() {
+  export default function CaseResult() {
     const classes = useStyles();
 
   //   const handleSortByAscend = (key) => {
@@ -186,7 +186,7 @@ const StyledTableRow = withStyles(() => ({
               <StyledTableCell align="left">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
-          {Caselistmap.map((data) => (
+          {ListData.getCaseData().map((data) => (
           <TableBody>
                 <StyledTableRow/>
                 <StyledTableCell classname="tablecell" component="th" scope="row">
