@@ -18,7 +18,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-import StaffList003 from '../staffList003/StaffList003';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
