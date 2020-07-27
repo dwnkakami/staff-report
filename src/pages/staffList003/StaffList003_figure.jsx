@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
 const StaffList003_figure = (props) => {
   const [user, setUser] = useState([]);
 
-  useEffect(() => getData());
+  useEffect(() => getData(),[]);
 
   const classes = useStyles();
 
@@ -277,7 +277,7 @@ const StaffList003_figure = (props) => {
 const StaffList003_map = (props) => {
   const [user, setUser] = useState([]);  
 
-  useEffect(() => getData());
+  useEffect(() => getData(),[]);
 
   const getData = () => {
     if(user.length === 0){
