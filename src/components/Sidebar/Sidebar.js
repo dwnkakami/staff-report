@@ -168,7 +168,7 @@ function Sidebar({ location } ,props) {
     if(Access.length === 0){
     axios
       .get('/api/menu/1')
-      .then(response =>{
+      .then(response => {
         console.log(response.data);
         setAccess(response.data);
       })
@@ -178,12 +178,31 @@ function Sidebar({ location } ,props) {
   }
 }
 
+const access_data = Access.filter((data) => {
+  return data.access_name === "スタッフリスト編集"
+});
+
 const menu = structure.filter ((data)=> {
-  if (Access.access_id === 1) {
+  if (access_data) {
   return (
     (data.id === 0) ||
     (data.id === 1) ||
     (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
+    (data.id === 5) 
+  );
+} else if (access_data.access_name === "スタッフリスト閲覧") {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
+    (data.id === 2) ||
+    (data.id === 5) 
+  );
+} else {
+  return (
+    (data.id === 0) ||
+    (data.id === 1) ||
     (data.id === 3) ||
     (data.id === 4) ||
     (data.id === 5) 
