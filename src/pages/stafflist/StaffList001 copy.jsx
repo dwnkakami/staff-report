@@ -172,7 +172,7 @@ const StyledTableRow = withStyles((theme) => ({
         window.alert("検索結果がありません")
       }else{
         console.log(target);
-        setStaff(target);
+        // setStaff(target);
       }
     };
     const handleRequestSort = (event, property) => {
@@ -184,7 +184,7 @@ const StyledTableRow = withStyles((theme) => ({
 
     const handleSelectAllClick = (event) => {
         if (event.target.checked) {
-          const newSelecteds = staff.map((n) => n.id);
+          const newSelecteds = posts.map((n) => n.id);
           setSelected(newSelecteds);
           return;
         }
@@ -193,8 +193,8 @@ const StyledTableRow = withStyles((theme) => ({
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
 
-    // const cullom_data = posts.map((data) => getStaffData);
-    const [staff, setStaff] = React.useState([]);
+    // const result = posts.map((data) => getStaffData);
+    // const [staff, setStaff] = React.useState([result]);
     // const name = ['佐藤テスト', '後藤テスト', 'テスト佐藤'] 
 
 // const filterList = (e) => {
@@ -242,7 +242,7 @@ return(
           orderBy={orderBy}
           onSelectAllClick={handleSelectAllClick}
           onRequestSort={handleRequestSort}
-          rowCount={staff.length}
+          rowCount={posts.length}
           />
          <TableBody>
           {stableSort(posts, getComparator(order, orderBy))
