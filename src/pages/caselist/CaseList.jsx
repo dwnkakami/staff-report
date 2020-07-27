@@ -18,6 +18,7 @@ import axios from 'axios';
 
 import CaseDetail from '../casedetail/CaseDetail';
 import { getThemeProps } from "@material-ui/styles";
+import ListData from '../casesearch/ListData';
 
 // const styles = (theme) => ({
 //   root: {
@@ -185,7 +186,7 @@ const StyledTableRow = withStyles(() => ({
               <StyledTableCell align="left">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
-          {Caselistmap.map((data) => (
+          {ListData.getCaseData().map((data) => (
           <TableBody>
                 <StyledTableRow/>
                 <StyledTableCell classname="tablecell" component="th" scope="row">

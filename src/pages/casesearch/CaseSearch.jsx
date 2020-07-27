@@ -19,6 +19,8 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import DatePickers from './DatePickers';
 import { withRouter } from 'react-router-dom';
+import ListData from './ListData';
+import CaseList from '../caselist/CaseList';
 
 
 
@@ -144,6 +146,9 @@ const MenuProps = {
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
       console.log(target);
+      ListData.setCaseData(target);
+      window.location.href = "/#/staff-report/caselist/001";
+      // window.location(CaseList);
     }
   };
 
@@ -342,6 +347,8 @@ const MenuProps = {
       window.alert("検索結果がありません。\n条件を変更してください。");
     }else{
       console.log(target7);
+      ListData.setCaseData(target7);
+      window.location.href = "/#/staff-report/caselist/001";
     //  history.push('/staff-report/caselist')
     }
 
