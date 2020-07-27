@@ -278,7 +278,7 @@ return(
               rowCount={staff.length}
             />
             <TableBody>
-              {stableSort(ListData.getStaffData(), getComparator(order, orderBy))
+              {stableSort(staff, getComparator(order, orderBy))
                 .map((data) => {
                   const isItemSelected = isSelected(data.id);
 
