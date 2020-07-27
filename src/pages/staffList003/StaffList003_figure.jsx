@@ -126,11 +126,11 @@ const useStyles = makeStyles((theme) => ({
 const StaffList003_figure = (props) => {
   const [user, setUser] = useState([]);
 
-  useEffect(() => getData003());
+  useEffect(() => getData());
 
   const classes = useStyles();
 
-  const getData003 = () => {
+  const getData = () => {
     if(user.length === 0){
         axios
             .get(`/api/stafflist003/${props.id}`)
@@ -303,4 +303,3 @@ return (
 
 export default StaffList003_map;
 
-// export default StaffList003_figure;

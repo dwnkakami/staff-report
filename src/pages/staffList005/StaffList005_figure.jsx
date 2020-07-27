@@ -48,7 +48,7 @@ const StaffList005_figure = (props) => {
 
   const [user, setUser] = useState([]);
 
-  useEffect(() => getCasedetailData());
+  useEffect(() => getCasedetailData(),[]);
 
   const getCasedetailData = () => {
     if(user.length === 0) {

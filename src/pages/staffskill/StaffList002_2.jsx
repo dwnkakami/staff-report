@@ -6,7 +6,7 @@ import axios from 'axios';
 const StaffList002_2 = (props) => {
 const [user, setUser] = useState([]);
 
-useEffect(() => getData());
+useEffect(() => getData(),[]);
 
 const getData = () => {
     if(user.length === 0){
