@@ -11,7 +11,6 @@ import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 import ListData from './ListData';
-//import Keyword from './Keyword';
 
 const useStyles = makeStyles((theme) => ({
   formControl1: {
@@ -98,9 +97,6 @@ const MenuProps = {
 
 const StaffSearch = () => {
   const classes = useStyles();
-
-  //KeywordSearch
-  // const [keyword, setKeyWord] = useState();
 
   //チェック切り替え
   const [ocp,setOcp] = useState([]);

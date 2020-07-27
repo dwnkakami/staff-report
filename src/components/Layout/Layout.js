@@ -30,7 +30,7 @@ import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
 // import StaffSearch from "../../pages/staffsearch";
-import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
+import StaffSearch from "../../pages/staffsearch/StaffSearch";
 import StaffList_test from "../../pages/staffsearch/StaffList_test";
 //  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
@@ -74,7 +74,7 @@ function Layout(props) {
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
-              <Route path="/staff-report/staffsearch/001" component={StaffSearchG} />
+              <Route path="/staff-report/staffsearch/001" component={StaffSearch} />
               <Route path="/staff-report/stafflist-test/001" component={StaffList_test} />
               {/* { <Route path="/staff-report/staffadd/001" component={StaffAdd} /> } */}
               {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
