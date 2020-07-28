@@ -30,12 +30,6 @@ const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
 
-const casesearch001 = require('./modules/casesearch001.js');
-const casesearch002 = require('./modules/casesearch002.js');
-const casesearch003 = require('./modules/casesearch003.js');
-
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -116,20 +110,8 @@ app.post('/api/caseadd/',(req,res) => {
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
 });
-app.get('/api/referencedetail/:condition',(req,res) => {
-    referencedetail.getData(req.params.condition,res);
-});
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
-});
-app.get('/api/casesearch001/:condition',(req,res) => {
-    casesearch001.getData(req.params.condition,res);
-});
-app.get('/api/casesearch002/:condition',(req,res) => {
-    casesearch002.getData(req.params.condition,res);
-});
-app.get('/api/casesearch003/:condition',(req,res) => {
-    casesearch003.getData(req.params.condition,res);
 });
 app.get('/api/role/:condition',(req,res) => {
     role.getData(req.params.condition,res);
