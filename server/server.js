@@ -33,9 +33,6 @@ const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
 
-const casesearch001 = require('./modules/casesearch001.js');
-const casesearch002 = require('./modules/casesearch002.js');
-const casesearch003 = require('./modules/casesearch003.js');
 
 
 

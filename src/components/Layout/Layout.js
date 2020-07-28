@@ -30,7 +30,7 @@ import StaffSearch from "../../pages/staffsearch/StaffSearch";
 import StaffList_result from "../../pages/staffsearch/StaffList_result";
 
 import CaseList from "../../pages/caselist/CaseList";
-import CaseAdd from "../../pages/caseadd/CaseAdd";
+import CaseAdd from "../../pages/Caseadd/CaseAdd";
 
 import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
