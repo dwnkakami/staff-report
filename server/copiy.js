@@ -3,7 +3,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const login = require('./modules/login.js');
 const menu = require('./modules/menu.js');
-const stafflist = require('./modules/stafflist.jsx');
 const stafflist001 = require('./modules/stafflist001.js');
 const stafflist002 = require('./modules/stafflist002.js');
 const stafflist003 = require('./modules/stafflist003.js');
@@ -17,8 +16,7 @@ const staffsearch004 = require('./modules/staffsearch004.js');
 const staffsearch005 = require('./modules/staffsearch005.js');
 const staffsearch006 = require('./modules/staffsearch006.js');
 const staffsearch007 = require('./modules/staffsearch007.js');
-const staffadd = require('./modules/staffadd.jsx');
-const staffadd1 = require('./modules/staffadd1.js');
+const staffadd = require('./modules/staffadd.js');
 const staffadd001 = require('./modules/staffadd001.js');
 const staffadd002 = require('./modules/staffadd002.js');
 const staffadd003 = require('./modules/staffadd003.js');
@@ -28,8 +26,6 @@ const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
-const referencedetail = require('./modules/referencedetail.js');
-const referenceadd = require('./modules/referenceadd.js');
 const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
@@ -44,9 +40,6 @@ app.get('/api/login/:condition',(req,res) => {
 });
 app.get('/api/menu/:condition',(req,res) => {
     menu.getData(req.params.condition,res);
-});
-app.get('/api/stafflist/:condition',(req,res) => {
-    stafflist.getData(req.params.condition,res);
 });
 app.get('/api/stafflist001/:condition',(req,res) => {
     stafflist001.getData(req.params.condition,res);
@@ -90,9 +83,6 @@ app.post('/api/staffsearch007',(req,res) => {
 app.post('/api/staffadd',(req,res) => {
     staffadd.postData(req,res);
 });
-app.post('/api/staffadd1',(req,res) => {
-    staffadd1.postData(req,res);
-});
 app.get('/api/staffadd001',(req,res) => {
     staffadd001.getData(req,res);
 });
@@ -119,12 +109,6 @@ app.post('/api/caseadd/',(req,res) => {
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
-});
-app.get('/api/referencedetail/:condition',(req,res) => {
-    referencedetail.getData(req.params.condition,res);
-});
-app.get('/api/referenceadd/:condition',(req,res) => {
-    referenceadd.getData(req.params.condition,res);
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);

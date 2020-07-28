@@ -23,13 +23,13 @@ import Maps from "../../pages/maps";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffList001 from "../../pages/stafflist/StaffList001 copy";
-// import StaffAdd from "../../pages/staffadd/StaffAdd";
+import StaffAdd from "../../pages/staffadd/StaffAdd";
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
-// import StaffList001 from "../../pages/stafflist001/StaffList001 copy";
-// import StaffSearch from "../../pages/staffsearch";
-// import StaffSearchG from "../../pages/staffsearch/StaffSearchG";
- import StaffAdd from "../../pages/staffadd/StaffAdd";
+// import StaffList001 from "../pages/stafflist001";
+import StaffSearch from "../../pages/staffsearch/StaffSearch";
+import StaffList_result from "../../pages/staffsearch/StaffList_result";
+//  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
 import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
@@ -73,8 +73,8 @@ function Layout(props) {
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
-              {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
-              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
+              <Route path="/staff-report/staffsearch/001" component={StaffSearch} />
+              <Route path="/staff-report/stafflist-result/001" component={StaffList_result} />
               <Route path="/staff-report/staffadd/001" component={StaffAdd} />
 
               <Route path="/staff-report/caselist/001" component={CaseList} />
