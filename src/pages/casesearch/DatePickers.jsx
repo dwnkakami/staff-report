@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DatePickers(props) {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  // const [selectedDate, setSelectedDate] = React.useState(new Date());
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  // const handleDateChange = (date) => {
+  //   setSelectedDate(date);
+  // };
   const classes = useStyles();
 
   return (
@@ -38,8 +38,8 @@ export default function DatePickers(props) {
           margin="normal"
           id="date-picker-inline"
           label={props.label}
-          value={selectedDate}
-          onChange={handleDateChange}
+          value={props.value}
+          onChange={props.onChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
