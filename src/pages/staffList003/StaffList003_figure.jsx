@@ -1,126 +1,25 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import '../casedetail/CaseDetail.css';
+import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    position: 'relative',
+    width: '100%',
   },
-
-  color_short: {
-    height: 26,
-    width: 307,
-    textAlign: 'center',
-    fontSize: 23,
-    background: '#6699ff',
-    color: '#000000',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  color_short2: {
-    height: 26,
-    width: 307,
-    textAlign: 'center',
-    fontSize: 23,
-    background: '#6699ff',
-    color: '#000000',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content1_1: {
-    height: 63,
-    width: 307,
-    fontSize: 22,
-    lineHeight: 1.5,
-    textAlign: 'center',
-    color: '#000000',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content1_2: {
-    height: 39,
-    width: 307,
-    fontSize: 28,
-    textAlign: 'center',
-    color: '#000000',
-    float: 'left',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content1_3: {
-    height: 37,
-    width: 307,
-    fontSize: 26,
-    textAlign: 'center',
-    color: '#000000',
-    float: 'left',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content1_4: {
-    height: 63,
-    width: 307,
-    fontSize: 25,
-    lineHeight: 2,
-    textAlign: 'center',
-    color: '#000000',
-    borderRadius: '0px 0px 0px 0px'
-  },
-
-  color_long: {
-    height: 26,
-    width: 614,
-    textAlign: 'center',
-    fontSize: 23,
-    background: '#6699ff',
-    color: '#000000',
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content2_1: {
-    height: 104,
-    width: 614,
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 23,
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content2_2: {
-    height: 102,
-    width: 614,
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 23,
-    borderRadius: '0px 0px 0px 0px'
-  },
-
-  content3_1: {
-    height: 104,
-    width: 307,
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 25,
-    lineHeight: 2,
-    borderRadius: '0px 0px 0px 0px'
-  },
-  content3_2: {
-    height: 102,
-    width: 307,
-    textAlign: 'center',
-    color: '#000000',
-    fontSize: 25,
-    lineHeight: 2,
-    borderRadius: '0px 0px 0px 0px'
-  },
-
-  figure: {
-    float: 'left',
-  },
-  add: {
-    height: 25,
-    width: 1228,
-    borderRadius: '0px 0px 0px 0px'
-  }
+  color:{
+    width: theme.spacing(154),
+  },  
+  content:{
+    // width: theme.spacing(156),
+    height: theme.spacing(18),
+  }, 
 }));
+
+
 
 
 const StaffList003_figure = (props) => {
@@ -145,6 +44,7 @@ const StaffList003_figure = (props) => {
   return (
     <div className={classes.root}>
       {user.map((data) => (
+        <Typography gutterBottom key={data.staff_id}>
         <table>
           <tr>
             <th>案件名</th>
@@ -154,18 +54,58 @@ const StaffList003_figure = (props) => {
             <td>{data.matter_name}</td>
             <td>{data.customer}</td>
           </tr>
-          {/* <tr>
+          <tr>
             <th>依頼単価</th>
             <th>勤務地</th>
-          </tr> */}
+          </tr>
           <tr>
            <td>{data.cost}</td> 
            <td>{data.place}</td> 
           </tr>
+        <table className={classes.color}>
           <tr>
-            
+            <th>募集人数</th>
+            <th>案件開始日</th>
+            <th>案件終了日</th>
+          </tr>
+          <tr>
+            <td>{data.people}</td>
+            <td>{data.start_day}</td>
+            <td>{data.end_day}</td>
           </tr>
         </table>
+        <table className={classes.color}>
+          <tr>
+          <th>案件内容</th>
+          </tr>
+          <tr>
+            <td className={classes.content}>{data.matter_content}</td>
+          </tr>
+        </table>
+        <table className={classes.color}>
+          <tr>
+            <th>スキル1</th>
+            <th>スキル2</th>
+            <th>スキル3</th>
+          </tr>
+          <tr>
+            <td>{data.skill_1}</td>
+            <td>{data.skill_2}</td>
+            <td>{data.skill_3}</td>
+          </tr>
+        </table>
+        <table className={classes.color}>
+          <tr>
+            <th>必須スキル</th>
+            <th>備考欄</th>
+          </tr>
+          <tr>
+            <td>{data.skill_level}</td>
+            <td>{data.note}</td>
+          </tr>
+        </table>
+        </table>
+        </Typography>
       ))}
     </div>
 );
