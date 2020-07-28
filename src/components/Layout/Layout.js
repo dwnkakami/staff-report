@@ -24,27 +24,13 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import StaffList001 from "../../pages/stafflist001/StaffList001";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
-<<<<<<< HEAD
-
-// import CaseSearch from "../../pages/casesearch/CaseSearch";
-
-// import StaffList001 from "../pages/stafflist001";
-=======
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseResult from "../../pages/casesearch/CaseResult";
->>>>>>> 3c3371c02c6ca00649516f60fec0e90b54113828
 import StaffSearch from "../../pages/staffsearch/StaffSearch";
 import StaffList_result from "../../pages/staffsearch/StaffList_result";
 
 import CaseList from "../../pages/caselist/CaseList";
-<<<<<<< HEAD
-import CaseSearch from "../../pages/casesearch/CaseSearch";
-import CaseAdd from "../../pages/Caseadd/CaseAdd";
-import CaseResult from "../../pages/casesearch/CaseResult";
-
-=======
 import CaseAdd from "../../pages/caseadd/CaseAdd";
->>>>>>> 3c3371c02c6ca00649516f60fec0e90b54113828
 
 import ReferenceList from "../../pages/referenceList/ReferenceList";
 import ReferenceList_not from "../../pages/referenceList/notData";
