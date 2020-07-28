@@ -25,14 +25,11 @@ import Charts from "../../pages/charts";
 import StaffList001 from "../../pages/stafflist/StaffList001 copy";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
 import CaseSearch from "../../pages/casesearch/CaseSearch";
-
-// import StaffList001 from "../pages/stafflist001";
+import CaseResult from "../../pages/casesearch/CaseResult";
 import StaffSearch from "../../pages/staffsearch/StaffSearch";
 import StaffList_result from "../../pages/staffsearch/StaffList_result";
-//  import StaffAdd from "../../pages/StaffAdd/Staff addition";
 
 import CaseList from "../../pages/caselist/CaseList";
-//import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/caseadd/CaseAdd";
 
 import ReferenceList from "../../pages/referenceList/ReferenceList";
@@ -66,10 +63,7 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
-              {/* <Route path="/staff-report/dashboard" component={Test} /> */}
               <Route path="/app/typography" component={Typography} />
-              {/* <Route path="/app/tables" component={Tables} /> */}
-              {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
               <Route path="/staff-report/stafflist/001" component={StaffList001} />
@@ -79,6 +73,7 @@ function Layout(props) {
 
               <Route path="/staff-report/caselist/001" component={CaseList} />
               <Route path="/staff-report/casasearch/001" component={CaseSearch} />
+              <Route path="/staff-report/caseresult/001" component={CaseResult} />
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
               <Route path="/staff-report/referencelist/001" component={ReferenceList} />
