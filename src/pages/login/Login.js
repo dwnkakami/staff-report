@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component} from "react";
 import {
   Grid,
   CircularProgress,
@@ -28,6 +28,7 @@ import logo from "./logo.svg";
 
 // context
 import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
+import Validation from "./Validation";
 
 function Login(props) {
 
@@ -131,7 +132,7 @@ function Login(props) {
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
   var [submitValue, setSubmitValue] = useState("");
-
+  var [is8Password, setIs8Password] = useState(false);
 
 
   return (
@@ -167,9 +168,11 @@ function Login(props) {
                 {/* <div className={classes.formDivider} /> */}
               {/* </div> */}
               <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  ユーザーID・パスワードの入力に誤りがあるか、登録されていません。
-                </Typography>
+                {!is8Password? <Typography color="secondary" className={classes.errorMessage}>
+                ユーザーID・パスワードの入力に誤りがあるか、登録されていません。
+                </Typography> : <Typography color="secondary" className={classes.errorMessage}>
+                パスワードは8文字以上で入力してください。
+                </Typography>}
               </Fade>
               <TextField
                 id="name"
@@ -209,7 +212,10 @@ function Login(props) {
                     disabled={
                       loginValue.length === 0 || passwordValue.length === 0
                     }
-                    onClick={() =>
+                    onClick={() => {
+                      let isValidation =  Validation.formValidate("password", passwordValue, setError, setIs8Password);
+                      console.log(is8Password)
+                      if(!isValidation) return
                       loginUser(
                         userDispatch,
                         loginValue,
@@ -218,7 +224,7 @@ function Login(props) {
                         setIsLoading,
                         setError,
                       )
-                    }
+                    }}
                     variant="contained"
                     color="primary"
                     size="large"
@@ -307,6 +313,13 @@ function Login(props) {
                 type="password"
                 fullWidth
               />
+               <Fade in={error}>
+                {!is8Password? <Typography color="secondary" className={classes.errorMessage}>
+                パスワードは8文字以上で入力してください。
+                </Typography> : <Typography color="secondary" className={classes.errorMessage}>
+                パスワードは8文字以上で入力してください。
+                </Typography>}
+              </Fade>
               <TextField
           id="standard-select-currency"
           select
@@ -326,7 +339,10 @@ function Login(props) {
                   <CircularProgress size={26} />
                 ) : (
                   <Button
-                    onClick={() =>
+                    onClick={() => {
+                        let isValidation =  Validation.formValidate("password", passwordValue, setError, setIs8Password);
+                        console.log(is8Password)
+                        if(!isValidation) return
                       handleClickOpen()
                       // loginUser(
                       //   userDispatch,
@@ -336,12 +352,8 @@ function Login(props) {
                       //   setIsLoading,
                       //   setError,
                       // )
-                    }
-                    disabled={
-                      loginValue.length === 0 ||
-                      passwordValue.length === 0 ||
-                      nameValue.length === 0
-                    }
+                    }}
+                    
                     size="large"
                     variant="contained"
                     color="primary"
