@@ -150,12 +150,12 @@ const StyledTableCell = withStyles((theme) => ({
 
     const [staff = getData,setStaff] = useState([]);
 
-    const filterList = (e) => {
-      const updateList = staff.filter((data) => {
-        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-      })
-      setStaff(updateList)
-    };
+    // const filterList = (e) => {
+    //   const updateList = staff.filter((data) => {
+    //     return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+    //   })
+    //   setStaff(updateList)
+    // };
 
     useEffect(() => getStaffData(),[]);
  
@@ -192,25 +192,25 @@ const StyledTableCell = withStyles((theme) => ({
     setSelected([]);
   };
 
-  const handleClick = (event, id) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected = [];
+  // const handleClick = (event, id) => {
+  //   const selectedIndex = selected.indexOf(id);
+  //   let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+  //   if (selectedIndex === -1) {
+  //     newSelected = newSelected.concat(selected, id);
+  //   } else if (selectedIndex === 0) {
+  //     newSelected = newSelected.concat(selected.slice(1));
+  //   } else if (selectedIndex === selected.length - 1) {
+  //     newSelected = newSelected.concat(selected.slice(0, -1));
+  //   } else if (selectedIndex > 0) {
+  //     newSelected = newSelected.concat(
+  //       selected.slice(0, selectedIndex),
+  //       selected.slice(selectedIndex + 1),
+  //     );
+  //   }
 
-    setSelected(newSelected);
-  };
+  //   setSelected(newSelected);
+  // };
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
