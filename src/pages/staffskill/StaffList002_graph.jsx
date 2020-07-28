@@ -1,28 +1,36 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import Paper from '@material-ui/core/Paper';
 import {ComposedChart, XAxis, YAxis, Tooltip, CartesianGrid, Bar} from 'recharts';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
+        flexGrow: 1,
         width: '100%',
-        height: '75%',
-        borderRadius: '0px 0px 0px 0px'
+        height: '80%',
+        borderRadius: '0px 0px 0px 0px',
+        position: 'absolute',
       },
       Graph: {
-        flexGrow: 1,
-        float: 'left',
+        flexGrow: 2,
         width: '400px',
         display:'center',
-        margin:'40px 0px 0px 120px'
+        margin:'40px 0px 0px 120px',
+        position: 'absolute',
       },
       Graph2: {
         flexGrow: 2,
-        float: 'right',
         width: '400px',
         display:'center',
-        margin:'40px 120px 0px 0px'
+        margin:'40px 140px 0px 0px',
+        position: 'absolute',
+        left: '700px',
+      },
+      experience: {
+        position: 'absolute',
+        left: '220px',
+        top:'310px',
+        color: '#84a2d4',
       },
 }));
 const Graph = (props) =>  {
@@ -34,15 +42,13 @@ const Graph = (props) =>  {
         setChartData2(data_assessment);
     },[]);
     const data_level = [
-      { name: `${props.skillname}`, "レベル": `${props.level}` },
-      // { name: '自己評価', "レベル": `${props.assessment}` },
+      { name: `${props.skillname}`, "レベル": `${props.level}`},
   ];
   const data_assessment= [
-    // { name: `${props.skillname}`, "レベル": `${props.level}` },
-    { name: '自己評価', "レベル": `${props.assessment}` },
+      { name: '自己評価', "レベル": `${props.assessment}` },
   ];
     return (
-      <Paper className={classes.parer}>
+      <div>
         <div className={classes.Graph}>
         <ComposedChart
             width={400}
@@ -63,6 +69,8 @@ const Graph = (props) =>  {
         <Tooltip />
         <CartesianGrid
             stroke="#F5F5F5"
+            type="category"
+            dataKey="経験年数"
         /> 
         <Bar
             dataKey="レベル"
@@ -73,6 +81,7 @@ const Graph = (props) =>  {
         />
         </ComposedChart>
         </div>
+
         <div className={classes.Graph2}>
         <ComposedChart
             width={400}
@@ -103,7 +112,11 @@ const Graph = (props) =>  {
         />
         </ComposedChart>
         </div>
-      </Paper>
+        <div className={classes.experience}>
+          経験年数:{props.experience}
+        </div>
+      </div>
     );
 }
+
 export default Graph;

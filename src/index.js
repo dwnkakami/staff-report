@@ -7,15 +7,12 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
-import StaffList002 from "./pages/staffskill/StaffList002";
-// import Staffskill2 from "./pages/staffskill/Staffskill2";
 ReactDOM.render(
   <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}>
         <CssBaseline />
-        {/* <App /> */}
-        <StaffList002 />
+        <App />
       </ThemeProvider>
     </UserProvider>
   </LayoutProvider>,
