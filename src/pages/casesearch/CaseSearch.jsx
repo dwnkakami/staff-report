@@ -1,7 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
+import SearchIcon from '@material-ui/icons/Search';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -405,7 +406,8 @@ const MenuProps = {
   return (
     <Paper className={classes.root} variant="outlined">
       <CardContent>
-      <FindInPageIcon className={classes.icon} style={{ fontSize: '30px', }} />
+      <SearchIcon className={classes.icon} style={{ fontSize: '20px', }} />
+      <AssignmentIcon className={classes.icon} style={{ fontSize: '30px', }} />
       <Typography variant="h3" component="h2">
         案件検索
         </Typography>
