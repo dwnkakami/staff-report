@@ -8,7 +8,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import { getData }  from './M_staff';
 import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
@@ -16,8 +15,6 @@ import PeopleIcon from '@material-ui/icons/People';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
-import TextField from '@material-ui/core/TextField';
-import SearchIcon from '@material-ui/icons/Search';
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -148,15 +145,6 @@ const StyledTableCell = withStyles((theme) => ({
 
     const [posts, setPosts] = useState([]);
 
-    const [staff = getData,setStaff] = useState([]);
-
-    const filterList = (e) => {
-      const updateList = staff.filter((data) => {
-        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-      })
-      setStaff(updateList)
-    };
-
     useEffect(() => getStaffData(),[]);
  
     const getStaffData = () => {
@@ -175,44 +163,12 @@ const StyledTableCell = withStyles((theme) => ({
 
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = posts.map((n) => n.id);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  // const handleClick = (event, id) => {
-  //   const selectedIndex = selected.indexOf(id);
-  //   let newSelected = [];
-
-  //   if (selectedIndex === -1) {
-  //     newSelected = newSelected.concat(selected, id);
-  //   } else if (selectedIndex === 0) {
-  //     newSelected = newSelected.concat(selected.slice(1));
-  //   } else if (selectedIndex === selected.length - 1) {
-  //     newSelected = newSelected.concat(selected.slice(0, -1));
-  //   } else if (selectedIndex > 0) {
-  //     newSelected = newSelected.concat(
-  //       selected.slice(0, selectedIndex),
-  //       selected.slice(selectedIndex + 1),
-  //     );
-  //   }
-
-  //   setSelected(newSelected);
-  // };
-
-  const isSelected = (id) => selected.indexOf(id) !== -1;
 
 return(
   <div>
@@ -223,14 +179,6 @@ return(
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
-　　　　　<Grid container spacing={1} alignItems="flex-end">
-          <Grid item>
-            <SearchIcon />
-          </Grid>
-          <Grid item>
-            <TextField onChange={filterList} label="Search" />
-          </Grid>
-        </Grid>
 <div className={classes.root}>
       <Paper className={classes.paper}>
         <TableContainer>
@@ -241,28 +189,16 @@ return(
           >
             <EnhancedTableHead
               classes={classes}
-              numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
               rowCount={posts.length}
             />
             <TableBody>
               {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
-                  const isItemSelected = isSelected(data.id);
                   return (
-                    <TableRow
-                      hover
-                      // onClick={(event) => handleClick(event, data.id)}
-                      // selected={isItemSelected}
-                      variant="outlined"
-                    >
-                      {/* <TableCell>
-                        <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
-                      </TableCell> */}
-
+                    <TableRow　variant="outlined">
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
