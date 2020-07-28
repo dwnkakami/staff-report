@@ -3,7 +3,7 @@ import { makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 //import Typography from '@material-ui/core/Typography';
 import Select from '@material-ui/core/Select';
-import '../Css/Search.css';
+import './StaffSearch.css';
 import Button from '@material-ui/core/Button';
 import { Card,MenuItem } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
