@@ -24,6 +24,9 @@ const staffadd004 = require('./modules/staffadd004.js');
 const caselist = require('./modules/caselist.js');
 const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
+const casesearch001 = require('./modules/casesearch001.js');
+const casesearch002 = require('./modules/casesearch002.js');
+const casesearch003 = require('./modules/casesearch003.js');
 const caseadd = require('./modules/caseadd.js');
 const referencelist = require('./modules/referencelist.js');
 const billing = require('./modules/billing.js');
@@ -109,6 +112,15 @@ app.get('/api/casedetail/:condition',(req,res) => {
 });
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
+});
+app.get('/api/casesearch001/:condition',(req,res) => {
+    casesearch001.getData(req.params.condition,res);
+});
+app.get('/api/casesearch002/:condition',(req,res) => {
+    casesearch002.getData(req.params.condition,res);
+});
+app.get('/api/casesearch003/:condition',(req,res) => {
+    casesearch003.getData(req.params.condition,res);
 });
 app.post('/api/caseadd/',(req,res) => {
     caseadd.postData(req,res);
