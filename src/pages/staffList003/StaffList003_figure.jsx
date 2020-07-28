@@ -144,132 +144,29 @@ const StaffList003_figure = (props) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.figure}>
-      {user.map((data) => ( 
-        <Grid
-          container
-          direction="column"
-          justify="flex-start"
-          alignItems="baseline">
-            <Grid>
-              <Paper className={classes.color_short} variant="outlined">案件先</Paper>
-            </Grid>
-            <Grid>
-              <Paper  className={classes.content1_4} variant="outlined" key={data.staff_id}>{data.customer}</Paper>
-            </Grid>
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">場所</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content1_2} variant="outlined"key={data.staff_id}>{data.place}</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">職種</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content1_2} variant="outlined"key={data.staff_id}>{data.occupation}</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">役割規模</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content1_2} variant="outlined" key={data.staff_id}>{data.people}人</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">担当営業</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content1_2} variant="outlined"key={data.staff_id}>{data.sales_name}様</Paper>
-              </Grid>
-          </Grid>
-            ))}
-        </div> 
-
-      <div className={classes.figure}>
-      {user.map((data) => ( 
-        <Grid
-          container
-          direction="column"
-          justify="flex-start"
-          alignItems="baseline">
-            <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="baseline">
-            <Grid>
-              <Paper className={classes.color_short} variant="outlined">期間</Paper>
-            </Grid>
-            <Grid>
-              <Paper className={classes.color_short} variant="outlined">案件名</Paper>
-            </Grid>
-            </Grid>
-            <Grid
-            container
-            direction="row"
-            justify="center"
-            alignItems="stretch">
-            <Grid>
-              <Paper  className={classes.content1_1} variant="outlined" key={data.staff_id}>{data.start_day}~{data.end_day}</Paper>
-            </Grid>
-            <Grid>
-              <Paper className={classes.content1_1} variant="outlined" key={data.staff_id}>{data.matter_name}</Paper>
-            </Grid>
-            </Grid>
-
-            <Grid>
-              <Paper className={classes.color_long} variant="outlined">案件内容</Paper>
-            </Grid>
-            <Grid>
-              <Paper className={classes.content2_1} variant="outlined" key={data.staff_id}>{data.matter_content}</Paper>
-            </Grid>
-            <Grid>
-                <Paper className={classes.color_long} variant="outlined">備考</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content2_1} variant="outlined" key={data.staff_id}>{data.remark}</Paper>
-              </Grid>
-          </Grid>
-            ))}
-        </div> 
-
-          <div className={classes.figure}>
-          {user.map((data) => (
-            <Grid
-              container
-              direction="column"
-              justify="flex-start"
-              alignItems="baseline">
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">コスト</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content1_4} variant="outlined"　key={data.staff_id}>{data.cost}</Paper>
-              </Grid>
-            <Grid>
-                <Paper className={classes.color_short} variant="outlined">技能レベル</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content3_1} variant="outlined" key={data.staff_id}>{data.skill_level}</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.color_short} variant="outlined">言語</Paper>
-              </Grid>
-              <Grid>
-                <Paper className={classes.content3_1} variant="outlined" key={data.staff_id}>{data.language}</Paper>
-              </Grid>
-            </Grid>
-              ))}
-          </div>
-          <div>
-          <Grid
-            container
-            direction="column"
-            justify="flex-start"
-            alignItems="baseline">
-              <Paper elevation={0} className={classes.add}></Paper>
-            </Grid>
-          </div>
+      {user.map((data) => (
+        <table>
+          <tr>
+            <th>案件名</th>
+            <th>案件保有会社</th>
+          </tr>
+          <tr>
+            <td>{data.matter_name}</td>
+            <td>{data.customer}</td>
+          </tr>
+          {/* <tr>
+            <th>依頼単価</th>
+            <th>勤務地</th>
+          </tr> */}
+          <tr>
+           <td>{data.cost}</td> 
+           <td>{data.place}</td> 
+          </tr>
+          <tr>
+            
+          </tr>
+        </table>
+      ))}
     </div>
 );
 }
