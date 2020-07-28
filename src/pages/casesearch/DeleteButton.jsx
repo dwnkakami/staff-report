@@ -11,12 +11,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DeleteButton() {
+export default function DeleteButton(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Button variant="contained" >
+      <Button onClick={props.onClick} variant="contained" >
         クリア
       </Button>
     </div>

@@ -150,12 +150,12 @@ const StyledTableCell = withStyles((theme) => ({
 
     const [staff = getData,setStaff] = useState([]);
 
-    // const filterList = (e) => {
-    //   const updateList = staff.filter((data) => {
-    //     return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
-    //   })
-    //   setStaff(updateList)
-    // };
+    const filterList = (e) => {
+      const updateList = staff.filter((data) => {
+        return data.toLowerCase().search( e.target.value.toLowerCase()) !== -1;
+      })
+      setStaff(updateList)
+    };
 
     useEffect(() => getStaffData(),[]);
  
@@ -223,14 +223,14 @@ return(
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
-{/* 　　　　　<Grid container spacing={1} alignItems="flex-end">
+　　　　　<Grid container spacing={1} alignItems="flex-end">
           <Grid item>
             <SearchIcon />
           </Grid>
           <Grid item>
             <TextField onChange={filterList} label="Search" />
           </Grid>
-        </Grid> */}
+        </Grid>
 <div className={classes.root}>
       <Paper className={classes.paper}>
         <TableContainer>
