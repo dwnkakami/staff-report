@@ -1,6 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
+import SearchIcon from '@material-ui/icons/Search';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -31,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
     float:'left',
     height:50,
     paddingTop:30,
+  },
+  icon: {
+    float:'left',
   },
   date: {
     width:30,
@@ -401,6 +406,8 @@ const MenuProps = {
   return (
     <Paper className={classes.root} variant="outlined">
       <CardContent>
+      <SearchIcon className={classes.icon} style={{ fontSize: '20px', }} />
+      <AssignmentIcon className={classes.icon} style={{ fontSize: '30px', }} />
       <Typography variant="h3" component="h2">
         案件検索
         </Typography>
@@ -487,7 +494,7 @@ const MenuProps = {
 
         <br className={classes.end} />
         
-
+{/* 
         <Typography className={classes.left} variant="h5" component="h2">
           期間
         </Typography>
@@ -503,7 +510,7 @@ const MenuProps = {
 
         <DatePickers label="ここまで" value={selectedEndDate} onChange={handleEndDateChange} />
         
-        <br className={classes.end} />
+        <br className={classes.end} /> */}
 
         <Typography className={classes.left} variant="h5" component="h2">
           担当営業名
@@ -524,7 +531,7 @@ const MenuProps = {
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>
-        <div className={classes.left}><br /></div>
+        {/* <div className={classes.left}><br /></div> */}
 
         <DeleteButton onClick={clearAll} />
         <SearchButton onClick={formSubmit} className={classes.button} />
