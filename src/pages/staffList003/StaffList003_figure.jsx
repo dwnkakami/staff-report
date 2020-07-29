@@ -1,26 +1,17 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import '../casedetail/CaseDetail.css';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import { useEffect } from 'react';
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-  },
-  color:{
-    width: theme.spacing(154),
-  },  
+  }, 
   content:{
-    // width: theme.spacing(156),
-    height: theme.spacing(18),
+    height: theme.spacing(17),
   }, 
 }));
-
-
-
 
 const StaffList003_figure = (props) => {
   const [user, setUser] = useState([]);
@@ -54,27 +45,30 @@ const StaffList003_figure = (props) => {
             <td>{data.matter_name}</td>
             <td>{data.customer}</td>
           </tr>
+        </table>
+        <table>
           <tr>
             <th>依頼単価</th>
             <th>勤務地</th>
+            <th>職種</th>
           </tr>
           <tr>
            <td>{data.cost}</td> 
            <td>{data.place}</td> 
+           <td>{data.occupation}</td> 
           </tr>
-        <table className={classes.color}>
           <tr>
             <th>募集人数</th>
             <th>案件開始日</th>
             <th>案件終了日</th>
           </tr>
           <tr>
-            <td>{data.people}</td>
+            <td>{data.people}人</td>
             <td>{data.start_day}</td>
             <td>{data.end_day}</td>
           </tr>
         </table>
-        <table className={classes.color}>
+        <table>
           <tr>
           <th>案件内容</th>
           </tr>
@@ -82,7 +76,7 @@ const StaffList003_figure = (props) => {
             <td className={classes.content}>{data.matter_content}</td>
           </tr>
         </table>
-        <table className={classes.color}>
+        <table>
           <tr>
             <th>スキル1</th>
             <th>スキル2</th>
@@ -94,7 +88,7 @@ const StaffList003_figure = (props) => {
             <td>{data.skill_3}</td>
           </tr>
         </table>
-        <table className={classes.color}>
+        <table>
           <tr>
             <th>必須スキル</th>
             <th>備考欄</th>
@@ -103,7 +97,6 @@ const StaffList003_figure = (props) => {
             <td>{data.skill_level}</td>
             <td>{data.note}</td>
           </tr>
-        </table>
         </table>
         </Typography>
       ))}
