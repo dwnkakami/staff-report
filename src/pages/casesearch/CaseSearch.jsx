@@ -19,7 +19,7 @@ import axios from 'axios';
 //import Component
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
-import DatePickers from './DatePickers';
+// import DatePickers from './DatePickers';
 import ListData from './ListData';
 
 
@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     float:'left',
+    // alignItems:'center',
   },
   date: {
     width:30,
@@ -219,18 +220,18 @@ const MenuProps = {
               value={data.id}>{data.name}</MenuItem>
   ));
 
-  //startdate
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
+  // //startdate
+  // const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
 
-  const handleStartDateChange = (date) => {
-    setSelectedStartDate(date);
-  };
-  //enddate
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
+  // const handleStartDateChange = (date) => {
+  //   setSelectedStartDate(date);
+  // };
+  // //enddate
+  // const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
 
-  const handleEndDateChange = (date) => {
-    setSelectedEndDate(date);
-  };
+  // const handleEndDateChange = (date) => {
+  //   setSelectedEndDate(date);
+  // };
 
   //settting salesman
   const [salesMan, setSalesMan] = React.useState('');
@@ -250,8 +251,8 @@ const MenuProps = {
     setSkill1('')
     setSkill2('')
     setSkill3('')
-    setSelectedStartDate()
-    setSelectedEndDate()
+    // setSelectedStartDate()
+    // setSelectedEndDate()
     setSalesMan('')
     window.alert("Clear Done")
   };
@@ -406,11 +407,15 @@ const MenuProps = {
   return (
     <Paper className={classes.root} variant="outlined">
       <CardContent>
-      <SearchIcon className={classes.icon} style={{ fontSize: '20px', }} />
-      <AssignmentIcon className={classes.icon} style={{ fontSize: '30px', }} />
-      <Typography variant="h3" component="h2">
-        案件検索
+
+      <div style={{display:'flex'}}>
+        <SearchIcon style={{ fontSize: '25px', }} />
+        <AssignmentIcon style={{ fontSize: '40px', }} />
+      
+        <Typography style={{ fontSize: '30px', }}>
+          案件検索
         </Typography>
+      </div>
 
         <br className={classes.end}/>
 
