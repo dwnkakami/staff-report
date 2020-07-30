@@ -22,7 +22,7 @@ import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-import StaffList001 from "../../pages/stafflist/StaffList001 copy";
+import StaffList001 from "../../pages/stafflist/StaffList001";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseResult from "../../pages/casesearch/CaseResult";
