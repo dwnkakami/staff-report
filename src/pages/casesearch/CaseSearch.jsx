@@ -18,7 +18,7 @@ import axios from 'axios';
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 import DatePickers from './DatePickers';
-import { withRouter } from 'react-router-dom';
+import ListData from './ListData';
 
 
 
@@ -91,7 +91,7 @@ const MenuProps = {
 };
 
 
- function CaseSearch() {
+ export default function CaseSearch() {
   const classes = useStyles();
 
   const [posts, setPosts] = useState([]);
@@ -144,6 +144,8 @@ const MenuProps = {
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
       console.log(target);
+      ListData.setCaseData(target);
+      window.location.href = "/#/staff-report/caseresult/001";
     }
   };
 
@@ -251,7 +253,7 @@ const MenuProps = {
 
 
   //SearchButton
-  const formSubmit = (history) => {
+  const formSubmit = () => {
 
     // //jobName None
     // const target1 = posts.filter((data)=>{
@@ -342,7 +344,8 @@ const MenuProps = {
       window.alert("検索結果がありません。\n条件を変更してください。");
     }else{
       console.log(target7);
-    //  history.push('/staff-report/caselist')
+      ListData.setCaseData(target7);
+      window.location.href = "/#/staff-report/caseresult/001";
     }
 
     
@@ -532,4 +535,3 @@ const MenuProps = {
 }
 
 
-export default withRouter(CaseSearch);

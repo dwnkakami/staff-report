@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import'../referenceList/ReferenceList';
 
 const styles = (theme) => ({
   root: {
@@ -46,7 +47,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function ReferenceDetail() {
+export default function ReferenceDetail(props) {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -59,7 +60,7 @@ export default function ReferenceDetail() {
   const [user, setUser] = useState([]);
 
   useEffect(() => { getReferenceData(); console.log("connected") },[]);
-
+  
   const getReferenceData = () => {
     if (user.length === 0) {
       axios
@@ -84,31 +85,27 @@ export default function ReferenceDetail() {
           </DialogTitle>
         <DialogContent dividers >
           <Typography gutterBottom>
-            {user.map((data) => (
+            {/* {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>案件名</th>
                   <th>スタッフ名</th>
                 </tr>
                 <tr>
-                  <td>{data.name}</td>
-                  <td>{data.staff_name}</td>
-                  {/* <td>a</td>
-                <td>a</td> */}
+                  <td>{props.name}</td>
+                  <td>{props.staff_name}</td>
                 </tr>
                 <tr>
                   <th>職種名</th>
                   <th>ポジション詳細</th>
                 </tr>
                 <tr>
-                  <td>{data.occupation_name}</td>
-                  <td>{data.position}</td>
-                  {/* <td>a</td>
-                <td>a</td> */}
+                  <td>{props.occupation_name}</td>
+                  <td>{props.position}</td>
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
+            {/* ))} */}
+            {/* {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>面談場所</th>
@@ -117,18 +114,14 @@ export default function ReferenceDetail() {
                   <th>入場日</th>
                 </tr>
                 <tr>
-                  <td>{data.interview_location}</td>
-                  <td>{data.interview_date}</td>
-                  <td>{data.interview_times}</td>
-                  <tb>{data.entrance_date}</tb>
-                  {/* <td>a</td>
-                <td>a</td>
-                <td>a</td>
-                <tb>a</tb> */}
+                  <td>{props.interview_location}</td>
+                  <td>{props.interview_date}</td>
+                  <td>{props.interview_times}</td>
+                  <tb>{props.entrance_date}</tb>
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
+            {/* ))}
+            {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>登録日時</th>
@@ -136,26 +129,22 @@ export default function ReferenceDetail() {
                   <th>最終更新者</th>
                 </tr>
                 <tr>
-                  <td>{data.entry_at}</td>
-                  <tb>{data.update_at}</tb>
+                  <td>{props.entry_at}</td>
+                  <tb>{props.update_at}</tb>
                   <tb></tb>
-                  {/* <td>a</td>
-                <tb>a</tb>
-                <tb>a</tb> */}
                 </tr>
               </table>
-            ))}
-            {user.map((data) => (
+            {/* ))}
+            {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>備考欄</th>
                 </tr>
                 <tr>
-                  <td class='wide-td1'>{data.skill_level_column}</td>
-                  {/* <td>a</td> */}
+                  <td class='wide-td1'>{props.skill_level_column}</td>
                 </tr>
               </table>
-            ))}
+            {/* ))} */}
           </Typography>
         </DialogContent>
       </Dialog>

@@ -9,6 +9,13 @@ const stafflist003 = require('./modules/stafflist003.js');
 const stafflist004 = require('./modules/stafflist004.js');
 const stafflist005 = require('./modules/stafflist005.js');
 const staffsearch = require('./modules/staffsearch.js');
+const staffsearch001 = require('./modules/staffsearch001.js');
+const staffsearch002 = require('./modules/staffsearch002.js');
+const staffsearch003 = require('./modules/staffsearch003.js');
+const staffsearch004 = require('./modules/staffsearch004.js');
+const staffsearch005 = require('./modules/staffsearch005.js');
+const staffsearch006 = require('./modules/staffsearch006.js');
+const staffsearch007 = require('./modules/staffsearch007.js');
 const staffadd = require('./modules/staffadd.js');
 const staffadd001 = require('./modules/staffadd001.js');
 const staffadd002 = require('./modules/staffadd002.js');
@@ -17,13 +24,18 @@ const staffadd004 = require('./modules/staffadd004.js');
 const caselist = require('./modules/caselist.js');
 const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
-const caseadd = require('./modules/caseadd.js');
-const referencelist = require('./modules/referencelist.js');
-const billing = require('./modules/billing.js');
-
 const casesearch001 = require('./modules/casesearch001.js');
 const casesearch002 = require('./modules/casesearch002.js');
 const casesearch003 = require('./modules/casesearch003.js');
+const caseadd = require('./modules/caseadd.js');
+const referencelist = require('./modules/referencelist.js');
+const billing = require('./modules/billing.js');
+const role = require('./modules/role.js');
+const register = require('./modules/register.js');
+
+// const casesearch001 = require('./modules/casesearch001.js');
+// const casesearch002 = require('./modules/casesearch002.js');
+// const casesearch003 = require('./modules/casesearch003.js');
 
 
 
@@ -53,8 +65,29 @@ app.get('/api/stafflist004/:condition',(req,res) => {
 app.get('/api/stafflist005/:condition',(req,res) => {
     stafflist005.getData(req.params.condition,res);
 });
-app.get('/api/staffsearch/:condition',(req,res) => {
-    staffsearch.getData(req.params.condition,res);
+app.post('/api/staffsearch',(req,res) => {
+    staffsearch.postData(req,res);
+});
+app.post('/api/staffsearch001',(req,res) => {
+    staffsearch001.postData(req,res);
+});
+app.post('/api/staffsearch002',(req,res) => {
+    staffsearch002.postData(req,res);
+});
+app.post('/api/staffsearch003',(req,res) => {
+    staffsearch003.postData(req,res);
+});
+app.post('/api/staffsearch004',(req,res) => {
+    staffsearch004.postData(req,res);
+});
+app.post('/api/staffsearch005',(req,res) => {
+    staffsearch005.postData(req,res);
+});
+app.post('/api/staffsearch006',(req,res) => {
+    staffsearch006.postData(req,res);
+});
+app.post('/api/staffsearch007',(req,res) => {
+    staffsearch007.postData(req,res);
 });
 app.post('/api/staffadd',(req,res) => {
     staffadd.postData(req,res);
@@ -79,6 +112,15 @@ app.get('/api/casedetail/:condition',(req,res) => {
 });
 app.get('/api/casesearch/:condition',(req,res) => {
     casesearch.getData(req.params.condition,res);
+});
+app.get('/api/casesearch001/:condition',(req,res) => {
+    casesearch001.getData(req.params.condition,res);
+});
+app.get('/api/casesearch002/:condition',(req,res) => {
+    casesearch002.getData(req.params.condition,res);
+});
+app.get('/api/casesearch003/:condition',(req,res) => {
+    casesearch003.getData(req.params.condition,res);
 });
 app.post('/api/caseadd/',(req,res) => {
     caseadd.postData(req,res);
