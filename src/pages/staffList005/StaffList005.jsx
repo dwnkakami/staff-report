@@ -62,7 +62,7 @@ const StaffList005 = (props) => {
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          スタッフ情報
+          スタッフ詳細
         </DialogTitle>
         <DialogContent dividers>
           <Typography variant="h5">{props.name}</Typography>
