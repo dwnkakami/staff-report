@@ -59,7 +59,10 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles(() => ({
   root: {
       '&:nth-of-type(odd)': {
-          backgroundColor: "#ffffff",
+          backgroundColor: "#fff",
+      },
+      '&:nth-of-type(even)': {
+          backgroundColor: "#eee",
       },
   },
 }))(TableRow);
@@ -185,9 +188,10 @@ const StyledTableRow = withStyles(() => ({
               <StyledTableCell align="left">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
-          {Caselistmap.map((data) => (
           <TableBody>
-                <StyledTableRow/>
+          {Caselistmap.map((data) => {
+            return(
+              <StyledTableRow>
                 <StyledTableCell classname="tablecell" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
@@ -206,8 +210,10 @@ const StyledTableRow = withStyles(() => ({
                   />
                   {/* </Button> */}
                 </StyledTableCell>
+              </StyledTableRow>
+            )
+          })} 
           </TableBody>
-          ))}
        </Table>
         </Grid>
       </Grid>
