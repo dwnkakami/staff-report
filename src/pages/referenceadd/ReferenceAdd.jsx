@@ -77,7 +77,7 @@ export default function AlertDialog() {
   const getData = () => {
       if(user.length === 0){
         axios
-        .get('./api/staffadd2')
+        .get('./api/staffadd004')
         .then(response => {
             setUser(response.data);
             console.log(response.data);
@@ -178,10 +178,10 @@ export default function AlertDialog() {
             <TextField　type="date" variant="outlined" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes.formControl}/>
         </Grid>
         <Grid item xs={2}>
-            <Button variant="contained" onClick={add}>追加</Button>
+            <Button variant="contained" onClick={clear}>クリア</Button>
         </Grid>
         <Grid item xs={2}>
-            <Button variant="contained" onClick={clear}>クリア</Button>
+            <Button variant="contained" onClick={add}>登録</Button>
         </Grid>
         </Grid>
         </DialogContent>
