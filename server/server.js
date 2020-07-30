@@ -33,6 +33,8 @@ const caseadd002 = require('./modules/caseadd002.js');
 const caseadd003 = require('./modules/caseadd003.js');
 const caseadd004 = require('./modules/caseadd004.js');
 const referencelist = require('./modules/referencelist.js');
+const referencedetail = require('./modules/referencedetail.js');
+const referenceadd = require('./modules/referenceadd.js');
 const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
 const register = require('./modules/register.js');
@@ -137,6 +139,12 @@ app.get('/api/caseadd004',(req,res) => {
 });
 app.get('/api/referencelist/:condition',(req,res) => {
     referencelist.getData(req.params.condition,res);
+});
+app.get('/api/referencedetail/:condition',(req,res) => {
+    referencedetail.getData(req.params.condition,res);
+});
+app.post('/api/referenceadd/',(req,res) => {
+    referenceadd.postData(req,res);
 });
 app.get('/api/billing/:condition',(req,res) => {
     billing.getData(req.params.condition,res);
