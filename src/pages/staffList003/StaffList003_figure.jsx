@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
 import axios from 'axios';
 import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    margin: '0px 0px 38px 0px'
   }, 
   content:{
-    height: theme.spacing(17),
+    height: theme.spacing(14),
   }, 
 }));
 
@@ -100,6 +102,7 @@ const StaffList003_figure = (props) => {
         </table>
         </Typography>
       ))}
+      <Divider />
     </div>
 );
 }
