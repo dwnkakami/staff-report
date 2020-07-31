@@ -156,20 +156,20 @@ EnhancedTableHead.propTypes = {
     const classes = useStyles();
 
 
-  const[Caselistmap ,setCaselist] = useState([]);
+  const[caselistmap ,setCaselistmap] = useState([]);
 
-  useEffect(() => getCaselistData());
+  useEffect(() => getCaselistData(),[]);
 
   const getCaselistData = () => {
-    if(Caselistmap.length === 0){
-    axios
-      .get('/api/caselist/1')
-      .then(response =>{
-        console.log('Accept')
-        setCaselist(response.data);
-      })
-      .catch(() => {
-       console.log('connected error');
+      if(caselistmap.length === 0){
+        axios
+          .get('/api/caselist/1')
+          .then(response =>{
+            console.log([response.data]);
+            setCaselistmap(response.data);
+          })
+          .catch(() => {
+          console.log('connected error');
       })
     }
   }
@@ -203,10 +203,10 @@ EnhancedTableHead.propTypes = {
               order={order}
               orderBy={orderBy}
               onRequestSort={handleRequestSort}
-              rowCount={Caselistmap.length}
+              rowCount={caselistmap.length}
             />
           <TableBody>
-          {stableSort(Caselistmap, getComparator(order, orderBy)).map((data) => (
+          {stableSort(caselistmap, getComparator(order, orderBy)).map((data) => (
                 <StyledTableRow>
                 <StyledTableCell classname="tablecell" align="center" component="th" scope="row">
                   {data.id}
