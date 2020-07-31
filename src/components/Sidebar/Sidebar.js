@@ -29,7 +29,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserP, UserProfile } from "../../context/UserContext";
+import { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserP, UserProfile, UserAccessfile } from "../../context/UserContext";
 import axios from "axios";
 
 const structure = [
@@ -155,9 +155,9 @@ function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
 
-  // const[Access ,setAccess] = useState([]);
+//   const[Access ,setAccess] = useState([]);
 
-  // useEffect(() => getAccessData());
+//   useEffect(() => getAccessData());
 
 //   const getAccessData = () => {
 //     if(Access.length === 0) {
@@ -174,14 +174,10 @@ function Sidebar({ location }) {
 //   }
 // }
 
-// const access_data = Access.filter((data) => {
-//   return data.
-// });
-
-console.log(UserP.getAccess())
+console.log(UserAccessfile.getAccess())
 
 const menu = structure.filter ((data)=> {
-  if (UserP.getAccess() === 1) {
+  if (UserAccessfile.getAccess() === 1) {
   return (
     (data.id === 0) ||
     (data.id === 1) ||
@@ -190,7 +186,7 @@ const menu = structure.filter ((data)=> {
     (data.id === 4) ||
     (data.id === 5) 
   );
-} else if (UserP.getAccess() === 2) {
+} else if (UserAccessfile.getAccess() === 2) {
   return (
     (data.id === 1) ||
     (data.id === 3) ||
