@@ -1,0 +1,45 @@
+.body{
+    display: inline-block;
+}
+.paper{
+    background-color: rgb(255, 255, 255);
+    overflow: auto;
+    padding:15px;
+    box-shadow:5px 5px 50px 5px rgb(77, 76, 76);
+    border-radius: 10px;
+}
+
+.font{
+    font-weight: bolder;
+}
+
+.older{
+    position: relative;
+    top:170px;
+    font-weight: bolder;
+}
+
+.gender{
+    position: relative;
+    left:  430px;
+    top: 50px;
+    font-weight: bolder;
+}
+
+.area{
+    position: relative;
+    top:40px;
+    font-weight: bolder;
+}
+
+/* .reset{
+    position: relative;
+    left: 150px;
+    top:55px;
+}
+
+.search{
+    position: relative;
+    left: 200px;
+    top:55px;
+} */
