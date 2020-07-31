@@ -12,7 +12,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, DialogTitle } from '@material-ui/core';
 
 import axios from 'axios';
 
@@ -163,11 +163,13 @@ const StyledTableRow = withStyles(() => ({
   // }
 
   return(
-    <Paper elevation={3} className='paper1'>
+    <Paper elevation={3} className="paper1">
+      <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
                     <DescriptionOutlinedIcon style={{ fontSize: '40px', }} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
+        </DialogTitle>
         <TableContainer>
           <Grid container spacing={24} justify={"center"}>
             <Grid className="table1">
