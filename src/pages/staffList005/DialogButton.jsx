@@ -9,7 +9,7 @@ import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
   Button: {
-    background:'rgb(120,144,156)',
+    // background:'rgb(120,144,156)',
     borderRadius: '0px 0px 0px 0px',
   },
   ButtonGroup: {
@@ -22,8 +22,8 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
   },
   Button2: {
-    background:'rgb(120,144,156)',
-    color: '#ffffff',
+    // background:'rgb(120,144,156)',
+    // color: '#ffffff',
     borderRadius: '0px 0px 0px 0px',
   },
 }));
@@ -48,10 +48,10 @@ const DialogButton = (props) => {
   return (
     <div className={classes.root}>
         <div widt='600px'>
-          <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" aria-label="contained primary button group">
+          <ButtonGroup className={classes.ButtonGroup}　size="small" variant="contained" color="" aria-label="contained primary button group">
               <Button className={classes.Button} onClick={() => handleClick(1)}>スキル</Button>
-              <Button className={classes.Button} onClick={() => handleClick(2)}>経歴</Button>
-              <Button className={classes.Button} onClick={() => handleClick(3)}>キャリアパス</Button>
+              <Button onClick={() => handleClick(2)}>経歴</Button>
+              <Button onClick={() => handleClick(3)}>キャリアパス</Button>
               <Button className={classes.Button} onClick={() => handleClick(4)}>スタッフ情報</Button>
           </ButtonGroup>
           <ButtonGroup className={classes.ButtonGroup2} size="small" variant="contained" aria-label="contained primary button group">
