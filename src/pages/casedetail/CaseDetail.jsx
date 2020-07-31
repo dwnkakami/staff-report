@@ -1,8 +1,9 @@
 import React from 'react';
 import './CaseDetail.css';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import Paper from '@material-ui/core/Paper';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,7 +28,16 @@ const styles = (theme) => ({
     width:100,
     float:'left',
   },
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
+  },
 });
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
+  },
+}));
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
@@ -52,6 +62,8 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export default function CaseDetail (props) {
+  const classes = useStyles();
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -88,6 +100,7 @@ export default function CaseDetail (props) {
             案件詳細
           </DialogTitle>
         <DialogContent dividers >
+        <Paper className={classes.paper} elevation={3}>
         {user.map((data) => (
           <Typography gutterBottom key={data.id}>
             <table>
@@ -99,23 +112,25 @@ export default function CaseDetail (props) {
                 <td>{data.name}</td>
                 <td>{data.customer_name}</td>
               </tr>
+              </table>
+              <table>
               <tr>
                 <th>依頼単価</th>
                 <th>勤務地</th>
+                <th>職種</th>
               </tr>
               <tr>
                 <td>{data.unit_cost}</td>
                 <td>{data.workplace}</td>
+                <td>{data.occupation}</td> 
               </tr>
-              </table>
-              <table>
               <tr>
                 <th>募集人数</th>
                 <th>案件開始日</th>
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>{data.number_of_persons}</td>
+                <td>{data.number_of_persons}人</td>
                 <td>{data.matter_start}</td>
                 <td>{data.matter_end}</td>
               </tr>
@@ -152,6 +167,7 @@ export default function CaseDetail (props) {
             </table>
           </Typography>
         ))}
+        </Paper>
         </DialogContent>
       </Dialog>
     </div>
