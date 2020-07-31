@@ -1,8 +1,9 @@
 import React from 'react';
 import './ReferenceDetail.css';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
+import Paper from '@material-ui/core/Paper';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
@@ -27,6 +28,12 @@ const styles = (theme) => ({
   },
 });
 
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
+  },
+}));
+
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
@@ -49,6 +56,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 export default function ReferenceDetail(props) {
+  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -85,8 +93,8 @@ export default function ReferenceDetail(props) {
           引合詳細
           </DialogTitle>
         <DialogContent dividers >
+        <Paper className={classes.paper} elevation={3}>
           <Typography gutterBottom>
-            {/* {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>案件名</th>
@@ -96,33 +104,31 @@ export default function ReferenceDetail(props) {
                   <td>{props.name}</td>
                   <td>{props.staff_name}</td>
                 </tr>
+                </table>
+              <table>
                 <tr>
                   <th>職種名</th>
                   <th>ポジション詳細</th>
+                  <th>入場日</th>
                 </tr>
                 <tr>
                   <td>{props.occupation_name}</td>
                   <td>{props.position}</td>
+                  <tb>{props.entrance_date}～</tb>
                 </tr>
               </table>
-            {/* ))} */}
-            {/* {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>面談場所</th>
                   <th>面談日</th>
                   <th>面談回数</th>
-                  <th>入場日</th>
                 </tr>
                 <tr>
                   <td>{props.interview_location}</td>
                   <td>{props.interview_date}</td>
-                  <td>{props.interview_times}</td>
-                  <tb>{props.entrance_date}</tb>
+                  <td>{props.interview_times}回</td>
                 </tr>
               </table>
-            {/* ))}
-            {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>登録日時</th>
@@ -135,8 +141,6 @@ export default function ReferenceDetail(props) {
                   <tb></tb>
                 </tr>
               </table>
-            {/* ))}
-            {user.map((data) => ( */}
               <table>
                 <tr>
                   <th>備考欄</th>
@@ -145,8 +149,8 @@ export default function ReferenceDetail(props) {
                   <td class='wide-td1'>{props.skill_level_column}</td>
                 </tr>
               </table>
-            {/* ))} */}
           </Typography>
+          </Paper>
         </DialogContent>
       </Dialog>
     </div>
