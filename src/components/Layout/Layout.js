@@ -19,10 +19,11 @@ import Dashboard from "../../pages/dashboard";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Maps from "../../pages/maps";
+import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
-import StaffList001 from "../../pages/stafflist001/StaffList001";
 import StaffAdd from "../../pages/staffadd/StaffAdd";
+
 import CaseSearch from "../../pages/casesearch/CaseSearch";
 
 // import StaffList001 from "../pages/stafflist001";
@@ -33,13 +34,8 @@ import CaseList from "../../pages/caselist/CaseList";
 //import CaseSearch from "../../pages/casesearch/CaseSearch";
 import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-<<<<<<< HEAD
 // import ReferenceList from "../../pages/referencelist/ReferenceList";
-import ReferenceList_not from "../../pages/referencelist/notData";
-=======
-// import ReferenceList from "../../pages/referenceList/ReferenceList";
-import ReferenceList_not from "../../pages/referenceList/notData";
->>>>>>> c8cc99fa549396c1cc9ba40a4544f9a2705eaf3f
+// import ReferenceList_not from "../../pages/referencelist/notData";
 //import  from "../../pages/";　引合検索
 
 //import Billing from "../../pages/billing/Billing";
@@ -68,13 +64,12 @@ function Layout(props) {
             <Switch>
               <Route path="/staff-report/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
-              {/* <Route path="/app/tables" component={Tables} /> */}
+              <Route path="/app/tables" component={Tables} />
               {/* <Route path="/app/tables" component={ReferenceList} /> */}
               <Route path="/app/notifications" component={Notifications} />
 
-              <Route path="/staff-report/stafflist/001" component={StaffList001} />
+              {/* <Route path="/staff-report/stafflist/001" component={StaffList001} /> */}
               {/* <Route path="/staff-report/staffsearch/001" component={StaffSearch} /> */}
-              {/* <Route path="/staff-report/staffadd/001" component={StaffAdd} /> */}
               <Route path="/staff-report/staffadd/001" component={StaffAdd} />
 
               <Route path="/staff-report/caselist/001" component={CaseList} />
@@ -82,7 +77,7 @@ function Layout(props) {
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
               {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
-              <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList_not} /> */}
               {/* <Route path="" component={} /> 引合検索  */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}

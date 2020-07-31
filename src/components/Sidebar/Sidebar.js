@@ -10,7 +10,6 @@ import {
   // LibraryBooks as LibraryIcon,
   // HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
-  ContactSupportOutlined,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -24,24 +23,18 @@ import useStyles from "./styles";
 import SidebarLink from "./components/SidebarLink/SidebarLink";
 import Dot from "./components/Dot";
 
-// components
-import { Typography } from "../Wrappers/Wrappers";
-// import Notification from "../Notification/Notification";
-// import UserAvatar from "../UserAvatar/UserAvatar";
-
-
 // context
 import {
   useLayoutState,
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch } from "../../context/UserContext";
-import axios from 'axios';
+import { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserP, UserProfile } from "../../context/UserContext";
+import axios from "axios";
 
 const structure = [
-  { id: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
-  { id: 1, type: "title", label: "メニュー", },
+  { id: 0, access: 0, label: "ホーム", link: "/staff-report/dashboard", icon: <HomeIcon /> },
+  { id: 1, access: 0,　type: "title", label: "メニュー", },
 
   {
     id: 2,
@@ -92,6 +85,7 @@ const structure = [
   // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
   {
     id: 4,
+    access: 0,
     label: "引合",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -106,6 +100,7 @@ const structure = [
   // },
   {
     id: 5,
+    access: 0,
     label: "領収書",
     icon: <ArrowDropDownIcon />,
     children: [
@@ -123,11 +118,11 @@ const structure = [
   //     { label: "Maps", link: "/app/ui/maps" },
   //   ],
   // },
-  // {
-  //   id: 6,
-  //   label: "ログアウト",
-  //   link: "/login",
-  // },
+  {
+    id: 6,
+    label: "ログアウト",
+    link: "",
+  },
 ]
 //   { id: 5, type: "divider" },
 //   { id: 6, type: "title", label: "HELP" },
@@ -156,34 +151,37 @@ const structure = [
 //   },
 // ];
 
-function Sidebar({ location } ,props) {
+function Sidebar({ location }) {
   var classes = useStyles();
   var theme = useTheme();
- 
-  const[Access ,setAccess] = useState([]);
 
-  useEffect(() => getAccessData());
+  // const[Access ,setAccess] = useState([]);
 
-  const getAccessData = () => {
-    if(Access.length === 0){
-    axios
-      .get('/api/menu/1')
-      .then(response => {
-        console.log(response.data);
-        setAccess(response.data);
-      })
-      .catch(() => {
-        console.log('connected error');
-      })
-  }
-}
+  // useEffect(() => getAccessData());
 
-const access_data = Access.filter((data) => {
-  return data.access_name === "スタッフリスト編集"
-});
+//   const getAccessData = () => {
+//     if(Access.length === 0) {
+//     axios
+//       .get('/api/menu/1')
+//       .then(response =>{
+//         userData = response.data;
+//         console.log(response.data);
+//         setAccess(response.data);
+//       })
+//       .catch(() => {
+//         console.log('connected error');
+//       })
+//   }
+// }
+
+// const access_data = Access.filter((data) => {
+//   return data.
+// });
+
+console.log(UserP.getAccess())
 
 const menu = structure.filter ((data)=> {
-  if (access_data) {
+  if (UserP.getAccess() === 1) {
   return (
     (data.id === 0) ||
     (data.id === 1) ||
@@ -192,21 +190,17 @@ const menu = structure.filter ((data)=> {
     (data.id === 4) ||
     (data.id === 5) 
   );
-} else if (access_data.access_name === "スタッフリスト閲覧") {
+} else if (UserP.getAccess() === 2) {
   return (
-    (data.id === 0) ||
     (data.id === 1) ||
-    (data.id === 2) ||
+    (data.id === 3) ||
+    (data.id === 4) ||
     (data.id === 5) 
   );
 } else {
   return (
-    (data.id === 0) ||
-    (data.id === 1) ||
-    (data.id === 3) ||
-    (data.id === 4) ||
-    (data.id === 5) 
-  );
+    (data.id === 1)
+  )
 }
 });
 
@@ -260,23 +254,7 @@ const menu = structure.filter ((data)=> {
             {...link}
           />
         ))}
-        
       </List>
-      <div className={classes.profileMenuUser}>
-        {/* <Typography className={classes.profileMenuLink}
-              color="primary"
-              onClick={() => signOut(userDispatch, props.history) }>ログアウト
-        </Typography> */}
-        <Typography className={classes.profileMenuLink}
-              color="primary"
-              // onClick={() => signOut(userDispatch, props.history) }>ログアウト
-              onClick={() => {
-                  localStorage.removeItem("id_token");
-                  userDispatch({ type: "SIGN_OUT_SUCCESS" }); 
-                  window.location.href = '/login';
-                }}>ログアウト
-        </Typography>
-      </div>
     </Drawer>
   );
 

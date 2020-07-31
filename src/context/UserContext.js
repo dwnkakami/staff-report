@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 // import qs from 'qs';
 import axios from "axios";
 
@@ -62,11 +62,28 @@ const UserProfile = (() => {
 
   return {
     getName: getName,
-    setName: setName
+    setName: setName,
   }
 })();
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile};
+const UserP = (() => {
+  var userAccess = "";
+
+  var getAccess = () => {
+    return userAccess;
+  };
+
+  const setAccess = (id) => {
+    userAccess = id;
+  };
+
+  return {
+    getAccess: getAccess,
+    setAccess: setAccess,
+  }
+})();
+
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, registerUser, UserProfile, UserP};
 
 // ###########################################################
 
@@ -82,6 +99,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
         .then(response => {
           userData = response.data;
           console.log(userData[0].name);
+          console.log(userData[0].id);
           if (userData[0].password === password) {
             setTimeout(() => {
             localStorage.setItem('id_token', 1)
@@ -89,6 +107,7 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
             setIsLoading(true)
             dispatch({ type: 'LOGIN_SUCCESS' })
             UserProfile.setName(response.data[0].name)
+            UserP.setAccess(response.data[0].id)
             history.push('/staff-report/dashboard')
           }, 2000);
         } else {
@@ -103,6 +122,20 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError) {
           setIsLoading(false)
           console.log('getData error');
         })
+
+        // let userAccess = [];
+        // axios
+        // .get('/api/menu/' + login)
+        // .then(response => {
+        //   userAccess = response.data;
+        //   console.log(userAccess[0].access_id);
+        //   console.log(userAccess[1].access_id);
+        //   console.log(userAccess[2].access_id);
+        //   UserP.setAccess(response.data[0].access_id)
+        // })
+        // .catch(() => {
+        //   console.log('err');
+        // })
 
 
   //   setTimeout(() => {
