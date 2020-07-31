@@ -68,7 +68,7 @@ export default function CaseDetail (props) {
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get('/api/casedetail/1')
+        .get(`/api/casedetail/${props.caseid}`)
         .then(response => {
           setUser(response.data);
         })
