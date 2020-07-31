@@ -319,10 +319,10 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={2}>
-            <Button variant="contained" onClick={add} className="button">追加</Button>
+            <Button variant="contained" onClick={add} className="button1">追加</Button>
         </Grid>
         <Grid item xs={2}>
-            <Button variant="contained" onClick={clear} className="button">クリア</Button>
+            <Button variant="contained" onClick={clear} className="button2">クリア</Button>
         </Grid>
         </Grid>
         </Paper>
