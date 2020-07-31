@@ -8,7 +8,6 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -77,8 +76,8 @@ export default function ReferenceDetail(props) {
 
   return (
     <div>
-      <Button onClick={handleClickOpen}>
-        <MoreHorizIcon />
+      <Button variant="outlined" color="" onClick={handleClickOpen}>
+        引合詳細
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth='lg'>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>

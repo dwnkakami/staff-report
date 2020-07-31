@@ -186,7 +186,7 @@ export default function ReferenceList() {
                                             .map((data) => {
                                                 return (
                                                     <StyledTableRow
-                                                        hover
+                                                        // hover
                                                         key={data.id}
                                                     >
                                                         <TableCell align="center">{data.name}</TableCell>
