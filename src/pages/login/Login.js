@@ -132,7 +132,7 @@ function Login(props) {
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
   var [submitValue, setSubmitValue] = useState("");
-  var [is8Password, setIs8Password] = useState(false);
+  var [msg, setMsg] = useState("ユーザーID・パスワードの入力に誤りがあるか、登録されていません。");
 
 
   return (
@@ -145,7 +145,10 @@ function Login(props) {
         <div className={classes.form}>
           <Tabs
             value={activeTabId}
-            onChange={(e, id) => setActiveTabId(id)}
+            onChange={(e, id) => {
+              setError(false)
+              setActiveTabId(id)
+            }}
             indicatorColor="primary"
             textColor="primary"
             centered
@@ -168,11 +171,9 @@ function Login(props) {
                 {/* <div className={classes.formDivider} /> */}
               {/* </div> */}
               <Fade in={error}>
-                {!is8Password? <Typography color="secondary" className={classes.errorMessage}>
-                ユーザーID・パスワードの入力に誤りがあるか、登録されていません。
-                </Typography> : <Typography color="secondary" className={classes.errorMessage}>
-                パスワードは8文字以上で入力してください。
-                </Typography>}
+              <Typography color="secondary" className={classes.errorMessage}>
+                  {msg}
+                </Typography>
               </Fade>
               <TextField
                 id="name"
@@ -183,7 +184,10 @@ function Login(props) {
                   },
                 }}
                 value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                onChange={e => {
+                  setLoginValue(e.target.value);
+                  let isValidation = Validation.formValidate("userid", e.target.value, setError, setMsg);
+                }}
                 margin="normal"
                 placeholder="ユーザーID"
                 type="number"
@@ -210,11 +214,12 @@ function Login(props) {
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      loginValue.length === 0 || 
+                      passwordValue.length === 0 
                     }
                     onClick={() => {
-                      let isValidation =  Validation.formValidate("password", passwordValue, setError, setIs8Password);
-                      console.log(is8Password)
+                      let isValidation =  Validation.formValidate("password", passwordValue, setError, setMsg);
+                      console.log(setMsg)
                       if(!isValidation) return
                       loginUser(
                         userDispatch,
@@ -262,7 +267,10 @@ function Login(props) {
                   },
                 }}
                 value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                onChange={e => {
+                  setLoginValue(e.target.value);
+                  let isValidation = Validation.formValidate("userid", e.target.value, setError, setMsg);
+                }}
                 margin="normal"
                 placeholder="ユーザーID"
                 type="text"
@@ -313,14 +321,13 @@ function Login(props) {
                 type="password"
                 fullWidth
               />
-               <Fade in={error}>
-                {!is8Password? <Typography color="secondary" className={classes.errorMessage}>
-                パスワードは8文字以上で入力してください。
-                </Typography> : <Typography color="secondary" className={classes.errorMessage}>
-                パスワードは8文字以上で入力してください。
-                </Typography>}
+              <Fade in={error}>
+              <Typography color="secondary" className={classes.errorMessage}>
+                  {msg}
+                </Typography>
               </Fade>
-              <TextField
+          
+          <TextField
           id="standard-select-currency"
           select
           label="Select"
@@ -339,9 +346,14 @@ function Login(props) {
                   <CircularProgress size={26} />
                 ) : (
                   <Button
+                  disabled={
+                    loginValue.length === 0 || 
+                    passwordValue.length === 0 ||
+                    isNaN(Number(loginValue))
+                  }
                     onClick={() => {
-                        let isValidation =  Validation.formValidate("password", passwordValue, setError, setIs8Password);
-                        console.log(is8Password)
+                        let isValidation =  Validation.formValidate("password", passwordValue, setError, setMsg);
+                        console.log(setMsg)
                         if(!isValidation) return
                       handleClickOpen()
                       // loginUser(
