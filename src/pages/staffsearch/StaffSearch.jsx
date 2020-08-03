@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { Typography, DialogTitle } from '@material-ui/core';
+import PeopleAltIcon from '@material-ui/icons/People';
+import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
-import './StaffSearch.css';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
 import { Paper,MenuItem,TextField } from '@material-ui/core';
@@ -11,14 +12,15 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
+import './StaffSearch.css';
 import ListData from './ListData';
-import PeopleAltIcon from '@material-ui/icons/People';
-import SearchIcon from '@material-ui/icons/Search';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: '98%',
-    height: theme.spacing(75),
+    height: 'auto',
+    // height: theme.spacing(75),
   },
 
   title: {
@@ -59,13 +61,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formControl1: {
-    minWidth: 268,
+    minWidth: 250,
     margin: theme.spacing(1),
     left: theme.spacing(10.5),
     top: theme.spacing(0.5),
   },
   formControl2: {
-    minWidth: 268,
+    minWidth: 250,
     margin: theme.spacing(1),
     left: theme.spacing(10.5),
     top: theme.spacing(1.5),
@@ -108,18 +110,28 @@ const useStyles = makeStyles((theme) => ({
   brank: {
     height:35,
   },
-
+  
+  blockButton: {
+    width: '50%',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+  },
   button: {
-    left: theme.spacing(50),
+    left: theme.spacing(8),
+    float: 'left',
+    marginBottom: 15,
     // top: theme.spacing(-46),
   },
   button_2: {
-    left: theme.spacing(52.5),
+    left: theme.spacing(10.5),
+    float: 'left',
+    marginBottom: 15,
     // top: theme.spacing(-46),
   },
 
   selectEmpty: {
     marginTop: theme.spacing(2),
+
   },
   root: {
     display: 'flex',
@@ -459,7 +471,7 @@ const StaffSearch = () => {
 
          <TextField className={classes.skill}
           select
-          label="skill1"
+          label="skill①"
           value={skill1}
           onChange={Skill1Change}
           variant="outlined"
@@ -477,7 +489,7 @@ const StaffSearch = () => {
       {/* ステータス１ */}
       <TextField className={classes.skill_level}
           select
-          label="level1"
+          label="level①"
           value={status1}
           onChange={Status1Change}
           variant="outlined"
@@ -495,7 +507,7 @@ const StaffSearch = () => {
     {/* スキル情報２ */}
       <TextField className={classes.skill}
           select
-          label="skill2"
+          label="skill②"
           value={skill2}
           onChange={Skill2Change}
           variant="outlined"
@@ -511,7 +523,7 @@ const StaffSearch = () => {
       {/* ステータス2 */}
       <TextField className={classes.skill_level}
           select
-          label="level2"
+          label="level②"
           value={status2}
           onChange={Status2Change}
           variant="outlined"
@@ -529,7 +541,7 @@ const StaffSearch = () => {
     {/* スキル情報３ */}
       <TextField className={classes.skill}
           select
-          label="skill3"
+          label="skill③"
           value={skill3}
           onChange={Skill3Change}
           variant="outlined"
@@ -545,7 +557,7 @@ const StaffSearch = () => {
       {/* ステータス3 */}
       <TextField className={classes.skill_level}
           select
-          label="level3"
+          label="level③"
           value={status3}
           onChange={Status3Change}
           variant="outlined"
@@ -620,13 +632,12 @@ const StaffSearch = () => {
         </div>
 
         <br className={classes.end} />
-
+     <div className={classes.blockButton}>
       {/* リセットボタン */}
-      <div>
       <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
       {/* 検索ボタン */}
       <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
-      </div>
+     </div>
     </Paper>
     </div>
   );
