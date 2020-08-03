@@ -214,7 +214,7 @@ export default function ReferenceList() {
             </DialogTitle>
 
             <div className={classes.root}>
-                <Paper className={classes.paper}>
+                {/* <Paper className={classes.paper}> */}
                     <TableContainer>
                         <Grid container justify={"center"}>
                             <Grid className="table1">
@@ -230,7 +230,7 @@ export default function ReferenceList() {
                                             .map((data) => {
                                                 return (
                                                     <StyledTableRow
-                                                        hover
+                                                        // hover
                                                         key={data.id}
                                                     >
                                                         <TableCell align="center">{data.name}</TableCell>
@@ -260,7 +260,7 @@ export default function ReferenceList() {
                             </Grid>
                         </Grid>
                     </TableContainer>
-                </Paper>
+                {/* </Paper> */}
             </div>
         </Paper>
     )
