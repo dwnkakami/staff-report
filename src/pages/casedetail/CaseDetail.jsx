@@ -88,24 +88,24 @@ export default function CaseDetail (props) {
             案件詳細
           </DialogTitle>
         <DialogContent dividers >
-        {user.map((data) => (
-          <Typography gutterBottom key={data.id}>
+        {/* {user.map((data) => ( */}
+          <Typography gutterBottom>
             <table>
               <tr>
                 <th>案件名</th>
                 <th>案件保有会社</th>
               </tr>
               <tr>
-                <td>{data.name}</td>
-                <td>{data.customer_name}</td>
+                <td>{props.name}</td>
+                <td>{props.customer_name}</td>
               </tr>
               <tr>
                 <th>依頼単価</th>
                 <th>勤務地</th>
               </tr>
               <tr>
-                <td>{data.unit_cost}</td>
-                <td>{data.workplace}</td>
+                <td>{props.unit_cost}</td>
+                <td>{props.workplace}</td>
               </tr>
               </table>
               <table>
@@ -115,9 +115,9 @@ export default function CaseDetail (props) {
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>{data.number_of_persons}</td>
-                <td>{data.matter_start}</td>
-                <td>{data.matter_end}</td>
+                <td>{props.number_of_persons}</td>
+                <td>{props.matter_start}</td>
+                <td>{props.matter_end}</td>
               </tr>
             </table>
             <table>
@@ -125,7 +125,7 @@ export default function CaseDetail (props) {
                 <th>業務内容</th>
               </tr>
               <tr>
-                <td class='wide-td1'>{data.business_content}</td>
+                <td class='wide-td1'>{props.business_content}</td>
               </tr>
             </table>
             <table>
@@ -135,9 +135,9 @@ export default function CaseDetail (props) {
                 <th>スキル3</th>
               </tr>
               <tr>
-                <td>{data.skill1}</td>
-                <td>{data.skill2}</td>
-                <td>{data.skill3}</td>
+                <td>{props.skill1}</td>
+                <td>{props.skill2}</td>
+                <td>{props.skill3}</td>
               </tr>
             </table>
             <table>
@@ -146,12 +146,12 @@ export default function CaseDetail (props) {
                 <th>備考欄</th>
               </tr>
               <tr>
-                <td class='wide-td2'>{data.skill_level_column}</td>
-                <td>{data.note}</td>
+                <td class='wide-td2'>{props.skill_level_column}</td>
+                <td>{props.note}</td>
               </tr>
             </table>
           </Typography>
-        ))}
+        {/* ))} */}
         </DialogContent>
       </Dialog>
     </div>
