@@ -11,8 +11,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import ListIcon from '@material-ui/icons/List';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, DialogTitle } from '@material-ui/core';
 
 import axios from 'axios';
 
@@ -59,14 +62,12 @@ const StyledTableCell = withStyles((theme) => ({
 
 const StyledTableRow = withStyles(() => ({
   root: {
-    root: {
       '&:nth-of-type(odd)': {
           backgroundColor: "#fff",
       },
       '&:nth-of-type(even)':{
         backgroundColor: "#eee",
       },
-  },
   },
 }))(TableRow);
   
@@ -168,10 +169,13 @@ const StyledTableRow = withStyles(() => ({
 
   return(
     <Paper elevation={3} >
+      <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
-                    <DescriptionOutlinedIcon style={{ fontSize: '40px', }} />
+       <ListIcon style={{ fontSize: '25px', }} />
+                    <AssignmentIcon style={{fontSize: '40px'}} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
+        </DialogTitle>
         <TableContainer>
           <Grid container spacing={24} justify={"center"}>
             <Grid className="table1">
