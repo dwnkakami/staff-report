@@ -1,89 +1,146 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-//import Typography from '@material-ui/core/Typography';
+import { Typography, DialogTitle } from '@material-ui/core';
+import PeopleAltIcon from '@material-ui/icons/People';
+import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
-//import '../Css/Search.css';
-import './StaffSearch.css';
 import Button from '@material-ui/core/Button';
-import { Card,MenuItem } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import { Paper,MenuItem,TextField } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
+import './StaffSearch.css';
 import ListData from './ListData';
 
+
 const useStyles = makeStyles((theme) => ({
+  paper: {
+    width: '98%',
+    height: 'auto',
+    // height: theme.spacing(75),
+  },
+
+  title: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(0),
+  },
+  title_2: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
+  },
+  title_3: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
+  },
+  title_4: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
+  },
+  title_5: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
+  },
+  title_6: {
+    float: 'left',
+    paddingTop: 30,
+    marginLeft: theme.spacing(2.5),
+    marginTop: theme.spacing(1),
+  },
+
   formControl1: {
+    minWidth: 250,
     margin: theme.spacing(1),
-    minWidth: 120,
+    left: theme.spacing(10.5),
+    top: theme.spacing(0.5),
   },
-
   formControl2: {
+    minWidth: 250,
     margin: theme.spacing(1),
-    minWidth: 120,
-    left: 300,
+    left: theme.spacing(10.5),
+    top: theme.spacing(1.5),
+  },
+  skill: {
+    minWidth: 130,
+    margin: theme.spacing(1),
+    left: theme.spacing(4),
+    top: theme.spacing(2),
+  },
+  skill_level: {
+    minWidth: 130,
+    margin: theme.spacing(1),
+    left: theme.spacing(3),
+    top: theme.spacing(2),
+  },
+  age: {
+    minWidth: 130,
+    margin: theme.spacing(1),
+    left: theme.spacing(12.5),
+    top: theme.spacing(2),
+  },
+  gender: {
+    minWidth: 130,
+    margin: theme.spacing(1),
+    left: theme.spacing(10.7),
+    top: theme.spacing(2),
+  },
+  areas: {
+    minWidth: 130,
+    margin: theme.spacing(1),
+    left: theme.spacing(10.7),
+    top: theme.spacing(2),
   },
 
-  formControl3: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: 435,
-    top:30,
+  end: {
+    width:'100%',
+    clear:'both',
   },
-
-  formControl4: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: 0,
-    top:20,
+  brank: {
+    height:35,
   },
-
-  formControl5: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: -272,
-    top:80,
+  
+  blockButton: {
+    width: '50%',
+    marginRight: 'auto',
+    marginLeft: 'auto',
   },
-
-  formControl6: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: -545,
-    top:160,
+  button: {
+    left: theme.spacing(8),
+    float: 'left',
+    marginBottom: 15,
+    // top: theme.spacing(-46),
   },
-  formControl7: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    top:150,
-  },
-  formControl8: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: 28,
-    top:80,
-  },
-
-  formControl9: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    left: -244,
-    top:160,
-    position:'relative',
+  button_2: {
+    left: theme.spacing(10.5),
+    float: 'left',
+    marginBottom: 15,
+    // top: theme.spacing(-46),
   },
 
   selectEmpty: {
     marginTop: theme.spacing(2),
-  },
 
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '25ch',
-      left:60,
-    },
   },
-}));
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0),
+      width: '100%',
+    },
+  },}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -324,18 +381,29 @@ const StaffSearch = () => {
   }
 
   return (
-    <div class='body'>
-    <Card class='paper'>
-    <p class='font'>スタッフ検索</p>
-    <p class='font'>職種</p>
+　　<div className={classes.root}>
+     <Paper elevation={0} variant="outlined" className={classes.paper}>
+     <DialogTitle>
+    <div style={{ display: 'flex' }}>
+    <SearchIcon style={{ fontSize: '25px'}}/>
+    <PeopleAltIcon style={{ fontSize: '40px', }} />
+    <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
+    </div>
+    </DialogTitle>
     {/* 職種選択 */}
-    <FormControl className={classes.formControl1}>
+
+      <div>
+    　　<Typography className={classes.title} variant="h5" component="h2">
+          職種
+        </Typography>
+          <FormControl className={classes.formControl1}>
+            <InputLabel>職種</InputLabel>
             <Select
               multiple
               value={ocp}
               onChange={handleChange}
               input={<Input />}
-              renderValue={(selected)=>selected.join(', ')}
+              renderValue={(selected) => selected.join(', ')}
               MenuProps={MenuProps}
             >
               {getOcp.map((name) => (
@@ -345,7 +413,10 @@ const StaffSearch = () => {
                 </MenuItem>
               ))}
             </Select>
-    </FormControl>
+          </FormControl>
+          </div>
+
+    {/* <br className={classes.end}/> */}
 
       {/* <FormControl variant="filled" className={classes.formControl1}>
         <Select
@@ -370,185 +441,204 @@ const StaffSearch = () => {
       {/* <Button variant="contained">検索</Button> */}
 
     {/* 資格情報 */}
-    <p class='font'>資格</p>
-    <FormControl variant="filled" className={classes.formControl1}>
-        <Select
+      <div>
+    　　<Typography className={classes.title_2} variant="h5" component="h2">
+          資格
+        </Typography>
+         <TextField className={classes.formControl2}
+          select
+          label="資格"
           value={license}
           onChange={handleChange2}
-          //name = "license"
+          variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {getLicense.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
-        </Select>
-    </FormControl>
+        </TextField>
+      </div>
+
+    {/* <br className={classes.end}/> */}
 
       {/* スキル情報１ */}
-      <p class='font'>スキルレベル</p>
-     <FormControl variant="filled" className={classes.formControl1}>
-        <Select
+      <div>
+      <Typography className={classes.title_3} variant="h5" component="h2">
+            スキルレベル
+        </Typography>
+
+         <TextField className={classes.skill}
+          select
+          label="skill①"
           value={skill1}
           onChange={Skill1Change}
-          //name="skill1"
-          label="スキルレベル１"
+          variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {getSkill.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
-        </Select>
-      </FormControl>
+        </TextField>
+
+    {/* <br className={classes.end} /> */}
 
       {/* ステータス１ */}
-      <FormControl variant="filled" className={classes.formControl2}>
-        <Select
+      <TextField className={classes.skill_level}
+          select
+          label="level①"
           value={status1}
           onChange={Status1Change}
+          variant="outlined"
         >
-         {getStatus.map((data)=>(
-            <option key={data.level} value={data.level}>
-              {data.level}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-
-    {/* スキル情報２ */}
-    <FormControl variant="filled" className={classes.formControl5}>
-        <Select
-          value={skill2}
-          onChange={Skill2Change}
-          //name="skill2"
-          inputProps={{
-            // name: 'sk2',
-            id: 'filled-age-native-simple',
-          }}
-        >
-          {getSkill.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-
-      {/* ステータス2 */}
-      <FormControl variant="filled" className={classes.formControl8}>
-        <Select
-          value={status2}
-          onChange={Status2Change}
-          inputProps={{
-          //  name: 'st2',
-            id: 'filled-age-native-simple',
-          }}
-        >
-         {getStatus.map((data)=>(
-            <option key={data.level} value={data.level}>
-              {data.level}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-
-    {/* スキル情報３ */}
-    <FormControl variant="filled" className={classes.formControl6}>
-        <Select
-          value={skill3}
-          onChange={Skill3Change}
-         // name="skill3"
-          inputProps={{
-            // name: 'sk3',
-            id: 'filled-age-native-simple',
-          }}
-        >
-          {getSkill.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
-            </option>
-          ))}
-        </Select>
-      </FormControl>
-
-      {/* ステータス3 */}
-      <FormControl variant="filled" className={classes.formControl9}>
-        <Select
-          value={status3}
-          onChange={Status3Change}
-          inputProps={{
-          //  name: 'st3',
-            id: 'filled-age-native-simple',
-          }}
-        >
+          <MenuItem className={classes.brank}></MenuItem>
           {getStatus.map((data)=>(
             <option key={data.level} value={data.level}>
               {data.level}
             </option>
           ))}
-        </Select>
-      </FormControl>
+        </TextField>
+      
+    {/* <br className={classes.end} /> */}
 
-    <p class='older'>年齢</p>
-     <FormControl variant="filled" className={classes.formControl7}>
-        <Select
+    {/* スキル情報２ */}
+      <TextField className={classes.skill}
+          select
+          label="skill②"
+          value={skill2}
+          onChange={Skill2Change}
+          variant="outlined"
+        >
+          <MenuItem className={classes.brank}></MenuItem>
+          {getSkill.map((data)=>(
+            <option key={data.id} value={data.name}>
+              {data.name}
+            </option>
+          ))}
+        </TextField>
+
+      {/* ステータス2 */}
+      <TextField className={classes.skill_level}
+          select
+          label="level②"
+          value={status2}
+          onChange={Status2Change}
+          variant="outlined"
+        >
+          <MenuItem className={classes.brank}></MenuItem>
+          {getStatus.map((data)=>(
+            <option key={data.level} value={data.level}>
+              {data.level}
+            </option>
+          ))}
+        </TextField>
+
+    {/* <br className={classes.end} /> */}
+
+    {/* スキル情報３ */}
+      <TextField className={classes.skill}
+          select
+          label="skill③"
+          value={skill3}
+          onChange={Skill3Change}
+          variant="outlined"
+        >
+          <MenuItem className={classes.brank}></MenuItem>
+          {getSkill.map((data)=>(
+            <option key={data.id} value={data.name}>
+              {data.name}
+            </option>
+          ))}
+        </TextField>
+
+      {/* ステータス3 */}
+      <TextField className={classes.skill_level}
+          select
+          label="level③"
+          value={status3}
+          onChange={Status3Change}
+          variant="outlined"
+        >
+          <MenuItem className={classes.brank}></MenuItem>
+          {getStatus.map((data)=>(
+            <option key={data.level} value={data.level}>
+              {data.level}
+            </option>
+          ))}
+        </TextField>
+        </div>
+
+        <div>
+      　<Typography className={classes.title_4} variant="h5" component="h2">
+          年齢
+        </Typography>
+         <TextField className={classes.age}
+          select
+          label="年齢"
           value={age}
           onChange={ageChange}
-          // name="older"
+          variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {getAge.map((data)=>(
             <option key={data.age} value={data.age}>
               {data.age}
             </option>
           ))}
-        </Select>
-      </FormControl>
+        </TextField>
+        </div>
 
-    <p class='gender'>性別</p>
-    <FormControl variant="filled" className={classes.formControl3}>
-        <Select
+        <div>
+    　　<Typography className={classes.title_5} variant="h5" component="h2">
+          性別
+        </Typography>
+         <TextField className={classes.gender}
+          select
+          label="性別"
           value={ge}
           onChange={genderChange}
-         // name="ge"
-          inputProps={{
-            // name: 'ge',
-            id: 'filled-age-native-simple',
-          }}
+          variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {getGender.map((data)=>(
             <option key={data.gender} value={data.gender}>
               {data.gender}
             </option>
           ))}
-        </Select>
-      </FormControl>
+        </TextField>
+        </div>
 
-      <p class='area'>地域</p>
-      <FormControl variant="filled" className={classes.formControl4}>
-        <Select
+        <div>
+    　　<Typography className={classes.title_6} variant="h5" component="h2">
+          地域
+        </Typography>
+         <TextField className={classes.areas}
+          select
+          label="地域"
           value={areas}
           onChange={aresChenge}
-          //name="areas"
-          inputProps={{
-            // name: 'areas',
-            id: 'filled-age-native-simple',
-          }}
+          variant="outlined"
         >
+          <MenuItem className={classes.brank}></MenuItem>
           {getArea.map((data)=>(
             <option key={data.id} value={data.name}>
               {data.name}
             </option>
           ))}
-        </Select>
-      </FormControl>
-    
+        </TextField>
+        </div>
+
+        <br className={classes.end} />
+     <div className={classes.blockButton}>
       {/* リセットボタン */}
-      <Button class='reset' variant="contained" onClick={Reset}>クリア</Button>
-      
+      <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
       {/* 検索ボタン */}
-      <Button class='search' variant="contained" onClick={Search}>検索</Button>
-    </Card>
+      <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
+     </div>
+    </Paper>
     </div>
   );
 }
