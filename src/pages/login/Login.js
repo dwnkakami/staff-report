@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Component} from "react";
 import {
   Grid,
   CircularProgress,
@@ -28,6 +28,7 @@ import logo from "./logo.svg";
 
 // context
 import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
+import Validation from "./Validation";
 
 function Login(props) {
 
@@ -131,7 +132,7 @@ function Login(props) {
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
   var [submitValue, setSubmitValue] = useState("");
-
+  var [msg, setMsg] = useState("ユーザーID・パスワードの入力に誤りがあるか、登録されていません。");
 
 
   return (
@@ -144,7 +145,10 @@ function Login(props) {
         <div className={classes.form}>
           <Tabs
             value={activeTabId}
-            onChange={(e, id) => setActiveTabId(id)}
+            onChange={(e, id) => {
+              setError(false)
+              setActiveTabId(id)
+            }}
             indicatorColor="primary"
             textColor="primary"
             centered
@@ -167,8 +171,8 @@ function Login(props) {
                 {/* <div className={classes.formDivider} /> */}
               {/* </div> */}
               <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  ユーザーID・パスワードの入力に誤りがあるか、登録されていません。
+              <Typography color="secondary" className={classes.errorMessage}>
+                  {msg}
                 </Typography>
               </Fade>
               <TextField
@@ -180,7 +184,10 @@ function Login(props) {
                   },
                 }}
                 value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                onChange={e => {
+                  setLoginValue(e.target.value);
+                  let isValidation = Validation.formValidate("userid", e.target.value, setError, setMsg);
+                }}
                 margin="normal"
                 placeholder="ユーザーID"
                 type="number"
@@ -207,9 +214,13 @@ function Login(props) {
                 ) : (
                   <Button
                     disabled={
-                      loginValue.length === 0 || passwordValue.length === 0
+                      loginValue.length === 0 || 
+                      passwordValue.length === 0 
                     }
-                    onClick={() =>
+                    onClick={() => {
+                      let isValidation =  Validation.formValidate("password", passwordValue, setError, setMsg);
+                      console.log(setMsg)
+                      if(!isValidation) return
                       loginUser(
                         userDispatch,
                         loginValue,
@@ -218,7 +229,7 @@ function Login(props) {
                         setIsLoading,
                         setError,
                       )
-                    }
+                    }}
                     variant="contained"
                     color="primary"
                     size="large"
@@ -256,10 +267,13 @@ function Login(props) {
                   },
                 }}
                 value={loginValue}
-                onChange={e => setLoginValue(e.target.value)}
+                onChange={e => {
+                  setLoginValue(e.target.value);
+                  let isValidation = Validation.formValidate("userid", e.target.value, setError, setMsg);
+                }}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="number"
+                type="text"
                 fullWidth
               />
               <TextField
@@ -307,7 +321,13 @@ function Login(props) {
                 type="password"
                 fullWidth
               />
-              <TextField
+              <Fade in={error}>
+              <Typography color="secondary" className={classes.errorMessage}>
+                  {msg}
+                </Typography>
+              </Fade>
+          
+          <TextField
           id="standard-select-currency"
           select
           label="Select"
@@ -326,7 +346,15 @@ function Login(props) {
                   <CircularProgress size={26} />
                 ) : (
                   <Button
-                    onClick={() =>
+                  disabled={
+                    loginValue.length === 0 || 
+                    passwordValue.length === 0 ||
+                    isNaN(Number(loginValue))
+                  }
+                    onClick={() => {
+                        let isValidation =  Validation.formValidate("password", passwordValue, setError, setMsg);
+                        console.log(setMsg)
+                        if(!isValidation) return
                       handleClickOpen()
                       // loginUser(
                       //   userDispatch,
@@ -336,12 +364,8 @@ function Login(props) {
                       //   setIsLoading,
                       //   setError,
                       // )
-                    }
-                    disabled={
-                      loginValue.length === 0 ||
-                      passwordValue.length === 0 ||
-                      nameValue.length === 0
-                    }
+                    }}
+                    
                     size="large"
                     variant="contained"
                     color="primary"
