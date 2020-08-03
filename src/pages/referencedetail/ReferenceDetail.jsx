@@ -9,8 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+// import { useState, useEffect } from 'react';
+// import axios from 'axios';
 import'../referenceList/ReferenceList';
 
 const styles = (theme) => ({
@@ -57,22 +57,22 @@ export default function ReferenceDetail(props) {
     setOpen(false);
   };
 
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
 
-  useEffect(() => { getReferenceData(); console.log("connected") },[]);
+  // useEffect(() => { getReferenceData(); console.log("connected") },[]);
   
-  const getReferenceData = () => {
-    if (user.length === 0) {
-      axios
-        .get('/api/referencedetail/1')
-        .then(response => {
-          setUser(response.data);
-        })
-        .catch(() => {
-          console.log('connected error');
-        })
-    }
-  }
+  // const getReferenceData = () => {
+  //   if (user.length === 0) {
+  //     axios
+  //       .get('/api/referencedetail/1')
+  //       .then(response => {
+  //         setUser(response.data);
+  //       })
+  //       .catch(() => {
+  //         console.log('connected error');
+  //       })
+  //   }
+  // }
 
   return (
     <div>

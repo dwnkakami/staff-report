@@ -8,8 +8,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
-import { useState , useEffect } from 'react';
-import axios from 'axios';
+// import { useState , useEffect } from 'react';
+// import axios from 'axios';
 import ReferenceAdd from '../referenceadd/ReferenceAdd';
 
 const styles = (theme) => ({
@@ -61,22 +61,22 @@ export default function CaseDetail (props) {
     setOpen(false);
   };
 
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
 
-  useEffect(() => getCasedetailData());
+  // useEffect(() => { getCasedetailData(); console.log("connected") },[]);
 
-  const getCasedetailData = () => {
-    if(user.length === 0) {
-      axios
-        .get('/api/casedetail/1')
-        .then(response => {
-          setUser(response.data);
-        })
-         .catch(() => {
-          console.log('connected error');
-        })
-    }
-  }
+  // const getCasedetailData = () => {
+  //   if(user.length === 0) {
+  //     axios
+  //       .get('/api/casedetail/1')
+  //       .then(response => {
+  //         setUser(response.data);
+  //       })
+  //        .catch(() => {
+  //         console.log('connected error');
+  //       })
+  //   }
+  // }
 
   return (
     <div>
