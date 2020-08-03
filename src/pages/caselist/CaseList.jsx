@@ -225,7 +225,20 @@ const StyledTableRow = withStyles((theme) => ({
                 <StyledTableCell classname="tablecell" align="center">
                   {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
                   {/* 案件リスト詳細 */}
-                  <CaseDetail key={data.id} caseid={data.id}
+                  <CaseDetail key={data.id}
+                  name={data.name}
+                  customer_name={data.customer_name}
+                  unit_cost={data.unit_cost}
+                  workplace={data.workplace}
+                  number_of_persons={data.number_of_persons}
+                  matter_start={data.matter_start}
+                  matter_end={data.matter_end}
+                  skill1={data.skill1}
+                  skill2={data.skill2}
+                  skill3={data.skill3}
+                  skill_level_column={data.skill_level_column}
+                  business_content={data.business_content}
+                  note={data.note}
                   // open = {open}
                   />
                   {/* </Button> */}

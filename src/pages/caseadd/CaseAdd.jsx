@@ -476,13 +476,13 @@ const clear = () => {
         </FormControl>
       </Grid>
       <Grid item xs={2}>
-        <Button onClick={submit} className={classes.button} variant="contained">
-        登録
+        <Button onClick={clear} className={classes.button} variant="contained">
+        クリア
       </Button>
       </Grid>
       <Grid item xs={2}>
-        <Button onClick={clear} className={classes.button} variant="contained">
-         クリア 
+        <Button onClick={submit} className={classes.button} variant="contained">
+         登録 
         </Button>
       </Grid>
       </Grid>
