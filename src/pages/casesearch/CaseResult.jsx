@@ -11,8 +11,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import ListIcon from '@material-ui/icons/List';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+
 import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, DialogTitle } from '@material-ui/core';
 
 import axios from 'axios';
 
@@ -60,7 +63,10 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles(() => ({
   root: {
       '&:nth-of-type(odd)': {
-          backgroundColor: "#ffffff",
+          backgroundColor: "#fff",
+      },
+      '&:nth-of-type(even)':{
+        backgroundColor: "#eee",
       },
   },
 }))(TableRow);
@@ -69,6 +75,7 @@ const StyledTableRow = withStyles(() => ({
     table: {
       minWidth: 700,
     },
+
   });
 
   export default function CaseResult() {
@@ -161,45 +168,49 @@ const StyledTableRow = withStyles(() => ({
   // }
 
   return(
-    <Paper elevation={3} className='paper1'>
+    <Paper elevation={3} >
+      <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
-                    <DescriptionOutlinedIcon style={{ fontSize: '40px', }} />
+       <ListIcon style={{ fontSize: '25px', }} />
+                    <AssignmentIcon style={{fontSize: '40px'}} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
+        </DialogTitle>
         <TableContainer>
           <Grid container spacing={24} justify={"center"}>
             <Grid className="table1">
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell align="left">案件番号</StyledTableCell>
-              <StyledTableCell align="left">案件名</StyledTableCell>
-              <StyledTableCell align="left">顧客番号</StyledTableCell>
-              <StyledTableCell align="left">依頼単価&nbsp;
+              <StyledTableCell align="center">案件番号</StyledTableCell>
+              <StyledTableCell align="center">案件名</StyledTableCell>
+              <StyledTableCell align="center">顧客番号</StyledTableCell>
+              <StyledTableCell align="center">依頼単価&nbsp;
               {/* <button onClick={this._sortByAscend.bind(this)} value="uni_cost">昇順</button>
               <button onClick={this._sortByDescend.bind(this)} value="uni_cost">降順</button> */}
               </StyledTableCell>
-              <StyledTableCell align="left">勤務地</StyledTableCell>
-              <StyledTableCell align="left">募集人数</StyledTableCell>
-              <StyledTableCell align="left">勤務開始日</StyledTableCell>
-              <StyledTableCell align="left">勤務終了日</StyledTableCell>
-              <StyledTableCell align="left">案件詳細</StyledTableCell>
+              <StyledTableCell align="center">勤務地</StyledTableCell>
+              <StyledTableCell align="center">募集人数</StyledTableCell>
+              <StyledTableCell align="center">勤務開始日</StyledTableCell>
+              <StyledTableCell align="center">勤務終了日</StyledTableCell>
+              <StyledTableCell align="center">案件詳細</StyledTableCell>
             </TableRow>
           </TableHead>
-          {ListData.getCaseData().map((data) => (
           <TableBody>
-                <StyledTableRow/>
-                <StyledTableCell classname="tablecell" component="th" scope="row">
+          {ListData.getCaseData().map((data) => (
+         
+                <StyledTableRow>
+                <StyledTableCell classname="tablecell" align="center" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.name}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.customer_id}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.unit_cost}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.workplace}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">
+                <StyledTableCell classname="tablecell" align="center">{data.name}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.customer_id}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.unit_cost}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.workplace}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.number_of_persons}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.matter_start}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.matter_end}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">
                   {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
                   {/* 案件リスト詳細 */}
                   <CaseDetail key={data.id} caseid={data.id}
@@ -207,8 +218,10 @@ const StyledTableRow = withStyles(() => ({
                   />
                   {/* </Button> */}
                 </StyledTableCell>
-          </TableBody>
+            </StyledTableRow>
+         
           ))}
+         </TableBody>
        </Table>
         </Grid>
       </Grid>
