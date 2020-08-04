@@ -382,7 +382,7 @@ const StaffSearch = () => {
 
   return (
 　　<div className={classes.root}>
-     <Paper elevation={0} variant="outlined" className={classes.paper}>
+     <Paper variant="outlined" className={classes.paper}>
      <DialogTitle>
     <div style={{ display: 'flex' }}>
     <SearchIcon style={{ fontSize: '25px'}}/>
