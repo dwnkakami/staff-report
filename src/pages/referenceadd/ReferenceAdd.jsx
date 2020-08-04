@@ -22,9 +22,13 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
     },
-    button: {
-      paddingTop: 20,
+    button1: {
+      marginTop: 20,
     },
+  　button2: {
+      marginTop: 20,
+      left: theme.spacing(2)
+   }
   }));
 
 const styles = (theme) => ({
@@ -229,15 +233,9 @@ export default function AlertDialog() {
                         }}
                         type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
-            <Grid item xs={2}>
-                <div className={classes1.button}>
-                <Button variant="contained" onClick={clear}>クリア</Button>
-                </div>
-            </Grid>
-            <Grid item xs={2}>
-                <div className={classes1.button}>
-                <Button variant="contained" onClick={add}>登録</Button>
-                </div>
+            <Grid item xs={4}>
+                <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
+                <Button variant="contained" className={classes1.button2} onClick={add}>登録</Button>
             </Grid>
         </Grid>
         </DialogContent>

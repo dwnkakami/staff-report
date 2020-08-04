@@ -18,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
     },
+    button1: {
+        marginTop: 20
+    },
+    button2: {
+        marginTop: 20,
+        left: theme.spacing(2),
+    },
 }));
 
 export default function StaffAdd (props) {
@@ -317,11 +324,9 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={add} className="button1">追加</Button>
-        </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={clear} className="button2">クリア</Button>
+        <Grid item xs={4}>
+            <Button variant="contained" onClick={clear} className={classes.button1}>クリア</Button>
+            <Button variant="contained" onClick={add} className={classes.button2}>追加</Button>
         </Grid>
         </Grid>
         </Paper>
