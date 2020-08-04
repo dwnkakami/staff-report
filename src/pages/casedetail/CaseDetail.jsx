@@ -1,12 +1,13 @@
 import React from 'react';
 import './CaseDetail.css';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 // import { useState , useEffect } from 'react';
 // import axios from 'axios';
@@ -28,6 +29,12 @@ const styles = (theme) => ({
     float:'left',
   },
 });
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
+  },
+}));
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
@@ -53,6 +60,7 @@ const DialogContent = withStyles((theme) => ({
 
 export default function CaseDetail (props) {
   const [open, setOpen] = React.useState(false);
+  const classes = useStyles();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -88,6 +96,7 @@ export default function CaseDetail (props) {
             案件詳細
           </DialogTitle>
         <DialogContent dividers >
+        <Paper className={classes.paper} elevation={3}>
         {/* {user.map((data) => ( */}
           <Typography gutterBottom>
             <table>
@@ -152,6 +161,7 @@ export default function CaseDetail (props) {
             </table>
           </Typography>
         {/* ))} */}
+        </Paper>
         </DialogContent>
       </Dialog>
     </div>
