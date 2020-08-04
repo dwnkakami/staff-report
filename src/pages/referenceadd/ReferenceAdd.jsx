@@ -215,7 +215,7 @@ export default function AlertDialog() {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" variant="outlined" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>備考欄</Typography> */}
@@ -227,7 +227,7 @@ export default function AlertDialog() {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" variant="outlined" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
             <Grid item xs={2}>
                 <div className={classes1.button}>
