@@ -1,5 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
@@ -8,10 +9,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
-  content:{
-    // height: theme.spacing(5),
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
   },
-
 }));
 
 const StaffList005_figure = (props) => {
@@ -36,6 +36,7 @@ const StaffList005_figure = (props) => {
 
   return (
     <div>
+      <Paper className={classes.paper} elevation={3}>
        {user.map((data) => (
         <Typography gutterBottom key={data.staff_id}>
           <table className={classes.root}>
@@ -98,6 +99,7 @@ const StaffList005_figure = (props) => {
           </table>
         </Typography>
         ))}
+      </Paper>
     </div>
   );
 }
