@@ -10,51 +10,17 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-<<<<<<< HEAD
-import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
-import { Grid, Button } from '@material-ui/core';
-=======
 import ListIcon from '@material-ui/icons/List';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
->>>>>>> e318814066f62bfcc64db242a37fc2a08cd43357
 
 import axios from 'axios';
 
 import CaseDetail from '../casedetail/CaseDetail';
-<<<<<<< HEAD
-import { getThemeProps } from "@material-ui/styles";
-
-// const styles = (theme) => ({
-//   root: {
-//       margin: 0,
-//       padding: theme.spacing(2),
-//   },
-// });
-
-// const StyledTableCell = withStyles((theme) => ({
-//     head: {
-//       backgroundColor: theme.palette.common.black,
-//       color: theme.palette.common.white,
-//     },
-//     body: {
-//       fontSize: 14,
-//     },
-//   }))(TableCell);
-
-// const StyledTableRow = withStyles((theme) => ({
-//     root: {
-//       '&:nth-of-type(odd)': {
-//         backgroundColor: theme.palette.action.hover,
-//       },
-//     },
-//   }))(TableRow);
-=======
-
->>>>>>> e318814066f62bfcc64db242a37fc2a08cd43357
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -66,10 +32,7 @@ const StyledTableCell = withStyles((theme) => ({
       color: "black",
       fontSize: 14,
   },
-<<<<<<< HEAD
-=======
   
->>>>>>> e318814066f62bfcc64db242a37fc2a08cd43357
 }))(TableCell);
 
 const StyledTableRow = withStyles(() => ({
@@ -169,8 +132,6 @@ EnhancedTableHead.propTypes = {
     table: {
       minWidth: 700,
     },
-<<<<<<< HEAD
-=======
     visuallyHidden: {
       border: 0,
       clip: 'rect(0 0 0 0)',
@@ -182,7 +143,6 @@ EnhancedTableHead.propTypes = {
       top: 20,
       width: 1,
     },
->>>>>>> e318814066f62bfcc64db242a37fc2a08cd43357
   });
 
 
@@ -220,47 +180,12 @@ EnhancedTableHead.propTypes = {
 
   return(
     <Paper elevation={3} className='paper1'>
+      <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
-                    <DescriptionOutlinedIcon style={{ fontSize: '40px', }} />
+         <ListIcon style={{ fontSize: '25px', }} />
+                    <AssignmentIcon style={{ fontSize: '40px', }} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
-<<<<<<< HEAD
-        <TableContainer>
-          <Grid container spacing={24} justify={"center"}>
-            <Grid className="table1">
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell align="left">案件番号</StyledTableCell>
-              <StyledTableCell align="left">案件名</StyledTableCell>
-              <StyledTableCell align="left">顧客番号</StyledTableCell>
-              <StyledTableCell align="left">依頼単価&nbsp;
-              {/* <button onClick={this._sortByAscend.bind(this)} value="uni_cost">昇順</button>
-              <button onClick={this._sortByDescend.bind(this)} value="uni_cost">降順</button> */}
-              </StyledTableCell>
-              <StyledTableCell align="left">勤務地</StyledTableCell>
-              <StyledTableCell align="left">募集人数</StyledTableCell>
-              <StyledTableCell align="left">勤務開始日</StyledTableCell>
-              <StyledTableCell align="left">勤務終了日</StyledTableCell>
-              <StyledTableCell align="left">案件詳細</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          {Caselistmap.map((data) => (
-          <TableBody>
-                <StyledTableRow/>
-                <StyledTableCell classname="tablecell" component="th" scope="row">
-                  {data.id}
-                </StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.name}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.customer_id}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.unit_cost}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.workplace}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.number_of_persons}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.matter_start}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">{data.matter_end}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="left">
-                  <CaseDetail key={data.id} caseid={data.id}
-=======
         </DialogTitle>
         <TableContainer >
         <Grid container spacing={24} justify={"center"}>
@@ -307,11 +232,11 @@ EnhancedTableHead.propTypes = {
                   note={data.note}
                   occupation={data.occupation}
                   // open = {open}
->>>>>>> e318814066f62bfcc64db242a37fc2a08cd43357
                   />
                 </StyledTableCell>
-          </TableBody>
+                </StyledTableRow>
           ))}
+          </TableBody>
        </Table>
         </Grid>
       </Grid>
