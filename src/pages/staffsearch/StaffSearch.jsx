@@ -642,5 +642,4 @@ const StaffSearch = () => {
     </div>
   );
 }
-
 export default StaffSearch;
