@@ -124,7 +124,7 @@ export default function CaseDetail (props) {
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>{props.number_of_persons}</td>
+                <td>{props.number_of_persons}人</td>
                 <td>{props.matter_start}</td>
                 <td>{props.matter_end}</td>
               </tr>

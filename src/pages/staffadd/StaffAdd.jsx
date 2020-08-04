@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import PeopleIcon from '@material-ui/icons/People';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AddIcon from '@material-ui/icons/Add';
 import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -203,7 +203,7 @@ const classes = useStyles();
         <DialogTitle id="customized-dialog-title">
             <div  style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
-            <PeopleIcon style={{ fontSize: '40px', }}/>
+            <PeopleAltIcon style={{ fontSize: '40px', }}/>
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
         </DialogTitle>
