@@ -78,12 +78,12 @@ function stableSort(array, comparator) {
 const headCells = [
   { id:'id', numeric: false, disablePadding: true, label: '案件番号' },
   { id:'name',numeric: true, disablePadding: false, label: '案件名' },
-  { id:'position',numeric: true, disablePadding: false, label: '顧客名' },
-  { id:'company_abbreviation',numeric: true, disablePadding: false, label: '依頼単価' },
-  { id:'matter_end',numeric: true, disablePadding: false, label: '勤務地' },
-  { id:'id',numeric: true, disablePadding: false, label: '募集人数' },
-  { id:'id',numeric: true, disablePadding: false, label: '案件開始日' },
-  { id:'id',numeric: true, disablePadding: false, label: '案件終了日' },
+  { id:'customer_name',numeric: true, disablePadding: false, label: '顧客名' },
+  { id:'unit_cost',numeric: true, disablePadding: false, label: '依頼単価' },
+  { id:'workplace',numeric: true, disablePadding: false, label: '勤務地' },
+  { id:'number_of_persons',numeric: true, disablePadding: false, label: '募集人数' },
+  { id:'matter_start',numeric: true, disablePadding: false, label: '案件開始日' },
+  { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
   { id:'id',numeric: true, disablePadding: false, label: '案件詳細' },
 ];
 
@@ -235,6 +235,7 @@ EnhancedTableHead.propTypes = {
                   skill_level_column={data.skill_level_column}
                   business_content={data.business_content}
                   note={data.note}
+                  occupation={data.occupation}
                   // open = {open}
                   />
                 </StyledTableCell>

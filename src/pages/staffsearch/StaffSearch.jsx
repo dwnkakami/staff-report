@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { Typography, DialogTitle } from '@material-ui/core';
-import PeopleAltIcon from '@material-ui/icons/People';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -382,7 +382,7 @@ const StaffSearch = () => {
 
   return (
 　　<div className={classes.root}>
-     <Paper elevation={0} variant="outlined" className={classes.paper}>
+     <Paper elevation={3} variant="" >
      <DialogTitle>
     <div style={{ display: 'flex' }}>
     <SearchIcon style={{ fontSize: '25px'}}/>

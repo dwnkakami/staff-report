@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
 import ListIcon from '@material-ui/icons/List';
-import PeopleIcon from '@material-ui/icons/People';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
@@ -191,7 +191,7 @@ return(
 <DialogTitle>
 <div style={{ display: 'flex' }}>
     <ListIcon style={{ fontSize: '25px'}}/>
-    <PeopleIcon style={{ fontSize: '40px', }} />
+    <PeopleAltIcon style={{ fontSize: '40px', }} />
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
