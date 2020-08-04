@@ -235,6 +235,7 @@ EnhancedTableHead.propTypes = {
                   skill_level_column={data.skill_level_column}
                   business_content={data.business_content}
                   note={data.note}
+                  occupation={data.occupation}
                   // open = {open}
                   />
                 </StyledTableCell>
