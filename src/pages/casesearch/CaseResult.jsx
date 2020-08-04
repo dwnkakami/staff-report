@@ -202,6 +202,7 @@ EnhancedTableHead.propTypes = {
                 <CaseDetail key={data.id}
                   name={data.name}
                   customer_name={data.customer_name}
+                  user_name={data.user_name}
                   unit_cost={data.unit_cost}
                   workplace={data.workplace}
                   number_of_persons={data.number_of_persons}
@@ -213,6 +214,7 @@ EnhancedTableHead.propTypes = {
                   skill_level_column={data.skill_level_column}
                   business_content={data.business_content}
                   note={data.note}
+                  occupation={data.ocp_name}
                   // open = {open}
                   />
                 </StyledTableCell>
