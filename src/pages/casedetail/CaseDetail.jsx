@@ -108,23 +108,25 @@ export default function CaseDetail (props) {
                 <td>{props.name}</td>
                 <td>{props.customer_name}</td>
               </tr>
+              </table>
+              <table>
               <tr>
                 <th>依頼単価</th>
                 <th>勤務地</th>
+                <th>職種</th>
               </tr>
               <tr>
                 <td>{props.unit_cost}</td>
                 <td>{props.workplace}</td>
+                <td>{props.occupation}</td>
               </tr>
-              </table>
-              <table>
               <tr>
                 <th>募集人数</th>
                 <th>案件開始日</th>
                 <th>案件終了日</th>
               </tr>
               <tr>
-                <td>{props.number_of_persons}</td>
+                <td>{props.number_of_persons}人</td>
                 <td>{props.matter_start}</td>
                 <td>{props.matter_end}</td>
               </tr>
