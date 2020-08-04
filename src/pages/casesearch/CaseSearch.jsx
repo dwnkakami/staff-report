@@ -405,7 +405,7 @@ const MenuProps = {
   };
 
   return (
-    <Paper className={classes.root} variant="outlined">
+    <Paper elevation={3}>
       <CardContent>
 
       <div style={{display:'flex'}}>
@@ -533,6 +533,10 @@ const MenuProps = {
           {salesItems}
         </TextField>
 
+        <br className={classes.end} />
+        <div className={classes.left}><br /></div>
+        <div className={classes.left}><br /></div>
+        {/* <div className={classes.left}><br /></div> */}
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>

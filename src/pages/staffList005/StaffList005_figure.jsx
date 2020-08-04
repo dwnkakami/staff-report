@@ -9,10 +9,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
   },
-  content:{
-    // height: theme.spacing(5),
+  paper: {
+    borderRadius: '0px 0px 0px 0px',
   },
-
 }));
 
 const StaffList005_figure = (props) => {
