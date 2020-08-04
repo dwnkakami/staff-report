@@ -215,18 +215,18 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setOcp([]);
-    setLicense({license:''});
-    setSkill1({skill1:''});
-    setSkill2({skill2:''});
-    setSkill3({skill3:''});
-    setStatus1({status1:''});
-    setStatus2({status2:''});
-    setStatus3({status3:''});
-    setAreas({areas:''});
-    setGe({ge:''});
-    setAge({age:''});
-  };
+    setOcp([])
+    setLicense('')
+    setSkill1('')
+    setSkill2('')
+    setSkill3('')
+    setStatus1('')
+    setStatus2('')
+    setStatus3('')
+    setAreas('')
+    setGe('')
+    setAge('')
+  }
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
@@ -452,11 +452,11 @@ const StaffSearch = () => {
           onChange={handleChange2}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getLicense.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <MenuItem key={data.id} value={data.name}>
               {data.name}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
       </div>
@@ -476,11 +476,11 @@ const StaffSearch = () => {
           onChange={Skill1Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getSkill.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <MenuItem key={data.id} value={data.name}>
               {data.name}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
 
@@ -494,11 +494,11 @@ const StaffSearch = () => {
           onChange={Status1Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getStatus.map((data)=>(
-            <option key={data.level} value={data.level}>
+            <MenuItem key={data.level} value={data.level}>
               {data.level}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
       
@@ -512,11 +512,11 @@ const StaffSearch = () => {
           onChange={Skill2Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getSkill.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <MenuItem key={data.id} value={data.name}>
               {data.name}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
 
@@ -528,11 +528,11 @@ const StaffSearch = () => {
           onChange={Status2Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getStatus.map((data)=>(
-            <option key={data.level} value={data.level}>
+            <MenuItem key={data.level} value={data.level}>
               {data.level}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
 
@@ -546,11 +546,11 @@ const StaffSearch = () => {
           onChange={Skill3Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getSkill.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <MenuItem key={data.id} value={data.name}>
               {data.name}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
 
@@ -562,11 +562,11 @@ const StaffSearch = () => {
           onChange={Status3Change}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getStatus.map((data)=>(
-            <option key={data.level} value={data.level}>
+            <MenuItem key={data.level} value={data.level}>
               {data.level}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
         </div>
@@ -576,18 +576,18 @@ const StaffSearch = () => {
           年齢
         </Typography>
          <TextField className={classes.age}
-          select
           label="年齢"
           value={age}
           onChange={ageChange}
           variant="outlined"
+          type="number"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          {/* <MenuItem value=""></MenuItem>
           {getAge.map((data)=>(
-            <option key={data.age} value={data.age}>
+            <MenuItem key={data.age} value={data.age}>
               {data.age}
-            </option>
-          ))}
+            </MenuItem>
+          ))} */}
         </TextField>
         </div>
 
@@ -602,11 +602,11 @@ const StaffSearch = () => {
           onChange={genderChange}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getGender.map((data)=>(
-            <option key={data.gender} value={data.gender}>
+            <MenuItem key={data.gender} value={data.gender}>
               {data.gender}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
         </div>
@@ -622,11 +622,11 @@ const StaffSearch = () => {
           onChange={aresChenge}
           variant="outlined"
         >
-          <MenuItem className={classes.brank}></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getArea.map((data)=>(
-            <option key={data.id} value={data.name}>
+            <MenuItem key={data.id} value={data.name}>
               {data.name}
-            </option>
+            </MenuItem>
           ))}
         </TextField>
         </div>

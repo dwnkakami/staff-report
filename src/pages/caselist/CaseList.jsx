@@ -224,6 +224,7 @@ EnhancedTableHead.propTypes = {
                   <CaseDetail key={data.id}
                   name={data.name}
                   customer_name={data.customer_name}
+                  user_name={data.user_name}
                   unit_cost={data.unit_cost}
                   workplace={data.workplace}
                   number_of_persons={data.number_of_persons}
