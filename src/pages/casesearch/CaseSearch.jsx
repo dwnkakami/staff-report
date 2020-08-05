@@ -15,6 +15,7 @@ import { Paper,
          TextField
          } from '@material-ui/core';
 import axios from 'axios';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 //import Component
 import SearchButton from './SearchButton';
@@ -405,9 +406,8 @@ const MenuProps = {
   };
 
   return (
-    <Paper className={classes.root} variant="outlined">
-      <CardContent>
-
+    <Paper elevation={3}>
+      <DialogTitle>
       <div style={{display:'flex'}}>
         <SearchIcon style={{ fontSize: '25px', }} />
         <AssignmentIcon style={{ fontSize: '40px', }} />
@@ -416,9 +416,9 @@ const MenuProps = {
           案件検索
         </Typography>
       </div>
-
-        <br className={classes.end}/>
-
+      </DialogTitle>
+        {/* <br className={classes.end}/> */}
+      <CardContent>
       <Typography className={classes.left} id="child" variant="h5" component="h2">
         案件名検索
         </Typography>
@@ -533,6 +533,10 @@ const MenuProps = {
           {salesItems}
         </TextField>
 
+        <br className={classes.end} />
+        <div className={classes.left}><br /></div>
+        <div className={classes.left}><br /></div>
+        {/* <div className={classes.left}><br /></div> */}
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>

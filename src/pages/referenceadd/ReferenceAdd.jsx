@@ -1,8 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import { Typography, DialogTitle, Grid } from '@material-ui/core';
+// import DialogContent from '@material-ui/core/DialogContent';
+import { Typography, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,12 +10,60 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/core/styles';
+
+
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    minWidth: 195,
+    formControl: {
+      minWidth: 195,
+    },
+    button1: {
+      marginTop: 20,
+    },
+  　button2: {
+      marginTop: 20,
+      left: theme.spacing(2)
+   }
+  }));
+
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
   },
-}));
+  closeButton: {
+    position: 'absolute',
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+});
+
+const DialogTitle = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (
+          <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+  });
+  
+  const DialogContent = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(2),
+      overflow: 'clip',
+    },
+  }))(MuiDialogContent);
 
 export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
@@ -115,7 +163,7 @@ export default function AlertDialog() {
       setEntranceDate("")
   }
   
-  const classes = useStyles();
+  const classes1 = useStyles();
   
 
   return (
@@ -130,24 +178,24 @@ export default function AlertDialog() {
         aria-describedby="alert-dialog-description"
         maxWidth='md'
       >
-        <DialogTitle id="alert-dialog-title">
-            <Typography　style={{ fontSize: '20px' }}>引合登録</Typography>
+        <DialogTitle id="alert-dialog-title" onClose={handleClose}>
+            引合登録
         </DialogTitle>
         <DialogContent dividers >
         <Grid container spacing={2}>
         <Grid item xs={4}>
-            <Typography>案件ID</Typography>
-            <TextField variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
+            {/* <Typography>案件ID</Typography> */}
+            <TextField label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>スタッフID</Typography>
-            <TextField variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
+            {/* <Typography>スタッフID</Typography> */}
+            <TextField label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>職種</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
-            <Select name="occupationId" value={occupationId} onChange={handleChange} label="選択してください">
+            {/* <Typography>職種</Typography> */}
+            <FormControl  variant="outlined" className={classes1.formControl}>
+            <InputLabel>職種</InputLabel>
+            <Select  name="occupationId" value={occupationId} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {user.map((data) => (
             <MenuItem key={data.occupation_id} value={data.occupation_id} >
@@ -158,31 +206,37 @@ export default function AlertDialog() {
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>ポジション</Typography>
-            <TextField variant="outlined" name="position" value={position} onChange={handleChange}/>
+            {/* <Typography>ポジション</Typography> */}
+            <TextField label="ポジション" variant="outlined" name="position" value={position} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>面談場所</Typography>
-            <TextField variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
+            {/* <Typography>面談場所</Typography> */}
+            <TextField label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>面談日</Typography>
-            <TextField type="date" variant="outlined" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes.formControl}/>
+            {/* <Typography>面談日</Typography> */}
+            <TextField label="面談日"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        type="date" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>備考欄</Typography>
-            <TextField variant="outlined" name="note" value={note} onChange={handleChange}/>
+            {/* <Typography>備考欄</Typography> */}
+            <TextField label="備考欄" variant="outlined" name="note" value={note} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>入場日</Typography>
-            <TextField　type="date" variant="outlined" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes.formControl}/>
+            {/* <Typography>入場日</Typography> */}
+            <TextField label="入場日"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={clear}>クリア</Button>
-        </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={add}>登録</Button>
-        </Grid>
+            <Grid item xs={4}>
+                <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
+                <Button variant="contained" className={classes1.button2} onClick={add}>登録</Button>
+            </Grid>
         </Grid>
         </DialogContent>
       </Dialog>

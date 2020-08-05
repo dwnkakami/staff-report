@@ -11,7 +11,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import '../stafflist001/StaffList001.css';
 import axios from 'axios';
-import PeopleIcon from '@material-ui/icons/People';
+import ListIcon from '@material-ui/icons/List';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
@@ -179,12 +180,13 @@ return(
 <Paper elevation={3} >
 <DialogTitle id="customized-dialog-title">
 <div className='title' style={{ display: 'flex' }}>
-    <PeopleIcon style={{ fontSize: '40px', }} />
+    <ListIcon style={{ fontSize: '25px'}}/>
+    <PeopleAltIcon style={{ fontSize: '40px', }} />
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
 <div className={classes.root}>
-      <Paper className={classes.paper}>
+      {/* <Paper className={classes.paper}> */}
         <TableContainer>
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
@@ -219,7 +221,7 @@ return(
           </Grid>
           </Grid>
         </TableContainer>
-      </Paper>
+      {/* </Paper> */}
     </div>
     </Paper>
     </div>

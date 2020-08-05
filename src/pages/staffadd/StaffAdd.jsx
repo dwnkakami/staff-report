@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import PeopleIcon from '@material-ui/icons/People';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AddIcon from '@material-ui/icons/Add';
 import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
@@ -17,6 +17,13 @@ import { UserProfile } from "../../context/UserContext";
 const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
+    },
+    button1: {
+        marginTop: 20
+    },
+    button2: {
+        marginTop: 20,
+        left: theme.spacing(2),
     },
 }));
 
@@ -203,7 +210,7 @@ const classes = useStyles();
         <DialogTitle id="customized-dialog-title">
             <div  style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
-            <PeopleIcon style={{ fontSize: '40px', }}/>
+            <PeopleAltIcon style={{ fontSize: '40px', }}/>
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
         </DialogTitle>
@@ -317,11 +324,9 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={add} className="button1">追加</Button>
-        </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={clear} className="button2">クリア</Button>
+        <Grid item xs={4}>
+            <Button variant="contained" onClick={clear} className={classes.button1}>クリア</Button>
+            <Button variant="contained" onClick={add} className={classes.button2}>追加</Button>
         </Grid>
         </Grid>
         </Paper>
