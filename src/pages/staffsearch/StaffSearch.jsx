@@ -123,7 +123,7 @@ const useStyles = makeStyles((theme) => ({
     // top: theme.spacing(-46),
   },
   button_2: {
-    left: theme.spacing(10.5),
+    left: theme.spacing(10),
     float: 'left',
     marginBottom: 20,
     // top: theme.spacing(-46),
@@ -215,18 +215,18 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setOcp([])
-    setLicense('')
-    setSkill1('')
-    setSkill2('')
-    setSkill3('')
-    setStatus1('')
-    setStatus2('')
-    setStatus3('')
-    setAreas('')
-    setGe('')
-    setAge('')
-  }
+    setOcp([]);
+    setLicense({license:''});
+    setSkill1({skill1:''});
+    setSkill2({skill2:''});
+    setSkill3({skill3:''});
+    setStatus1({status1:''});
+    setStatus2({status2:''});
+    setStatus3({status3:''});
+    setAreas({areas:''});
+    setGe({ge:''});
+    setAge({age:''});
+  };
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
@@ -452,11 +452,11 @@ const StaffSearch = () => {
           onChange={handleChange2}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getLicense.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
       </div>
@@ -476,11 +476,11 @@ const StaffSearch = () => {
           onChange={Skill1Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
 
@@ -494,11 +494,11 @@ const StaffSearch = () => {
           onChange={Status1Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
+            <option key={data.level} value={data.level}>
               {data.level}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
       
@@ -512,11 +512,11 @@ const StaffSearch = () => {
           onChange={Skill2Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
 
@@ -528,11 +528,11 @@ const StaffSearch = () => {
           onChange={Status2Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
+            <option key={data.level} value={data.level}>
               {data.level}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
 
@@ -546,11 +546,11 @@ const StaffSearch = () => {
           onChange={Skill3Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
 
@@ -562,11 +562,11 @@ const StaffSearch = () => {
           onChange={Status3Change}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
+            <option key={data.level} value={data.level}>
               {data.level}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
         </div>
@@ -576,6 +576,7 @@ const StaffSearch = () => {
           年齢
         </Typography>
          <TextField className={classes.age}
+          select
           label="年齢"
           value={age}
           onChange={ageChange}
@@ -583,12 +584,12 @@ const StaffSearch = () => {
           type="number"
           InputProps={{ inputProps: { min: 18, max: 80 } }}
         >
-          {/* <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getAge.map((data)=>(
-            <MenuItem key={data.age} value={data.age}>
+            <option key={data.age} value={data.age}>
               {data.age}
-            </MenuItem>
-          ))} */}
+            </option>
+          ))}
         </TextField>
         </div>
 
@@ -603,11 +604,11 @@ const StaffSearch = () => {
           onChange={genderChange}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getGender.map((data)=>(
-            <MenuItem key={data.gender} value={data.gender}>
+            <option key={data.gender} value={data.gender}>
               {data.gender}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
         </div>
@@ -623,11 +624,11 @@ const StaffSearch = () => {
           onChange={aresChenge}
           variant="outlined"
         >
-          <MenuItem value=""></MenuItem>
+          <MenuItem className={classes.brank}></MenuItem>
           {getArea.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
+            <option key={data.id} value={data.name}>
               {data.name}
-            </MenuItem>
+            </option>
           ))}
         </TextField>
         </div>
