@@ -24,7 +24,12 @@ const useStyles = makeStyles((theme) => ({
       margin: "auto",
     },
     button: {
-      bottom: "-30px",
+      // bottom: "-50px",
+      right: theme.spacing(3),
+    },
+    button2: {
+      // bottom: "-50px",
+      left: theme.spacing(1),
     },
     formControl: {
       minWidth: 220,
@@ -34,6 +39,24 @@ const useStyles = makeStyles((theme) => ({
     },
     textBox: {
       minWidth: 300,
+    },
+    title: {
+      margin: 'none'
+    },
+    content: {
+      width: '300px',
+    },
+    content_2: {
+      width: '300px',
+      margin: "10px 4px 0px 13px",
+    },
+    content_3: {
+      width: '300px',
+      margin: "10px 0px 0px 20px",
+    },
+    content_4: {
+      width: '300px',
+      margin: "10px 0px 0px 35px",
     },
 }));
 
@@ -227,11 +250,14 @@ const clear = () => {
           <div style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
             <AssignmentIcon style={{ fontSize: '40px' }}/>
-            <Typography style={{ fontSize: '30px' }}>
+            <Typography style={{ fontSize: '30px' }} className={classes.title}>
               案件登録
             </Typography>
           </div>
         </DialogTitle>
+
+
+
       <Grid container spacing={3} className={classes.form}>
         <Grid item xs={4}>
           <TextField
@@ -243,10 +269,11 @@ const clear = () => {
             inputProps={{
               maxlength: 50
             }} 
+            className={classes.content}
             />
         </Grid>
       <Grid item xs={4}>  
-          <FormControl variant="outlined" className={classes.formControl}>
+          <FormControl variant="outlined" className={classes.content}>
           <InputLabel>案件保有会社名</InputLabel>
           <Select
             value={com}
@@ -274,8 +301,13 @@ const clear = () => {
             maxlength: 20
           }}
           variant="outlined"
+          className={classes.content}
         />
       </Grid>
+      </Grid>
+
+
+      <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
         <TextField
          name="place"
@@ -287,6 +319,7 @@ const clear = () => {
          inputProps={{
            maxlength: 10
          }} 
+         className={classes.content}
         >
         </TextField>
       </Grid>
@@ -301,64 +334,11 @@ const clear = () => {
            endAdornment: <InputAdornment position="end">人</InputAdornment>,
           }}
           variant="outlined"
+          className={classes.content}
         />
       </Grid>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.skill}>
-        <InputLabel htmlFor="outlined-age-native-simple" >スキル①</InputLabel>
-        <Select
-          value={skill1}
-          onChange={handleChange}
-          name='skill1'
-          label="skill1"
-        >
-          <MenuItem value="" />
-        {state2.map((data) => (
-        <MenuItem key={data.skill_id} value={data.skill_id} >
-          {data.skill_name}
-        </MenuItem>
-        ))}
-        </Select>
-      </FormControl>
-      
-        <FormControl variant="outlined" className={classes.skill}>
-        <InputLabel htmlFor="outlined-age-native-simple">スキル②</InputLabel>
-        <Select
-          value={skill2}
-          name='skill2'
-          onChange={handleChange}
-          label="skill2"
-        >
-          <MenuItem value="" />
-          {state2.map((data) => (
-          <MenuItem key={data.skill_id} value={data.skill_id} >
-            {data.skill_name}
-          </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      
-        <FormControl variant="outlined" className={classes.skill}>
-        <InputLabel htmlFor="outlined-age-native-simple">スキル③</InputLabel>
-        <Select
-          value={skill3}
-          onChange={handleChange}
-          name="skill3"
-          label="skill3"
-        >
-          <MenuItem value="" />
-          {state2.map((data) => (
-          <MenuItem key={data.skill_id} value={data.skill_id} >
-            {data.skill_name}
-          </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-      </Grid>
-      </Grid>
-      <Grid container spacing={3} className={classes.form}>
-      <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
         <Select
           value={job}
@@ -375,8 +355,72 @@ const clear = () => {
         </Select>
       </FormControl>
       </Grid>
+      </Grid>
+
+
+
+      <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="outlined" className={classes.content}>
+        <InputLabel htmlFor="outlined-age-native-simple" >skill①</InputLabel>
+        <Select
+          value={skill1}
+          onChange={handleChange}
+          name='skill1'
+          label="skill1"
+        >
+          <MenuItem value="" />
+        {state2.map((data) => (
+        <MenuItem key={data.skill_id} value={data.skill_id} >
+          {data.skill_name}
+        </MenuItem>
+        ))}
+        </Select>
+      </FormControl>
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.content}>
+        <InputLabel htmlFor="outlined-age-native-simple">skill②</InputLabel>
+        <Select
+          value={skill2}
+          name='skill2'
+          onChange={handleChange}
+          label="skill2"
+        >
+          <MenuItem value="" />
+          {state2.map((data) => (
+          <MenuItem key={data.skill_id} value={data.skill_id} >
+            {data.skill_name}
+          </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.content}>
+        <InputLabel htmlFor="outlined-age-native-simple">skill③</InputLabel>
+        <Select
+          value={skill3}
+          onChange={handleChange}
+          name="skill3"
+          label="skill3"
+        >
+          <MenuItem value="" />
+          {state2.map((data) => (
+          <MenuItem key={data.skill_id} value={data.skill_id} >
+            {data.skill_name}
+          </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      </Grid>
+      </Grid>
+
+
+
+      <Grid container spacing={3} className={classes.form}>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
         <Select
           value={user}
@@ -393,8 +437,6 @@ const clear = () => {
         </Select>
       </FormControl>
       </Grid>
-      </Grid>
-    <Grid container spacing={3} className={classes.form}>
     <Grid item xs={4}>
         <TextField
         name="startdate"
@@ -408,6 +450,7 @@ const clear = () => {
         InputLabelProps={{
           shrink: true,
         }}
+        className={classes.content}
       />
       </Grid>
       <Grid item xs={4}>
@@ -423,10 +466,14 @@ const clear = () => {
         InputLabelProps={{
           shrink: true,
         }}
+        className={classes.content}
       />
       </Grid>
+      </Grid>
+
+      <Grid container className={classes.form}>
       <Grid itex xs={4}>
-        <FormControl  variant="outlined" className={classes.textBox}>
+        <FormControl  variant="outlined" className={classes.content_2}>
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
          name="contents"
@@ -443,7 +490,7 @@ const clear = () => {
         </FormControl>
       </Grid>  
       <Grid item xs={4}>
-        <FormControl  variant="outlined" className={classes.textBox}>
+        <FormControl  variant="outlined" className={classes.content_3}>
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"
@@ -460,7 +507,7 @@ const clear = () => {
         </FormControl>
       </Grid>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.textBox}>
+        <FormControl variant="outlined" className={classes.content_4}>
           <InputLabel htmlFor="outlined-adornment-amount">備考</InputLabel>
           <OutlinedInput
          name="note"
@@ -475,13 +522,14 @@ const clear = () => {
          />
         </FormControl>
       </Grid>
-      <Grid item xs={2}>
+      </Grid>
+
+      <Grid container spacing={5} justify="flex-end" className={classes.form}>
+      <Grid item xs={4}>
         <Button onClick={clear} className={classes.button} variant="contained">
         クリア
-      </Button>
-      </Grid>
-      <Grid item xs={2}>
-        <Button onClick={submit} className={classes.button} variant="contained">
+        </Button>
+        <Button onClick={submit} className={classes.button2} variant="contained">
          登録 
         </Button>
       </Grid>
