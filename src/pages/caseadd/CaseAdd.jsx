@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -10,150 +10,36 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/paper';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import MenuItem from '@material-ui/core/MenuItem';
+import Grid from '@material-ui/core/Grid';
+import AddIcon from '@material-ui/icons/Add';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import DialogTitle from '@material-ui/core/DialogTitle';
 // import MediaQuery from "react-responsive";
 
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: '25ch',
-  },
-  root2: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(2),
-      positon: 'relative',
-      left: '20%',
-      top: '90px',
-      width: '25%',
-      backgroundColor: 'white',
-
-    }},
-
-  com: {
-    position: 'relative',
-    left:'21%',
-    top: '106px',
-    width:'25%',
-   metaname: 'viewport',
-  },
-
-  button: {
-    left: '68%',
-    top: '230px',
-    position: 'relative',
-    width: 'auto',
-  },
-
-  
-
-  skill1: {
-    width: '10%',
-    position: 'relative',
-    top: '20px',
-    left: '49%',
-  },
-
-  skill2: {
-    position: 'relative',
-    width: '10%',
-    top: '20px',
-    left: '49%',
-  },
-
-  skill3: {
-    width: '10%',
-    position: 'relative',
-    top: '20px',
-    left: '49%',
-  },
-
-
-
-  cont: {
-    left: '1px', 
-    width: '50%',
-
-  },
-
-  skillcont: {
-    left: '1px',
-    width: '60ch',
-  
-  },
-
-  h1: {
-    position: 'absolute',
-    left: '20%',
-    top: '4%',
-
-  },
-
-  date: {
-    position: 'relative',
-    left: '1%',
-    top: '-20px',
-  },
-
-  date2: {
-    position: 'relative',
-    left: '30%',
-    top: '2px',
-  },
-
-  user: {
-    position:'relative',
-    left:'21%',
-    top:'110px',
-    width:'25%',
-    
-  },
-
-  job: {
-     position: 'relative',
-     top:'55px',
-     left:'49%',
-     width: '25%',
-  },
-
-  margin: {
-    position: 'relative',
-    left: '21%',
-    top: '100px',
-    width: '53%',
-    height: 'available',
-  },
-
-  margin2: {
-    position: 'relative',
-    left: '21%',
-    top: '140px',
-    width: '53%',
-    height: 'available',
-  },
-
-  memo: {
-    position: 'relative',
-    top: '180px',
-    width: '53%',
-    left: '21%',
-    height: 'available',
-  },
-
-
-  paper1: {
-    position: 'relative',
-    width: 'auto',
-    minWidth: '100%',
-    margin: '-10px',
-    height: 'auto',
-    minHeight: '160vh',
-},
-
+    form: {
+      textAlign: "center",
+      margin: "auto",
+    },
+    button: {
+      bottom: "-50px",
+      left: theme.spacing(5),
+    },
+    button2: {
+      bottom: "-50px",
+      left: theme.spacing(7),
+    },
+    formControl: {
+      minWidth: 220,
+    },
+    skill: {
+      minWidth: 110,
+    },
+    textBox: {
+      minWidth: 300,
+    },
 }));
 
 export default function LayoutTextFields() {
@@ -166,14 +52,14 @@ export default function LayoutTextFields() {
    const [name,setName] = useState("");
    const [com,setCom] = useState("");
    const [money,setMoney] = useState("");
-   const [place,setPLace] = useState ("");
+   const [place,setPlace] = useState ("");
    const [persons,setPersons] = useState ("");
    const [skill1,setSkill1] = useState ("");
    const [skill2,setSkill2] = useState ("");
    const [skill3,setSkill3] = useState ("");
-   const[startdate, setStartdate] = useState ("");
-   const[enddate, setEnddate] = useState ("") ;
-   const[job, setJob] = useState ("")
+   const [startdate, setStartdate] = useState ("");
+   const [enddate, setEnddate] = useState ("") ;
+   const [job, setJob] = useState ("")
    const [skillcontents,setSkillcontents] = useState ("");
    const [contents, setContents] = useState ("");
    const [note,setNote] = useState ("");
@@ -192,7 +78,7 @@ export default function LayoutTextFields() {
             setMoney(e.target.value);
             break;
          case 'place':
-            setPLace(e.target.value);
+            setPlace(e.target.value);
             break;
          case 'persons' :
             setPersons(e.target.value);
@@ -227,7 +113,6 @@ export default function LayoutTextFields() {
          case 'user' :
            setUser(e.target.value);
            break;
-         
         default:
             console.log('text not found');
     }
@@ -243,178 +128,283 @@ export default function LayoutTextFields() {
         .post('/api/caseadd', newValue)
         .then(response => {
             console.log(response.data);
+            window.alert("追加されました")
         })
         .catch(() => {
             console.log('submit error');
+            window.alert("追加できませんでした")
         })
 };
 
+const [state1,setState1] = useState([]);
 
-  const handleChange2 = (event) => {
-    const skill = event.target.skill;
-    setState({
-      ...state,
-      [skill]: event.target.value,
-    });
-  };
+useEffect(() => getCustomerData(),[]);
+
+const getCustomerData = () => {
+    if(state1.length === 0){
+    axios
+        .get('./api/caseadd001')
+        .then(response => {
+            setState1(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state2,setState2] = useState([]);
+
+useEffect(() => getSkillData(),[]);
+
+const getSkillData = () => {
+    if(state2.length === 0){
+    axios
+        .get('./api/caseadd002')
+        .then(response => {
+            setState2(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state3,setState3] = useState([]);
+
+useEffect(() => getUserData(),[]);
+
+const getUserData = () => {
+    if(state3.length === 0){
+    axios
+        .get('./api/caseadd003')
+        .then(response => {
+            setState3(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
+const [state4,setState4] = useState([]);
+
+useEffect(() => getOccupationData(),[]);
+
+const getOccupationData = () => {
+    if(state4.length === 0){
+    axios
+        .get('./api/caseadd004')
+        .then(response => {
+            setState4(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+} 
+
+const clear = () => {
+  setName("")
+  setCom("")
+  setMoney("")
+  setPlace("")
+  setPersons("")
+  setSkill1("")
+  setSkill2("")
+  setSkill3("")
+  setStartdate("")
+  setEnddate("")
+  setJob("")
+  setSkillcontents("")
+  setContents("")
+  setNote("")
+  setUser("")
+}
 
   return (
-
-    <div className={classes.root}>
-
-      <Paper elevation={3} className = {classes.paper1}>
-    <form className={classes.root2} noValidate autoComplete="off" method="POST">
-      <div>
-      <div>
-      <Typography className={classes.h1} variant="h2" gutterBottom>
-        案件登録
-      </Typography>
-      </div>
-      <div >
-      <TextField input type="text" name="name" label="案件名" variant="outlined" value={name} onChange={handleChange} />
-      <FormControl variant="outlined"　className={classes.com}  >
-        <InputLabel htmlFor="outlined-age-native-simple" >案件保有会社名</InputLabel>
-        <Select
-          native
-          value={state.skill1}
-          onChange={handleChange}
-          label="com"
-          name="com"
-          inputProps={{
-            id: 'com',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={1}>株式会社ABC</option>
-          <option value={2}>DEF食品株式会社</option>
-          <option value={3}>GH電気株式会社</option>
-          <option value={4}>IJK商事</option>
-          <option value={5}>LMN商店株式会社</option>
-          <option value={6}>OP商店株式会社</option>
-          <option value={7}>QR株式会社</option>
-          <option value={8}>ST事務所</option>
-          <option value={9}>株式会社UV</option>
-          <option value={10}>WXグループ株式会社</option>
-          <option value={11}>YZ電気株式会社acd</option>
-          <option value={12}>DB株式会社</option>
-          <option value={13}>YNZ株式会社</option>
-          <option value={14}>CaC株式会社</option>
-        </Select>
-      </FormControl>
-      </div>
-      <div>
-      <TextField
+      <Paper elevation={3}>
+        <DialogTitle>
+          <div style={{ display: 'flex' }}>
+            <AddIcon style={{ fontSize: '25px'}}/>
+            <AssignmentIcon style={{ fontSize: '40px' }}/>
+            <Typography style={{ fontSize: '30px' }}>
+              案件登録
+            </Typography>
+          </div>
+        </DialogTitle>
+      <Grid container spacing={3} className={classes.form}>
+        <Grid item xs={4}>
+          <TextField
+            name="name"
+            label="案件名"
+            variant="outlined"
+            value={name}
+            onChange={handleChange}
+            inputProps={{
+              maxlength: 50
+            }} 
+            />
+        </Grid>
+      <Grid item xs={4}>  
+          <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel>案件保有会社名</InputLabel>
+          <Select
+            value={com}
+            onChange={handleChange}
+            label="com"
+            name="com"
+          >
+          <MenuItem value=""></MenuItem>
+          {state1.map((data) => (
+          <MenuItem key={data.customer_id} value={data.customer_id} >
+            {data.customer_name}
+          </MenuItem>
+          ))}
+          </Select>
+          </FormControl>
+      </Grid>
+      <Grid item xs={4}>
+        <TextField
           name="money"
-          label="依頼単金"
+          label="依頼単価"
           value={money}
           onChange={handleChange}
-          InputProps={{
-            startAdornment: <InputAdornment position="start">¥</InputAdornment>,
+          inputProps={{
+            // startAdornment: <InputAdornment position="start">¥</InputAdornment>,
+            maxlength: 20
           }}
           variant="outlined"
         />
+      </Grid>
+      <Grid item xs={4}>
         <TextField
-        name="place" label="勤務地"　value={place} onChange={handleChange} placeholder='勤務地の住所を入力' variant="outlined" 
+         name="place"
+         label="勤務地"
+         value={place}
+         onChange={handleChange}
+         placeholder='勤務地の住所を入力'
+         variant="outlined"
+         inputProps={{
+           maxlength: 10
+         }} 
         >
         </TextField>
-      <div>
-      <TextField
+      </Grid>
+      <Grid item xs={4}>
+        <TextField
           name="persons"
           label="募集人数"
           type="number"
           value={persons}
           onChange={handleChange}
-          InputProps={{
+          inputProps={{
            endAdornment: <InputAdornment position="end">人</InputAdornment>,
           }}
           variant="outlined"
         />
-        <div className={classes.skill}>
-<FormControl variant="outlined"　className={classes.skill1}  >
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.skill}>
         <InputLabel htmlFor="outlined-age-native-simple" >スキル①</InputLabel>
         <Select
-          native
-          value={state.skill1}
+          value={skill1}
           onChange={handleChange}
           name='skill1'
           label="skill1"
-          inputProps={{
-            id: 'skill1',
-          }}
         >
-          <option aria-label="None" value="" />
-          <option value={1}>Java</option>
-          <option value={2}>C言語</option>
-          <option value={3}>C#</option>
-          <option value={4}>C++</option>
-          <option value={5}>MySQL</option>
-          <option value={6}>Ruby</option>
-          <option value={7}>Oracle</option>
-          <option value={8}>Python</option>
-          <option value={9}>JavaScript</option>
-          <option value={10}>PHP</option>
+          <MenuItem value="" />
+        {state2.map((data) => (
+        <MenuItem key={data.skill_id} value={data.skill_id} >
+          {data.skill_name}
+        </MenuItem>
+        ))}
         </Select>
       </FormControl>
-       
-        <FormControl variant="outlined" className={classes.skill2}>
+      
+        <FormControl variant="outlined" className={classes.skill}>
         <InputLabel htmlFor="outlined-age-native-simple">スキル②</InputLabel>
         <Select
-          native
-          value={state.skill2}
+          value={skill2}
           name='skill2'
           onChange={handleChange}
           label="skill2"
-          
-          inputProps={{
-            id: 'skill2',
-          }}
         >
-          <option aria-label="None" value="" />
-          <option value={1}>Java</option>
-          <option value={2}>C言語</option>
-          <option value={3}>C#</option>
-          <option value={4}>C++</option>
-          <option value={5}>MySQL</option>
-          <option value={6}>Ruby</option>
-          <option value={7}>Oracle</option>
-          <option value={8}>Python</option>
-          <option value={9}>JavaScript</option>
-          <option value={10}>PHP</option>
+          <MenuItem value="" />
+          {state2.map((data) => (
+          <MenuItem key={data.skill_id} value={data.skill_id} >
+            {data.skill_name}
+          </MenuItem>
+          ))}
         </Select>
       </FormControl>
       
-      <FormControl variant="outlined" className={classes.skill3} >
+        <FormControl variant="outlined" className={classes.skill}>
         <InputLabel htmlFor="outlined-age-native-simple">スキル③</InputLabel>
         <Select
-          native
-          value={state.skill3}
+          value={skill3}
           onChange={handleChange}
           name="skill3"
           label="skill3"
-          inputProps={{
-            id: 'skill3',
-          }}
         >
-          <option aria-label="None" value="" />
-          <option value={1}>Java</option>
-          <option value={2}>C言語</option>
-          <option value={3}>C#</option>
-          <option value={4}>C++</option>
-          <option value={5}>MySQL</option>
-          <option value={6}>Ruby</option>
-          <option value={7}>Oracle</option>
-          <option value={8}>Python</option>
-          <option value={9}>JavaScript</option>
-          <option value={10}>PHP</option>
+          <MenuItem value="" />
+          {state2.map((data) => (
+          <MenuItem key={data.skill_id} value={data.skill_id} >
+            {data.skill_name}
+          </MenuItem>
+          ))}
         </Select>
       </FormControl>
-      </div>
-      </div>
-      
-      <div  className={classes.date}>
-      <TextField
+      </Grid>
+      </Grid>
+      <Grid container spacing={3} className={classes.form}>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
+        <Select
+          value={job}
+          onChange={handleChange}
+          label="job"
+          name="job"
+        >
+          <MenuItem value="" />
+          {state4.map((data) => (
+          <MenuItem key={data.occupation_id} value={data.occupation_id} >
+            {data.occupation_name}
+          </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.formControl}>
+        <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
+        <Select
+          value={user}
+          onChange={handleChange}
+          label="user"
+          name="user"
+        >
+          <MenuItem value="" />
+          {state3.map((data) => (
+          <MenuItem key={data.user_id} value={data.user_id} >
+            {data.user_name}
+          </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      </Grid>
+      </Grid>
+    <Grid container spacing={3} className={classes.form}>
+    <Grid item xs={4}>
+        <TextField
         name="startdate"
         id = "date"
+        type="date"
         value={startdate}
         onChange={handleChange}
         label="案件開始日"
@@ -424,9 +414,12 @@ export default function LayoutTextFields() {
           shrink: true,
         }}
       />
+      </Grid>
+      <Grid item xs={4}>
        <TextField
         id ="date2"
         name="enddate"
+        type="date"
         value={enddate}
         onChange={handleChange}
         label="案件終了日"
@@ -436,56 +429,9 @@ export default function LayoutTextFields() {
           shrink: true,
         }}
       />
-      </div>
-      <div className={classes.date2}>
-     
-      </div>
-      <div>
-      <FormControl variant="outlined" className={classes.user} >
-        <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
-        <Select
-          native
-          value={state.skill3}
-          onChange={handleChange}
-          label="user"
-          name="user"
-          inputProps={{
-            id: 'user',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={1}>田中</option>
-          <option value={2}>佐藤</option>
-          <option value={3}>高橋</option>
-          <option value={4}>鈴木</option>
-        </Select>
-      </FormControl>
-      </div>
-      <div>
-      <FormControl variant="outlined" className={classes.job} >
-        <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
-        <Select
-          native
-          value={state.skill3}
-          onChange={handleChange}
-          label="job"
-          name="job"
-          inputProps={{
-            id: 'job',
-          }}
-        >
-          <option aria-label="None" value="" />
-          <option value={1}>SE</option>
-          <option value={2}>PG</option>
-          <option value={3}>営業</option>
-          <option value={4}>インフラSE</option>
-          <option value={5}>サポート</option>
-          <option value={6}>総務</option>
-        </Select>
-      </FormControl>
-      </div>
-      <div>
-      <FormControl  className={classes.margin} variant="outlined">
+      </Grid>
+      <Grid itex xs={4}>
+        <FormControl  variant="outlined" className={classes.textBox}>
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
          name="contents"
@@ -494,11 +440,15 @@ export default function LayoutTextFields() {
          onChange={handleChange}
          multiline
          rows={4}
-         variant="filled"/>
+         variant="filled"
+         inputProps={{
+          maxlength: 200
+        }} 
+         />
         </FormControl>
-        
-      </div>
-      <FormControl  className={classes.margin2} variant="outlined">
+      </Grid>  
+      <Grid item xs={4}>
+        <FormControl  variant="outlined" className={classes.textBox}>
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"
@@ -507,12 +457,15 @@ export default function LayoutTextFields() {
          onChange={handleChange}
          multiline
          rows={4}
-         variant="filled"/>
+         variant="filled"
+         inputProps={{
+          maxlength: 50
+        }} 
+         />
         </FormControl>
-      <div>
-
-      </div>
-      <FormControl  className={classes.memo} variant="outlined">
+      </Grid>
+      <Grid item xs={4}>
+        <FormControl variant="outlined" className={classes.textBox}>
           <InputLabel htmlFor="outlined-adornment-amount">備考</InputLabel>
           <OutlinedInput
          name="note"
@@ -521,32 +474,21 @@ export default function LayoutTextFields() {
          onChange={handleChange}
          multiline
          rows={4}
-         variant="filled"/>
+         inputProps={{
+          maxlength: 200
+        }} 
+         />
         </FormControl>
-      <div>
-        
-        </div>
-        <div >
-        <Button onClick={submit} className={classes.button} variant="contained" size="large" >
-        登録
-      </Button>
-      {/* {name}
-      {com}
-      {money}
-      {place}
-      {persons}]
-      {skill1}
-      {skill2}
-      {skill3}
-      {date}
-      {contents}
-      {skillcontents} */}
-      </div>
-      </div>
-      </div>
-      </form> 
+      </Grid>
+      <Grid>
+        <Button onClick={clear} className={classes.button} variant="contained">
+        クリア
+        </Button>
+        <Button onClick={submit} className={classes.button2} variant="contained">
+         登録 
+        </Button>
+      </Grid>
+      </Grid>
    </Paper>
-  
-    </div>
   );
 }
