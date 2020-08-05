@@ -56,7 +56,7 @@ const DialogButton = (props) => {
           </ButtonGroup>
           <ButtonGroup className={classes.ButtonGroup2} size="small" variant="contained" aria-label="contained primary button group">
             <Button variant="contained"　className={classes.Button2}>スキルシート出力</Button>
-            <Button variant="contained"　className={classes.Button2}>引合登録</Button>
+            {/* <Button variant="contained"　className={classes.Button2}>引合登録</Button> */}
           </ButtonGroup>
         </div>
         <div>

@@ -103,10 +103,12 @@ export default function CaseDetail (props) {
               <tr>
                 <th>案件名</th>
                 <th>案件保有会社</th>
+                <th>担当営業名</th>
               </tr>
               <tr>
                 <td>{props.name}</td>
                 <td>{props.customer_name}</td>
+                <td>{props.user_name}</td>
               </tr>
               </table>
               <table>
