@@ -119,13 +119,13 @@ const useStyles = makeStyles((theme) => ({
   button: {
     left: theme.spacing(8),
     float: 'left',
-    marginBottom: 15,
+    marginBottom: 20,
     // top: theme.spacing(-46),
   },
   button_2: {
     left: theme.spacing(10),
     float: 'left',
-    marginBottom: 15,
+    marginBottom: 20,
     // top: theme.spacing(-46),
   },
 
@@ -581,6 +581,8 @@ const StaffSearch = () => {
           value={age}
           onChange={ageChange}
           variant="outlined"
+          type="number"
+          InputProps={{ inputProps: { min: 18, max: 80 } }}
         >
           <MenuItem className={classes.brank}></MenuItem>
           {getAge.map((data)=>(
