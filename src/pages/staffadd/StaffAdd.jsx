@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import AddIcon from '@material-ui/icons/Add';
 import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,8 +15,22 @@ import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 
 const useStyles = makeStyles((theme) => ({
+    content: {
+        width: '250px',
+    },
+    content_2: {
+        width: '250px',
+        marginBottom: '25px'
+    },
     formControl: {
       minWidth: 195,
+    },
+    button1: {
+        marginTop: 20
+    },
+    button2: {
+        marginTop: 20,
+        left: theme.spacing(2),
     },
 }));
 
@@ -201,23 +216,24 @@ const classes = useStyles();
         <Paper elevation={3}>
         <DialogTitle id="customized-dialog-title">
             <div  style={{ display: 'flex' }}>
-            <PersonAddIcon style={{ fontSize: '40px', }}/>
+            <AddIcon style={{ fontSize: '25px'}}/>
+            <PeopleAltIcon style={{ fontSize: '40px', }}/>
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
         </DialogTitle>
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
-            <Typography>スタッフID</Typography>
-            <TextField variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
+            
+            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>スタッフ名</Typography>
-            <TextField variant="outlined" name="name" value={name} onChange={handleChange}/>
+            
+            <TextField variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>性別</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+           
+            <FormControl variant="outlined" className={classes.content}>
+            <InputLabel>性別</InputLabel>
             <Select name="gender" value={gender} onChange={handleChange}>
             <MenuItem value=""></MenuItem>
             <MenuItem value={"男"}>男</MenuItem>
@@ -226,33 +242,34 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>生年月日</Typography>
-            <TextField type="date" variant="outlined" name="birthday" value={birthday} onChange={handleChange} className={classes.formControl}/>
+            
+            <TextField type="date"  name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
+          shrink: true,
+        }}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>年齢</Typography>
-            <TextField variant="outlined" type="number" name="age" value={age} onChange={handleChange}/>
+            
+            <TextField variant="outlined" type="number" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>連絡先(ハイフンを入れてください)</Typography>
-            <TextField inputmode="url" variant="outlined" name="phone" value={phone} onChange={handleChange}/>
+            <Typography></Typography>
+            <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>最寄駅</Typography>
-            <TextField variant="outlined" name="station" value={station} onChange={handleChange}/>
+            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>最終学歴（学校名）</Typography>
-            <TextField variant="outlined" name="career" value={career} onChange={handleChange}/>
+            <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>入社日</Typography>
-            <TextField　type="date" variant="outlined" name="join" value={join} onChange={handleChange} className={classes.formControl}/>
+            <TextField　type="date"  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange} className={classes.content}　InputLabelProps={{
+          shrink: true,
+        }}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography>所属会社</Typography>
-            <FormControl variant="outlined"　className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+           
+            <FormControl variant="outlined"　className={classes.content}>
+            <InputLabel>所属会社</InputLabel>
             <Select name="company" value={company} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state2.map((data) => (
@@ -264,9 +281,8 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>地域</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+            <FormControl variant="outlined" className={classes.content}>
+            <InputLabel>地域</InputLabel>
             <Select name="area" value={area} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state1.map((data) => (
@@ -278,9 +294,8 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>役職</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+            <FormControl variant="outlined" className={classes.content}>
+            <InputLabel>役職</InputLabel>
             <Select name="position" value={position} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             <MenuItem value={"プロデューサー"}>プロデューサー</MenuItem>
@@ -291,9 +306,8 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>職種</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+            <FormControl variant="outlined" className={classes.content}>
+            <InputLabel>職種</InputLabel>
             <Select name="occupation" value={occupation} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state4.map((data) => (
@@ -305,9 +319,8 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <Typography>雇用形態</Typography>
-            <FormControl variant="outlined" className={classes.formControl}>
-            <InputLabel>選択してください</InputLabel>
+            <FormControl variant="outlined" className={classes.content_2}>
+            <InputLabel>雇用形態</InputLabel>
             <Select name="employment" value={employment} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state3.map((data) => (
@@ -318,11 +331,9 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={add} className="button">追加</Button>
-        </Grid>
-        <Grid item xs={2}>
-            <Button variant="contained" onClick={clear} className="button">クリア</Button>
+        <Grid item xs={4}>
+            <Button variant="contained" onClick={clear} className={classes.button1}>クリア</Button>
+            <Button variant="contained" onClick={add} className={classes.button2}>追加</Button>
         </Grid>
         </Grid>
         </Paper>

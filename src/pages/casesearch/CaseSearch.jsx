@@ -1,6 +1,8 @@
 import React,{ useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CardContent from '@material-ui/core/CardContent';
+import SearchIcon from '@material-ui/icons/Search';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import Typography from '@material-ui/core/Typography';
 import FormControl from '@material-ui/core/FormControl';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -13,11 +15,12 @@ import { Paper,
          TextField
          } from '@material-ui/core';
 import axios from 'axios';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 //import Component
 import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
-import DatePickers from './DatePickers';
+// import DatePickers from './DatePickers';
 import ListData from './ListData';
 
 
@@ -31,6 +34,10 @@ const useStyles = makeStyles((theme) => ({
     float:'left',
     height:50,
     paddingTop:30,
+  },
+  icon: {
+    float:'left',
+    // alignItems:'center',
   },
   date: {
     width:30,
@@ -214,18 +221,18 @@ const MenuProps = {
               value={data.id}>{data.name}</MenuItem>
   ));
 
-  //startdate
-  const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
+  // //startdate
+  // const [selectedStartDate, setSelectedStartDate] = React.useState(new Date());
 
-  const handleStartDateChange = (date) => {
-    setSelectedStartDate(date);
-  };
-  //enddate
-  const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
+  // const handleStartDateChange = (date) => {
+  //   setSelectedStartDate(date);
+  // };
+  // //enddate
+  // const [selectedEndDate, setSelectedEndDate] = React.useState(new Date());
 
-  const handleEndDateChange = (date) => {
-    setSelectedEndDate(date);
-  };
+  // const handleEndDateChange = (date) => {
+  //   setSelectedEndDate(date);
+  // };
 
   //settting salesman
   const [salesMan, setSalesMan] = React.useState('');
@@ -245,8 +252,8 @@ const MenuProps = {
     setSkill1('')
     setSkill2('')
     setSkill3('')
-    setSelectedStartDate()
-    setSelectedEndDate()
+    // setSelectedStartDate()
+    // setSelectedEndDate()
     setSalesMan('')
     window.alert("Clear Done")
   };
@@ -399,14 +406,19 @@ const MenuProps = {
   };
 
   return (
-    <Paper className={classes.root} variant="outlined">
-      <CardContent>
-      <Typography variant="h3" component="h2">
-        案件検索
+    <Paper elevation={3}>
+      <DialogTitle>
+      <div style={{display:'flex'}}>
+        <SearchIcon style={{ fontSize: '25px', }} />
+        <AssignmentIcon style={{ fontSize: '40px', }} />
+      
+        <Typography style={{ fontSize: '30px', }}>
+          案件検索
         </Typography>
-
-        <br className={classes.end}/>
-
+      </div>
+      </DialogTitle>
+        {/* <br className={classes.end}/> */}
+      <CardContent>
       <Typography className={classes.left} id="child" variant="h5" component="h2">
         案件名検索
         </Typography>
@@ -487,7 +499,7 @@ const MenuProps = {
 
         <br className={classes.end} />
         
-
+{/* 
         <Typography className={classes.left} variant="h5" component="h2">
           期間
         </Typography>
@@ -503,7 +515,7 @@ const MenuProps = {
 
         <DatePickers label="ここまで" value={selectedEndDate} onChange={handleEndDateChange} />
         
-        <br className={classes.end} />
+        <br className={classes.end} /> */}
 
         <Typography className={classes.left} variant="h5" component="h2">
           担当営業名
@@ -524,7 +536,11 @@ const MenuProps = {
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>
+        {/* <div className={classes.left}><br /></div> */}
+        <br className={classes.end} />
         <div className={classes.left}><br /></div>
+        <div className={classes.left}><br /></div>
+        {/* <div className={classes.left}><br /></div> */}
 
         <DeleteButton onClick={clearAll} />
         <SearchButton onClick={formSubmit} className={classes.button} />

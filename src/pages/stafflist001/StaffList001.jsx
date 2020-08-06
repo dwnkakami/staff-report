@@ -11,7 +11,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
 import './StaffList001.css';
 import axios from 'axios';
-import PeopleIcon from '@material-ui/icons/People';
+import ListIcon from '@material-ui/icons/List';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import StaffList005 from '../staffList005/StaffList005.jsx';
@@ -31,7 +32,10 @@ const StyledTableCell = withStyles((theme) => ({
   const StyledTableRow = withStyles((theme) => ({
     root: {
       '&:nth-of-type(odd)': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: "#fff"
+      },
+      '&:nth-of-type(even)': {
+        backgroundColor: "#eee"
       },
     },
   }))(TableRow);
@@ -138,6 +142,9 @@ const StyledTableCell = withStyles((theme) => ({
       top: 20,
       width: 1,
     },
+    icon: {
+      alignItems: 'center'
+    }
   }));
 
  export default function StaffList001 () {
@@ -173,14 +180,15 @@ const StyledTableCell = withStyles((theme) => ({
 return(
   <div>
 <Paper elevation={3} >
-<DialogTitle id="customized-dialog-title">
-<div className='title' style={{ display: 'flex' }}>
-    <PeopleIcon style={{ fontSize: '40px', }} />
+<DialogTitle>
+<div style={{ display: 'flex' }}>
+    <ListIcon style={{ fontSize: '25px'}}/>
+    <PeopleAltIcon style={{ fontSize: '40px', }} />
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
 </DialogTitle>
 <div className={classes.root}>
-      <Paper className={classes.paper}>
+      {/* <Paper className={classes.paper}> */}
         <TableContainer>
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
@@ -198,7 +206,7 @@ return(
               {stableSort(posts, getComparator(order, orderBy))
                 .map((data) => {
                   return (
-                    <TableRow　variant="outlined">
+                    <StyledTableRow　variant="outlined">
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
                       <TableCell align="center">{data.position}</TableCell>
@@ -207,14 +215,14 @@ return(
                       <TableCell align="center">
                         <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
                       </TableCell>
-                    </TableRow>
+                    </StyledTableRow>
                   );
                 })}</TableBody>
           </Table>
           </Grid>
           </Grid>
         </TableContainer>
-      </Paper>
+      {/* </Paper> */}
     </div>
     </Paper>
     </div>
