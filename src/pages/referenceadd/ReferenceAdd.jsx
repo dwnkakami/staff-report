@@ -82,8 +82,11 @@ export default function AlertDialog() {
   const [position,setPosition] = useState("");
   const [interviewLocation,setInterviewLocation] = useState("");
   const [interviewDate,setInterviewDate] = useState("");
+  const [interviewTimes,setInterviewTimes] = useState("");
   const [note,setNote] = useState("");
   const [entranceDate,setEntranceDate] = useState("");
+  const [updateAt,setUpdateAt] = useState("");
+  const [updateBy,setUpdateBy] = useState("");
   
   const entry = new Date().toLocaleString();
   
@@ -107,11 +110,20 @@ export default function AlertDialog() {
           case 'interviewDate':
               setInterviewDate(e.target.value);
               break;
+          case 'interviewTimes':
+              setInterviewTimes(e.target.value);
+              break;
           case 'note':
               setNote(e.target.value);
               break;
           case 'entranceDate':
               setEntranceDate(e.target.value);
+              break;
+          case 'updateAt':
+              setUpdateAt(e.target.value);
+              break;
+          case 'updateBy':
+              setUpdateBy(e.target.value);
               break;
           default:
               console.log('text not found');
@@ -138,7 +150,7 @@ export default function AlertDialog() {
 
   const add = () => {
   
-      const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, note:note, entrance_date:entranceDate, entry_at:entry}
+      const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
   
       axios
           .post('/api/referenceadd', newValue)
@@ -159,8 +171,11 @@ export default function AlertDialog() {
       setPosition("")
       setInterviewLocation("")
       setInterviewDate("")
+      setInterviewTimes("")
       setNote("")
       setEntranceDate("")
+      setUpdateAt("")
+      setUpdateBy("")
   }
   
   const classes1 = useStyles();
@@ -188,7 +203,7 @@ export default function AlertDialog() {
             <TextField label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
-            {/* <Typography>スタッフID</Typography> */}
+            {/* <Typography>スタッフ回数</Typography> */}
             <TextField label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
@@ -214,6 +229,10 @@ export default function AlertDialog() {
             <TextField label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
+            {/* <Typography>面談回数</Typography> */}
+            <TextField label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
+        </Grid>
+        <Grid item xs={4}>
             {/* <Typography>面談日</Typography> */}
             <TextField label="面談日"
                         InputLabelProps={{
@@ -232,6 +251,18 @@ export default function AlertDialog() {
                         shrink: true,
                         }}
                         type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
+        </Grid>
+        <Grid item xs={4}>
+            {/* <Typography>更新日</Typography> */}
+            <TextField label="更新日"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        type="date" name="updateAt" value={updateAt} onChange={handleChange} className={classes1.formControl}/>
+        </Grid>
+        <Grid item xs={4}>
+            {/* <Typography>更新者</Typography> */}
+            <TextField label="更新者ID" variant="outlined"　type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
