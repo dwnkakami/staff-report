@@ -359,11 +359,11 @@ const StaffSearch = () => {
   const Search = () =>{
   const search = data.filter((data)=>{
     return (((data.license === license) ||
-              (((data.skill === skill1) ||
-            (data.skill === skill2) ||
-            (data.skill === skill3)) ||
-            ((data.level === status1) ||
+              ((data.skill === skill1) &&
+            (data.level === status1)) ||
+            ((data.skill === skill2)&&
             (data.level === status2) ||
+            ((data.skill === skill3) &&
             (data.level === status3)) ||
             ((data.gender === ge) ||
             (data.age === age) ||
