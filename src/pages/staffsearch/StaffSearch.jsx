@@ -391,9 +391,9 @@ const StaffSearch = () => {
             (data.level === status2)) ||
             ((data.skill === skill3) &&
             (data.level === status3)) &&
-            ((data.gender === ge) &&
-            (data.age === age) &&
-            (data.area === areas))&&
+            ((data.gender === ge) ||
+            (data.age === age) ||
+            (data.area === areas))||
             ((data.occupation === ocp[0])||
             (data.occupation === ocp[1])||
             (data.occupation === ocp[2])||
