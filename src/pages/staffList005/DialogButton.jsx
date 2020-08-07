@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
-import StaffList005_figure from './StaffList005_figure';
-import StaffList003_map from '../staffList003/StaffList003_figure';
-import StaffList002_2 from '../staffskill/StaffList002_2';
+import StaffInformation from './StaffInformation';
+import StaffList003_map from '../staffcareer/StaffCareer';
+import StaffList002 from '../staffskill/StaffList002';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,17 +31,17 @@ const useStyles = makeStyles((theme) => ({
 
 const DialogButton = (props) => {
   const classes = useStyles();
-  const [staff, setStaff] = useState(<StaffList002_2 id={props.id}/>);
+  const [staff, setStaff] = useState(<StaffList002 id={props.id}/>);
 
   const handleClick = (selected) => {
     if(selected === 1){
-      setStaff(<StaffList002_2 id={props.id}/>)
+      setStaff(<StaffList002 id={props.id}/>)
     } else if(selected === 2){
       setStaff(<StaffList003_map id={props.id} />);
     } else if(selected === 3){
       setStaff('キャリアパス：データなし');
     } else {
-      setStaff(<StaffList005_figure id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />);
+      setStaff(<StaffInformation id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />);
     }
   };
 

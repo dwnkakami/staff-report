@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }, 
 }));
 
-const StaffList003_figure = (props) => {
+const StaffCareer = (props) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => getData(),[]);
@@ -131,7 +131,7 @@ return (
   <div>
     {user.map((data) => (
     <div key={props.id}>
-    {data.matter_name ? <StaffList003_figure id={props.id}/>:"経歴データなし"}
+    {data.matter_name ? <StaffCareer id={props.id}/>:"経歴データなし"}
     </div>
     ))} 
   </div>

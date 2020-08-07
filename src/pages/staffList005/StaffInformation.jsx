@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const StaffList005_figure = (props) => {
+const StaffInformation = (props) => {
   const classes = useStyles();
 
   const [user, setUser] = useState([]);
@@ -103,4 +103,4 @@ const StaffList005_figure = (props) => {
     </div>
   );
 }
-   export default StaffList005_figure;
+   export default StaffInformation;
