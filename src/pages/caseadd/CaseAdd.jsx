@@ -138,20 +138,31 @@ export default function LayoutTextFields() {
   };
 
   const submit = () => {
-    console.log(name)
-    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, number_of_persons:persons, occupation_id:job, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:startdate,matter_end:enddate, skill_level_column:skillcontents ,business_content:contents, note:note, user_id:user };
+
+    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, 
+      number_of_persons:persons, occupation_id:job, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, 
+      matter_start:startdate,matter_end:enddate, skill_level_column:skillcontents ,business_content:contents, note:note, user_id:user };
 
 
-    axios
-        .post('/api/caseadd', newValue)
-        .then(response => {
-            console.log(response.data);
-            window.alert("追加されました")
-        })
-        .catch(() => {
-            console.log('submit error');
-            window.alert("追加できませんでした")
-        })
+
+      if((name.length === 0) || (com.length === 0) || (money.length === 0) || 
+        (place.length === 0) || (persons.length === 0) || (job.length === 0) || 
+        (skill1.length === 0) || (startdate.length === 0) || (enddate.length === 0) || 
+        (skillcontents.length === 0) || (contents.length === 0) || (user.length === 0)) {
+          window.alert('未入力項目があります。\n*は必須項目です。');
+        } else {
+
+        axios
+            .post('/api/caseadd', newValue)
+            .then(response => {
+                console.log(response.data);
+                window.alert("追加されました")
+            })
+            .catch(() => {
+                console.log('submit error');
+                window.alert("追加できませんでした")
+            })
+      }
 };
 
 const [state1,setState1] = useState([]);
@@ -261,6 +272,7 @@ const clear = () => {
       <Grid container spacing={3} className={classes.form}>
         <Grid item xs={4}>
           <TextField
+            required
             name="name"
             label="案件名"
             variant="outlined"
@@ -273,7 +285,7 @@ const clear = () => {
             />
         </Grid>
       <Grid item xs={4}>  
-          <FormControl variant="outlined" className={classes.content}>
+          <FormControl required variant="outlined" className={classes.content}>
           <InputLabel>案件保有会社名</InputLabel>
           <Select
             value={com}
@@ -292,6 +304,7 @@ const clear = () => {
       </Grid>
       <Grid item xs={4}>
         <TextField
+          required
           name="money"
           label="依頼単価"
           value={money}
@@ -310,6 +323,7 @@ const clear = () => {
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
         <TextField
+         required
          name="place"
          label="勤務地"
          value={place}
@@ -325,20 +339,19 @@ const clear = () => {
       </Grid>
       <Grid item xs={4}>
         <TextField
+          required
           name="persons"
           label="募集人数"
           type="number"
           value={persons}
           onChange={handleChange}
-          inputProps={{
-           endAdornment: <InputAdornment position="end">人</InputAdornment>,
-          }}
+          InputProps={{ inputProps: { min: 1, max: 100 } }}
           variant="outlined"
           className={classes.content}
         />
       </Grid>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
         <Select
           value={job}
@@ -361,7 +374,7 @@ const clear = () => {
 
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple" >skill①</InputLabel>
         <Select
           value={skill1}
@@ -420,7 +433,7 @@ const clear = () => {
 
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
         <Select
           value={user}
@@ -439,6 +452,7 @@ const clear = () => {
       </Grid>
     <Grid item xs={4}>
         <TextField
+        required
         name="startdate"
         id = "date"
         type="date"
@@ -455,6 +469,7 @@ const clear = () => {
       </Grid>
       <Grid item xs={4}>
        <TextField
+        required
         id ="date2"
         name="enddate"
         type="date"
@@ -473,7 +488,7 @@ const clear = () => {
 
       <Grid container className={classes.form}>
       <Grid itex xs={4}>
-        <FormControl  variant="outlined" className={classes.content_2}>
+        <FormControl required variant="outlined" className={classes.content_2}>
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
          name="contents"
@@ -490,7 +505,7 @@ const clear = () => {
         </FormControl>
       </Grid>  
       <Grid item xs={4}>
-        <FormControl  variant="outlined" className={classes.content_3}>
+        <FormControl required variant="outlined" className={classes.content_3}>
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"
