@@ -14,6 +14,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 import './StaffSearch.css';
 import ListData from './ListData';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -156,6 +157,11 @@ const MenuProps = {
 const StaffSearch = () => {
   const classes = useStyles();
 
+  const [andMode,setAndMode] = useState(false);
+  const ModeChange = (event) => {
+    setAndMode(event.target.checked);
+  };
+
   //チェック切り替え
   const [ocp,setOcp] = useState([]);
   const handleChange = (event) => {
@@ -215,6 +221,7 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
+    setAndMode(false)
     setOcp([])
     setLicense('')
     setSkill1('')
@@ -358,6 +365,7 @@ const StaffSearch = () => {
 
   const Search = () =>{
   const search = data.filter((data)=>{
+    if(andMode === false){
     return (((data.license === license) ||
               ((data.skill === skill1) &&
             (data.level === status1)) ||
@@ -374,7 +382,27 @@ const StaffSearch = () => {
             (data.occupation === ocp[3])||
             (data.occupation === ocp[4])||
             (data.occupation === ocp[5]))));
+    }
+    else{
+      return (((data.license === license) &&
+              ((data.skill === skill1) &&
+            (data.level === status1)) ||
+            ((data.skill === skill2)&&
+            (data.level === status2)) ||
+            ((data.skill === skill3) &&
+            (data.level === status3)) &&
+            ((data.gender === ge) &&
+            (data.age === age) &&
+            (data.area === areas))&&
+            ((data.occupation === ocp[0])||
+            (data.occupation === ocp[1])||
+            (data.occupation === ocp[2])||
+            (data.occupation === ocp[3])||
+            (data.occupation === ocp[4])||
+            (data.occupation === ocp[5]))));
+    }
   });
+  
     console.log(search);
     ListData.setStaffData(search);
     window.location.href = "/#/staff-report/stafflist-result/001";
@@ -390,6 +418,19 @@ const StaffSearch = () => {
     <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
     </div>
     </DialogTitle>
+
+    <div>
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={andMode}
+            onChange={ModeChange}
+            color="primary"
+          />
+        }
+        label="AND条件"
+      />
+    </div>
     {/* 職種選択 */}
 
       <div>
@@ -576,18 +617,19 @@ const StaffSearch = () => {
           年齢
         </Typography>
          <TextField className={classes.age}
+          select
           label="年齢"
           value={age}
           onChange={ageChange}
           variant="outlined"
           type="number"
         >
-          {/* <MenuItem value=""></MenuItem>
+          <MenuItem value=""></MenuItem>
           {getAge.map((data)=>(
             <MenuItem key={data.age} value={data.age}>
               {data.age}
             </MenuItem>
-          ))} */}
+          ))}
         </TextField>
         </div>
 

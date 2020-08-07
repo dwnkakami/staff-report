@@ -32,6 +32,11 @@
     font-weight: bolder;
 }
 
+.checkbox{
+    position: relative;
+    top:40px;
+}
+
 /* .reset{
     position: relative;
     left: 150px;
