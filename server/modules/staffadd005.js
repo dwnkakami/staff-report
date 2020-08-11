@@ -19,7 +19,7 @@ exports.getData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql = "SELECT S1.id, S1.name, S1.kana, P1.name AS 'position', C1.company_abbreviation, MAX(M1.matter_end) AS 'matter_end' FROM m_staff S1 LEFT JOIN m_position P1 ON S1.position_id = P1.id LEFT JOIN m_company C1 ON S1.company_id = C1.id LEFT JOIN t_inquiry I1 ON S1.id = I1.staff_id LEFT JOIN m_matter M1 ON I1.matter_id = M1.id GROUP BY S1.id";
+    const sql = 'SELECT id AS "position_id", name AS "position" FROM m_position';
     con.query(sql, (err, result, fields) => {
       if (err) throw err;
       res.json(result);

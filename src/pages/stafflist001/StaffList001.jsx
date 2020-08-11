@@ -68,7 +68,7 @@ const StyledTableCell = withStyles((theme) => ({
   
   const headCells = [
     { id:'id', numeric: false, disablePadding: true, label: 'スタッフID' },
-    { id:'name',numeric: true, disablePadding: false, label: 'スタッフ名' },
+    { id:'kana',numeric: true, disablePadding: false, label: 'スタッフ名' },
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },

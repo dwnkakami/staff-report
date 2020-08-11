@@ -38,6 +38,7 @@ export default function StaffAdd (props) {
 
 const [staffId,setStaffId] = useState("");
 const [name,setName] = useState("");
+const [kana,setKana] = useState("");
 const [gender,setGender] = useState("");
 const [position,setPosition] = useState("");
 const [join,setJoin] = useState("");
@@ -61,6 +62,9 @@ const handleChange = e => {
             break;
         case 'name':
             setName(e.target.value);
+            break;
+        case 'kana':
+            setKana(e.target.value);
             break;
         case 'gender':
             setGender(e.target.value);
@@ -105,9 +109,18 @@ const handleChange = e => {
 
 const add = () => {
 
-    const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
+    const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
     }
+
+    if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || (gender.length === 0) || 
+       (position.length === 0) || (join.length === 0) || (birthday.length === 0) ||
+       (age.length === 0) || (career.length === 0) || (phone.length === 0) ||
+       (station.length === 0) || (company.length === 0) || (area.length === 0) ||
+       (occupation.length === 0) || (employment.length === 0) || (entry.length === 0) ||
+       (update_at.length === 0)) {
+           window.alert('未入力項目があります。\n*は必須項目です。')
+       }　else {
 
     axios
         .post('/api/staffadd', newValue)
@@ -119,7 +132,7 @@ const add = () => {
             console.log('submit error');
             window.alert("追加できませんでした")
         });
-}
+}}
 
 const [state1,setState1] = useState([]);
 
@@ -193,9 +206,28 @@ const getOccupationData = () => {
     }
 }
 
+const [state5,setState5] = useState([]);
+
+useEffect(() => getPositionData(),[]);
+
+const getPositionData = () => {
+    if(state5.length === 0){
+    axios
+        .get('./api/staffadd005')
+        .then(response => {
+            setState5(response.data);
+            console.log([response.data]);
+        })
+        .catch(() => {
+            console.log('connected error');
+        })
+    }
+}
+
 const clear = () => {
     setStaffId("")
     setName("")
+    setKana("")
     setGender("")
     setPosition("")
     setJoin("")
@@ -223,18 +255,19 @@ const classes = useStyles();
         </DialogTitle>
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
-            
-            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            
-            <TextField variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} className={classes.content}/>
+        </Grid>
+        <Grid item xs={4}>
+            <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
            
             <FormControl variant="outlined" className={classes.content}>
-            <InputLabel>性別</InputLabel>
-            <Select name="gender" value={gender} onChange={handleChange}>
+            <InputLabel>性別*</InputLabel>
+            <Select required name="gender" value={gender} onChange={handleChange}>
             <MenuItem value=""></MenuItem>
             <MenuItem value={"男"}>男</MenuItem>
             <MenuItem value={"女"}>女</MenuItem>
@@ -243,34 +276,34 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField type="date"  name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
+            <TextField required type="date"  name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
         <Grid item xs={4}>
             
-            <TextField variant="outlined" type="number" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content}/>
+            <TextField required variant="outlined" type="number" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
             <Typography></Typography>
-            <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
+            <TextField required type="number" inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン無し)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField　type="date"  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange} className={classes.content}　InputLabelProps={{
+            <TextField required　type="date"  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange} className={classes.content}　InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
         <Grid item xs={4}>
            
             <FormControl variant="outlined"　className={classes.content}>
-            <InputLabel>所属会社</InputLabel>
-            <Select name="company" value={company} onChange={handleChange} label="選択してください">
+            <InputLabel>所属会社*</InputLabel>
+            <Select required name="company" value={company} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state2.map((data) => (
             <MenuItem key={data.company_id} value={data.company_id} >
@@ -282,8 +315,8 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <FormControl variant="outlined" className={classes.content}>
-            <InputLabel>地域</InputLabel>
-            <Select name="area" value={area} onChange={handleChange} label="選択してください">
+            <InputLabel>地域*</InputLabel>
+            <Select required name="area" value={area} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state1.map((data) => (
             <MenuItem key={data.area_id} value={data.area_id} >
@@ -294,21 +327,22 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <FormControl variant="outlined" className={classes.content}>
-            <InputLabel>役職</InputLabel>
-            <Select name="position" value={position} onChange={handleChange} label="選択してください">
+        <FormControl variant="outlined" className={classes.content}>
+            <InputLabel>役職*</InputLabel>
+            <Select required name="position" value={position} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
-            <MenuItem value={"プロデューサー"}>プロデューサー</MenuItem>
-            <MenuItem value={"プログラマー"}>プログラマー</MenuItem>
-            <MenuItem value={"リードプログラマー"}>リードプログラマー</MenuItem>
-            <MenuItem value={"営業"}>営業</MenuItem>
+            {state5.map((data) => (
+            <MenuItem key={data.position_id} value={data.position_id} >
+              {data.position}
+            </MenuItem>
+            ))}
             </Select>
             </FormControl>
         </Grid>
         <Grid item xs={4}>
             <FormControl variant="outlined" className={classes.content}>
-            <InputLabel>職種</InputLabel>
-            <Select name="occupation" value={occupation} onChange={handleChange} label="選択してください">
+            <InputLabel>職種*</InputLabel>
+            <Select required name="occupation" value={occupation} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state4.map((data) => (
             <MenuItem key={data.occupation_id} value={data.occupation_id} >
@@ -320,8 +354,8 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <FormControl variant="outlined" className={classes.content_2}>
-            <InputLabel>雇用形態</InputLabel>
-            <Select name="employment" value={employment} onChange={handleChange} label="選択してください">
+            <InputLabel>雇用形態*</InputLabel>
+            <Select required name="employment" value={employment} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
             {state3.map((data) => (
             <MenuItem key={data.employment_id} value={data.employment_id} >
