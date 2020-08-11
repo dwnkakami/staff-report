@@ -4,6 +4,7 @@
 .paper{
     background-color: rgb(255, 255, 255);
     overflow: auto;
+    /* max-height: 200; */
     padding:15px;
     box-shadow:5px 5px 50px 5px rgb(77, 76, 76);
     border-radius: 10px;

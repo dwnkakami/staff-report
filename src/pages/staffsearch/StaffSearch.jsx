@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, List } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
@@ -408,6 +408,7 @@ const StaffSearch = () => {
             >
               {getOcp.map((name) => (
                 <MenuItem key={name.name} value={name.name}>
+                  <List style={{ position: 'fixed'}} />
                   <Checkbox checked={ocp.indexOf(name.name) > -1} />
                   <ListItemText primary={name.name} />
                 </MenuItem>
