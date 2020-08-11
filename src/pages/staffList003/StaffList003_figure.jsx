@@ -89,9 +89,9 @@ const StaffList003_figure = (props) => {
             <th>スキル3</th>
           </tr>
           <tr>
-            <td>{data.skill_1}</td>
-            <td>{data.skill_2}</td>
-            <td>{data.skill_3}</td>
+            <td>{data.skill_1 ? data.skill_1:"データなし"}</td>
+            <td>{data.skill_2 ? data.skill_2:"データなし"}</td>
+            <td>{data.skill_3 ? data.skill_3:"データなし"}</td>
           </tr>
         </table>
         <table>

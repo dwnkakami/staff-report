@@ -33,7 +33,6 @@ const StaffList005_figure = (props) => {
         })
     }
   }
-
   return (
     <div>
       <Paper className={classes.paper} elevation={3}>
@@ -46,7 +45,7 @@ const StaffList005_figure = (props) => {
             </tr>
             <tr>
               <td className={classes.content}>{data.staff_id}</td>
-              <td>{data.employment_system}</td>
+              <td>{data.employment_system ? data.employment_system:"データなし"}</td>
             </tr>
             <tr>
               <th>氏名</th>
