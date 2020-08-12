@@ -384,7 +384,8 @@ const StaffSearch = () => {
             (data.occupation === ocp[4]) ||
             (data.occupation === ocp[5]))));
       }
-      else {
+      else 
+      {
         return (((data.occupation === ocp[0]) ||
           (data.occupation === ocp[1]) ||
           (data.occupation === ocp[2]) ||
@@ -403,7 +404,7 @@ const StaffSearch = () => {
           (data.area === areas));
       }
     });
-
+    
     console.log(search);
     ListData.setStaffData(search);
     window.location.href = "/#/staff-report/stafflist-result/001";
