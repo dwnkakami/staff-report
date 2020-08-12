@@ -4,7 +4,7 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import AddIcon from '@material-ui/icons/Add';
 import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
-import TextInput from '@material-ui/core/TextInput';
+// import TextInput from '@material-ui/core/TextInput';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
-import { StylesContext } from '@material-ui/styles';
+// import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -212,7 +212,7 @@ const clear = () => {
     setEmployment("")
 }
 
-const styles = StylesContext;
+// const styles = StylesContext;
 const classes = useStyles();
 
     return(
@@ -227,8 +227,9 @@ const classes = useStyles();
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
             
-            <TextField variant="outlined" type="number{10}" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content}/>
-            <TextInput style={styles.textInput} keyboardType='numeric'/>
+            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} InputProps={{ inputProps: { min: 1 } }} className={classes.content}/>
+            {/* <input type="text" maxlength="2" /> */}
+            {/* <TextInput style={styles.textInput} keyboardType='numeric'/> */}
         </Grid>
         <Grid item xs={4}>
             
