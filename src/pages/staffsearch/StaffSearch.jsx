@@ -215,7 +215,6 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-<<<<<<< HEAD
     setOcp([]);
     setLicense('');
     setSkill1('');
@@ -228,20 +227,6 @@ const StaffSearch = () => {
     setGe('');
     setAge('');
   };
-=======
-    setOcp([])
-    setLicense('')
-    setSkill1('')
-    setSkill2('')
-    setSkill3('')
-    setStatus1('')
-    setStatus2('')
-    setStatus3('')
-    setAreas('')
-    setGe('')
-    setAge('')
-  }
->>>>>>> 38f9f04a6bc8b67a9cf3966b37eb9287fa912771
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
@@ -597,20 +582,12 @@ const StaffSearch = () => {
           variant="outlined"
           type="number"
         >
-<<<<<<< HEAD
-          <MenuItem value=""></MenuItem>
-=======
           {/* <MenuItem value=""></MenuItem>
->>>>>>> 38f9f04a6bc8b67a9cf3966b37eb9287fa912771
           {getAge.map((data)=>(
             <MenuItem key={data.age} value={data.age}>
               {data.age}
             </MenuItem>
-<<<<<<< HEAD
-          ))}
-=======
           ))} */}
->>>>>>> 38f9f04a6bc8b67a9cf3966b37eb9287fa912771
         </TextField>
         </div>
 
