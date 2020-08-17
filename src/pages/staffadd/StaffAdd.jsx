@@ -227,7 +227,7 @@ const classes = useStyles();
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
             
-            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} length={1} InputProps={{ inputProps: { min: 1 } }} className={classes.content}/>
+            <TextField variant="outlined" input type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} InputProps={{ inputProps: { min: 1 } }} className={classes.content}/>
             {/* <input type="text" maxlength="2" /> */}
             {/* <TextInput style={styles.textInput} keyboardType='numeric'/> */}
         </Grid>
@@ -248,7 +248,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField type="date"  name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
+            <TextField type="date" name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
