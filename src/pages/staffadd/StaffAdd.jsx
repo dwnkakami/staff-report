@@ -227,7 +227,7 @@ const classes = useStyles();
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
             
-            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} InputProps={{ inputProps: { min: 1 } }} className={classes.content}/>
+            <TextField variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} length={1} InputProps={{ inputProps: { min: 1 } }} className={classes.content}/>
             {/* <input type="text" maxlength="2" /> */}
             {/* <TextInput style={styles.textInput} keyboardType='numeric'/> */}
         </Grid>
