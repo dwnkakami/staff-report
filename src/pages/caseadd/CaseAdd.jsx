@@ -17,6 +17,10 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import DialogTitle from '@material-ui/core/DialogTitle';
 // import MediaQuery from "react-responsive";
 
+import PropTypes from 'prop-types';
+import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
+
 
 const useStyles = makeStyles((theme) => ({
     form: {
@@ -59,6 +63,56 @@ const useStyles = makeStyles((theme) => ({
       margin: "10px 0px 0px 35px",
     },
 }));
+
+
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/]}
+      placeholderChar={'\u2000'}
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
+
+
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="¥"
+      maxLength="20"
+    />
+  );
+}
+
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default function LayoutTextFields() {
   const classes = useStyles();
@@ -309,9 +363,8 @@ const clear = () => {
           label="依頼単価"
           value={money}
           onChange={handleChange}
-          inputProps={{
-            // startAdornment: <InputAdornment position="start">¥</InputAdornment>,
-            maxlength: 20
+          InputProps={{ 
+            inputComponent: NumberFormatCustom,
           }}
           variant="outlined"
           className={classes.content}
@@ -342,10 +395,11 @@ const clear = () => {
           required
           name="persons"
           label="募集人数"
-          type="number"
           value={persons}
           onChange={handleChange}
-          InputProps={{ inputProps: { min: 1, max: 100 } }}
+          InputProps={{ 
+            inputComponent: TextMaskCustom,
+          }}
           variant="outlined"
           className={classes.content}
         />
