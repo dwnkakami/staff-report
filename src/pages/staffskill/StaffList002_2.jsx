@@ -51,6 +51,11 @@ const StaffList002_map = (props) => {
               console.log('connected error');
           })
   }}
+  if(user.length === 0){
+    return(
+    "スキルデータなし"
+    )
+  }else{
   return (
     <div>
       {user.map((data) => (
@@ -60,5 +65,5 @@ const StaffList002_map = (props) => {
       ))} 
     </div>
   );
-  }
+  }}
 export default StaffList002_map;
