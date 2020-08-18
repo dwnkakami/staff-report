@@ -14,7 +14,6 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
-// import e from 'express';
 // import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,6 +44,7 @@ const [gender,setGender] = useState("");
 const [position,setPosition] = useState("");
 const [join,setJoin] = useState("");
 const [birthday,setBirthday] = useState("");
+// const [date, setDate] = useState("");
 const [age,setAge] = useState("");
 const [career,setCareer] = useState("");
 const [phone,setPhone] = useState("");
@@ -58,6 +58,67 @@ const update_at = new Date().toLocaleString();
 const update_by = UserProfile.getName()
 
 const handleChange = e => {
+    if (e.target.value) {
+        setJoin(e.target.value);
+    } else {
+        const nowYear = join.slice(0, 4);
+        const nowMonth = join.substr(5, 2);
+        const nowDate = join.slice(-2);
+
+        if (nowDate !== "01") {
+            setJoin(`${nowYear}-${nowMonth}-01`);
+        }
+        else{
+            switch (nowMonth) {
+                case "02":
+                if ((nowYear * 1) % 4 === 0) {
+                setJoin(`${nowYear}-${nowMonth}-29`);
+                } else {
+                    setJoin(`${nowYear}-${nowMonth}-28`);
+                }
+                break;
+                case "04":
+                case "06":
+                case "09":
+                case "11":
+                    setJoin(`${nowYear}-${nowMonth}-30`);
+                break;
+                default:
+                break;
+            }
+        }
+    }
+    if (e.target.value) {
+        setBirthday(e.target.value);
+    } else {
+        const nowYear = birthday.slice(0, 4);
+        const nowMonth = birthday.substr(5, 2);
+        const nowDate = birthday.slice(-2);
+
+        if (nowDate !== "01") {
+            setBirthday(`${nowYear}-${nowMonth}-01`);
+        }
+        else{
+            switch (nowMonth) {
+                case "02":
+                if ((nowYear * 1) % 4 === 0) {
+                setBirthday(`${nowYear}-${nowMonth}-29`);
+                } else {
+                    setBirthday(`${nowYear}-${nowMonth}-28`);
+                }
+                break;
+                case "04":
+                case "06":
+                case "09":
+                case "11":
+                    setBirthday(`${nowYear}-${nowMonth}-30`);
+                break;
+                default:
+                break;
+            }
+        }
+    }
+
     switch (e.target.name) {
         case 'staffId':
             setStaffId(e.target.value);
@@ -74,9 +135,9 @@ const handleChange = e => {
         case 'join':
             setJoin(e.target.value);
             break;
-        // case 'join':
-        //     setBirthday(e.target.value);
-        //     break;
+        case 'birthday':
+            setBirthday(e.target.value);
+            break;
         case 'age':
             setAge(e.target.value);
             break;
@@ -106,40 +167,6 @@ const handleChange = e => {
     }
 };
 
-const onChangeDate = (e) => {
-
-    if (e.target.value) {
-        setBirthday(e.target.value);
-    } else {
-        const nowYear = birthday.slice(0, 4);
-        const nowMonth = birthday.substr(5, 2);
-        const nowDate = birthday.slice(-2);
-
-        if (nowDate !== "01") {
-            setBirthday(`${nowYear}-${nowMonth}-01`);
-        }
-
-        else{
-            switch (nowMonth) {
-                case "02":
-                if ((nowYear * 1) % 4 === 0) {
-                setBirthday(`${nowYear}-${nowMonth}-29`);
-                }else {
-                    setBirthday(`${nowYear}-${nowMonth}-28`);
-                }
-                break;
-                case "04":
-                case "06":
-                case "09":
-                case "11":
-                    setBirthday(`${nowYear}-${nowMonth}-30`);
-                break;
-                default:
-                break;
-            }
-        }
-    }
-}
 const add = () => {
 
     const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
@@ -283,7 +310,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField type="date" name="birthday" label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={e => onChangeDate(e)} className={classes.content}  InputLabelProps={{
+            <TextField type="date" name="birthday" label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
