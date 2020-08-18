@@ -1,58 +1,30 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
 import { makeStyles } from '@material-ui/core/styles';
 import { useState , useEffect } from 'react';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(0),
-      },
-    },
-      Paper: {
-    width: '1200px',
+  root: {
+    width: '100%',
+  },
+  paper: {
     borderRadius: '0px 0px 0px 0px',
-},
-  content1: {
-    float: 'left',
-    width:'50%',
-    color: '#000000',
   },
-  content2: {
-    float: 'left',
-    width:'50%',
-    color: '#000000',
-  },
-  List_color: {
-    background:'#DCDCDC',
-    height:35,
-    fontweight: 'bold',
-  },
-  List: {
-    background:'#ffffff',
-    height:35,
-  }
 }));
 
-const StaffList005_figure = () => {
+const StaffList005_figure = (props) => {
   const classes = useStyles();
 
   const [user, setUser] = useState([]);
 
-  useEffect(() => getCasedetailData());
+  useEffect(() => getCasedetailData(),[]);
 
   const getCasedetailData = () => {
     if(user.length === 0) {
       axios
-        .get('/api/stafflist005/3')
+        .get(`/api/stafflist005/${props.id}`)
         .then(response => {
           setUser(response.data);
         })
@@ -61,138 +33,72 @@ const StaffList005_figure = () => {
         })
     }
   }
-
   return (
     <div>
-      <div className={classes.root}>
-       <Paper variant="outlined" className={classes.Paper}>
-       <div className={classes.content1}>
-         {user.map((data) => (
-             <List>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="スタッフ番号"/>
-                 </ListItem>
-                 <Divider />
-                    <ListItem className={classes.List}>
-                    <ListItemText className={classes.content1_1} variant="outlimed" key={data.スタッフ番号}>{data.スタッフ番号}</ListItemText>
-                    </ListItem>
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary='氏名'/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                   <ListItemText key={data.スタッフ番号}>{data.スタッフ名}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="役職"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.役職名}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="生年月日"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.誕生日}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="性別"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.性別}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="連絡先"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.連絡先}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="現配属案件"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                   <ListItemText primary="〇〇〇〇株式会社ABC開発案件"/>
-                 </ListItem>
-                 <Divider />
-             </List>
-             ))}
-         </div>
-         <div className={classes.content2}>
-            {user.map((data) => (
-             <List >
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText　primary="雇用形態"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.雇用形態}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="所属会社"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.所属会社}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="入社日"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.入社日}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="年齢"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.年齢}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="最終学歴"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.最終学歴}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="最寄駅"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                 <ListItemText key={data.スタッフ番号}>{data.最寄駅}</ListItemText>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List_color}>
-                   <ListItemText primary="現案件終了予定日"/>
-                 </ListItem>
-                 <Divider />
-                 <ListItem className={classes.List}>
-                   <ListItemText primary="2019/3/31"/>
-                 </ListItem>
-                 <Divider />
-             </List>
-            ))}
-         </div>
-       </Paper>
-     </div>
+      <Paper className={classes.paper} elevation={3}>
+       {user.map((data) => (
+        <Typography gutterBottom key={data.staff_id}>
+          <table className={classes.root}>
+            <tr>
+              <th>スタッフ番号</th>
+              <th>雇用形態</th>
+            </tr>
+            <tr>
+              <td className={classes.content}>{data.staff_id}</td>
+              <td>{data.employment_system ? data.employment_system:"データなし"}</td>
+            </tr>
+            <tr>
+              <th>氏名</th>
+              <th>所属会社</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.staff_name ? data.staff_name:"データなし"}</td> 
+             <td>{data.company ? data.company:"データなし"}</td> 
+            </tr>
+            <tr>
+              <th>役職</th>
+              <th>入社日</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.position ? data.position:"データなし"}</td> 
+             <td>{data.joining_day ? data.joining_day:"データなし"}</td> 
+            </tr>
+            <tr>
+              <th>生年月日</th>
+              <th>年齢</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.birthday ? data.birthday:"データなし"}</td> 
+             <td>{data.age ? data.age:"データなし"}</td> 
+            </tr>
+            <tr>
+              <th>性別</th>
+              <th>最終学歴</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.gender ? data.gender:"データなし"}</td> 
+             <td>{data.school_career ? data.school_career:"データなし"}</td> 
+            </tr>
+            <tr>
+              <th>連絡先</th>
+              <th>最寄り駅</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.phone_number ? data.phone_number:"データなし"}</td> 
+             <td>{data.station ? data.station:"データなし"}</td> 
+            </tr>
+            <tr>
+              <th>現配属案件</th>
+              <th>現案件終了予定日</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.matter_name ? data.matter_name:"データなし"}</td> 
+             <td>{data.end_day　? data.end_day:"データなし"}</td> 
+            </tr>
+          </table>
+        </Typography>
+        ))}
+      </Paper>
     </div>
   );
 }

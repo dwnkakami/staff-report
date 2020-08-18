@@ -8,7 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import DialogButton from './DialogButton';
+// import classes from '*.module.css';
 // import StaffList005_figure from './StaffList005_figure';
+import ReferenceAdd from '../referenceadd/ReferenceAdd';
 
 const styles = (theme) => ({
   root: {
@@ -21,13 +23,18 @@ const styles = (theme) => ({
     top: theme.spacing(1),
     color: theme.palette.grey[500],
   },
+  left: {
+    width:150,
+    float:'left',
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      <Typography className={classes.left} variant="h6">{children}</Typography>
+      <ReferenceAdd className={classes.left} />
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
@@ -44,7 +51,7 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function CustomizedDialogs() {
+const StaffList005 = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -56,16 +63,17 @@ export default function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <Button variant="outlined" color="" onClick={handleClickOpen}>
         スタッフ詳細
       </Button>
       <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open} maxWidth="lg" fullWidth={true}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          スタッフ情報
+          スタッフ詳細
         </DialogTitle>
         <DialogContent dividers>
+          <Typography variant="h5">{props.name}</Typography>
           <div>
-            <DialogButton />
+            <DialogButton id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />
           </div>
           {/* <div>
             <StaffList005_figure />
@@ -75,3 +83,4 @@ export default function CustomizedDialogs() {
     </div>
   );
 }
+  export default StaffList005;
