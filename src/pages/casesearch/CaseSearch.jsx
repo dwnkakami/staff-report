@@ -22,6 +22,7 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 // import DatePickers from './DatePickers';
 import ListData from './ListData';
+import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 
 
@@ -138,26 +139,60 @@ const MenuProps = {
   }
   
 
+  
   //KeywordSearch
-  const [keyWord, setKeyWord] = React.useState('');
+  const [keyWord, setKeyWord] = React.useState([]);
+  const [keyWord2, setKeyWord2] = React.useState([]);
+
+  // const keywordSearch = posts.filter((data)=>{
+  //   return (data.name.indexOf(keyWord) !== -1);
+  // });
+
+  // const keywordSearch2 = posts.filter((data)=>{
+  //   return ((data.name.indexOf(keyWord) !== -1)||
+  //          (data.name.indexOf(keyWord2) !== -1));
+  // });
 
   //keywordSubmit
+
   const keywordSubmit = () => {
 
-    const target = posts.filter((data)=>{
-      return (data.name.includes(keyWord));
+    const keywordSearch = posts.filter((data)=>{
+     return data.name.toLowerCase().indexOf(keyWord)>= 0;
+            // String(data.name).toLowerCase().indexOf(keyWord)>= 0;
+            // (data.name.split(" "))||
+            // data.name.toLowerCase().indexOf(keyWord2)>= 0);
     });
-    if(target.length === 0){
+
+    if(keywordSearch.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
-      console.log(target);
-      ListData.setCaseData(target);
+      console.log(keywordSearch);
+      ListData.setCaseData(keywordSearch);
       window.location.href = "/#/staff-report/caseresult/001";
     }
   };
 
+  // const keywordSubmit2 = () => {
+    
+  //   const keywordSearch2 = posts.filter((data)=>{
+  //     return ((data.name.indexOf(keyWord) !== -1)||
+  //            (data.name.indexOf(keyWord2) !== -1));
+  //   });
+
+  //   if(keywordSearch2.length === 0){
+  //     window.alert("検索結果がありません。\n条件を変更してください。")
+  //   }else{
+  //     console.log(keywordSearch2);
+  //     ListData.setCaseData(keywordSearch2);
+  //     window.location.href = "/#/staff-report/caseresult/001";
+  //   }
+  // };
+
+
 
  
+
   //job
 
   const [job, setJob] = useState([]);
@@ -246,6 +281,7 @@ const MenuProps = {
 ));
 
   //clearButton
+  
   const clearAll = () => {
     setKeyWord('')
     setJobName([])
@@ -255,8 +291,11 @@ const MenuProps = {
     // setSelectedStartDate()
     // setSelectedEndDate()
     setSalesMan('')
-    window.alert("Clear Done")
+    
+    // (window.confirm("Clear Done")
+
   };
+
 
 
   //SearchButton
@@ -424,9 +463,16 @@ const MenuProps = {
         </Typography>
 
 
+
           <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
+          {/* <Typography  variant="h5" component="h2">
+          ＆
+        　</Typography> */}
+          {/* <TextField value={keyWord2} onChange={e => setKeyWord2(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード2" variant="outlined" type="text" name="key" /> */}
 
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
+
+          {/* <div onClick={keywordSubmit}/> */}
 
         <br className={classes.end} />
         
