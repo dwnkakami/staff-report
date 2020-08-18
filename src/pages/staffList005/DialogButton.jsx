@@ -4,7 +4,7 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import StaffList005_figure from './StaffList005_figure';
 import StaffList003_map from '../staffList003/StaffList003_figure';
-import StaffList002_2 from '../staffskill/StaffList002_2';
+import StaffList002_map from '../staffskill/StaffList002_2';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,11 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DialogButton = (props) => {
   const classes = useStyles();
-  const [staff, setStaff] = useState(<StaffList002_2 id={props.id}/>);
+  const [staff, setStaff] = useState(<StaffList002_map id={props.id}/>);
 
   const handleClick = (selected) => {
     if(selected === 1){
-      setStaff(<StaffList002_2 id={props.id}/>)
+      setStaff(<StaffList002_map id={props.id}/>)
     } else if(selected === 2){
       setStaff(<StaffList003_map id={props.id} />);
     } else if(selected === 3){

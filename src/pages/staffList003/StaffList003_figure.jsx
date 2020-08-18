@@ -100,7 +100,7 @@ const StaffList003_figure = (props) => {
             <th>備考欄</th>
           </tr>
           <tr>
-            <td>{data.skill_level}</td>
+            <td>{data.skill_level ? data.skill_level:"特になし"}</td>
             <td>{data.note}</td>
           </tr>
         </table>

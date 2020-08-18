@@ -34,4 +34,31 @@ return(
  </div>
 );
 }
-export default StaffList002_2;
+
+const StaffList002_map = (props) => {
+    const [user, setUser] = useState([]);  
+  
+    useEffect(() => getData(),[]);
+  
+    const getData = () => {
+      if(user.length === 0){
+        axios
+          .get(`/api/stafflist002/${props.id}`)
+          .then(response => {
+              setUser(response.data);
+          })
+          .catch(() => {
+              console.log('connected error');
+          })
+  }}
+  return (
+    <div>
+      {user.map((data) => (
+      <div key={props.id}>
+      {data.skillname ? <StaffList002_2 id={props.id}/>:"スキルデータなし"}
+      </div>
+      ))} 
+    </div>
+  );
+  }
+export default StaffList002_map;
