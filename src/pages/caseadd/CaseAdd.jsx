@@ -359,11 +359,13 @@ const clear = () => {
       <Grid item xs={4}>
         <TextField
           required
+          // type="number"
           name="money"
           label="依頼単価"
           value={money}
           onChange={handleChange}
-          InputProps={{ 
+          InputProps={{
+            // maxlength:20, 
             inputComponent: NumberFormatCustom,
           }}
           variant="outlined"
