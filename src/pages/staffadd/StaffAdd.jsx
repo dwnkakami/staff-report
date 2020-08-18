@@ -283,7 +283,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField type="date" name="birthday" format="yyyy/MM/dd"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={e => onChangeDate(e)} className={classes.content}  InputLabelProps={{
+            <TextField type="date" name="birthday" label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={e => onChangeDate(e)} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
