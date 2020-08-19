@@ -13,6 +13,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
+import PropTypes from 'prop-types';
+import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -26,15 +29,56 @@ const useStyles = makeStyles((theme) => ({
       minWidth: 195,
     },
     button1: {
-        marginTop: 20
-    },
-    button2: {
-        marginTop: 20,
         left: theme.spacing(2),
     },
+    button: {
+        textAlign: 'right'
+    }
 }));
 
-export default function StaffAdd (props) {
+function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+    return (
+      <MaskedInput
+        {...other}
+        ref={(ref) => {
+          inputRef(ref ? ref.inputElement : null);
+        }}
+        mask={[ /\d/, /\d/, /\d/,'-',/\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/]}
+        placeholderChar={'\u2000'}
+      />
+    );
+  }
+  TextMaskCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+  };
+
+function NumberFormatCustom(props) {
+    const { inputRef, onChange, ...other } = props;
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={inputRef}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        isNumericString
+        maxLength="3"
+      />
+    );
+  }
+  NumberFormatCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+  };
+
+export default function StaffAdd () {
 
 const [staffId,setStaffId] = useState("");
 const [name,setName] = useState("");
@@ -105,6 +149,66 @@ const handleChange = e => {
         default:
             console.log('text not found');
     }
+    if (e.target.value) {
+        setBirthday(e.target.value);
+      } else {
+        const nowYear = birthday.slice(0, 4);
+        const nowMonth = birthday.substr(5, 2);
+        const nowDate = birthday.slice(-2);
+    
+        if (nowDate !== "01") {
+          setBirthday(`${nowYear}-${nowMonth}-01`);
+        }
+        else{
+          switch (nowMonth) {
+            case "02":
+              if ((nowYear * 1) % 4 === 0) {
+                setBirthday(`${nowYear}-${nowMonth}-29`);
+              } else {
+                setBirthday(`${nowYear}-${nowMonth}-28`);
+              }
+              break;
+            case "04":
+            case "06":
+            case "09":
+            case "11":
+              setBirthday(`${nowYear}-${nowMonth}-30`);
+              break;
+            default:
+              break;
+          }
+        }
+      }
+    if (e.target.value) {
+        setJoin(e.target.value);
+      } else {
+        const nowYear2 = join.slice(0, 4);
+        const nowMonth2 = join.substr(5, 2);
+        const nowDate2 = join.slice(-2);
+    
+        if (nowDate2 !== "01") {
+          setJoin(`${nowYear2}-${nowMonth2}-01`);
+        }
+        else{
+          switch (nowMonth2) {
+            case "02":
+              if ((nowYear2 * 1) % 4 === 0) {
+                setJoin(`${nowYear2}-${nowMonth2}-29`);
+              } else {
+                setJoin(`${nowYear2}-${nowMonth2}-28`);
+              }
+              break;
+            case "04":
+            case "06":
+            case "09":
+            case "11":
+              setJoin(`${nowYear2}-${nowMonth2}-30`);
+              break;
+            default:
+              break;
+          }
+        }
+      }
 };
 
 const add = () => {
@@ -113,12 +217,12 @@ const add = () => {
         　update_by:update_by
     }
 
-    if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || (gender.length === 0) || 
-       (position.length === 0) || (join.length === 0) || (birthday.length === 0) ||
-       (age.length === 0) || (career.length === 0) || (phone.length === 0) ||
-       (station.length === 0) || (company.length === 0) || (area.length === 0) ||
-       (occupation.length === 0) || (employment.length === 0) || (entry.length === 0) ||
-       (update_at.length === 0)) {
+    if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
+       (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
+       (birthday.length === 0) || (age.length === 0) || (career.length === 0) || 
+       (phone.length === 0) || (station.length === 0) || (company.length === 0) || 
+       (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
+       (entry.length === 0) || (update_at.length === 0)) {
            window.alert('未入力項目があります。\n*は必須項目です。')
        }　else {
 
@@ -255,11 +359,11 @@ const classes = useStyles();
         </DialogTitle>
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
-            <TextField required variant="outlined" type="number" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} className={classes.content}/>
-        </Grid>
+            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange}　className={classes.content} inputProps={{maxlength: 10}}/>
+        </Grid> 
         <Grid item xs={4}>
             <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} className={classes.content}/>
         </Grid>
@@ -282,11 +386,11 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField required variant="outlined" type="number" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content}/>
+            <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <Typography></Typography>
-            <TextField required type="number" inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン無し)" value={phone} onChange={handleChange} className={classes.content}/>
+            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号" value={phone} onChange={handleChange} className={classes.content} InputProps={{inputComponent: TextMaskCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
@@ -365,9 +469,9 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
-            <Button variant="contained" onClick={clear} className={classes.button1}>クリア</Button>
-            <Button variant="contained" onClick={add} className={classes.button2}>追加</Button>
+        <Grid item xs={11} className={classes.button}>
+            <Button variant="contained" onClick={clear}>クリア</Button>
+            <Button variant="contained" onClick={add} className={classes.button1}>追加</Button>
         </Grid>
         </Grid>
         </Paper>

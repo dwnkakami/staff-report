@@ -72,7 +72,7 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
-    { id:'id',numeric: true, disablePadding: false, label: '詳細' },
+    { label: '詳細' },
   ];
 
   function EnhancedTableHead(props) {
