@@ -404,9 +404,12 @@ const StaffSearch = () => {
           (data.area === areas));
       }
     });
-    
-    console.log(search);
-    ListData.setStaffData(search);
+
+    const search2 = search.filter((x,i,self)=>{
+      return self.indexOf(x) === i;
+    });
+    console.log(search2);
+    ListData.setStaffData(search2);
     window.location.href = "/#/staff-report/stafflist-result/001";
   }
 
