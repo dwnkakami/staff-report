@@ -113,6 +113,7 @@ function EnhancedTableHead(props) {
 EnhancedTableHead.propTypes = {
     classes: PropTypes.object.isRequired,
     rowCount: PropTypes.number.isRequired,
+    onRequestSort: PropTypes.func.isRequired,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -159,11 +160,20 @@ export default function ReferenceList() {
         }
     }
 
+    const [order, setOrder] = React.useState('asc');
+    const [orderBy, setOrderBy] = React.useState('calories');
+
+    const handleRequestSort = (event, property) => {
+        const isAsc = orderBy === property && order === 'asc';
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(property);
+    };
+
     return (
         <Paper elevation={3} >
             <DialogTitle id="customized-dialog-title">
                 <div className='title' style={{ display: 'flex' }}>
-                    <ListIcon style={{ fontSize: '25px'}}/>
+                    <ListIcon style={{ fontSize: '25px' }} />
                     <DescriptionIcon style={{ fontSize: '40px', }} />
                     <Typography style={{ fontSize: '30px' }}>引合リスト</Typography>
                 </div>
@@ -171,30 +181,33 @@ export default function ReferenceList() {
 
             <div className={classes.root}>
                 {/* <Paper className={classes.paper}> */}
-                    <TableContainer>
-                        <Grid container justify={"center"}>
-                            <Grid className="table1">
-                                <Table
-                                    className={classes.table}
-                                >
-                                    <EnhancedTableHead
-                                        classes={classes}
-                                        rowCount={posts.length}
-                                    />
-                                    <TableBody>
-                                        {stableSort(posts, getComparator())
-                                            .map((data) => {
-                                                return (
-                                                    <StyledTableRow
-                                                        // hover
-                                                        key={data.id}
-                                                    >
-                                                        <TableCell align="center">{data.name}</TableCell>
-                                                        <TableCell align="center">{data.staff_name}</TableCell>
-                                                        <TableCell align="center">{data.customer_abbreviation}</TableCell>
-                                                        <TableCell align="center"></TableCell>
-                                                        <TableCell align="center">
-                                                            <ReferenceDetail key={data.id} 
+                <TableContainer>
+                    <Grid container justify={"center"}>
+                        <Grid className="table1">
+                            <Table
+                                className={classes.table}
+                            >
+                                <EnhancedTableHead
+                                    classes={classes}
+                                    order={order}
+                                    orderBy={orderBy}
+                                    rowCount={posts.length}
+                                    onRequestSort={handleRequestSort}
+                                />
+                                <TableBody>
+                                    {stableSort(posts, getComparator(order, orderBy))
+                                        .map((data) => {
+                                            return (
+                                                <StyledTableRow
+                                                    // hover
+                                                    key={data.id}
+                                                >
+                                                    <TableCell align="center">{data.name}</TableCell>
+                                                    <TableCell align="center">{data.staff_name}</TableCell>
+                                                    <TableCell align="center">{data.customer_abbreviation}</TableCell>
+                                                    <TableCell align="center"></TableCell>
+                                                    <TableCell align="center">
+                                                        <ReferenceDetail key={data.id}
                                                             name={data.name}
                                                             staff_name={data.staff_name}
                                                             occupation_name={data.occupation_name}
@@ -206,16 +219,16 @@ export default function ReferenceList() {
                                                             entry_at={data.entry_at}
                                                             update_at={data.update_at}
                                                             skill_level_column={data.skill_level_column}
-                                                            />
-                                                        </TableCell>
-                                                    </StyledTableRow>
-                                                );
-                                            })}
-                                    </TableBody>
-                                </Table>
-                            </Grid>
+                                                        />
+                                                    </TableCell>
+                                                </StyledTableRow>
+                                            );
+                                        })}
+                                </TableBody>
+                            </Table>
                         </Grid>
-                    </TableContainer>
+                    </Grid>
+                </TableContainer>
                 {/* </Paper> */}
             </div>
         </Paper>

@@ -116,12 +116,6 @@ const handleChange = e => {
         case 'position':
             setPosition(e.target.value);
             break;
-        case 'join':
-            setJoin(e.target.value);
-            break;
-        case 'birthday':
-            setBirthday(e.target.value);
-            break;
         case 'age':
             setAge(e.target.value);
             break;
@@ -149,6 +143,9 @@ const handleChange = e => {
         default:
             console.log('text not found');
     }
+};
+
+const handleChange2 = e => {
     if (e.target.value) {
         setBirthday(e.target.value);
       } else {
@@ -179,37 +176,40 @@ const handleChange = e => {
           }
         }
       }
+}
+
+const handleChange3 = e => {
     if (e.target.value) {
         setJoin(e.target.value);
       } else {
-        const nowYear2 = join.slice(0, 4);
-        const nowMonth2 = join.substr(5, 2);
-        const nowDate2 = join.slice(-2);
+        const nowYear = join.slice(0, 4);
+        const nowMonth = join.substr(5, 2);
+        const nowDate = join.slice(-2);
     
-        if (nowDate2 !== "01") {
-          setJoin(`${nowYear2}-${nowMonth2}-01`);
+        if (nowDate !== "01") {
+          setJoin(`${nowYear}-${nowMonth}-01`);
         }
         else{
-          switch (nowMonth2) {
+          switch (nowMonth) {
             case "02":
-              if ((nowYear2 * 1) % 4 === 0) {
-                setJoin(`${nowYear2}-${nowMonth2}-29`);
+              if ((nowYear * 1) % 4 === 0) {
+                setJoin(`${nowYear}-${nowMonth}-29`);
               } else {
-                setJoin(`${nowYear2}-${nowMonth2}-28`);
+                setJoin(`${nowYear}-${nowMonth}-28`);
               }
               break;
             case "04":
             case "06":
             case "09":
             case "11":
-              setJoin(`${nowYear2}-${nowMonth2}-30`);
+              setJoin(`${nowYear}-${nowMonth}-30`);
               break;
             default:
               break;
           }
         }
       }
-};
+}
 
 const add = () => {
 
@@ -379,8 +379,7 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            
-            <TextField required type="date"  name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
+            <TextField required type="date" inputProps={{max:"9999-12-31"}} name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange2} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
@@ -399,7 +398,7 @@ const classes = useStyles();
             <TextField required variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required　type="date"  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange} className={classes.content}　InputLabelProps={{
+            <TextField required　type="date" inputProps={{max:"9999-12-31"}} name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange3} className={classes.content}　InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
