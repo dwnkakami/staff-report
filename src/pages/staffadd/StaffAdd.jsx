@@ -58,36 +58,49 @@ const update_at = new Date().toLocaleString();
 const update_by = UserProfile.getName()
 
 const handleChange = e => {
-    if (e.target.value) {
-        setJoin(e.target.value);
-    } else {
-        const nowYear = join.slice(0, 4);
-        const nowMonth = join.substr(5, 2);
-        const nowDate = join.slice(-2);
-
-        if (nowDate !== "01") {
-            setJoin(`${nowYear}-${nowMonth}-01`);
-        }
-        else{
-            switch (nowMonth) {
-                case "02":
-                if ((nowYear * 1) % 4 === 0) {
-                setJoin(`${nowYear}-${nowMonth}-29`);
-                } else {
-                    setJoin(`${nowYear}-${nowMonth}-28`);
-                }
-                break;
-                case "04":
-                case "06":
-                case "09":
-                case "11":
-                    setJoin(`${nowYear}-${nowMonth}-30`);
-                break;
-                default:
-                break;
-            }
-        }
+    switch (e.target.name) {
+        case 'staffId':
+            setStaffId(e.target.value);
+            break;
+        case 'name':
+            setName(e.target.value);
+            break;
+        case 'gender':
+            setGender(e.target.value);
+            break;
+        case 'position':
+            setPosition(e.target.value);
+            break;
+        case 'age':
+            setAge(e.target.value);
+            break;
+        case 'career':
+            setCareer(e.target.value);
+            break;
+        case 'phone':
+            setPhone(e.target.value);
+            break;
+        case 'station':
+            setStation(e.target.value);
+            break;
+        case 'company':
+            setCompany(e.target.value);
+            break;
+        case 'area':
+            setArea(e.target.value);
+            break;
+        case 'occupation':
+            setOccupation(e.target.value);
+            break;
+        case 'employment':
+            setEmployment(e.target.value);
+            break;
+        default:
+            console.log('text not found');
     }
+};
+
+const handleChange2 = e => {
     if (e.target.value) {
         setBirthday(e.target.value);
     } else {
@@ -118,54 +131,40 @@ const handleChange = e => {
             }
         }
     }
+}
 
-    switch (e.target.name) {
-        case 'staffId':
-            setStaffId(e.target.value);
-            break;
-        case 'name':
-            setName(e.target.value);
-            break;
-        case 'gender':
-            setGender(e.target.value);
-            break;
-        case 'position':
-            setPosition(e.target.value);
-            break;
-        case 'join':
-            setJoin(e.target.value);
-            break;
-        case 'birthday':
-            setBirthday(e.target.value);
-            break;
-        case 'age':
-            setAge(e.target.value);
-            break;
-        case 'career':
-            setCareer(e.target.value);
-            break;
-        case 'phone':
-            setPhone(e.target.value);
-            break;
-        case 'station':
-            setStation(e.target.value);
-            break;
-        case 'company':
-            setCompany(e.target.value);
-            break;
-        case 'area':
-            setArea(e.target.value);
-            break;
-        case 'occupation':
-            setOccupation(e.target.value);
-            break;
-        case 'employment':
-            setEmployment(e.target.value);
-            break;
-        default:
-            console.log('text not found');
+const handleChange3 = e => {
+    if (e.target.value) {
+        setJoin(e.target.value);
+    } else {
+        const nowYear = join.slice(0, 4);
+        const nowMonth = join.substr(5, 2);
+        const nowDate = join.slice(-2);
+
+        if (nowDate !== "01") {
+            setJoin(`${nowYear}-${nowMonth}-01`);
+        }
+        else{
+            switch (nowMonth) {
+                case "02":
+                if ((nowYear * 1) % 4 === 0) {
+                setJoin(`${nowYear}-${nowMonth}-29`);
+                } else {
+                    setJoin(`${nowYear}-${nowMonth}-28`);
+                }
+                break;
+                case "04":
+                case "06":
+                case "09":
+                case "11":
+                    setJoin(`${nowYear}-${nowMonth}-30`);
+                break;
+                default:
+                break;
+            }
+        }
     }
-};
+}
 
 const add = () => {
 
@@ -310,7 +309,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             
-            <TextField type="date" name="birthday" label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange} className={classes.content}  InputLabelProps={{
+            <TextField type="date" inputProps={{max:"9999-12-31"}} name="birthday" label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange2} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
@@ -329,7 +328,7 @@ const classes = useStyles();
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField　type="date"  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange} className={classes.content}　InputLabelProps={{
+            <TextField　type="date" inputProps={{max:"9999-12-31"}}  name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange3} className={classes.content}　InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
