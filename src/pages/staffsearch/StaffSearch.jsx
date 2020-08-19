@@ -252,6 +252,8 @@ const StaffSearch = () => {
     }
   }, []);
 
+  
+
   const [getSkill, setGetSkill] = useState([]);
   useEffect(() => getSkillData(), []);
   const getSkillData = () => {
@@ -403,13 +405,10 @@ const StaffSearch = () => {
           (data.age === age) &&
           (data.area === areas));
       }
-    });
+    }); 
 
-    const search2 = search.filter((x,i,self)=>{
-      return self.indexOf(x) === i;
-    });
-    console.log(search2);
-    ListData.setStaffData(search2);
+    console.log(search);
+    ListData.setStaffData(search);
     window.location.href = "/#/staff-report/stafflist-result/001";
   }
 
