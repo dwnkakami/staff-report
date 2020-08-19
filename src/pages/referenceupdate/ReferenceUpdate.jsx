@@ -77,6 +77,7 @@ export default function AlertDialog() {
     setOpen(false);
   };
 
+  const [referenceId,setReferenceId] = useState("");
   const [matterId,setMatterId] = useState("");
   const [staffId,setStaffId] = useState("");
   const [occupationId,setOccupationId] = useState("");
@@ -89,11 +90,13 @@ export default function AlertDialog() {
   // const [updateAt,setUpdateAt] = useState("");
   const [updateBy,setUpdateBy] = useState("");
   
-  const entry = new Date().toLocaleString();
   const updateAt = new Date().toLocaleString();
   
   const handleChange = e => {
       switch (e.target.name) {
+          case 'referenceId':
+              setReferenceId(e.target.value);
+              break;
           case 'matterId':
               setMatterId(e.target.value);
               break;
@@ -139,7 +142,7 @@ export default function AlertDialog() {
   const getData = () => {
       if(user.length === 0){
         axios
-        .get('./api/staffadd004')
+        .get('./api/referenceupdate')
         .then(response => {
             setUser(response.data);
             console.log(response.data);
@@ -150,23 +153,25 @@ export default function AlertDialog() {
     }
 }
 
-  const add = () => {
+  const fix = () => {
   
-    const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt}
-  
+    const updateValue = {id:referenceId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, update_at:updateAt, update_by:updateBy}
+    // const updateValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, update_at:updateAt, update_by:updateBy}
+    
       axios
-          .post('/api/referenceadd', newValue)
+          .post('/api/referenceupdate', updateValue)
           .then(response => {
               console.log(response.data);
-              window.alert("追加されました")
+              window.alert("更新されました")
           })
           .catch(() => {
               console.log('submit error');
-              window.alert("追加できませんでした")
+              window.alert("更新できませんでした")
           });
   }
   
   const clear = () => {
+      setReferenceId("")
       setMatterId("")
       setStaffId("")
       setOccupationId("")
@@ -185,7 +190,7 @@ export default function AlertDialog() {
   return (
     <div>
       <Button variant="outlined" color="" onClick={handleClickOpen}>
-        引合登録
+        引合更新
       </Button>
       <Dialog
         open={open}
@@ -195,13 +200,13 @@ export default function AlertDialog() {
         maxWidth='md'
       >
         <DialogTitle id="alert-dialog-title" onClose={handleClose}>
-            引合登録
+            引合更新
         </DialogTitle>
         <DialogContent dividers >
         <Grid container spacing={2}>
         <Grid item xs={4}>
-            {/* <Typography>案件ID</Typography> */}
-            <TextField label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
+            {/* <Typography>引合ID</Typography> */}
+            <TextField label="引合ID" variant="outlined" type="number" name="referenceId" value={referenceId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>スタッフID</Typography> */}
@@ -259,7 +264,7 @@ export default function AlertDialog() {
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
-                <Button variant="contained" className={classes1.button2} onClick={add}>登録</Button>
+                <Button variant="contained" className={classes1.button2} onClick={fix}>更新</Button>
             </Grid>
         </Grid>
         </DialogContent>
