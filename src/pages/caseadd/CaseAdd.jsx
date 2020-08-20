@@ -71,14 +71,7 @@ export default function LayoutTextFields() {
     name: 'hai',
   });
 
-  const handleDateChange = (date) => {
-    setStartdate(date);
-  };
-
-  const handleDateChange2 = (date) => {
-    setEnddate(date);
-  }
-
+ 
 
   const onChangeDate2 = (e) => {
     setEnddate(e.target.value);
