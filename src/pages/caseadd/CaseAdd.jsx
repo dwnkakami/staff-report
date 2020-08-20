@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/paper';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import DateFnsUtils from '@date-io/date-fns';
 import MenuItem from '@material-ui/core/MenuItem';
 import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
@@ -22,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     form: {
       textAlign: "center",
       margin: "auto",
+      position: "relative",
     },
     button: {
       // bottom: "-50px",
@@ -44,21 +46,23 @@ const useStyles = makeStyles((theme) => ({
       margin: 'none'
     },
     content: {
-      width: '300px',
+      width: '80%',
+      position: 'relative',
     },
     content_2: {
-      width: '300px',
+      width: '80%',
       margin: "10px 4px 0px 13px",
     },
     content_3: {
-      width: '300px',
+      width: '80%',
       margin: "10px 0px 0px 20px",
     },
     content_4: {
-      width: '300px',
+      width: '80%',
       margin: "10px 0px 0px 35px",
     },
 }));
+
 
 export default function LayoutTextFields() {
   const classes = useStyles();
@@ -66,6 +70,83 @@ export default function LayoutTextFields() {
     month: '',
     name: 'hai',
   });
+
+  const handleDateChange = (date) => {
+    setStartdate(date);
+  };
+
+  const handleDateChange2 = (date) => {
+    setEnddate(date);
+  }
+
+
+  const onChangeDate2 = (e) => {
+    setEnddate(e.target.value);
+    if (e.target.value){
+      setEnddate(e.target.value);
+    } else {
+      const nowYear = startdate.slice(0, 4);
+      const nowMonth = startdate.substr(5, 2);
+      const nowDate = startdate.slice(-2);
+
+      if(nowDate !== "01") {
+        setEnddate(`${nowYear}-${nowMonth}-01`);
+      }
+      else{
+        switch (nowMonth) {
+          case "02":
+            if((nowYear * 1) % 4 === 0) {
+              setEnddate(`${nowYear}-${nowMonth}-29`);
+            } else{
+              setEnddate(`${nowYear}-${nowMonth}-28`);
+            }
+            break;
+            case "04":
+              case "06":
+              case "09":
+              case "11":
+                setStartdate(`${nowYear}-${nowMonth}-30`);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  const onChangeDate = (e) => {
+    setStartdate(e.target.value);
+    if (e.target.value) {
+      setStartdate(e.target.value);
+    } else {
+      const nowYear = startdate.slice(0, 4);
+      const nowMonth = startdate.substr(5, 2);
+      const nowDate = startdate.slice(-2);
+  
+      if (nowDate !== "01") {
+        setStartdate(`${nowYear}-${nowMonth}-01`);
+      }
+      else{
+        switch (nowMonth) {
+          case "02":
+            if ((nowYear * 1) % 4 === 0) {
+              setStartdate(`${nowYear}-${nowMonth}-29`);
+            } else {
+              setStartdate(`${nowYear}-${nowMonth}-28`);
+            }
+            break;
+          case "04":
+          case "06":
+          case "09":
+          case "11":
+            setStartdate(`${nowYear}-${nowMonth}-30`);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
 
    const [name,setName] = useState("");
    const [com,setCom] = useState("");
@@ -329,9 +410,12 @@ const clear = () => {
           label="募集人数"
           type="number"
           value={persons}
+         
           onChange={handleChange}
           inputProps={{
            endAdornment: <InputAdornment position="end">人</InputAdornment>,
+           min:"0",
+          
           }}
           variant="outlined"
           className={classes.content}
@@ -438,20 +522,26 @@ const clear = () => {
       </FormControl>
       </Grid>
     <Grid item xs={4}>
+    
+        
         <TextField
         name="startdate"
         id = "date"
         type="date"
         value={startdate}
-        onChange={handleChange}
+        onChange={e => onChangeDate(e)}
         label="案件開始日"
-        type="date"
-        defaultValue="2020-01-01"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        // defaultValue="2020-01-01"
+        // InputLabelProps={{
+        //   shrink: true,
+        // }}
+        inputProps={{max:"9999-12-31",}
+        }
+
+      
         className={classes.content}
       />
+     
       </Grid>
       <Grid item xs={4}>
        <TextField
@@ -459,15 +549,17 @@ const clear = () => {
         name="enddate"
         type="date"
         value={enddate}
-        onChange={handleChange}
+        onChange={e => onChangeDate2(e)}
         label="案件終了日"
-        type="date"
         defaultValue="2020-01-01"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        // InputLabelProps={{
+        //   shrink: true,
+        // }}
+        inputProps={{max:"9999-12-31",}
+        }
         className={classes.content}
       />
+      
       </Grid>
       </Grid>
 
