@@ -9,7 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
-import '../stafflist/StaffList001.css';
+import '../stafflist001/StaffList001.css';
 import axios from 'axios';
 import ListIcon from '@material-ui/icons/List';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
