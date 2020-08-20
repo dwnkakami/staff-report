@@ -3,7 +3,7 @@ import StaffList002_graph from './StaffList002_graph';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const StaffList002_2 = (props) => {
+const StaffList002 = (props) => {
 const [user, setUser] = useState([]);
 
 useEffect(() => getData(),[]);
@@ -34,4 +34,4 @@ return(
  </div>
 );
 }
-export default StaffList002_2;
+export default StaffList002;
