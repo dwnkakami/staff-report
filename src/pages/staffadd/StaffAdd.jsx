@@ -166,6 +166,16 @@ const handleChange3 = e => {
     }
 }
 
+// const handleChange4 = e => {
+//     if (e.target.value) {
+//         setJoin(e.target.value);
+//     } else {
+//         const toJapanese = (string: string) => {
+//             return string
+//         }
+//     }
+// }
+
 const add = () => {
 
     const newValue = {id:staffId, name:name, gender:gender, position:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
@@ -322,7 +332,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
+            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} required pattern="/[^\x00-\x7E]+/g"/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
