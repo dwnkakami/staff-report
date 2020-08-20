@@ -153,7 +153,12 @@ export default function AlertDialog() {
   const add = () => {
   
     const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
-  
+    
+    //入力項目チェック
+    if((matterId.length === 0) || (staffId.length === 0) || (occupationId.length === 0) || (position.length === 0) || (interviewLocation.length === 0) || (interviewDate.length === 0) || (interviewTimes.length === 0) || (entranceDate.length === 0) || (updateBy.length === 0))
+    {
+      window.alert('未入力項目があります。\n*は必須項目です。');
+    } else {
       axios
           .post('/api/referenceadd', newValue)
           .then(response => {
@@ -163,8 +168,9 @@ export default function AlertDialog() {
           .catch(() => {
               console.log('submit error');
               window.alert("追加できませんでした")
-          });
-  }
+            })
+          }
+    };
   
   const clear = () => {
       setMatterId("")
