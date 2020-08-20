@@ -152,7 +152,7 @@ export default function AlertDialog() {
 
   const add = () => {
   
-    const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt}
+    const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
   
       axios
           .post('/api/referenceadd', newValue)

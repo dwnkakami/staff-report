@@ -78,7 +78,7 @@ export default function AlertDialog() {
   };
 
   const [referenceId,setReferenceId] = useState("");
-  const [matterId,setMatterId] = useState("");
+  // const [matterId,setMatterId] = useState("");
   const [staffId,setStaffId] = useState("");
   const [occupationId,setOccupationId] = useState("");
   const [position,setPosition] = useState("");
@@ -97,9 +97,9 @@ export default function AlertDialog() {
           case 'referenceId':
               setReferenceId(e.target.value);
               break;
-          case 'matterId':
-              setMatterId(e.target.value);
-              break;
+          // case 'matterId':
+          //     setMatterId(e.target.value);
+          //     break;
           case 'staffId':
               setStaffId(e.target.value);
               break;
@@ -142,7 +142,7 @@ export default function AlertDialog() {
   const getData = () => {
       if(user.length === 0){
         axios
-        .get('./api/referenceupdate')
+        .get('./api/staffadd004')
         .then(response => {
             setUser(response.data);
             console.log(response.data);
@@ -156,7 +156,6 @@ export default function AlertDialog() {
   const fix = () => {
   
     const updateValue = {id:referenceId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, update_at:updateAt, update_by:updateBy}
-    // const updateValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, update_at:updateAt, update_by:updateBy}
     
       axios
           .post('/api/referenceupdate', updateValue)
@@ -172,7 +171,7 @@ export default function AlertDialog() {
   
   const clear = () => {
       setReferenceId("")
-      setMatterId("")
+      // setMatterId("")
       setStaffId("")
       setOccupationId("")
       setPosition("")
