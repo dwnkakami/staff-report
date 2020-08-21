@@ -101,6 +101,7 @@ function NumberFormatCustom(props) {
       isNumericString
       prefix="¥"
       maxLength="20"
+      allowNegative={false}
     />
   );
 }
