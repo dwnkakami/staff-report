@@ -16,8 +16,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 
-
-
 const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
@@ -84,7 +82,7 @@ export default function AlertDialog() {
   const [interviewDate,setInterviewDate] = useState("");
   const [note,setNote] = useState("");
   const [entranceDate,setEntranceDate] = useState("");
-  
+
   const entry = new Date().toLocaleString();
   
   const handleChange = e => {
@@ -171,7 +169,6 @@ export default function AlertDialog() {
   }
   
   const classes1 = useStyles();
-  
 
   return (
     <div>
@@ -192,11 +189,11 @@ export default function AlertDialog() {
         <Grid container spacing={2}>
         <Grid item xs={4}>
             {/* <Typography>案件ID</Typography> */}
-            <TextField required label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
+            <TextField required label="案件ID" variant="outlined" type="number" inputProps={{min:1 , max:999999999}} name="matterId" value={matterId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>スタッフID</Typography> */}
-            <TextField required label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
+            <TextField required label="スタッフID" variant="outlined" type="number" inputProps={{min:1 , max:999999999}} name="staffId" value={staffId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>職種</Typography> */}
@@ -227,7 +224,7 @@ export default function AlertDialog() {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" inputProps={{min: "2020-04-01" , max: "2099-12-31"}} name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>備考欄</Typography> */}
@@ -240,7 +237,7 @@ export default function AlertDialog() {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" inputProps={{min: "2020-04-01" , max: "2099-12-31"}} name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
