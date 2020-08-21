@@ -80,9 +80,9 @@ const handleChange = e => {
         case 'phone':
             setPhone(e.target.value);
             break;
-        case 'station':
-            setStation(e.target.value);
-            break;
+        // case 'station':
+        //     setStation(e.target.value);
+        //     break;
         case 'company':
             setCompany(e.target.value);
             break;
@@ -166,15 +166,18 @@ const handleChange3 = e => {
     }
 }
 
-// const handleChange4 = e => {
-//     if (e.target.value) {
-//         setJoin(e.target.value);
-//     } else {
-//         const toJapanese = (string: string) => {
-//             return string
-//         }
-//     }
-// }
+const handleChange4 = e => {
+    if (e.target.value) {
+        setStation(e.target.value);
+    } else {
+        const toJapanese = (string) => {
+            return string
+        }
+        if (toJapanese) {
+            setStation(toJapanese)
+        }
+    }
+}
 
 const add = () => {
 
@@ -332,7 +335,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} required pattern="/[^\x00-\x7E]+/g"/>
+            <TextField variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange4} className={classes.content} required pattern="/[^\x00-\x7E]+/g"/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
