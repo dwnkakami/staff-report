@@ -154,11 +154,6 @@ export default function AlertDialog() {
   
     const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
     
-    //入力項目チェック
-    if((matterId.length === 0) || (staffId.length === 0) || (occupationId.length === 0) || (position.length === 0) || (interviewLocation.length === 0) || (interviewDate.length === 0) || (interviewTimes.length === 0) || (entranceDate.length === 0) || (updateBy.length === 0))
-    {
-      window.alert('未入力項目があります。\n*は必須項目です。');
-    } else {
       axios
           .post('/api/referenceadd', newValue)
           .then(response => {
@@ -169,7 +164,6 @@ export default function AlertDialog() {
               console.log('submit error');
               window.alert("追加できませんでした")
             })
-          }
     };
   
   const clear = () => {
@@ -207,15 +201,15 @@ export default function AlertDialog() {
         <Grid container spacing={2}>
         <Grid item xs={4}>
             {/* <Typography>案件ID</Typography> */}
-            <TextField required label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
+            <TextField label="案件ID" variant="outlined" type="number" name="matterId" value={matterId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>スタッフID</Typography> */}
-            <TextField required label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
+            <TextField label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>職種</Typography> */}
-            <FormControl required variant="outlined" className={classes1.formControl}>
+            <FormControl variant="outlined" className={classes1.formControl}>
             <InputLabel>職種</InputLabel>
             <Select  name="occupationId" value={occupationId} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
@@ -229,19 +223,19 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>ポジション</Typography> */}
-            <TextField required label="ポジション" variant="outlined" name="position" value={position} onChange={handleChange}/>
+            <TextField label="ポジション" variant="outlined" name="position" value={position} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談場所</Typography> */}
-            <TextField required label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
+            <TextField label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談回数</Typography> */}
-            <TextField required label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
+            <TextField label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談日</Typography> */}
-            <TextField required label="面談日"
+            <TextField label="面談日"
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -253,7 +247,7 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>入場日</Typography> */}
-            <TextField required label="入場日"
+            <TextField label="入場日"
                         InputLabelProps={{
                         shrink: true,
                         }}
@@ -261,7 +255,7 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>更新者ID</Typography> */}
-            <TextField required label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
+            <TextField label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
