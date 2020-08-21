@@ -14,8 +14,6 @@ import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import MediaQuery from "react-responsive";
-
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
@@ -28,11 +26,9 @@ const useStyles = makeStyles((theme) => ({
       position: "relative",
     },
     button: {
-      // bottom: "-50px",
       right: theme.spacing(3),
     },
     button2: {
-      // bottom: "-50px",
       right: theme.spacing(1),
     },
     formControl: {
@@ -65,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
+//募集人数制限
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
 
@@ -85,7 +81,7 @@ TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
 };
 
-
+//依頼単価制限
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;
 
@@ -115,6 +111,7 @@ NumberFormatCustom.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
+//カレンダー制限
 export default function LayoutTextFields() {
   const classes = useStyles();
  
@@ -258,6 +255,7 @@ export default function LayoutTextFields() {
   
   };
 
+  //登録機能
   const submit = () => {
 
     const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, 
@@ -286,6 +284,7 @@ export default function LayoutTextFields() {
       }
 };
 
+//API取得
 const [state1,setState1] = useState([]);
 
 useEffect(() => getCustomerData(),[]);
@@ -358,6 +357,7 @@ const getOccupationData = () => {
     }
 } 
 
+//クリア機能
 const clear = () => {
   setName("")
   setCom("")
