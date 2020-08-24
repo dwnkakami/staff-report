@@ -336,7 +336,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField type="text" variant="outlined" name="station" label="最寄駅" InputProps="[^a-za-Z_0-9]" value={station} onChange={handleChange} className={classes.content}/>
+            <TextField type="text" variant="outlined" name="station" label="最寄駅" InputProps="［〇一二三四五六七八九］.*$" value={station} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
