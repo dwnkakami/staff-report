@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
+import { render } from 'react-dom';
 // import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -166,17 +167,32 @@ const handleChange3 = e => {
     }
 }
 
-// const handleChange4 = e => {
-//     if (e.target.value) {
-//         setStation(e.target.value);
-//     } else {
-//         function alphaOnly(event) {
+const handleChange4 = e => {
+    if (e.target.value) {
+        setStation(e.target.value);
+    } else {
+        const inputValue = e.target.value;
+        const isEmpty=inputValue==='';
+    
+    this.setState({
+        station:inputValue,
+        hasStationError:isEmpty,
+    });
+    }
+}
 
+// handleSubmit() {
+//     this.setState({isSubmitted: true});
+// }
 
-//             const key = event.keyCode;
-
-//             return ((key >= 65 && key <= 90)  || key == 8);
-//         };
+// render() {
+//     let stationErrorText;
+//     if (this.state.hasStationError) {
+//         stationErrorText = (
+//             <p className='contact-message-error'>
+//                 日本語を入力してください
+//             </p>
+//         );
 //     }
 // }
 
@@ -336,7 +352,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField type="text" variant="outlined" name="station" label="最寄駅" InputProps="［〇一二三四五六七八九］.*$" value={station} onChange={handleChange} className={classes.content}/>
+            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
