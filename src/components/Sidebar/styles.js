@@ -46,6 +46,18 @@ export default makeStyles(theme => ({
   /* sidebarList: {
     marginTop: theme.spacing(6),
   }, */
+  profileMenuUser: {
+    display: "flex",
+    flexDirection: "column",
+    padding: theme.spacing(2),
+  },
+  profileMenuLink: {
+    fontSize: 16,
+    textDecoration: "none",
+    "&:hover": {
+      cursor: "pointer",
+    }},
+    
   mobileBackButton: {
     marginTop: theme.spacing(0.5),
     marginLeft: theme.spacing(3),
