@@ -238,7 +238,8 @@ const StaffSearch = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
     const newValue =
-      { license: license, skill1: skill1, skill2: skill2, skill3: skill3, gender: ge, area: areas, occupation: ocp }
+      {license: license, skill: skill1, skill: skill2, skill: skill3, 
+        level:status1, level:status2, level:status3, gender: ge, area: areas, occupation: ocp}
     if (data.length === 0) {
       axios
         .post('/api/staffsearch', newValue)
@@ -368,47 +369,31 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
-      if (andMode === false) {
-        return (((data.license === license) ||
-          ((data.skill === skill1) &&
-            (data.level === status1)) ||
-          ((data.skill === skill2) &&
-            (data.level === status2)) ||
-          ((data.skill === skill3) &&
-            (data.level === status3)) ||
-          ((data.gender === ge) ||
-            (data.age === age) ||
-            (data.area === areas)) ||
-          ((data.occupation === ocp[0]) ||
-            (data.occupation === ocp[1]) ||
-            (data.occupation === ocp[2]) ||
-            (data.occupation === ocp[3]) ||
-            (data.occupation === ocp[4]) ||
-            (data.occupation === ocp[5]))));
-      }
-      else 
-      {
-        return (((data.occupation === ocp[0]) ||
-          (data.occupation === ocp[1]) ||
-          (data.occupation === ocp[2]) ||
-          (data.occupation === ocp[3]) ||
-          (data.occupation === ocp[4]) ||
-          (data.occupation === ocp[5])) &&
-          (data.license === license) &&
-          ((data.skill === skill1) &&
-           (data.level === status1)) ||
-          ((data.skill === skill2) &&
-           (data.level === status2)) ||
-          ((data.skill === skill3) &&
-           (data.level === status3)) &&
-          (data.gender === ge) &&
-          (data.age === age) &&
-          (data.area === areas));
-      }
-    }); 
-
-    console.log(search);
-    ListData.setStaffData(search);
+      return  (data.occupation === ocp[0] ||
+               data.occupation === ocp[1] ||
+               data.occupation === ocp[2] ||
+               data.occupation === ocp[3] ||
+               data.occupation === ocp[4] ||
+               data.occupation === ocp[5]) ||
+              (data.license === license) ||
+              ((data.skill === skill1) && 
+               (data.level === status1)) ||
+               ((data.skill === skill2) && 
+               (data.level === status2)) ||
+               ((data.skill === skill3) && 
+               (data.level === status3)) ||
+              (data.gender === ge) ||
+              (data.age === age) ||
+              (data.area === areas);
+    });
+    
+    const cleanList = search.filter((data_x, index, self)=> { 
+      return (self.findIndex((data_y) =>{
+        return (data_x.id === data_y.id)
+      }) === index);
+    });
+    console.log(cleanList);
+    ListData.setStaffData(cleanList);
     window.location.href = "/#/staff-report/stafflist-result/001";
   }
 
