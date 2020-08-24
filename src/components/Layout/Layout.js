@@ -32,8 +32,8 @@ import StaffList_result from "../../pages/staffsearch/StaffList_result";
 import CaseList from "../../pages/caselist/CaseList";
 import CaseAdd from "../../pages/caseadd/CaseAdd";
 
-import ReferenceList from "../../pages/referenceList/ReferenceList";
-import ReferenceList_not from "../../pages/referenceList/notData";
+// import ReferenceList from "../../pages/referenceList/ReferenceList";
+// import ReferenceList_not from "../../pages/referenceList/notData";
 
 //import Billing from "../../pages/billing/Billing";
 
@@ -73,8 +73,8 @@ function Layout(props) {
               <Route path="/staff-report/caseresult/001" component={CaseResult} />
               <Route path="/staff-report/caseadd/001" component={CaseAdd} />
 
-              <Route path="/staff-report/referencelist/001" component={ReferenceList} />
-              <Route path="/staff-report/referencelist/001" component={ReferenceList_not} />
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList} /> */}
+              {/* <Route path="/staff-report/referencelist/001" component={ReferenceList_not} /> */}
               
               {/* <Route path="/staff-report/billing/001" component={Billing} /> */}
 
