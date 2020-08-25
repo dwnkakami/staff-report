@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }, 
 }));
 
-const StaffList003_figure = (props) => {
+const StaffCareer = (props) => {
   const [user, setUser] = useState([]);
 
   useEffect(() => getData(),[]);
@@ -100,8 +100,8 @@ const StaffList003_figure = (props) => {
             <th>備考欄</th>
           </tr>
           <tr>
-            <td>{data.skill_level ? data.skill_level:"特になし"}</td>
-            <td>{data.note}</td>
+            <td>{data.skill_level ? data.skill_level:"データなし"}</td>
+            <td>{data.note ? data.note:"データなし"}</td>
           </tr>
         </table>
         </Typography>
@@ -131,7 +131,7 @@ return (
   <div>
     {user.map((data) => (
     <div key={props.id}>
-    {data.matter_name ? <StaffList003_figure id={props.id}/>:"経歴データなし"}
+    {data.matter_name ? <StaffCareer id={props.id}/>:"経歴データなし"}
     </div>
     ))} 
   </div>

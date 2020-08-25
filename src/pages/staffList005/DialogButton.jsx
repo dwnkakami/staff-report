@@ -2,9 +2,9 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
-import StaffList005_figure from './StaffList005_figure';
-import StaffList003_map from '../staffList003/StaffList003_figure';
-import StaffList002_map from '../staffskill/StaffList002_2';
+import StaffInformation from './StaffInformation';
+import StaffList003_map from '../staffcareer/StaffCareer';
+import StaffList002_map from '../staffskill/StaffList002';
 import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -41,7 +41,7 @@ const DialogButton = (props) => {
     } else if(selected === 3){
       setStaff('キャリアパス：データなし');
     } else {
-      setStaff(<StaffList005_figure id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />);
+      setStaff(<StaffInformation id={props.id} name={props.name} position={props.position} matter_end={props.matter_end} />);
     }
   };
 
