@@ -152,6 +152,11 @@ export default function AlertDialog() {
   
     const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
     
+    if((matterId.length === 0) || (staffId.length === 0) || (occupationId.length === 0) || (position.length === 0) || (interviewLocation.length === 0) || (interviewDate.length === 0) || (interviewTimes.length === 0) || (entranceDate.length === 0) || (updateBy.length === 0))
+    {
+      window.alert('未入力項目があります。\n*は必須項目です。');
+    } else {
+
       axios
           .post('/api/referenceadd', newValue)
           .then(response => {
@@ -162,6 +167,7 @@ export default function AlertDialog() {
               console.log('submit error');
               window.alert("追加できませんでした")
             })
+          }
     };
   
   const clear = () => {
@@ -228,7 +234,7 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談回数</Typography> */}
-            <TextField label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
+            <TextField required label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談日</Typography> */}
@@ -254,7 +260,7 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>更新者ID</Typography> */}
-            <TextField label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
+            <TextField required label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
