@@ -2,7 +2,6 @@ import React, { useState , useEffect } from 'react';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
@@ -15,20 +14,21 @@ import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import DialogTitle from '@material-ui/core/DialogTitle';
-// import MediaQuery from "react-responsive";
+import PropTypes from 'prop-types';
+import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
 
 
 const useStyles = makeStyles((theme) => ({
     form: {
       textAlign: "center",
       margin: "auto",
+      position: "relative",
     },
     button: {
-      // bottom: "-50px",
       right: theme.spacing(3),
     },
     button2: {
-      // bottom: "-50px",
       right: theme.spacing(1),
     },
     formControl: {
@@ -44,28 +44,147 @@ const useStyles = makeStyles((theme) => ({
       margin: 'none'
     },
     content: {
-      width: '300px',
+      width: '80%',
+      position: 'relative',
     },
     content_2: {
-      width: '300px',
+      width: '80%',
       margin: "10px 4px 0px 13px",
     },
     content_3: {
-      width: '300px',
+      width: '80%',
       margin: "10px 0px 0px 20px",
     },
     content_4: {
-      width: '300px',
+      width: '80%',
       margin: "10px 0px 0px 35px",
     },
 }));
 
+//募集人数制限
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/]}
+      placeholderChar={'\u2000'}
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
+
+//依頼単価制限
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="¥"
+      maxLength="20"
+      allowNegative={false}
+    />
+  );
+}
+
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+//カレンダー制限
 export default function LayoutTextFields() {
   const classes = useStyles();
-  const [state, setState] = React.useState({
-    month: '',
-    name: 'hai',
-  });
+ 
+  const onChangeDate2 = (e) => {
+    setEnddate(e.target.value);
+    if (e.target.value){
+      setEnddate(e.target.value);
+    } else {
+      const nowYear = startdate.slice(0, 4);
+      const nowMonth = startdate.substr(5, 2);
+      const nowDate = startdate.slice(-2);
+
+      if(nowDate !== "01") {
+        setEnddate(`${nowYear}-${nowMonth}-01`);
+      }
+      else{
+        switch (nowMonth) {
+          case "02":
+            if((nowYear * 1) % 4 === 0) {
+              setEnddate(`${nowYear}-${nowMonth}-29`);
+            } else{
+              setEnddate(`${nowYear}-${nowMonth}-28`);
+            }
+            break;
+            case "04":
+              case "06":
+              case "09":
+              case "11":
+                setStartdate(`${nowYear}-${nowMonth}-30`);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+  const onChangeDate = (e) => {
+    setStartdate(e.target.value);
+    if (e.target.value) {
+      setStartdate(e.target.value);
+    } else {
+      const nowYear = startdate.slice(0, 4);
+      const nowMonth = startdate.substr(5, 2);
+      const nowDate = startdate.slice(-2);
+
+      if (nowDate !== "01") {
+        setStartdate(`${nowYear}-${nowMonth}-01`);
+      }
+      else{
+        switch (nowMonth) {
+          case "02":
+            if ((nowYear * 1) % 4 === 0) {
+              setStartdate(`${nowYear}-${nowMonth}-29`);
+            } else {
+              setStartdate(`${nowYear}-${nowMonth}-28`);
+            }
+            break;
+          case "04":
+          case "06":
+          case "09":
+          case "11":
+            setStartdate(`${nowYear}-${nowMonth}-30`);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+  }
+
+
 
    const [name,setName] = useState("");
    const [com,setCom] = useState("");
@@ -137,23 +256,36 @@ export default function LayoutTextFields() {
   
   };
 
+  //登録機能
   const submit = () => {
-    console.log(name)
-    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, number_of_persons:persons, occupation_id:job, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, matter_start:startdate,matter_end:enddate, skill_level_column:skillcontents ,business_content:contents, note:note, user_id:user };
+
+    const newValue = {name:name,customer_id:com,unit_cost:money, workplace:place, 
+      number_of_persons:persons, occupation_id:job, staff_skill_id1:skill1, staff_skill_id2:skill2, staff_skill_id3:skill3, 
+      matter_start:startdate,matter_end:enddate, skill_level_column:skillcontents ,business_content:contents, note:note, user_id:user };
 
 
-    axios
-        .post('/api/caseadd', newValue)
-        .then(response => {
-            console.log(response.data);
-            window.alert("追加されました")
-        })
-        .catch(() => {
-            console.log('submit error');
-            window.alert("追加できませんでした")
-        })
+
+      if((name.length === 0) || (com.length === 0) || (money.length === 0) || 
+        (place.length === 0) || (persons.length === 0) || (job.length === 0) || 
+        (skill1.length === 0) || (startdate.length === 0) || (enddate.length === 0) || 
+        (skillcontents.length === 0) || (contents.length === 0) || (user.length === 0)) {
+          window.alert('未入力項目があります。\n*は必須項目です。');
+        } else {
+
+        axios
+            .post('/api/caseadd', newValue)
+            .then(response => {
+                console.log(response.data);
+                window.alert("追加されました")
+            })
+            .catch(() => {
+                console.log('submit error');
+                window.alert("追加できませんでした")
+            })
+      }
 };
 
+//API取得
 const [state1,setState1] = useState([]);
 
 useEffect(() => getCustomerData(),[]);
@@ -226,6 +358,7 @@ const getOccupationData = () => {
     }
 } 
 
+//クリア機能
 const clear = () => {
   setName("")
   setCom("")
@@ -261,6 +394,7 @@ const clear = () => {
       <Grid container spacing={3} className={classes.form}>
         <Grid item xs={4}>
           <TextField
+            required
             name="name"
             label="案件名"
             variant="outlined"
@@ -273,7 +407,7 @@ const clear = () => {
             />
         </Grid>
       <Grid item xs={4}>  
-          <FormControl variant="outlined" className={classes.content}>
+          <FormControl required variant="outlined" className={classes.content}>
           <InputLabel>案件保有会社名</InputLabel>
           <Select
             value={com}
@@ -292,13 +426,15 @@ const clear = () => {
       </Grid>
       <Grid item xs={4}>
         <TextField
+          required
+          // type="number"
           name="money"
           label="依頼単価"
           value={money}
           onChange={handleChange}
-          inputProps={{
-            // startAdornment: <InputAdornment position="start">¥</InputAdornment>,
-            maxlength: 20
+          InputProps={{
+            // maxlength:20, 
+            inputComponent: NumberFormatCustom,
           }}
           variant="outlined"
           className={classes.content}
@@ -310,6 +446,7 @@ const clear = () => {
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
         <TextField
+         required
          name="place"
          label="勤務地"
          value={place}
@@ -325,20 +462,20 @@ const clear = () => {
       </Grid>
       <Grid item xs={4}>
         <TextField
+          required
           name="persons"
           label="募集人数"
-          type="number"
           value={persons}
           onChange={handleChange}
-          inputProps={{
-           endAdornment: <InputAdornment position="end">人</InputAdornment>,
+          InputProps={{ 
+            inputComponent: TextMaskCustom,
           }}
           variant="outlined"
           className={classes.content}
         />
       </Grid>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
         <Select
           value={job}
@@ -361,7 +498,7 @@ const clear = () => {
 
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple" >skill①</InputLabel>
         <Select
           value={skill1}
@@ -420,7 +557,7 @@ const clear = () => {
 
       <Grid container spacing={3} className={classes.form}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+        <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
         <Select
           value={user}
@@ -439,33 +576,29 @@ const clear = () => {
       </Grid>
     <Grid item xs={4}>
         <TextField
+        required
         name="startdate"
         id = "date"
         type="date"
         value={startdate}
-        onChange={handleChange}
+        onChange={e => onChangeDate(e)}
         label="案件開始日"
-        type="date"
-        defaultValue="2020-01-01"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        inputProps={{max:"9999-12-31",}}
+        InputLabelProps={{shrink: true,}}
         className={classes.content}
       />
       </Grid>
       <Grid item xs={4}>
        <TextField
+        required
         id ="date2"
         name="enddate"
         type="date"
         value={enddate}
-        onChange={handleChange}
+        onChange={e => onChangeDate2(e)}
         label="案件終了日"
-        type="date"
-        defaultValue="2020-01-01"
-        InputLabelProps={{
-          shrink: true,
-        }}
+        inputProps={{max:"9999-12-31",}}
+        InputLabelProps={{shrink: true,}}
         className={classes.content}
       />
       </Grid>
@@ -473,7 +606,7 @@ const clear = () => {
 
       <Grid container className={classes.form}>
       <Grid itex xs={4}>
-        <FormControl  variant="outlined" className={classes.content_2}>
+        <FormControl required variant="outlined" className={classes.content_2}>
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
          name="contents"
@@ -490,7 +623,7 @@ const clear = () => {
         </FormControl>
       </Grid>  
       <Grid item xs={4}>
-        <FormControl  variant="outlined" className={classes.content_3}>
+        <FormControl required variant="outlined" className={classes.content_3}>
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"

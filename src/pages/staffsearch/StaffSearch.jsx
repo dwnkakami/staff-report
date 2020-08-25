@@ -215,18 +215,18 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setOcp([])
-    setLicense('')
-    setSkill1('')
-    setSkill2('')
-    setSkill3('')
-    setStatus1('')
-    setStatus2('')
-    setStatus3('')
-    setAreas('')
-    setGe('')
-    setAge('')
-  }
+    setOcp([]);
+    setLicense('');
+    setSkill1('');
+    setSkill2('');
+    setSkill3('');
+    setStatus1('');
+    setStatus2('');
+    setStatus3('');
+    setAreas('');
+    setGe('');
+    setAge('');
+  };
   const[data,setData] = useState([]);
   useEffect(() => {
     const newValue=
