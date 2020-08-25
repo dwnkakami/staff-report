@@ -22,6 +22,13 @@ import SearchButton from './SearchButton';
 import DeleteButton from './DeleteButton';
 // import DatePickers from './DatePickers';
 import ListData from './ListData';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Button from '@material-ui/core/Button';
+
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 
@@ -85,6 +92,15 @@ end: {
     },
     paddingTop:15,
   },
+
+  dialog: {
+    backgroundColor: "#000000",
+    color: "#ffffff",
+  },
+  dialog_button: {
+    backgroundColor: "#5151ff",
+    color: "#000000",
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -142,27 +158,14 @@ const MenuProps = {
   
   //KeywordSearch
   const [keyWord, setKeyWord] = React.useState([]);
-  const [keyWord2, setKeyWord2] = React.useState([]);
-
-  // const keywordSearch = posts.filter((data)=>{
-  //   return (data.name.indexOf(keyWord) !== -1);
-  // });
-
-  // const keywordSearch2 = posts.filter((data)=>{
-  //   return ((data.name.indexOf(keyWord) !== -1)||
-  //          (data.name.indexOf(keyWord2) !== -1));
-  // });
 
   //keywordSubmit
 
   const keywordSubmit = () => {
 
     const keywordSearch = posts.filter((data)=>{
-     return data.name.toLowerCase().indexOf(keyWord)>= 0;
-            // String(data.name).toLowerCase().indexOf(keyWord)>= 0;
-            // (data.name.split(" "))||
-            // data.name.toLowerCase().indexOf(keyWord2)>= 0);
-    });
+      return  data.name.match(/data.name+/);
+     });
 
     if(keywordSearch.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
@@ -172,24 +175,6 @@ const MenuProps = {
       window.location.href = "/#/staff-report/caseresult/001";
     }
   };
-
-  // const keywordSubmit2 = () => {
-    
-  //   const keywordSearch2 = posts.filter((data)=>{
-  //     return ((data.name.indexOf(keyWord) !== -1)||
-  //            (data.name.indexOf(keyWord2) !== -1));
-  //   });
-
-  //   if(keywordSearch2.length === 0){
-  //     window.alert("検索結果がありません。\n条件を変更してください。")
-  //   }else{
-  //     console.log(keywordSearch2);
-  //     ListData.setCaseData(keywordSearch2);
-  //     window.location.href = "/#/staff-report/caseresult/001";
-  //   }
-  // };
-
-
 
  
 
@@ -280,7 +265,16 @@ const MenuProps = {
             value={data.id}>{data.name}</MenuItem>
 ));
 
-  //clearButton
+
+  // clearButton(Dialog)
+
+  const AlertDialog = () => {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
   
   const clearAll = () => {
     setKeyWord('')
@@ -291,10 +285,47 @@ const MenuProps = {
     // setSelectedStartDate()
     // setSelectedEndDate()
     setSalesMan('')
-    
-    // (window.confirm("Clear Done")
-
   };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div>
+      <DeleteButton variant="outlined" color="primary" onClick={handleClickOpen}/>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        disableBackdropClick={true}
+        maxWidth="xs"
+        fullWidth={true}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" className={classes.dialog}>案件検索の内容</DialogTitle>
+        <DialogContent className={classes.dialog}>
+          <DialogContentText id="alert-dialog-description" className={classes.dialog}>
+            Clear All?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions className={classes.dialog}>
+          <Button onClick={clearAll} color="primary" className={classes.dialog_button}>
+            OK
+          </Button>
+          <Button onClick={handleClose} color="primary" variant="outlined" autoFocus>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </div>
+  );
+}
+
+
+
+
+
 
 
 
@@ -381,10 +412,9 @@ const MenuProps = {
               ((data.skill3_id === skill1) ||
               (data.skill3_id === skill2) ||
               (data.skill3_id === skill3))) ||
-                  data.user_id === salesMan );
+                  data.user_id === salesMan )
+                  
     });
-
-   
 
     if(target7.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
@@ -392,7 +422,7 @@ const MenuProps = {
       console.log(target7);
       ListData.setCaseData(target7);
       window.location.href = "/#/staff-report/caseresult/001";
-    }
+  };
 
     
        
@@ -462,17 +492,9 @@ const MenuProps = {
         案件名検索
         </Typography>
 
-
-
-          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
-          {/* <Typography  variant="h5" component="h2">
-          ＆
-        　</Typography> */}
-          {/* <TextField value={keyWord2} onChange={e => setKeyWord2(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード2" variant="outlined" type="text" name="key" /> */}
+          <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
 
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
-
-          {/* <div onClick={keywordSubmit}/> */}
 
         <br className={classes.end} />
         
@@ -588,7 +610,8 @@ const MenuProps = {
         <div className={classes.left}><br /></div>
         {/* <div className={classes.left}><br /></div> */}
 
-        <DeleteButton onClick={clearAll} />
+        {/* <DeleteButton onClick={clearAll} /> */}
+        <AlertDialog/>
         <SearchButton onClick={formSubmit} className={classes.button} />
 
       </CardContent>
