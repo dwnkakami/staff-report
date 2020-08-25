@@ -180,21 +180,21 @@ const handleChange3 = e => {
     }
 }
 
-const handleChange4 = e => {
-    if (e.target.value) {
-        setStation(e.target.value);
-    } else {
-        const inputValue = e.target.value;
-        const isEmpty=inputValue==='';
+// const handleChange4 = e => {
+//     if (e.target.value) {
+//         setStation(e.target.value);
+//     } else {
+//         const inputValue = e.target.value;
+//         const isEmpty=inputValue==='';
     
-    if ()
+//     if ()
 
-    this.setState({
-        station:inputValue,
-        hasStationError:isEmpty,
-    });
-    }
-}
+//     this.setState({
+//         station:inputValue,
+//         hasStationError:isEmpty,
+//     });
+//     }
+// }
 
 // handleSubmit() {
 //     this.setState({isSubmitted: true});
@@ -368,7 +368,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
-            <Error number  ErrorMassage="日本語で入力してください"/>
+            {/* <Error number  ErrorMassage="日本語で入力してください"/> */}
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
