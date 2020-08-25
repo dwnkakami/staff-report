@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
+// import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,22 +36,22 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={[ /\d/, /\d/, /\d/,'-',/\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-      />
-    );
-  }
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+// function TextMaskCustom(props) {
+//     const { inputRef, ...other } = props;
+//     return (
+//       <MaskedInput
+//         {...other}
+//         ref={(ref) => {
+//           inputRef(ref ? ref.inputElement : null);
+//         }}
+//         mask={[ /\d/, /\d/, /\d/,'-',/\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/]}
+//         placeholderChar={'\u2000'}
+//       />
+//     );
+//   }
+//   TextMaskCustom.propTypes = {
+//     inputRef: PropTypes.func.isRequired,
+//   };
 
 function NumberFormatCustom(props) {
     const { inputRef, onChange, ...other } = props;
@@ -68,7 +68,7 @@ function NumberFormatCustom(props) {
           });
         }}
         isNumericString
-        maxLength="3"
+        maxLength="11"
       />
     );
   }
@@ -211,21 +211,56 @@ const handleChange3 = e => {
       }
 }
 
+const [posts, setPosts] = useState([]);
+
+useEffect(() => getStaffData(),[]);
+
+const getStaffData = () => {
+    if(posts.length === 0) {
+        axios
+          .get('/api/stafflist001/1')
+          .then(response => {
+            console.log([response.data]);
+            setPosts(response.data);
+          })
+          .catch(() => {
+            console.log('connected error');
+          })
+        }
+}
+
+const number = posts.filter((data) => {return data.id})
+
 const add = () => {
 
     const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
-    }
+    } 
 
-    if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
+    function IsArrayExists() {
+        // 配列の最後までループ
+        for (var i =0, len = number.length; i < len; i++) {
+          if (staffId == number[i]) {
+            // 存在したらtrueを返す
+            return true;
+          }
+        }
+        // 存在しない場合falseを返す
+        return false;
+      }
+
+if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
        (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
        (birthday.length === 0) || (age.length === 0) || (career.length === 0) || 
        (phone.length === 0) || (station.length === 0) || (company.length === 0) || 
        (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
        (entry.length === 0) || (update_at.length === 0)) {
            window.alert('未入力項目があります。\n*は必須項目です。')
-       }　else {
-
+       } else if (IsArrayExists()) {
+           window.alert('そのスタッフIDは既に登録されています。')
+       } else if (phone.length < 10) {
+           window.alert('電話番号を正しく入力して下さい。')
+       } else {
     axios
         .post('/api/staffadd', newValue)
         .then(response => {
@@ -362,7 +397,7 @@ const classes = useStyles();
             <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange}　className={classes.content} inputProps={{maxlength: 10}}/>
+            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange}　className={classes.content}/>
         </Grid> 
         <Grid item xs={4}>
             <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} className={classes.content}/>
@@ -389,7 +424,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <Typography></Typography>
-            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号" value={phone} onChange={handleChange} className={classes.content} InputProps={{inputComponent: TextMaskCustom}}/>
+            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
