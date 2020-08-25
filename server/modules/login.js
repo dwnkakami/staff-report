@@ -14,11 +14,19 @@ exports.getData = (req, res) => {
 　database: 'staff_report'
   });
   con.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
+    try {
+      var err = () => {throw err}
+      console.log('Connected!');
+    } catch (err) {
+      console.log('err')
+    }
     const sql = "select * from m_user where id = " + req;
     con.query(sql, (err, result, fields) => {
-      if (err) throw err;
+      try {
+        var err = () => {throw err}
+      } catch (err) {
+        console.log('err')
+      }
       res.json(result);
     });
   });

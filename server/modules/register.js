@@ -23,13 +23,21 @@ exports.postData = (req, res) => {
         database: 'staff_report',
     });
     con.connect((err) => {
-        if (err) throw err;
-        console.log('Connected!');
+        try {
+            var err = () => {throw err}
+            console.log('Connected!');
+          } catch (err) {
+            console.log('err')
+          }
 
         const sql = "insert into m_user values(?, ?, ? ,?)"
         console.log(req.body);
         con.query(sql,[req.body.id, req.body.name, req.body.role_id, req.body.password], (err, result, fields) => {
-            if (err) throw err;
+            try {
+                var err = () => {throw err}
+              } catch (err) {
+                console.log('err')
+              }
             
             res.send('Register Success!!');
         });
