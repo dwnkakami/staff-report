@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 // import { useState, useEffect } from 'react';
 // import axios from 'axios';
 import'../referenceList/ReferenceList';
+import ReferenceUpdate from'../referenceupdate/ReferenceUpdate';
 
 const styles = (theme) => ({
   root: {
@@ -24,6 +25,10 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
+  },
+  left: {
+    width:100,
+    float:'left',
   },
 });
 
@@ -37,7 +42,8 @@ const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6">{children}</Typography>
+      <Typography className={classes.left} variant="h6">{children}</Typography>
+      <ReferenceUpdate>className={classes.left}</ReferenceUpdate>
       {onClose ? (
         <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
           <CloseIcon />
