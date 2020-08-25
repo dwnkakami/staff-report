@@ -15,6 +15,7 @@ import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import { render } from 'react-dom';
+import { Subheader } from 'material-ui';
 // import { StylesContext } from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +37,17 @@ const useStyles = makeStyles((theme) => ({
         left: theme.spacing(2),
     },
 }));
+
+class Station extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSubmitted: false,
+            station: '',
+            hasStationError: false,
+        }
+    }
+}
 
 export default function StaffAdd (props) {
 
@@ -186,7 +198,7 @@ const handleChange4 = e => {
 // }
 
 // render() {
-//     let stationErrorText;
+//     const stationErrorText;
 //     if (this.state.hasStationError) {
 //         stationErrorText = (
 //             <p className='contact-message-error'>
@@ -352,7 +364,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
+            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange4} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
