@@ -14,6 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
+import { withRouter } from 'react-router-dom';
 // import { render } from 'react-dom';
 // import { Subheader } from 'material-ui';
 // import { StylesContext } from '@material-ui/styles';
@@ -38,16 +39,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-// class Station extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         this.state = {
-//             isSubmitted: false,
-//             station: '',
-//             hasStationError: false,
-//         }
-//     }
-// }
+class Form extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSubmitted: false,
+            station: '',
+            hasStationError: false,
+        }
+    }
+}
 
 export default function StaffAdd (props) {
 
@@ -179,19 +180,21 @@ const handleChange3 = e => {
     }
 }
 
-// const handleChange4 = e => {
-//     if (e.target.value) {
-//         setStation(e.target.value);
-//     } else {
-//         const inputValue = e.target.value;
-//         const isEmpty=inputValue==='';
+const handleChange4 = e => {
+    if (e.target.value) {
+        setStation(e.target.value);
+    } else {
+        const inputValue = e.target.value;
+        const isEmpty=inputValue==='';
     
-//     this.setState({
-//         station:inputValue,
-//         hasStationError:isEmpty,
-//     });
-//     }
-// }
+    if ()
+
+    this.setState({
+        station:inputValue,
+        hasStationError:isEmpty,
+    });
+    }
+}
 
 // handleSubmit() {
 //     this.setState({isSubmitted: true});
@@ -365,6 +368,7 @@ const classes = useStyles();
         </Grid>
         <Grid item xs={4}>
             <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
+            <Error number  ErrorMassage="日本語で入力してください"/>
         </Grid>
         <Grid item xs={4}>
             <TextField variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
@@ -447,3 +451,5 @@ const classes = useStyles();
         </Paper>
     )
 }
+
+// export default withRouter(Form);
