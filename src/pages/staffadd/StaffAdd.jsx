@@ -211,43 +211,28 @@ const handleChange3 = e => {
       }
 }
 
-const [posts, setPosts] = useState([]);
+const [check, setCheck] = useState(false);
 
-useEffect(() => getStaffData(),[]);
+// useEffect(() => getStaffData(),[]);
 
-const getStaffData = () => {
-    if(posts.length === 0) {
+const checkStaffid = () => {
+    // if(check) {
         axios
-          .get('/api/stafflist001/1')
-          .then(response => {
-            console.log([response.data]);
-            setPosts(response.data);
+          .get('./api/staffadd006', {params: staffId})
+          .then(() => {
+            setCheck(true);
           })
           .catch(() => {
-            console.log('connected error');
+            setCheck(false);
           })
-        }
+        // }
 }
-
-const number = posts.filter((data) => {return data.id})
 
 const add = () => {
 
     const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
     } 
-
-    function IsArrayExists() {
-        // 配列の最後までループ
-        for (var i =0, len = number.length; i < len; i++) {
-          if (staffId == number[i]) {
-            // 存在したらtrueを返す
-            return true;
-          }
-        }
-        // 存在しない場合falseを返す
-        return false;
-      }
 
 if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
        (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
@@ -256,7 +241,7 @@ if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) ||
        (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
        (entry.length === 0) || (update_at.length === 0)) {
            window.alert('未入力項目があります。\n*は必須項目です。')
-       } else if (IsArrayExists()) {
+       } else if (setCheck(true)) {
            window.alert('そのスタッフIDは既に登録されています。')
        } else if (phone.length < 10) {
            window.alert('電話番号を正しく入力して下さい。')
