@@ -187,7 +187,23 @@ const handleChange3 = e => {
 //         const inputValue = e.target.value;
 //         const isEmpty=inputValue==='';
     
-//     if ()
+//     if (inputValue !== "Japanese") {
+//         setJoin(true);
+//     }
+//     else{
+//         switch (inputValue) {
+//          case "number":
+//         setJoin(error);
+//         break;
+//          (this.state.hasStationError) {
+//             stationErrorText = (
+//                 <p className='contact-message-error'>
+//                     日本語で入力してください
+//                 </p>
+//             );
+//         }
+//       }
+//     }
 
 //     this.setState({
 //         station:inputValue,
