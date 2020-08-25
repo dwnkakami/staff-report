@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import {
   AppBar,
   Toolbar,
@@ -18,6 +18,7 @@ import {
   ArrowBack as ArrowBackIcon,
 } from "@material-ui/icons";
 import classNames from "classnames";
+import axios from "axios";
 
 // styles
 import useStyles from "./styles";
@@ -33,7 +34,8 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut } from "../../context/UserContext";
+import { useUserDispatch, signOut, UserProfile } from "../../context/UserContext";
+
 
 const messages = [
   {
@@ -103,6 +105,27 @@ export default function Header(props) {
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
+ 
+
+
+  // const [userName, setUserName] = useState([]);
+
+  // useEffect(() => getUserData());
+  
+  // const getUserData = () => {
+  //   if(userName.length === 0){
+  //     axios
+  //       .get('/api/login/1')
+  //       .then(response => {
+  //         console.log([response.data]);
+  //         setUserName(response.data);
+  //       })
+  //       .catch(() => {
+  //         console.log('connected error');
+  //       })
+
+  //   }
+  // }
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -136,7 +159,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+          スタッフレポート
         </Typography>
         <div className={classes.grow} />
         
@@ -287,9 +310,11 @@ export default function Header(props) {
           disableAutoFocusItem
         >
           <div className={classes.profileMenuUser}>
+            
             <Typography variant="h4" weight="medium">
-              John Smith
+              {UserProfile.getName()}
             </Typography>
+           
             <Typography
               className={classes.profileMenuLink}
               component="a"

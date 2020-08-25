@@ -1,0 +1,25 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    margin: auto;
+  }
+  
+  table th,table td{
+    height: 30px;
+    padding: 3px 0 3px 5px;
+    text-align: left;
+  }
+  
+  table th{
+    font-weight: bolder;
+  }
+  
+  table tr:nth-child(odd){
+    background-color: #eee
+  }
+  
+  .wide-td1{
+    height: 160px;
+  }
