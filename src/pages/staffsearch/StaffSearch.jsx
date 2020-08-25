@@ -369,6 +369,7 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
+      if(!andMode){
       return  (data.occupation === ocp[0] ||
                data.occupation === ocp[1] ||
                data.occupation === ocp[2] ||
@@ -385,7 +386,28 @@ const StaffSearch = () => {
               (data.gender === ge) ||
               (data.age === age) ||
               (data.area === areas);
+      }
+      else
+      {
+        return  (data.occupation === ocp[0] ||
+          data.occupation === ocp[1] ||
+          data.occupation === ocp[2] ||
+          data.occupation === ocp[3] ||
+          data.occupation === ocp[4] ||
+          data.occupation === ocp[5]) &&
+         (data.license === license) &&
+         ((data.skill === skill1) && 
+          (data.level === status1)) ||
+          ((data.skill === skill2) && 
+          (data.level === status2)) ||
+          ((data.skill === skill3) && 
+          (data.level === status3)) &&
+         (data.gender === ge) &&
+         (data.age === age) &&
+         (data.area === areas);
+      }
     });
+  
     
     const cleanList = search.filter((data_x, index, self)=> { 
       return (self.findIndex((data_y) =>{
@@ -417,7 +439,7 @@ const StaffSearch = () => {
                 color="primary"
               />
             }
-            label="AND条件"
+            label="もっと絞り込む"
           />
         </div>
         {/* 職種選択 */}
