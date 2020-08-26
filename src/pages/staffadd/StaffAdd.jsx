@@ -208,9 +208,8 @@ const handleChange4 = e => {
   }
 }
 
-// handleSubmit() {
+// handleSubmit() 
 //     this.setState({isSubmitted: true});
-// }
 
 // render() {
 //     const stationErrorText;
@@ -379,7 +378,8 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange4} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
+            <form onSubmit={() => {this.handleSubmit()}}></form>
+            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={this.state.station} onChange={handleChange4} className={classes.content}/>
             {/* <Error number  ErrorMassage="日本語で入力してください"/> */}
         </Grid>
         <Grid item xs={4}>
