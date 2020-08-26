@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 // import { render } from 'react-dom';
 // import { Subheader } from 'material-ui';
 // import { StylesContext } from '@material-ui/styles';
@@ -186,30 +186,34 @@ const handleChange3 = e => {
 //     } else {
 //         const inputValue = e.target.value;
 //         const isEmpty=inputValue==='';
-    
+
+//         this.setState({
+//             station:inputValue,
+//             hasStationError:isEmpty,
+//         });
+
 //     if (inputValue !== "Japanese") {
 //         setJoin(true);
 //     }
 //     else{
-//         switch (inputValue) {
+//         switch (isEmpty) {
 //          case "number":
 //         setJoin(error);
-//         break;
-//          (this.state.hasStationError) {
-//             stationErrorText = (
-//                 <p className='contact-message-error'>
-//                     日本語で入力してください
-//                 </p>
-//             );
+//         const isEmpty=inputValue===console.error();
+//         (this.state.hasStationError) {
+//             arart(日本語で入力してください)
 //         }
+            // stationErrorText = (
+            //     <p className='contact-message-error'>
+            //         日本語で入力してください
+            //     </p>
+            // );
+//         break;
+//         default:
+//         break;
 //       }
 //     }
-
-//     this.setState({
-//         station:inputValue,
-//         hasStationError:isEmpty,
-//     });
-//     }
+//   }
 // }
 
 // handleSubmit() {
