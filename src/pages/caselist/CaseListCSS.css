@@ -1,7 +1,9 @@
 .paper1 {
     position: relative;
     margin: -5px;
-    min-height:10vh; 
+    min-height: 10vh; 
+    min-width: auto;
+    /* overflow: scroll; */
 }
 
 .table1{
@@ -11,12 +13,6 @@
     table-layout: fixed;
     margin: 30px;
 }
-
-
-
-
-
-
 .tablecell{
     position: relative;
     min-height: 1vh;
