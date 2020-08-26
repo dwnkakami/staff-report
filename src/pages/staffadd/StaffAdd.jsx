@@ -14,7 +14,6 @@ import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import PropTypes from 'prop-types';
-// import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles((theme) => ({
@@ -35,23 +34,6 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'right'
     }
 }));
-
-// function TextMaskCustom(props) {
-//     const { inputRef, ...other } = props;
-//     return (
-//       <MaskedInput
-//         {...other}
-//         ref={(ref) => {
-//           inputRef(ref ? ref.inputElement : null);
-//         }}
-//         mask={[ /\d/, /\d/, /\d/,'-',/\d/, /\d/, /\d/,/\d/,'-', /\d/, /\d/, /\d/, /\d/]}
-//         placeholderChar={'\u2000'}
-//       />
-//     );
-//   }
-//   TextMaskCustom.propTypes = {
-//     inputRef: PropTypes.func.isRequired,
-//   };
 
 function NumberFormatCustom(props) {
     const { inputRef, onChange, ...other } = props;
@@ -213,26 +195,23 @@ const handleChange3 = e => {
 
 const [check, setCheck] = useState(false);
 
-// useEffect(() => getStaffData(),[]);
-
-const checkStaffid = () => {
-    // if(check) {
-        axios
-          .get('./api/staffadd006', {params: staffId})
-          .then(() => {
-            setCheck(true);
-          })
-          .catch(() => {
-            setCheck(false);
-          })
-        // }
-}
-
 const add = () => {
 
     const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
     } 
+
+    // const checkStaffid = () => {
+      axios
+        .get('./api/staffadd006', {params: staffId})
+        .then(() => {
+          setCheck(true);
+        //   window.alart('そのスタッフIDは既に登録されています。')
+        })
+        .catch(() => {
+          setCheck(false)
+        })
+    // }
 
 if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
        (gender.length === 0) || (position.length === 0) || (join.length === 0) || 

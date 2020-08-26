@@ -19,7 +19,8 @@ exports.getData = (req, res) => {
     if (err) throw err;
     console.log('Connected!');
 
-    const sql = 'SELECT * FROM m_staff WHERE id =' + req
+    const sql = 'SELECT * FROM m_staff WHERE id =' +req.params
+    console.log(sql)
     con.query(sql, (err, result, fields) => {
       if (err) throw err;
       res.json(result);
