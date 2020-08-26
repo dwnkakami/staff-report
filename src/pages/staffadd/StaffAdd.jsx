@@ -94,9 +94,9 @@ const handleChange = e => {
         case 'phone':
             setPhone(e.target.value);
             break;
-        case 'station':
-            setStation(e.target.value);
-            break;
+        // case 'station':
+        //     setStation(e.target.value);
+        //     break;
         case 'company':
             setCompany(e.target.value);
             break;
@@ -180,41 +180,33 @@ const handleChange3 = e => {
     }
 }
 
-// const handleChange4 = e => {
-//     if (e.target.value) {
-//         setStation(e.target.value);
-//     } else {
-//         const inputValue = e.target.value;
-//         const isEmpty=inputValue==='';
+const handleChange4 = e => {
+    if (e.target.value) {
+        setStation(e.target.value);
+    } else {
+        const inputValue = e.target.value;
+        const isEmpty=inputValue==='';
 
-//         this.setState({
-//             station:inputValue,
-//             hasStationError:isEmpty,
-//         });
+        this.setState({
+            station:inputValue,
+            hasStationError:isEmpty,
+        });
 
-//     if (inputValue !== "Japanese") {
-//         setJoin(true);
-//     }
-//     else{
-//         switch (isEmpty) {
-//          case "number":
-//         setJoin(error);
-//         const isEmpty=inputValue===console.error();
-//         (this.state.hasStationError) {
-//             arart(日本語で入力してください)
-//         }
-            // stationErrorText = (
-            //     <p className='contact-message-error'>
-            //         日本語で入力してください
-            //     </p>
-            // );
-//         break;
-//         default:
-//         break;
-//       }
-//     }
-//   }
-// }
+    if (inputValue !== "Japanese") {
+        setJoin(true);
+    }
+    else{
+        switch (isEmpty) {
+         case "number":
+        setJoin();
+        const isEmpty=inputValue===console.error("日本語で入力してください");
+        break;
+        default:
+        break;
+      }
+    }
+  }
+}
 
 // handleSubmit() {
 //     this.setState({isSubmitted: true});
@@ -387,7 +379,7 @@ const classes = useStyles();
             <TextField inputmode="url" variant="outlined" name="phone"　label="連絡先(ハイフン有り)" value={phone} onChange={handleChange} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
+            <TextField type="text" variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange4} className={classes.content} ErrorMassege="日本語で入力して下さい"/>
             {/* <Error number  ErrorMassage="日本語で入力してください"/> */}
         </Grid>
         <Grid item xs={4}>
