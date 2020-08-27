@@ -8,6 +8,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import ListIcon from '@material-ui/icons/List';
@@ -15,12 +16,12 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import DialogTitle from '@material-ui/core/DialogTitle';
 
 
 import axios from 'axios';
 
 import CaseDetail from '../casedetail/CaseDetail';
+
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -35,10 +36,14 @@ const StyledTableCell = withStyles((theme) => ({
   
 }))(TableCell);
 
-const StyledTableRow = withStyles(() => ({
+
+const StyledTableRow = withStyles((theme) => ({
   root: {
       '&:nth-of-type(odd)': {
-          backgroundColor: "#ffffff",
+          backgroundColor: "#fff",
+      },
+      '&:nth-of-type(even)':{
+        backgroundColor: "#eee",
       },
   },
 }))(TableRow);
@@ -54,47 +59,18 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-var orders = [];
-var orderBys = [];
 function getComparator(order, orderBy) {
-  if (orders.length !== 0 && orderBys[orders.length - 1] === orderBy) {
-    // 前回と同じ列なら昇順降順の切り替えのみ
-    orders[orders.length - 1] = order;
-  } else {
-    // 前回と違う列なら完全更新
-    orders.push(order);
-    orderBys.push(orderBy);
-
-    if (orders.length === 3) {
-      orders.splice(0, 2);
-      orderBys.splice(0, 2);
-    }
-  }
-
-  console.log(orders);
-  console.log(orderBys);
-
-  // 並び替え用の関数を返す
-  return orders[0] === "desc"
-    ? (a, b) => descendingComparator(a, b, orderBys[0])
-    : (a, b) => -descendingComparator(a, b, orderBys[0]);
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// ソート
 function stableSort(array, comparator) {
   const stabilizedThis = array.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
-    // 通常のソート（1番目）
     const order = comparator(a[0], b[0]);
     if (order !== 0) return order;
-
-    // 追加のソート（2番目）
-    // orderBys[1]の基準をもとに並び替え（getComparatorの最後辺りと同じ）
-    var v =
-      orders[1] === "desc"
-        ? (a, b) => descendingComparator(a[0], b[0], orderBys[1])
-        : (a, b) => -descendingComparator(a[0], b[0], orderBys[1]);
-    return v(a, b);
+    return a[1] - b[1];
   });
   return stabilizedThis.map((el) => el[0]);
 }
@@ -157,16 +133,9 @@ EnhancedTableHead.propTypes = {
 };
 
   
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      width: '100%',
-    },
+  const useStyles = makeStyles({
     table: {
-      minWidth: 750,
-    },
-    paper: {
-      width: '100%',
-      marginBottom: theme.spacing(2),
+      minWidth: 700,
     },
     visuallyHidden: {
       border: 0,
@@ -179,13 +148,7 @@ EnhancedTableHead.propTypes = {
       top: 20,
       width: 1,
     },
-    tablecell:{
-      width: 1,
-      position: 'relative',
-      minheight: '1vh',
-      float: 'left',
-    },
-  }));
+  });
 
 
 
@@ -212,7 +175,7 @@ EnhancedTableHead.propTypes = {
   }
 
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('id');
+  const [orderBy, setOrderBy] = React.useState('calories');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -221,16 +184,14 @@ EnhancedTableHead.propTypes = {
   };
 
   return(
-    <div >
-    <Paper elevation={3} className='paper1'>
+    <Paper elevation={3} >
       <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
-         <ListIcon style={{ fontSize: '25px', }} />
-                    <AssignmentIcon style={{ fontSize: '40px', }} />
+                    <ListIcon style={{ fontSize: '25px', }} />
+                    <AssignmentIcon style={{fontSize: '40px'}} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
         </DialogTitle>
-        <div className={classes.root}>
         <TableContainer >
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
@@ -244,20 +205,20 @@ EnhancedTableHead.propTypes = {
               onRequestSort={handleRequestSort}
               rowCount={caselistmap.length}
             />
-          <TableBody >
+          <TableBody>
           {stableSort(caselistmap, getComparator(order, orderBy)).map((data) => (
-                <StyledTableRow >
-                  <StyledTableCell align="center" component="th" scope="row">
+                <StyledTableRow>
+                <StyledTableCell classname="tablecell" align="center" component="th" scope="row">
                   {data.id}
-                  </StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.name}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.customer_name}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.unit_cost}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.workplace}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.number_of_persons}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.matter_start}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>{data.matter_end}</StyledTableCell>
-                  <StyledTableCell align="center" style={{ wordBreak: 'break-all', }}>
+                </StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.name}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.customer_name}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.unit_cost}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.workplace}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.number_of_persons}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.matter_start}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">{data.matter_end}</StyledTableCell>
+                <StyledTableCell classname="tablecell" align="center">
                   {/* <Button variant="outlined" color="" handleClickOpen = {handleClickOpen, getSelectline}> */}
                   {/* 案件リスト詳細 */}
                   <CaseDetail key={data.id}
@@ -280,14 +241,13 @@ EnhancedTableHead.propTypes = {
                   />
                 </StyledTableCell>
                 </StyledTableRow>
-          ))}
-          </TableBody>
+              )
+          )}
+        </TableBody>
        </Table>
         </Grid>
       </Grid>
     </TableContainer>
-    </div>
     </Paper>
-    </div>
     );
   }
