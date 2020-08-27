@@ -193,55 +193,51 @@ const handleChange3 = e => {
       }
 }
 
-// const checkChange = (event) => {
-//     setCheck(event.target.check);
-//   };
-
 const [check, setCheck] = useState(false);
 
 const add = () => {
+          axios
+            .get('./api/staffadd006/' + staffId)
+            .then(response => {
+              if(response.data.length >=1) {
+              setCheck(true)
+              window.alert('そのスタッフIDは既に登録されています。');
+                } else {
+                    setCheck(false)
+                    execStaffAdd();
+                }})
+            .catch(() => {
+                console.log('connected error')
+                window.alert('未入力項目があります。\n*は必須項目です。');
+            })
+        }
 
+const execStaffAdd = () => {
     const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
     } 
-
-    // const checkStaffid = () => {
-          axios
-            .get('./api/staffadd006/' + staffId)
-            .then(() => {
-              setCheck(true)
-              window.alert('a')
+    if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
+        (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
+        (birthday.length === 0) || (age.length === 0) || (career.length === 0) || 
+        (phone.length === 0) || (station.length === 0) || (company.length === 0) || 
+        (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
+        (entry.length === 0) || (update_at.length === 0)) {
+            window.alert('未入力項目があります。\n*は必須項目です。');
+        } else if (phone.length < 10) {
+            window.alert('電話番号を正しく入力して下さい。');
+        } else {
+        axios
+            .post('/api/staffadd', newValue)
+            .then(response => {
+                console.log(response.data);
+                window.alert("追加されました")
             })
             .catch(() => {
-              setCheck(false)
-              window.alert('b')
-            })
-            console.log(check)
-    // }
-
-if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
-       (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
-       (birthday.length === 0) || (age.length === 0) || (career.length === 0) || 
-       (phone.length === 0) || (station.length === 0) || (company.length === 0) || 
-       (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
-       (entry.length === 0) || (update_at.length === 0)) {
-           window.alert('未入力項目があります。\n*は必須項目です。')
-       } else if (check === true) {
-           window.alert('そのスタッフIDは既に登録されています。')
-       } else if (phone.length < 10) {
-           window.alert('電話番号を正しく入力して下さい。')
-       } else {
-    axios
-        .post('/api/staffadd', newValue)
-        .then(response => {
-            console.log(response.data);
-            window.alert("追加されました")
-        })
-        .catch(() => {
-            console.log('submit error');
-            window.alert("追加できませんでした")
-        });
-}}
+                console.log('submit error');
+                window.alert("追加できませんでした")
+            });
+    }
+}
 
 const [state1,setState1] = useState([]);
 
