@@ -14,10 +14,6 @@ import Grid from '@material-ui/core/Grid';
 import AddIcon from '@material-ui/icons/Add';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import DialogTitle from '@material-ui/core/DialogTitle';
-<<<<<<< HEAD
-
-=======
->>>>>>> f4281bbca39eb449bc4f0334853b98b398ba1cd9
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
