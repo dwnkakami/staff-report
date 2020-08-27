@@ -377,13 +377,12 @@ const StaffSearch = () => {
                data.occupation === ocp[4] ||
                data.occupation === ocp[5]) ||
               (data.license === license) ||
-              ((data.skill === skill1) && (!status1)) ||
-              ((data.skill === skill1 && 
-               data.level === status1)) ||
-               ((data.skill === skill2) && 
-               (data.level === status2)) ||
-               ((data.skill === skill3) && 
-               (data.level === status3)) ||
+              (data.skill === skill1 && 
+               data.level === status1) ||
+              (data.skill === skill2 && 
+               data.level === status2) ||
+              (data.skill === skill3 && 
+               data.level === status3) ||
               (data.gender === ge) ||
               (data.age === age) ||
               (data.area === areas);
@@ -408,13 +407,14 @@ const StaffSearch = () => {
       //     (data.area === areas);
       // }
     });
-  
-    
+
+
     const cleanList = search.filter((data_x, index, self)=> { 
       return (self.findIndex((data_y) =>{
         return (data_x.id === data_y.id)
       }) === index);
     });
+    
     console.log(cleanList);
     ListData.setStaffData(cleanList);
     window.location.href = "/#/staff-report/stafflist-result/001";
