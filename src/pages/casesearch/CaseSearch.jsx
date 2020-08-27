@@ -30,6 +30,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import Button from '@material-ui/core/Button';
 
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { AvLoop } from 'material-ui/svg-icons';
 
 
 
@@ -161,11 +162,31 @@ const MenuProps = {
 
   //keywordSubmit
 
-  const keywordSubmit = () => {
+  const keywordSubmit = (data) => {
+    // data.name == keyWord;
+    // const value = keyWord === data.name;
 
     const keywordSearch = posts.filter((data)=>{
-      return  data.name.match(/data.name+/);
+      return data.name.indexOf(keyWord)!==-1;
      });
+
+    const words = keyWord;
+    const kugiri = /\s+/;
+    const keywordSearch2 = document.getElementById('outlined-basic').words.split(kugiri);
+
+
+    // const keywordSearch2 = () => {
+    //   return keywordSearch.indexOf(keyWord)!=-1;
+    // }
+    // var words = data.name;
+    // var kugiri = /\s+/;
+    // var keywordSearch = words.split(kugiri);
+
+    // const RetSource = "";
+    // // ▼配列1つ1つに対して処理
+    // for( var i=0 ; keywordSearch.length ; i++ ) {
+    //     RetSource += '[' + (i+1) + '] ' + keywordSearch[i];
+    // }
 
     if(keywordSearch.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
@@ -173,7 +194,7 @@ const MenuProps = {
       console.log(keywordSearch);
       ListData.setCaseData(keywordSearch);
       window.location.href = "/#/staff-report/caseresult/001";
-    }
+    };
   };
 
  
@@ -266,16 +287,8 @@ const MenuProps = {
 ));
 
 
-  // clearButton(Dialog)
+  // clearButton
 
-  const AlertDialog = () => {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-  
-    const handleClickOpen = () => {
-      setOpen(true);
-    };
-  
   const clearAll = () => {
     setKeyWord('')
     setJobName([])
@@ -286,45 +299,6 @@ const MenuProps = {
     // setSelectedEndDate()
     setSalesMan('')
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  return (
-    <div>
-      <DeleteButton variant="outlined" color="primary" onClick={handleClickOpen}/>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        disableBackdropClick={true}
-        maxWidth="xs"
-        fullWidth={true}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title" className={classes.dialog}>案件検索の内容</DialogTitle>
-        <DialogContent className={classes.dialog}>
-          <DialogContentText id="alert-dialog-description" className={classes.dialog}>
-            Clear All?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions className={classes.dialog}>
-          <Button onClick={clearAll} color="primary" className={classes.dialog_button}>
-            OK
-          </Button>
-          <Button onClick={handleClose} color="primary" variant="outlined" autoFocus>
-            Cancel
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
-}
-
-
-
-
 
 
 
@@ -492,8 +466,8 @@ const MenuProps = {
         案件名検索
         </Typography>
 
+          {/* <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" /> */}
           <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
-
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
 
         <br className={classes.end} />
@@ -610,8 +584,7 @@ const MenuProps = {
         <div className={classes.left}><br /></div>
         {/* <div className={classes.left}><br /></div> */}
 
-        {/* <DeleteButton onClick={clearAll} /> */}
-        <AlertDialog/>
+        <DeleteButton onClick={clearAll} />
         <SearchButton onClick={formSubmit} className={classes.button} />
 
       </CardContent>
