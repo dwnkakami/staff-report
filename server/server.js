@@ -110,8 +110,8 @@ app.get('/api/staffadd004',(req,res) => {
 app.get('/api/staffadd005',(req,res) => {
     staffadd005.getData(req,res);
 });
-app.get('/api/staffadd006',(req,res) => {
-    staffadd006.getData(req.params,res);
+app.get('/api/staffadd006/:condition',(req,res) => {
+    staffadd006.getData(req.params.condition,res);
 });
 app.get('/api/caselist/:condition',(req,res) => {
     caselist.getData(req.params.condition,res);

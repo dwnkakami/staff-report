@@ -193,6 +193,10 @@ const handleChange3 = e => {
       }
 }
 
+// const checkChange = (event) => {
+//     setCheck(event.target.check);
+//   };
+
 const [check, setCheck] = useState(false);
 
 const add = () => {
@@ -202,15 +206,17 @@ const add = () => {
     } 
 
     // const checkStaffid = () => {
-      axios
-        .get('./api/staffadd006', {params: staffId})
-        .then(() => {
-          setCheck(true);
-        //   window.alart('そのスタッフIDは既に登録されています。')
-        })
-        .catch(() => {
-          setCheck(false)
-        })
+          axios
+            .get('./api/staffadd006/' + staffId)
+            .then(() => {
+              setCheck(true)
+              window.alert('a')
+            })
+            .catch(() => {
+              setCheck(false)
+              window.alert('b')
+            })
+            console.log(check)
     // }
 
 if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
@@ -220,7 +226,7 @@ if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) ||
        (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
        (entry.length === 0) || (update_at.length === 0)) {
            window.alert('未入力項目があります。\n*は必須項目です。')
-       } else if (setCheck(true)) {
+       } else if (check === true) {
            window.alert('そのスタッフIDは既に登録されています。')
        } else if (phone.length < 10) {
            window.alert('電話番号を正しく入力して下さい。')
