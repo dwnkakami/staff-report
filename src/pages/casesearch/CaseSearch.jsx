@@ -31,6 +31,7 @@ import Button from '@material-ui/core/Button';
 
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { AvLoop } from 'material-ui/svg-icons';
+import search from 'material-ui/svg-icons/action/search';
 
 
 
@@ -155,25 +156,40 @@ const MenuProps = {
       }
   }
   
-
   
   //KeywordSearch
   const [keyWord, setKeyWord] = React.useState([]);
 
-  //keywordSubmit
-
-  const keywordSubmit = (data) => {
-    // data.name == keyWord;
-    // const value = keyWord === data.name;
-
+  const keywordSubmit = () => {
+  //Brank Space
+    const keywordBlank = keyWord.split(/\s+/);
+  // Search
     const keywordSearch = posts.filter((data)=>{
-      return data.name.indexOf(keyWord)!==-1;
-     });
+      return data.name.indexOf(keywordBlank[0])!==-1||
+             data.name.indexOf(keywordBlank[1])!==-1||
+             data.name.indexOf(keywordBlank[2])!==-1||
+             data.name.indexOf(keywordBlank[3])!==-1||
+             data.name.indexOf(keywordBlank[4])!==-1||
+             data.name.indexOf(keywordBlank[5])!==-1||
+             data.name.indexOf(keywordBlank[6])!==-1||
+             data.name.indexOf(keywordBlank[7])!==-1||
+             data.name.indexOf(keywordBlank[8])!==-1||
+             data.name.indexOf(keywordBlank[9])!==-1;
+         });
 
-    const words = keyWord;
-    const kugiri = /\s+/;
-    const keywordSearch2 = document.getElementById('outlined-basic').words.split(kugiri);
+    if(keywordSearch.length === 0){
+      window.alert("検索結果がありません。\n条件を変更してください。")
+    }else{
+      console.log(keywordSearch);
+      ListData.setCaseData(keywordSearch);
+      window.location.href = "/#/staff-report/caseresult/001";
+    };
+  };
 
+      // const words = keyWord;
+    // const kugiri = /\s+/;
+    // const keywordSearch2 = (data) => {document.getElementById('outlined-basic').data.name.split(kugiri);
+    //   }
 
     // const keywordSearch2 = () => {
     //   return keywordSearch.indexOf(keyWord)!=-1;
@@ -187,15 +203,6 @@ const MenuProps = {
     // for( var i=0 ; keywordSearch.length ; i++ ) {
     //     RetSource += '[' + (i+1) + '] ' + keywordSearch[i];
     // }
-
-    if(keywordSearch.length === 0){
-      window.alert("検索結果がありません。\n条件を変更してください。")
-    }else{
-      console.log(keywordSearch);
-      ListData.setCaseData(keywordSearch);
-      window.location.href = "/#/staff-report/caseresult/001";
-    };
-  };
 
  
 
@@ -466,8 +473,8 @@ const MenuProps = {
         案件名検索
         </Typography>
 
-          {/* <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" /> */}
           <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
+         
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
 
         <br className={classes.end} />
