@@ -16,13 +16,22 @@ exports.postData = (req, res) => {
   });
 
   con.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
+    try {
+      var err = () => {throw err}
+      console.log('Connected!');
+    } catch (err) {
+      console.log('err')
+    }
     
     const sql = 'SELECT TS1.level FROM staff_report.t_staff_skill AS TS1 GROUP BY level ORDER BY TS1.level ASC';
     // console.log(sql);
     con.query(sql, (err, result, fields) => {
-      if (err) throw err;
+      try {
+        var err = () => {throw err}
+        console.log('Connected!');
+      } catch (err) {
+        console.log('err')
+      }
       res.json(result);
     });
   });
