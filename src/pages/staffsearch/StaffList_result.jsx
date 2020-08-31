@@ -70,7 +70,7 @@ const StyledTableRow = withStyles((theme) => ({
   const headCells = [
     { id:'id', numeric: false, disablePadding: true, label: 'スタッフID' },
     { id:'name',numeric: true, disablePadding: false, label: 'スタッフ名' },
-    { id:'position',numeric: true, disablePadding: false, label: '役職' },
+    { id:'occupation',numeric: true, disablePadding: false, label: '職種' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
     { id:'id',numeric: true, disablePadding: false, label: '詳細' },
@@ -208,11 +208,11 @@ return(
 
                       <TableCell align="center">{data.id}</TableCell>
                       <TableCell align="center">{data.name}</TableCell>
-                      <TableCell align="center">{data.position}</TableCell>
+                      <TableCell align="center">{data.occupation}</TableCell>
                       <TableCell align="center">{data.company_abbreviation}</TableCell>
                       <TableCell align="center">{data.matter_end}</TableCell>
                       <TableCell align="center">
-                        <StaffList005 key={data.id} id={data.id} name={data.name} position={data.position} matter_end={data.matter_end} />
+                        <StaffList005 key={data.id} id={data.id} name={data.name} occupation={data.occupation} matter_end={data.matter_end} />
                       </TableCell>
                     </StyledTableRow>
                   );
