@@ -23,6 +23,16 @@ import DeleteButton from './DeleteButton';
 // import DatePickers from './DatePickers';
 import ListData from './ListData';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import Button from '@material-ui/core/Button';
+
+import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { AvLoop } from 'material-ui/svg-icons';
+import search from 'material-ui/svg-icons/action/search';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -84,6 +94,15 @@ end: {
     },
     paddingTop:15,
   },
+
+  dialog: {
+    backgroundColor: "#000000",
+    color: "#ffffff",
+  },
+  dialog_button: {
+    backgroundColor: "#5151ff",
+    color: "#000000",
+  },
 }));
 
 const ITEM_HEIGHT = 48;
@@ -137,27 +156,56 @@ const MenuProps = {
       }
   }
   
-
+  
   //KeywordSearch
-  const [keyWord, setKeyWord] = React.useState('');
+  const [keyWord, setKeyWord] = React.useState([]);
 
-  //keywordSubmit
   const keywordSubmit = () => {
+  //Brank Space
+    const keywordBlank = keyWord.split(/\s+/);
+  // Search
+    const keywordSearch = posts.filter((data)=>{
+      return data.name.indexOf(keywordBlank[0])!==-1||
+             data.name.indexOf(keywordBlank[1])!==-1||
+             data.name.indexOf(keywordBlank[2])!==-1||
+             data.name.indexOf(keywordBlank[3])!==-1||
+             data.name.indexOf(keywordBlank[4])!==-1||
+             data.name.indexOf(keywordBlank[5])!==-1||
+             data.name.indexOf(keywordBlank[6])!==-1||
+             data.name.indexOf(keywordBlank[7])!==-1||
+             data.name.indexOf(keywordBlank[8])!==-1||
+             data.name.indexOf(keywordBlank[9])!==-1;
+         });
 
-    const target = posts.filter((data)=>{
-      return (data.name.includes(keyWord));
-    });
-    if(target.length === 0){
+    if(keywordSearch.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
-      console.log(target);
-      ListData.setCaseData(target);
+      console.log(keywordSearch);
+      ListData.setCaseData(keywordSearch);
       window.location.href = "/#/staff-report/caseresult/001";
-    }
+    };
   };
 
+      // const words = keyWord;
+    // const kugiri = /\s+/;
+    // const keywordSearch2 = (data) => {document.getElementById('outlined-basic').data.name.split(kugiri);
+    //   }
+
+    // const keywordSearch2 = () => {
+    //   return keywordSearch.indexOf(keyWord)!=-1;
+    // }
+    // var words = data.name;
+    // var kugiri = /\s+/;
+    // var keywordSearch = words.split(kugiri);
+
+    // const RetSource = "";
+    // // ▼配列1つ1つに対して処理
+    // for( var i=0 ; keywordSearch.length ; i++ ) {
+    //     RetSource += '[' + (i+1) + '] ' + keywordSearch[i];
+    // }
 
  
+
   //job
 
   const [job, setJob] = useState([]);
@@ -245,7 +293,9 @@ const MenuProps = {
             value={data.id}>{data.name}</MenuItem>
 ));
 
-  //clearButton
+
+  // clearButton
+
   const clearAll = () => {
     setKeyWord('')
     setJobName([])
@@ -255,8 +305,9 @@ const MenuProps = {
     // setSelectedStartDate()
     // setSelectedEndDate()
     setSalesMan('')
-    window.alert("Clear Done")
   };
+
+
 
 
   //SearchButton
@@ -342,10 +393,9 @@ const MenuProps = {
               ((data.skill3_id === skill1) ||
               (data.skill3_id === skill2) ||
               (data.skill3_id === skill3))) ||
-                  data.user_id === salesMan );
+                  data.user_id === salesMan )
+                  
     });
-
-   
 
     if(target7.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
@@ -353,7 +403,7 @@ const MenuProps = {
       console.log(target7);
       ListData.setCaseData(target7);
       window.location.href = "/#/staff-report/caseresult/001";
-    }
+  };
 
     
        
@@ -423,9 +473,8 @@ const MenuProps = {
         案件名検索
         </Typography>
 
-
-          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
-
+          <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
+         
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
 
         <br className={classes.end} />
