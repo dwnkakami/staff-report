@@ -16,12 +16,21 @@ exports.getData = (req, res) => {
   });
 
   con.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
+    try {
+      var err = () => {throw err}
+      console.log('Connected!');
+    } catch (err) {
+      console.log('err')
+    }
 
     const sql = "SELECT S1.id, S1.name, S1.kana, P1.name AS 'position', C1.company_abbreviation, date_format(MAX (M1.matter_end),'%Y/%m/%d') AS 'matter_end' FROM m_staff S1 LEFT JOIN m_position P1 ON S1.position_id = P1.id LEFT JOIN m_company C1 ON S1.company_id = C1.id LEFT JOIN t_inquiry I1 ON S1.id = I1.staff_id LEFT JOIN m_matter M1 ON I1.matter_id = M1.id GROUP BY S1.id";
     con.query(sql, (err, result, fields) => {
-      if (err) throw err;
+      try {
+        var err = () => {throw err}
+        console.log('Connected!');
+      } catch (err) {
+        console.log('err')
+      }
       res.json(result);
     });
   });
