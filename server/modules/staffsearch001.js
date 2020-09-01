@@ -16,13 +16,22 @@ exports.postData = (req, res) => {
   });
 
   con.connect((err) => {
-    if (err) throw err;
-    console.log('Connected!');
+    try {
+      var err = () => {throw err}
+      console.log('Connected!');
+    } catch (err) {
+      console.log('err')
+    }
     
     const sql = 'SELECT * FROM staff_report.m_skill';
     // console.log(sql);
     con.query(sql, (err, result, fields) => {
-      if (err) throw err;
+      try {
+        var err = () => {throw err}
+        console.log('Connected!');
+      } catch (err) {
+        console.log('err')
+      }
       res.json(result);
     });
   });

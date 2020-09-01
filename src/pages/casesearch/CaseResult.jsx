@@ -18,7 +18,6 @@ import PropTypes from 'prop-types';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 
 
-
 import CaseDetail from '../casedetail/CaseDetail';
 import ListData from '../casesearch/ListData';
 
@@ -115,6 +114,7 @@ function EnhancedTableHead(props) {
               ) : null}
             </TableSortLabel>
           </StyledTableCell>
+          
         ))}
       </StyledTableRow>
     </TableHead>
@@ -188,17 +188,17 @@ EnhancedTableHead.propTypes = {
           <TableBody>
           {stableSort(ListData.getCaseData(), getComparator(order, orderBy)).map((data) => (
                 <StyledTableRow>
-                <StyledTableCell classname="tablecell" align="center" component="th" scope="row">
+                <StyledTableCell align="center" component="th" scope="row">
                   {data.id}
                 </StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.name}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.customer_name}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.unit_cost}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.workplace}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.number_of_persons}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.matter_start}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">{data.matter_end}</StyledTableCell>
-                <StyledTableCell classname="tablecell" align="center">
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.name}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.customer_name}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.unit_cost}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.workplace}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.number_of_persons}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.matter_start}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>{data.matter_end}</StyledTableCell>
+                <StyledTableCell align="center" style={{ wordBreak: 'break-all',}}>
                 <CaseDetail key={data.id}
                   name={data.name}
                   customer_name={data.customer_name}

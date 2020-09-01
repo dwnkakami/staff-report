@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import { makeStyles} from '@material-ui/core/styles';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import { Typography, DialogTitle } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -7,13 +7,14 @@ import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import InputLabel from '@material-ui/core/InputLabel';
-import { Paper,MenuItem,TextField } from '@material-ui/core';
+import { Paper, MenuItem, TextField } from '@material-ui/core';
 import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import ListItemText from '@material-ui/core/ListItemText';
 import axios from 'axios';
 import './StaffSearch.css';
 import ListData from './ListData';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -104,13 +105,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   end: {
-    width:'100%',
-    clear:'both',
+    width: '100%',
+    clear: 'both',
   },
   brank: {
-    height:35,
+    height: 35,
   },
-  
+
   blockButton: {
     width: '50%',
     marginRight: 'auto',
@@ -140,7 +141,8 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0),
       width: '100%',
     },
-  },}));
+  },
+}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -156,58 +158,63 @@ const MenuProps = {
 const StaffSearch = () => {
   const classes = useStyles();
 
+  // const [andMode, setAndMode] = useState(false);
+  // const ModeChange = (event) => {
+  //   setAndMode(event.target.checked);
+  // };
+
   //チェック切り替え
-  const [ocp,setOcp] = useState([]);
+  const [ocp, setOcp] = useState([]);
   const handleChange = (event) => {
     setOcp(event.target.value);
   };
 
   const [license, setLicense] = useState([]);
-    const handleChange2 = (event) => {
-      setLicense(event.target.value);
-    };
+  const handleChange2 = (event) => {
+    setLicense(event.target.value);
+  };
 
-  const [skill1,setSkill1] = useState([]);
+  const [skill1, setSkill1] = useState([]);
   const Skill1Change = (event) => {
     setSkill1(event.target.value);
   }
 
-  const [skill2,setSkill2] = useState([]);
+  const [skill2, setSkill2] = useState([]);
   const Skill2Change = (event) => {
     setSkill2(event.target.value);
   }
 
-  const [skill3,setSkill3] = useState([]);
+  const [skill3, setSkill3] = useState([]);
   const Skill3Change = (event) => {
     setSkill3(event.target.value);
   }
 
-  const [status1,setStatus1] = useState([]);
+  const [status1, setStatus1] = useState([]);
   const Status1Change = (event) => {
     setStatus1(event.target.value);
   }
 
-  const [status2,setStatus2] = useState([]);
+  const [status2, setStatus2] = useState([]);
   const Status2Change = (event) => {
     setStatus2(event.target.value);
   }
 
-  const [status3,setStatus3] = useState([]);
+  const [status3, setStatus3] = useState([]);
   const Status3Change = (event) => {
     setStatus3(event.target.value);
   }
 
-  const [areas,setAreas]=useState([]);
+  const [areas, setAreas] = useState([]);
   const aresChenge = (event) => {
     setAreas(event.target.value);
   }
 
-  const [ge,setGe]=useState([]);
+  const [ge, setGe] = useState([]);
   const genderChange = (event) => {
     setGe(event.target.value);
   }
 
-  const [age,setAge] = useState([]);
+  const [age, setAge] = useState([]);
   const ageChange = (event) => {
     setAge(event.target.value);
   }
@@ -215,76 +222,48 @@ const StaffSearch = () => {
   //リセット機能
   const Reset = () => {
     //setKeyWord();
-    setOcp([]);
-    setLicense('');
-    setSkill1('');
-    setSkill2('');
-    setSkill3('');
-    setStatus1('');
-    setStatus2('');
-    setStatus3('');
-    setAreas('');
-    setGe('');
-    setAge('');
-  };
-  const[data,setData] = useState([]);
+    //setAndMode(false)
+    setOcp([])
+    setLicense('')
+    setSkill1('')
+    setSkill2('')
+    setSkill3('')
+    setStatus1('')
+    setStatus2('')
+    setStatus3('')
+    setAreas('')
+    setGe('')
+    setAge('')
+  }
+  const [data, setData] = useState([]);
   useEffect(() => {
-    const newValue=
-    {license:license,skill1:skill1,skill2:skill2,skill3:skill3,gender:ge,area:areas,occupation:ocp}
-    if(data.length===0){
-     axios
-       .post('/api/staffsearch',newValue)
-       .then(response => {
-        setData(response.data);
-        console.log([response.data]);
+    const newValue =
+      {license: license, skill: skill1, skill: skill2, skill: skill3, 
+        level:status1, level:status2, level:status3, gender: ge, area: areas, occupation: ocp}
+    if (data.length === 0) {
+      axios
+        .post('/api/staffsearch', newValue)
+        .then(response => {
+          setData(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
         })
     }
-  },[]);
+  }, []);
+
   
-  const [getSkill,setGetSkill] = useState([]);
-  useEffect(()=>getSkillData(),[]);
-  const getSkillData = ()=>{
-    if(getSkill.length===0){
-    axios
-       .post('/api/staffsearch001')
-       .then(response => {
-        setGetSkill(response.data);
-        console.log([response.data]);
-        })
-        .catch(() => {
-          console.log('connected error');
-        })
-    }
-  }
 
-  const [getLicense,setGetLicense] = useState([]);
-  useEffect(()=>getLicenseData(),[]);
-  const getLicenseData = ()=>{
-    if(getLicense.length===0){
-    axios
-       .post('/api/staffsearch002')
-       .then(response => {
-        setGetLicense(response.data);
-        console.log([response.data]);
-        })
-        .catch(() => {
-          console.log('connected error');
-        })
-    }
-  }
-
-  const [getArea,setGetArea] = useState([]);
-  useEffect(()=>getAreaData(),[]);
-  const getAreaData = () =>{
-    if(getArea.length===0){
+  const [getSkill, setGetSkill] = useState([]);
+  useEffect(() => getSkillData(), []);
+  const getSkillData = () => {
+    if (getSkill.length === 0) {
       axios
-       .post('/api/staffsearch003')
-       .then(response => {
-        setGetArea(response.data);
-        console.log([response.data]);
+        .post('/api/staffsearch001')
+        .then(response => {
+          setGetSkill(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -292,15 +271,15 @@ const StaffSearch = () => {
     }
   }
 
-  const [getStatus,setGetStatus] = useState([]);
-  useEffect(()=>getStatusData(),[]);
-  const getStatusData=()=>{
-    if(getStatus.length===0){
+  const [getLicense, setGetLicense] = useState([]);
+  useEffect(() => getLicenseData(), []);
+  const getLicenseData = () => {
+    if (getLicense.length === 0) {
       axios
-       .post('/api/staffsearch004')
-       .then(response => {
-        setGetStatus(response.data);
-        console.log([response.data]);
+        .post('/api/staffsearch002')
+        .then(response => {
+          setGetLicense(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -308,15 +287,15 @@ const StaffSearch = () => {
     }
   }
 
-  const [getGender,setGetGender] = useState([]);
-  useEffect(()=>getGenderData(),[]);
-  const getGenderData = () =>{
-    if(getGender.length===0){
+  const [getArea, setGetArea] = useState([]);
+  useEffect(() => getAreaData(), []);
+  const getAreaData = () => {
+    if (getArea.length === 0) {
       axios
-       .post('/api/staffsearch005')
-       .then(response => {
-        setGetGender(response.data);
-        console.log([response.data]);
+        .post('/api/staffsearch003')
+        .then(response => {
+          setGetArea(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -324,15 +303,15 @@ const StaffSearch = () => {
     }
   }
 
-  const [getAge,setGetAge] = useState([]);
-  useEffect(()=>getAgeData(),[]);
-  const getAgeData = () =>{
-    if(getAge.length===0){
+  const [getStatus, setGetStatus] = useState([]);
+  useEffect(() => getStatusData(), []);
+  const getStatusData = () => {
+    if (getStatus.length === 0) {
       axios
-       .post('/api/staffsearch006')
-       .then(response => {
-        setGetAge(response.data);
-        console.log([response.data]);
+        .post('/api/staffsearch004')
+        .then(response => {
+          setGetStatus(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -340,15 +319,15 @@ const StaffSearch = () => {
     }
   }
 
-  const [getOcp,setGetOcp] = useState([]);
-  useEffect(()=>getOcpData(),[]);
-  const getOcpData = () =>{
-    if(getOcp.length===0){
+  const [getGender, setGetGender] = useState([]);
+  useEffect(() => getGenderData(), []);
+  const getGenderData = () => {
+    if (getGender.length === 0) {
       axios
-       .post('/api/staffsearch007')
-       .then(response => {
-        setGetOcp(response.data);
-        console.log([response.data]);
+        .post('/api/staffsearch005')
+        .then(response => {
+          setGetGender(response.data);
+          console.log([response.data]);
         })
         .catch(() => {
           console.log('connected error');
@@ -356,45 +335,119 @@ const StaffSearch = () => {
     }
   }
 
-  const Search = () =>{
-  const search = data.filter((data)=>{
-    return (((data.license === license) ||
-              (((data.skill === skill1) ||
-            (data.skill === skill2) ||
-            (data.skill === skill3)) ||
-            ((data.level === status1) ||
-            (data.level === status2) ||
-            (data.level === status3)) ||
-            ((data.gender === ge) ||
-            (data.age === age) ||
-            (data.area === areas)))||
-            ((data.occupation === ocp[0])||
-            (data.occupation === ocp[1])||
-            (data.occupation === ocp[2])||
-            (data.occupation === ocp[3])||
-            (data.occupation === ocp[4])||
-            (data.occupation === ocp[5]))));
-  });
-    console.log(search);
-    ListData.setStaffData(search);
+  const [getAge, setGetAge] = useState([]);
+  useEffect(() => getAgeData(), []);
+  const getAgeData = () => {
+    if (getAge.length === 0) {
+      axios
+        .post('/api/staffsearch006')
+        .then(response => {
+          setGetAge(response.data);
+          console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const [getOcp, setGetOcp] = useState([]);
+  useEffect(() => getOcpData(), []);
+  const getOcpData = () => {
+    if (getOcp.length === 0) {
+      axios
+        .post('/api/staffsearch007')
+        .then(response => {
+          setGetOcp(response.data);
+          console.log([response.data]);
+        })
+        .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
+
+  const Search = () => {
+    const search = data.filter((data) => {
+      //if(!andMode){
+      return  (data.occupation === ocp[0] ||
+               data.occupation === ocp[1] ||
+               data.occupation === ocp[2] ||
+               data.occupation === ocp[3] ||
+               data.occupation === ocp[4] ||
+               data.occupation === ocp[5]) ||
+              (data.license === license) ||
+              (data.skill === skill1 && 
+               data.level === status1) ||
+              (data.skill === skill2 && 
+               data.level === status2) ||
+              (data.skill === skill3 && 
+               data.level === status3) ||
+              (data.gender === ge) ||
+              (data.age === age) ||
+              (data.area === areas);
+      //}
+      // else
+      // {
+      //   return (data.occupation === ocp[0] ||
+      //     data.occupation === ocp[1] ||
+      //     data.occupation === ocp[2] ||
+      //     data.occupation === ocp[3] ||
+      //     data.occupation === ocp[4] ||
+      //     data.occupation === ocp[5]) &&
+      //     ((data.skill === skill1) && 
+      //      (data.level === status1)) ||
+      //     ((data.skill === skill2) && 
+      //      (data.level === status2)) ||
+      //     ((data.skill === skill3) && 
+      //      (data.level === status3)) ||
+      //     (data.license === license) ||
+      //     (data.gender === ge) ||
+      //     (data.age === age) ||
+      //     (data.area === areas);
+      // }
+    });
+
+
+    const cleanList = search.filter((data_x, index, self)=> { 
+      return (self.findIndex((data_y) =>{
+        return (data_x.id === data_y.id)
+      }) === index);
+    });
+    
+    console.log(cleanList);
+    ListData.setStaffData(cleanList);
     window.location.href = "/#/staff-report/stafflist-result/001";
   }
 
   return (
-　　<div className={classes.root}>
-     <Paper elevation={3} variant="" >
-     <DialogTitle>
-    <div style={{ display: 'flex' }}>
-    <SearchIcon style={{ fontSize: '25px'}}/>
-    <PeopleAltIcon style={{ fontSize: '40px', }} />
-    <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
-    </div>
-    </DialogTitle>
-    {/* 職種選択 */}
+    <div className={classes.root}>
+      <Paper elevation={3} variant="" >
+        <DialogTitle>
+          <div style={{ display: 'flex' }}>
+            <SearchIcon style={{ fontSize: '25px' }} />
+            <PeopleAltIcon style={{ fontSize: '40px', }} />
+            <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
+          </div>
+        </DialogTitle>
 
-      <div>
-    　　<Typography className={classes.title} variant="h5" component="h2">
-          職種
+        {/* <div>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={andMode}
+                onChange={ModeChange}
+                color="primary"
+              />
+            }
+            label="もっと絞り込む"
+          />
+        </div> */}
+        {/* 職種選択 */}
+
+        <div>
+          <Typography className={classes.title} variant="h5" component="h2">
+            職種
         </Typography>
           <FormControl className={classes.formControl1}>
             <InputLabel>職種</InputLabel>
@@ -414,11 +467,11 @@ const StaffSearch = () => {
               ))}
             </Select>
           </FormControl>
-          </div>
+        </div>
 
-    {/* <br className={classes.end}/> */}
+        {/* <br className={classes.end}/> */}
 
-      {/* <FormControl variant="filled" className={classes.formControl1}>
+        {/* <FormControl variant="filled" className={classes.formControl1}>
         <Select
           value={ocp}
           onChange={handleChange}
@@ -432,18 +485,18 @@ const StaffSearch = () => {
         </Select>
     </FormControl> */}
 
-    {/* <Typography variant="h5" component="h2">
+        {/* <Typography variant="h5" component="h2">
         キーワード検索
         </Typography> */}
 
         {/* <Keyword value={keyword} /> */}
         {/* 検索ボタン */}
-      {/* <Button variant="contained">検索</Button> */}
+        {/* <Button variant="contained">検索</Button> */}
 
-    {/* 資格情報 */}
-      <div>
-    　　<Typography className={classes.title_2} variant="h5" component="h2">
-          資格
+        {/* 資格情報 */}
+        <div>
+          <Typography className={classes.title_2} variant="h5" component="h2">
+            資格
         </Typography>
          <TextField className={classes.formControl2}
           select
@@ -461,184 +514,185 @@ const StaffSearch = () => {
         </TextField>
       </div>
 
-    {/* <br className={classes.end}/> */}
+        {/* <br className={classes.end}/> */}
 
-      {/* スキル情報１ */}
-      <div>
-      <Typography className={classes.title_3} variant="h5" component="h2">
+        {/* スキル情報１ */}
+        <div>
+          <Typography className={classes.title_3} variant="h5" component="h2">
             スキルレベル
         </Typography>
 
-         <TextField className={classes.skill}
-          select
-          label="skill①"
-          value={skill1}
-          onChange={Skill1Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
-              {data.name}
-            </MenuItem>
-          ))}
-        </TextField>
+          <TextField className={classes.skill}
+            select
+            label="skill①"
+            value={skill1}
+            onChange={Skill1Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getSkill.map((data) => (
+              <MenuItem key={data.id} value={data.name}>
+                {data.name}
+              </MenuItem>
+            ))}
+          </TextField>
 
-    {/* <br className={classes.end} /> */}
+          {/* <br className={classes.end} /> */}
 
-      {/* ステータス１ */}
-      <TextField className={classes.skill_level}
-          select
-          label="level①"
-          value={status1}
-          onChange={Status1Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
-              {data.level}
-            </MenuItem>
-          ))}
-        </TextField>
-      
-    {/* <br className={classes.end} /> */}
+          {/* ステータス１ */}
+          <TextField className={classes.skill_level}
+            select
+            label="level①"
+            value={status1}
+            onChange={Status1Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getStatus.map((data) => (
+              <MenuItem key={data.level} value={data.level}>
+                {data.level}
+              </MenuItem>
+            ))}
+          </TextField>
 
-    {/* スキル情報２ */}
-      <TextField className={classes.skill}
-          select
-          label="skill②"
-          value={skill2}
-          onChange={Skill2Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
-              {data.name}
-            </MenuItem>
-          ))}
-        </TextField>
+          {/* <br className={classes.end} /> */}
 
-      {/* ステータス2 */}
-      <TextField className={classes.skill_level}
-          select
-          label="level②"
-          value={status2}
-          onChange={Status2Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
-              {data.level}
-            </MenuItem>
-          ))}
-        </TextField>
+          {/* スキル情報２ */}
+          <TextField className={classes.skill}
+            select
+            label="skill②"
+            value={skill2}
+            onChange={Skill2Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getSkill.map((data) => (
+              <MenuItem key={data.id} value={data.name}>
+                {data.name}
+              </MenuItem>
+            ))}
+          </TextField>
 
-    {/* <br className={classes.end} /> */}
+          {/* ステータス2 */}
+          <TextField className={classes.skill_level}
+            select
+            label="level②"
+            value={status2}
+            onChange={Status2Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getStatus.map((data) => (
+              <MenuItem key={data.level} value={data.level}>
+                {data.level}
+              </MenuItem>
+            ))}
+          </TextField>
 
-    {/* スキル情報３ */}
-      <TextField className={classes.skill}
-          select
-          label="skill③"
-          value={skill3}
-          onChange={Skill3Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getSkill.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
-              {data.name}
-            </MenuItem>
-          ))}
-        </TextField>
+          {/* <br className={classes.end} /> */}
 
-      {/* ステータス3 */}
-      <TextField className={classes.skill_level}
-          select
-          label="level③"
-          value={status3}
-          onChange={Status3Change}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getStatus.map((data)=>(
-            <MenuItem key={data.level} value={data.level}>
-              {data.level}
-            </MenuItem>
-          ))}
-        </TextField>
+          {/* スキル情報３ */}
+          <TextField className={classes.skill}
+            select
+            label="skill③"
+            value={skill3}
+            onChange={Skill3Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getSkill.map((data) => (
+              <MenuItem key={data.id} value={data.name}>
+                {data.name}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          {/* ステータス3 */}
+          <TextField className={classes.skill_level}
+            select
+            label="level③"
+            value={status3}
+            onChange={Status3Change}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getStatus.map((data) => (
+              <MenuItem key={data.level} value={data.level}>
+                {data.level}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
 
         <div>
-      　<Typography className={classes.title_4} variant="h5" component="h2">
-          年齢
+          <Typography className={classes.title_4} variant="h5" component="h2">
+            年齢
         </Typography>
-         <TextField className={classes.age}
-          label="年齢"
-          value={age}
-          onChange={ageChange}
-          variant="outlined"
-          type="number"
-        >
-          {/* <MenuItem value=""></MenuItem>
-          {getAge.map((data)=>(
-            <MenuItem key={data.age} value={data.age}>
-              {data.age}
-            </MenuItem>
-          ))} */}
-        </TextField>
+          <TextField className={classes.age}
+            select
+            label="年齢"
+            value={age}
+            onChange={ageChange}
+            variant="outlined"
+            type="number"
+          >
+            <MenuItem value=""></MenuItem>
+            {getAge.map((data) => (
+              <MenuItem key={data.age} value={data.age}>
+                {data.age}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
 
         <div>
-    　　<Typography className={classes.title_5} variant="h5" component="h2">
-          性別
+          <Typography className={classes.title_5} variant="h5" component="h2">
+            性別
         </Typography>
-         <TextField className={classes.gender}
-          select
-          label="性別"
-          value={ge}
-          onChange={genderChange}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getGender.map((data)=>(
-            <MenuItem key={data.gender} value={data.gender}>
-              {data.gender}
-            </MenuItem>
-          ))}
-        </TextField>
+          <TextField className={classes.gender}
+            select
+            label="性別"
+            value={ge}
+            onChange={genderChange}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getGender.map((data) => (
+              <MenuItem key={data.gender} value={data.gender}>
+                {data.gender}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
 
         <div>
-    　　<Typography className={classes.title_6} variant="h5" component="h2">
-          地域
+          <Typography className={classes.title_6} variant="h5" component="h2">
+            地域
         </Typography>
-         <TextField className={classes.areas}
-          select
-          label="地域"
-          value={areas}
-          onChange={aresChenge}
-          variant="outlined"
-        >
-          <MenuItem value=""></MenuItem>
-          {getArea.map((data)=>(
-            <MenuItem key={data.id} value={data.name}>
-              {data.name}
-            </MenuItem>
-          ))}
-        </TextField>
+          <TextField className={classes.areas}
+            select
+            label="地域"
+            value={areas}
+            onChange={aresChenge}
+            variant="outlined"
+          >
+            <MenuItem value=""></MenuItem>
+            {getArea.map((data) => (
+              <MenuItem key={data.id} value={data.name}>
+                {data.name}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
 
         <br className={classes.end} />
-     <div className={classes.blockButton}>
-      {/* リセットボタン */}
-      <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
-      {/* 検索ボタン */}
-      <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
-     </div>
-    </Paper>
+        <div className={classes.blockButton}>
+          {/* リセットボタン */}
+          <Button variant="contained" onClick={Reset} className={classes.button}>クリア</Button>
+          {/* 検索ボタン */}
+          <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
+        </div>
+      </Paper>
     </div>
   );
 }
