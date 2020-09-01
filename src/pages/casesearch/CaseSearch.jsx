@@ -23,15 +23,8 @@ import DeleteButton from './DeleteButton';
 // import DatePickers from './DatePickers';
 import ListData from './ListData';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import Button from '@material-ui/core/Button';
-
 import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 import { AvLoop } from 'material-ui/svg-icons';
-import search from 'material-ui/svg-icons/action/search';
 
 
 
@@ -186,25 +179,6 @@ const MenuProps = {
     };
   };
 
-      // const words = keyWord;
-    // const kugiri = /\s+/;
-    // const keywordSearch2 = (data) => {document.getElementById('outlined-basic').data.name.split(kugiri);
-    //   }
-
-    // const keywordSearch2 = () => {
-    //   return keywordSearch.indexOf(keyWord)!=-1;
-    // }
-    // var words = data.name;
-    // var kugiri = /\s+/;
-    // var keywordSearch = words.split(kugiri);
-
-    // const RetSource = "";
-    // // ▼配列1つ1つに対して処理
-    // for( var i=0 ; keywordSearch.length ; i++ ) {
-    //     RetSource += '[' + (i+1) + '] ' + keywordSearch[i];
-    // }
-
- 
 
   //job
 
