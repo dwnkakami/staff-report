@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -16,20 +17,12 @@ exports.getData = (req, res) => {
   });
 
   con.connect((err) => {
-    try {
-      var err = () => {throw err}
-      console.log('Connected!');
-    } catch (err) {
-      console.log('err')
-    }
-    const sql = 'SELECT id AS "position_id", name AS "position" FROM m_position';
+    if (err) throw err;
+    console.log('Connected!');
+
+    const sql = 'SELECT * FROM m_staff WHERE id =' +req
     con.query(sql, (err, result, fields) => {
-      try {
-        var err = () => {throw err}
-        console.log('Connected!');
-      } catch (err) {
-        console.log('err')
-      }
+      if (err) throw err;
       res.json(result);
     });
   });
