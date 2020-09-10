@@ -15,14 +15,12 @@ import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
+import MaskedInput from 'react-text-mask';
 
 const useStyles = makeStyles((theme) => ({
     content: {
-        width: '250px',
-    },
-    content_2: {
-        width: '250px',
-        marginBottom: '25px'
+        width: '80%',
+        position: 'relative'　
     },
     formControl: {
       minWidth: 195,
@@ -50,7 +48,7 @@ function NumberFormatCustom(props) {
           });
         }}
         isNumericString
-        maxLength="11"
+        maxLength="10"
       />
     );
   }
@@ -58,6 +56,50 @@ function NumberFormatCustom(props) {
     inputRef: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
+  };
+
+  function NumberFormatCustom2(props) {
+    const { inputRef, onChange, ...other } = props;
+    return (
+      <NumberFormat
+        {...other}
+        getInputRef={inputRef}
+        onValueChange={(values) => {
+          onChange({
+            target: {
+              name: props.name,
+              value: values.value,
+            },
+          });
+        }}
+        isNumericString
+        maxLength="3"
+      />
+    );
+  }
+  NumberFormatCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+  };
+
+  function TextMaskCustom(props) {
+    const { inputRef, ...other } = props;
+  
+    return (
+      <MaskedInput
+        {...other}
+        ref={(ref) => {
+          inputRef(ref ? ref.inputElement : null);
+        }}
+        mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+        placeholderChar={'\u2000'}
+      />
+    );
+  }
+  
+  TextMaskCustom.propTypes = {
+    inputRef: PropTypes.func.isRequired,
   };
 
 export default function StaffAdd () {
@@ -363,10 +405,10 @@ const classes = useStyles();
             <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange}　className={classes.content}/>
+            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} inputProps={{maxlength:50}}　className={classes.content}/>
         </Grid> 
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
            
@@ -380,26 +422,26 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <TextField required type="date" inputProps={{max:"9999-12-31"}} name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange2} className={classes.content}  InputLabelProps={{
+            <TextField required type="date" inputProps={{max:new Date().toJSON().split('T')[0]}} name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange2} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
         <Grid item xs={4}>
             
-            <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} InputProps={{ inputProps: { min: 18, max: 80 } }} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
+            <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom2}}/>
         </Grid>
         <Grid item xs={4}>
             <Typography></Typography>
-            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
+            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: TextMaskCustom}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} className={classes.content}/>
+            <TextField required variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required　type="date" inputProps={{max:"9999-12-31"}} name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange3} className={classes.content}　InputLabelProps={{
+            <TextField required　type="date" inputProps={{max:"2029-12-31"}} name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange3} className={classes.content}　InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
@@ -457,7 +499,7 @@ const classes = useStyles();
             </FormControl>
         </Grid>
         <Grid item xs={4}>
-            <FormControl variant="outlined" className={classes.content_2}>
+            <FormControl variant="outlined" className={classes.content}>
             <InputLabel>雇用形態*</InputLabel>
             <Select required name="employment" value={employment} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
