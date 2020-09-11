@@ -49,6 +49,24 @@ const StyledTableCell = withStyles((theme) => ({
     }
     return 0;
   }
+
+  // function descendingComparator(a, b, orderBy) {
+  //   if(a === b) {
+  //     return 0;
+  //   }
+  //   else if(a === null) {
+  //     return 1;
+  //   }
+  //   else if(b === null) {
+  //     return -1;
+  //   }
+  //   else if (b[orderBy] < a[orderBy]) {
+  //     return -1;
+  //   }
+  //   else if (b[orderBy] > a[orderBy]) { 
+  //     return 1;
+  //   } 
+  // }
   
   function getComparator(order, orderBy) {
     return order === 'desc'
@@ -72,8 +90,11 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
-    { label: '詳細' },
   ];
+
+  const headCells2 = [
+    { label:'詳細'　}
+  ]
 
   function EnhancedTableHead(props) {
     const { classes, order, orderBy, onRequestSort } = props;
@@ -105,6 +126,9 @@ const StyledTableCell = withStyles((theme) => ({
               </TableSortLabel>
             </StyledTableCell>
           ))}
+        <StyledTableCell align = 'center'>
+          {headCells2.map((headCell) => {return headCell.label})}
+        </StyledTableCell>
         </StyledTableRow>
       </TableHead>
     );
@@ -217,7 +241,8 @@ return(
                       </TableCell>
                     </StyledTableRow>
                   );
-                })}</TableBody>
+                })}
+            </TableBody>
           </Table>
           </Grid>
           </Grid>
