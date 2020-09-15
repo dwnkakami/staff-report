@@ -49,24 +49,6 @@ const StyledTableCell = withStyles((theme) => ({
     }
     return 0;
   }
-
-  // function descendingComparator(a, b, orderBy) {
-  //   if(a === b) {
-  //     return 0;
-  //   }
-  //   else if(a === null) {
-  //     return 1;
-  //   }
-  //   else if(b === null) {
-  //     return -1;
-  //   }
-  //   else if (b[orderBy] < a[orderBy]) {
-  //     return -1;
-  //   }
-  //   else if (b[orderBy] > a[orderBy]) { 
-  //     return 1;
-  //   } 
-  // }
   
   function getComparator(order, orderBy) {
     return order === 'desc'
@@ -89,7 +71,7 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'kana',numeric: true, disablePadding: false, label: 'スタッフ名' },
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
-    { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
+    { id:'matter_end2',numeric: true, disablePadding: false, label: '案件終了日' },
   ];
 
   const headCells2 = [
@@ -193,7 +175,7 @@ const StyledTableCell = withStyles((theme) => ({
     }
 
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('id');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -253,6 +235,3 @@ return(
     </div>
 );
 };
-
-
-
