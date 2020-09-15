@@ -41,6 +41,12 @@ const StyledTableCell = withStyles((theme) => ({
   }))(TableRow);
 
   function descendingComparator(a, b, orderBy) {
+    if (a[orderBy] === null) {
+      return 1;
+    }
+    if (b[orderBy] === null) {
+      return -1;
+    }
     if (b[orderBy] < a[orderBy]) {
       return -1;
     }
@@ -71,7 +77,7 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'kana',numeric: true, disablePadding: false, label: 'スタッフ名' },
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
-    { id:'matter_end2',numeric: true, disablePadding: false, label: '案件終了日' },
+    { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
   ];
 
   const headCells2 = [

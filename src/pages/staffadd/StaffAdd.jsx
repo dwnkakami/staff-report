@@ -258,6 +258,8 @@ const execStaffAdd = () => {
     const newValue = {id:staffId, name:name, kana:kana, gender:gender, position_id:position, joining_day:join, birthday:birthday, age:age, school_career:career, phone_number:phone, near_station:station, company_id:company, area_id:area, occupation_id:occupation, employment_system_id:employment, entry_at:entry, update_at:update_at,
         　update_by:update_by
     } 
+    const date = new Date().toJSON().split('T')[0]
+
     if((staffId.length === 0) || (name.length === 0) || (kana.length === 0) || 
         (gender.length === 0) || (position.length === 0) || (join.length === 0) || 
         (birthday.length === 0) || (age.length === 0) || (career.length === 0) || 
@@ -265,6 +267,8 @@ const execStaffAdd = () => {
         (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
         (entry.length === 0) || (update_at.length === 0)) {
             window.alert('未入力項目があります。\n*は必須項目です。');
+        } else if (birthday > date) {
+            window.alert('生年月日を正しく入力して下さい。')
         } else if (phone.length < 10) {
             window.alert('電話番号を正しく入力して下さい。');
         } else {
