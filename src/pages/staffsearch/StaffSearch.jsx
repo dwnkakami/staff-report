@@ -201,32 +201,32 @@ const StaffSearch = () => {
     setLicense(event.target.value);
   };
 
-  const [skill1, setSkill1] = useState('');
+  const [skill1, setSkill1] = useState([]);
   const Skill1Change = (event) => {
     setSkill1(event.target.value);
   }
 
-  const [skill2, setSkill2] = useState('');
+  const [skill2, setSkill2] = useState([]);
   const Skill2Change = (event) => {
     setSkill2(event.target.value);
   }
 
-  const [skill3, setSkill3] = useState('');
+  const [skill3, setSkill3] = useState([]);
   const Skill3Change = (event) => {
     setSkill3(event.target.value);
   }
 
-  const [status1, setStatus1] = useState('');
+  const [status1, setStatus1] = useState([]);
   const Status1Change = (event) => {
     setStatus1(event.target.value);
   }
 
-  const [status2, setStatus2] = useState('');
+  const [status2, setStatus2] = useState([]);
   const Status2Change = (event) => {
     setStatus2(event.target.value);
   }
 
-  const [status3, setStatus3] = useState('');
+  const [status3, setStatus3] = useState([]);
   const Status3Change = (event) => {
     setStatus3(event.target.value);
   }
@@ -402,7 +402,6 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
-      if ((skill1 !== '' && status1 == '') || (skill2 !== '' && status2 == '') || (skill3 !== '' && status3 == ''))
       return  (data.occupation === ocp[0] ||
                data.occupation === ocp[1] ||
                data.occupation === ocp[2] ||
@@ -410,24 +409,22 @@ const StaffSearch = () => {
                data.occupation === ocp[4] ||
                data.occupation === ocp[5]) ||
               (data.license === license) ||
-              (data.skill === skill1) ||
-              (data.skill === skill2) ||
-              (data.skill === skill3) ||
+              (data.skill === skill1 && 
+                data.level === status1) ||
+                (data.skill === skill2 && 
+                data.level === status2) ||
+                (data.skill === skill3 && 
+                data.level === status3)||
               (data.gender === ge) ||
-              (age <= data.age && data.age <= age2) ||
+              (data.age >= age && data.age <= age2) ||
               (data.area === areas);
-      if ((skill1 !== '' && status1 !== '') || (skill2 !== '' && status2 !== '') || (skill3 !== '' && status3 !== ''))
-      return (data.skill === skill1 && 
-              data.level === status1) ||
-             (data.skill === skill2 && 
-              data.level === status2) ||
-             (data.skill === skill3 && 
-              data.level === status3);
     });
 
-    if(search.length === 0) {
+    if((age !== '' && age2 == '') || (age == '' && age2 !== '')) {
+      window.alert("年齢は上限と下限どちらも指定してください。");
+    } else if(search.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
-    } else {
+    } else {  
       const cleanList = search.filter((data_x, index, self)=> { 
       return (self.findIndex((data_y) =>{
         return (data_x.id === data_y.id)
@@ -648,34 +645,21 @@ const StaffSearch = () => {
             年齢
         </Typography>
           <TextField className={classes.age}
-            // select
             placeholder="歳以上"
             label="歳以上"
             value={age}
             onChange={ageChange}
             variant="outlined"
-            // type="number"
             InputProps={{inputComponent: NumberFormatCustom}}
           />
-          {/* <Typography>以上</Typography> */}
           <TextField className={classes.age}
-            // select
             placeholder="歳以下"
             label="歳以下"
             value={age2}
             onChange={ageChange2}
             variant="outlined"
-            // type="number"
             InputProps={{inputComponent: NumberFormatCustom}}
           />
-          {/* <Typography>以下</Typography> */}
-            {/* <MenuItem value=""></MenuItem>
-            {getAge.map((data) => (
-              <MenuItem key={data.age} value={data.age}>
-                {data.age}
-              </MenuItem>
-            ))} */}
-          {/* </TextField> */}
         </div>
 
         <div>
