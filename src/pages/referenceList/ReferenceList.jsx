@@ -226,7 +226,8 @@ export default function ReferenceList() {
                                                             entrance_date={data.entrance_date}
                                                             entry_at={data.entry_at}
                                                             update_at={data.update_at}
-                                                            skill_level_column={data.skill_level_column}
+                                                            update_by={data.update_by}
+                                                            note={data.note}
                                                         />
                                                     </TableCell>
                                                 </StyledTableRow>
