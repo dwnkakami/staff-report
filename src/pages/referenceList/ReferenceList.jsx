@@ -149,7 +149,7 @@ export default function ReferenceList() {
     const getReferenceData = () => {
         if (posts.length === 0) {
             axios
-                .get('/api/referencelist/2')
+                .get('/api/referencelist/3')
                 .then(response => {
                     setPosts(response.data);
                     console.log([response.data])
@@ -218,7 +218,8 @@ export default function ReferenceList() {
                                                             entrance_date={data.entrance_date}
                                                             entry_at={data.entry_at}
                                                             update_at={data.update_at}
-                                                            skill_level_column={data.skill_level_column}
+                                                            update_by={data.update_by}
+                                                            note={data.note}
                                                         />
                                                     </TableCell>
                                                 </StyledTableRow>
