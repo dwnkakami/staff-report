@@ -270,7 +270,13 @@ export default function LayoutTextFields() {
         (skill1.length === 0) || (startdate.length === 0) || (enddate.length === 0) || 
         (skillcontents.length === 0) || (contents.length === 0) || (user.length === 0)) {
           window.alert('未入力項目があります。\n*は必須項目です。');
-        } else {
+        } else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== ''))||
+        ((skill1 !== '') && (skill2 !== '') && (skill3 === ''))||
+        ((skill1 !== '') && (skill2 === '') && (skill3 !== ''))) && ((skill1 === skill2) ||
+        (skill1 === skill3) ||
+        (skill2 === skill3))) {
+        window.alert("同じスキルが選択されています。\nスキルを変更してください。");
+        }else {
 
         axios
             .post('/api/caseadd', newValue)

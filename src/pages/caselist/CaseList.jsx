@@ -57,8 +57,8 @@ function descendingComparator(a, b, orderBy) {
   return 0;
 }
 
-var orders = [];
-var orderBys = [];
+var orders = [''];
+var orderBys = [''];
 function getComparator(order, orderBy) {
   if (orders.length !== 0 && orderBys[orders.length - 1] === orderBy) {
     // 前回と同じ列なら昇順降順の切り替えのみ
@@ -111,7 +111,10 @@ const headCells = [
   { id:'number_of_persons',numeric: true, disablePadding: false, label: '募集人数' },
   { id:'matter_start',numeric: true, disablePadding: false, label: '案件開始日' },
   { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
-  { id:'id',numeric: true, disablePadding: false, label: '案件詳細' },
+];
+
+const headCells2 = [
+  {label: '案件詳細' }
 ];
 
 function EnhancedTableHead(props) {
@@ -144,6 +147,9 @@ function EnhancedTableHead(props) {
             </TableSortLabel>
           </StyledTableCell>
         ))}
+        <StyledTableCell align = 'center'>
+          {headCells2.map((headCell) => {return headCell.label})}
+        </StyledTableCell>
       </StyledTableRow>
     </TableHead>
   );
@@ -214,8 +220,10 @@ EnhancedTableHead.propTypes = {
     }
   }
 
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('id');
+  const [order, setOrder] = useState([]);
+  //  = React.useState('asc');
+  const [orderBy, setOrderBy] = useState([]);
+  //  = React.useState('id');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
