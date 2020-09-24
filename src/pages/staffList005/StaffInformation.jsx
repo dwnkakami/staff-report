@@ -57,43 +57,49 @@ const StaffInformation = (props) => {
             </tr>
             <tr>
               <th>役職</th>
+              <th>職種</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.position ? data.position:"データなし"}</td>
+             <td>{data.occupation ? data.occupation:"データなし"}</td> 
+            </tr>
+            <tr>
               <th>入社日</th>
-            </tr>
-            <tr>
-             <td className={classes.content}>{data.position ? data.position:"データなし"}</td> 
-             <td>{data.joining_day ? data.joining_day:"データなし"}</td> 
-            </tr>
-            <tr>
               <th>生年月日</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.joining_day ? data.joining_day:"データなし"}</td> 
+             <td>{data.birthday ? data.birthday:"データなし"}</td> 
+            </tr>
+            <tr>
               <th>年齢</th>
-            </tr>
-            <tr>
-             <td className={classes.content}>{data.birthday ? data.birthday:"データなし"}</td> 
-             <td>{data.age ? data.age:"データなし"}</td> 
-            </tr>
-            <tr>
               <th>性別</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.age ? data.age:"データなし"}</td> 
+             <td>{data.gender ? data.gender:"データなし"}</td> 
+            </tr>
+            <tr>
               <th>最終学歴</th>
-            </tr>
-            <tr>
-             <td className={classes.content}>{data.gender ? data.gender:"データなし"}</td> 
-             <td>{data.school_career ? data.school_career:"データなし"}</td> 
-            </tr>
-            <tr>
               <th>連絡先</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.school_career ? data.school_career:"データなし"}</td> 
+             <td>{data.phone_number ? data.phone_number:"データなし"}</td> 
+            </tr>
+            <tr>
               <th>最寄り駅</th>
-            </tr>
-            <tr>
-             <td className={classes.content}>{data.phone_number ? data.phone_number:"データなし"}</td> 
-             <td>{data.station ? data.station:"データなし"}</td> 
-            </tr>
-            <tr>
               <th>現配属案件</th>
+            </tr>
+            <tr>
+             <td className={classes.content}>{data.station ? data.station:"データなし"}</td> 
+             <td>{data.matter_name ? data.matter_name:"データなし"}</td> 
+            </tr>
+            <tr>
               <th>現案件終了予定日</th>
             </tr>
             <tr>
-             <td className={classes.content}>{data.matter_name ? data.matter_name:"データなし"}</td> 
-             <td>{data.end_day　? data.end_day:"データなし"}</td> 
+             <td className={classes.content}>{data.end_day　? data.end_day:"データなし"}</td> 
             </tr>
           </table>
         </Typography>

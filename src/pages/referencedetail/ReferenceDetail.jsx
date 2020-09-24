@@ -119,7 +119,7 @@ export default function ReferenceDetail(props) {
                 <tr>
                   <td>{props.occupation_name}</td>
                   <td>{props.position}</td>
-                  <tb>{props.entrance_date}～</tb>
+                  <td>{props.entrance_date}～</td>
                 </tr>
               </table>
               <table>
@@ -142,8 +142,8 @@ export default function ReferenceDetail(props) {
                 </tr>
                 <tr>
                   <td>{props.entry_at}</td>
-                  <tb>{props.update_at}</tb>
-                  <tb></tb>
+                  <td>{props.update_at}</td>
+                  <td>{props.update_by}</td>
                 </tr>
               </table>
               <table>
@@ -151,7 +151,7 @@ export default function ReferenceDetail(props) {
                   <th>備考欄</th>
                 </tr>
                 <tr>
-                  <td class='wide-td1'>{props.skill_level_column}</td>
+                  <td class='wide-td1'>{props.note}</td>
                 </tr>
               </table>
           </Typography>

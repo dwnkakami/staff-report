@@ -15,6 +15,8 @@ import axios from 'axios';
 import './StaffSearch.css';
 import ListData from './ListData';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import PropTypes from 'prop-types';
+import NumberFormat from 'react-number-format';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -155,6 +157,31 @@ const MenuProps = {
   },
 };
 
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      isNumericString
+      maxLength="10"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
 const StaffSearch = () => {
   const classes = useStyles();
 
@@ -169,54 +196,59 @@ const StaffSearch = () => {
     setOcp(event.target.value);
   };
 
-  const [license, setLicense] = useState([]);
+  const [license, setLicense] = useState('');
   const handleChange2 = (event) => {
     setLicense(event.target.value);
   };
 
-  const [skill1, setSkill1] = useState([]);
+  const [skill1, setSkill1] = useState('');
   const Skill1Change = (event) => {
     setSkill1(event.target.value);
   }
 
-  const [skill2, setSkill2] = useState([]);
+  const [skill2, setSkill2] = useState('');
   const Skill2Change = (event) => {
     setSkill2(event.target.value);
   }
 
-  const [skill3, setSkill3] = useState([]);
+  const [skill3, setSkill3] = useState('');
   const Skill3Change = (event) => {
     setSkill3(event.target.value);
   }
 
-  const [status1, setStatus1] = useState([]);
+  const [status1, setStatus1] = useState('');
   const Status1Change = (event) => {
     setStatus1(event.target.value);
   }
 
-  const [status2, setStatus2] = useState([]);
+  const [status2, setStatus2] = useState('');
   const Status2Change = (event) => {
     setStatus2(event.target.value);
   }
 
-  const [status3, setStatus3] = useState([]);
+  const [status3, setStatus3] = useState('');
   const Status3Change = (event) => {
     setStatus3(event.target.value);
   }
 
-  const [areas, setAreas] = useState([]);
+  const [areas, setAreas] = useState('');
   const aresChenge = (event) => {
     setAreas(event.target.value);
   }
 
-  const [ge, setGe] = useState([]);
+  const [ge, setGe] = useState('');
   const genderChange = (event) => {
     setGe(event.target.value);
   }
 
-  const [age, setAge] = useState([]);
+  const [age, setAge] = useState('');
   const ageChange = (event) => {
     setAge(event.target.value);
+  }
+
+  const [age2, setAge2] = useState('');
+  const ageChange2 = (event) => {
+    setAge2(event.target.value);
   }
 
   //リセット機能
@@ -234,6 +266,7 @@ const StaffSearch = () => {
     setAreas('')
     setGe('')
     setAge('')
+    setAge2('')
   }
   const [data, setData] = useState([]);
   useEffect(() => {
@@ -252,8 +285,6 @@ const StaffSearch = () => {
         })
     }
   }, []);
-
-  
 
   const [getSkill, setGetSkill] = useState([]);
   useEffect(() => getSkillData(), []);
@@ -369,47 +400,29 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
-      //if(!andMode){
-      return  (data.occupation === ocp[0] ||
-               data.occupation === ocp[1] ||
-               data.occupation === ocp[2] ||
-               data.occupation === ocp[3] ||
-               data.occupation === ocp[4] ||
-               data.occupation === ocp[5]) ||
-              (data.license === license) ||
-              (data.skill === skill1 && 
-               data.level === status1) ||
-              (data.skill === skill2 && 
-               data.level === status2) ||
-              (data.skill === skill3 && 
-               data.level === status3) ||
-              (data.gender === ge) ||
-              (data.age === age) ||
-              (data.area === areas);
-      //}
-      // else
-      // {
-      //   return (data.occupation === ocp[0] ||
-      //     data.occupation === ocp[1] ||
-      //     data.occupation === ocp[2] ||
-      //     data.occupation === ocp[3] ||
-      //     data.occupation === ocp[4] ||
-      //     data.occupation === ocp[5]) &&
-      //     ((data.skill === skill1) && 
-      //      (data.level === status1)) ||
-      //     ((data.skill === skill2) && 
-      //      (data.level === status2)) ||
-      //     ((data.skill === skill3) && 
-      //      (data.level === status3)) ||
-      //     (data.license === license) ||
-      //     (data.gender === ge) ||
-      //     (data.age === age) ||
-      //     (data.area === areas);
-      // }
-    });
+      return (data.occupation === ocp[0] ||
+              data.occupation === ocp[1] ||
+              data.occupation === ocp[2] ||
+              data.occupation === ocp[3] ||
+              data.occupation === ocp[4] ||
+              data.occupation === ocp[5]) ||
+            (data.license === license) ||
+            (data.skill === skill1 && data.level === status1) ||
+            (data.skill === skill2 && data.level === status2) ||
+            (data.skill === skill3 && data.level === status3) ||
+            (data.gender === ge) ||
+            (data.age >= age && data.age <= age2) ||
+            (data.area === areas);
+      });
 
-
-    const cleanList = search.filter((data_x, index, self)=> { 
+    if((age !== '' && age2 == '') || (age == '' && age2 !== '')) {
+      window.alert("年齢は上限と下限どちらも指定してください。");
+    } else if(age > age2) {
+      window.alert("年齢を正しく指定してください。")
+    } else if(search.length === 0) {
+      window.alert("検索結果がありません。\n条件を変更してください。");
+    } else {  
+      const cleanList = search.filter((data_x, index, self)=> { 
       return (self.findIndex((data_y) =>{
         return (data_x.id === data_y.id)
       }) === index);
@@ -417,7 +430,7 @@ const StaffSearch = () => {
     
     console.log(cleanList);
     ListData.setStaffData(cleanList);
-    window.location.href = "/#/staff-report/stafflist-result/001";
+    window.location.href = "/#/staff-report/stafflist-result/001";}
   }
 
   return (
@@ -629,20 +642,21 @@ const StaffSearch = () => {
             年齢
         </Typography>
           <TextField className={classes.age}
-            select
-            label="年齢"
+            placeholder="歳以上"
+            label="歳以上"
             value={age}
             onChange={ageChange}
             variant="outlined"
-            type="number"
-          >
-            <MenuItem value=""></MenuItem>
-            {getAge.map((data) => (
-              <MenuItem key={data.age} value={data.age}>
-                {data.age}
-              </MenuItem>
-            ))}
-          </TextField>
+            InputProps={{inputComponent: NumberFormatCustom}}
+          />
+          <TextField className={classes.age}
+            placeholder="歳以下"
+            label="歳以下"
+            value={age2}
+            onChange={ageChange2}
+            variant="outlined"
+            InputProps={{inputComponent: NumberFormatCustom}}
+          />
         </div>
 
         <div>

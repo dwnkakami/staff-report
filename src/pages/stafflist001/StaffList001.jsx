@@ -41,6 +41,12 @@ const StyledTableCell = withStyles((theme) => ({
   }))(TableRow);
 
   function descendingComparator(a, b, orderBy) {
+    if (a[orderBy] === null) {
+      return 1;
+    }
+    if (b[orderBy] === null) {
+      return -1;
+    }
     if (b[orderBy] < a[orderBy]) {
       return -1;
     }
@@ -72,7 +78,6 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'position',numeric: true, disablePadding: false, label: '役職' },
     { id:'company_abbreviation',numeric: true, disablePadding: false, label: '所属会社' },
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
-    { label: '詳細' },
   ];
 
   function EnhancedTableHead(props) {
@@ -105,6 +110,7 @@ const StyledTableCell = withStyles((theme) => ({
               </TableSortLabel>
             </StyledTableCell>
           ))}
+        <StyledTableCell align="center">詳細</StyledTableCell>
         </StyledTableRow>
       </TableHead>
     );
@@ -169,7 +175,7 @@ const StyledTableCell = withStyles((theme) => ({
     }
 
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('id');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -217,7 +223,8 @@ return(
                       </TableCell>
                     </StyledTableRow>
                   );
-                })}</TableBody>
+                })}
+            </TableBody>
           </Table>
           </Grid>
           </Grid>
@@ -228,6 +235,3 @@ return(
     </div>
 );
 };
-
-
-
