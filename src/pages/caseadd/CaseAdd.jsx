@@ -201,7 +201,12 @@ export default function LayoutTextFields() {
    const [contents, setContents] = useState ("");
    const [note,setNote] = useState ("");
    const [user,setUser] = useState ("");
-   ;
+
+   const now = new Date();
+   const year = now.getFullYear();
+   const month = ("00" + (now.getMonth()+1)).slice(-2);
+   const date = ("00" + now.getDate()).slice(-2);
+   const nowDate = year + '-' + month + '-' + date;
 
    const handleChange = e => {
     switch (e.target.name) {
@@ -270,6 +275,13 @@ export default function LayoutTextFields() {
         (skill1.length === 0) || (startdate.length === 0) || (enddate.length === 0) || 
         (skillcontents.length === 0) || (contents.length === 0) || (user.length === 0)) {
           window.alert('未入力項目があります。\n*は必須項目です。');
+        }else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== ''))||((skill1 !== '') && (skill2 !== '') && (skill3 === ''))||((skill1 !== '') && (skill2 === '') && (skill3 !== ''))) 
+        && ((skill1 === skill2) || (skill1 === skill3) ||(skill2 === skill3))) {
+          window.alert("同じスキルが選択されています。\nスキルを変更してください。");
+        }else if(startdate >= enddate){
+          window.alert("案件終了日が案件開始日より前になっています。\n修正してください。");
+        }else if((startdate <= nowDate) || (enddate <= nowDate)){
+          window.alert("案件開始日、または案件終了日が本日の日付より前になっています。\n修正してください。");
         } else {
 
         axios

@@ -12,7 +12,8 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import { Paper, 
          MenuItem, 
-         TextField
+         TextField,
+         FormHelperText
          } from '@material-ui/core';
 import axios from 'axios';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -23,15 +24,15 @@ import DeleteButton from './DeleteButton';
 // import DatePickers from './DatePickers';
 import ListData from './ListData';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import Button from '@material-ui/core/Button';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import Button from '@material-ui/core/Button';
 
-import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { AvLoop } from 'material-ui/svg-icons';
-import search from 'material-ui/svg-icons/action/search';
+// import { okaidia } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+// import { AvLoop } from 'material-ui/svg-icons';
+// import search from 'material-ui/svg-icons/action/search';
 
 
 
@@ -158,7 +159,7 @@ const MenuProps = {
   
   
   //KeywordSearch
-  const [keyWord, setKeyWord] = React.useState([]);
+  const [keyWord, setKeyWord] = React.useState('');
 
   const keywordSubmit = () => {
   //Brank Space
@@ -177,7 +178,10 @@ const MenuProps = {
              data.name.indexOf(keywordBlank[9])!==-1;
          });
 
-    if(keywordSearch.length === 0){
+      
+    if(keyWord === ''){
+      window.alert("キーワードが入力されていません。\nキーワードを入力してください。")
+    }else if(keywordSearch.length === 0){
       window.alert("検索結果がありません。\n条件を変更してください。")
     }else{
       console.log(keywordSearch);
@@ -399,6 +403,9 @@ const MenuProps = {
 
     if(target7.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
+    }else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== ''))||((skill1 !== '') && (skill2 !== '') && (skill3 === ''))||((skill1 !== '') && (skill2 === '') && (skill3 !== ''))) 
+            && ((skill1 === skill2) || (skill1 === skill3) ||(skill2 === skill3))) {
+      window.alert("同じスキルが選択されています。\nスキルを変更してください。");
     }else{
       console.log(target7);
       ListData.setCaseData(target7);
@@ -473,7 +480,7 @@ const MenuProps = {
         案件名検索
         </Typography>
 
-          <TextField inputProps={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
+          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
          
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
 
@@ -502,6 +509,7 @@ const MenuProps = {
                 </MenuItem>
               ))}
             </Select>
+            <FormHelperText>3つまで選択可能です。</FormHelperText>
           </FormControl>
         </div>
 
