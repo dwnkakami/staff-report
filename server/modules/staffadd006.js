@@ -1,3 +1,4 @@
+
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -5,7 +6,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-exports.postData = (req, res) => {
+exports.getData = (req, res) => {
   const mysql = require('mysql');
 
   const con = mysql.createConnection({
@@ -16,22 +17,12 @@ exports.postData = (req, res) => {
   });
 
   con.connect((err) => {
-    try {
-      var err = () => {throw err}
-      console.log('Connected!');
-    } catch (err) {
-      console.log('err')
-    }
-    
-    const sql = 'SELECT * FROM staff_report.m_area';
-    // console.log(sql);
+    if (err) throw err;
+    console.log('Connected!');
+
+    const sql = 'SELECT * FROM m_staff WHERE id =' +req
     con.query(sql, (err, result, fields) => {
-      try {
-        var err = () => {throw err}
-        console.log('Connected!');
-      } catch (err) {
-        console.log('err')
-      }
+      if (err) throw err;
       res.json(result);
     });
   });

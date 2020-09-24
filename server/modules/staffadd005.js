@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-exports.postData = (req, res) => {
+exports.getData = (req, res) => {
   const mysql = require('mysql');
 
   const con = mysql.createConnection({
@@ -22,9 +22,7 @@ exports.postData = (req, res) => {
     } catch (err) {
       console.log('err')
     }
-    
-    const sql = 'SELECT * FROM staff_report.m_area';
-    // console.log(sql);
+    const sql = 'SELECT id AS "position_id", name AS "position" FROM m_position';
     con.query(sql, (err, result, fields) => {
       try {
         var err = () => {throw err}

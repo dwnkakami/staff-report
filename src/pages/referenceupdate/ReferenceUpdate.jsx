@@ -16,6 +16,8 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { withStyles } from '@material-ui/core/styles';
 
+
+
 const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
@@ -75,7 +77,8 @@ export default function AlertDialog() {
     setOpen(false);
   };
 
-  const [matterId,setMatterId] = useState("");
+  const [referenceId,setReferenceId] = useState("");
+  // const [matterId,setMatterId] = useState("");
   const [staffId,setStaffId] = useState("");
   const [occupationId,setOccupationId] = useState("");
   const [position,setPosition] = useState("");
@@ -87,14 +90,16 @@ export default function AlertDialog() {
   // const [updateAt,setUpdateAt] = useState("");
   const [updateBy,setUpdateBy] = useState("");
   
-  const entry = new Date().toLocaleString();
   const updateAt = new Date().toLocaleString();
   
   const handleChange = e => {
       switch (e.target.name) {
-          case 'matterId':
-              setMatterId(e.target.value);
+          case 'referenceId':
+              setReferenceId(e.target.value);
               break;
+          // case 'matterId':
+          //     setMatterId(e.target.value);
+          //     break;
           case 'staffId':
               setStaffId(e.target.value);
               break;
@@ -148,30 +153,25 @@ export default function AlertDialog() {
     }
 }
 
-  const add = () => {
+  const fix = () => {
   
-    const newValue = {matter_id:matterId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, entry_at:entry, update_at:updateAt, update_by:updateBy}
+    const updateValue = {id:referenceId, staff_id:staffId, occupation_id:occupationId, position:position, interview_location:interviewLocation, interview_date:interviewDate, interview_times:interviewTimes, note:note, entrance_date:entranceDate, update_at:updateAt, update_by:updateBy}
     
-    if((matterId.length === 0) || (staffId.length === 0) || (occupationId.length === 0) || (position.length === 0) || (interviewLocation.length === 0) || (interviewDate.length === 0) || (interviewTimes.length === 0) || (entranceDate.length === 0) || (updateBy.length === 0))
-    {
-      window.alert('未入力項目があります。\n*は必須項目です。');
-    } else {
-
       axios
-          .post('/api/referenceadd', newValue)
+          .post('/api/referenceupdate', updateValue)
           .then(response => {
               console.log(response.data);
-              window.alert("追加されました")
+              window.alert("更新されました")
           })
           .catch(() => {
               console.log('submit error');
-              window.alert("追加できませんでした")
-            })
-          }
-    };
+              window.alert("更新できませんでした")
+          });
+  }
   
   const clear = () => {
-      setMatterId("")
+      setReferenceId("")
+      // setMatterId("")
       setStaffId("")
       setOccupationId("")
       setPosition("")
@@ -184,11 +184,12 @@ export default function AlertDialog() {
   }
   
   const classes1 = useStyles();
+  
 
   return (
     <div>
       <Button variant="outlined" color="" onClick={handleClickOpen}>
-        引合登録
+        引合更新
       </Button>
       <Dialog
         open={open}
@@ -198,21 +199,21 @@ export default function AlertDialog() {
         maxWidth='md'
       >
         <DialogTitle id="alert-dialog-title" onClose={handleClose}>
-            引合登録
+            引合更新
         </DialogTitle>
         <DialogContent dividers >
         <Grid container spacing={2}>
         <Grid item xs={4}>
-            {/* <Typography>案件ID</Typography> */}
-            <TextField required label="案件ID" variant="outlined" type="number" inputProps={{min:1 , max:999999999}} name="matterId" value={matterId} onChange={handleChange}/>
+            {/* <Typography>引合ID</Typography> */}
+            <TextField label="引合ID" variant="outlined" type="number" name="referenceId" value={referenceId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>スタッフID</Typography> */}
-            <TextField required label="スタッフID" variant="outlined" type="number" inputProps={{min:1 , max:999999999}} name="staffId" value={staffId} onChange={handleChange}/>
+            <TextField label="スタッフID" variant="outlined" type="number" name="staffId" value={staffId} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>職種</Typography> */}
-            <FormControl required variant="outlined" className={classes1.formControl}>
+            <FormControl  variant="outlined" className={classes1.formControl}>
             <InputLabel>職種</InputLabel>
             <Select  name="occupationId" value={occupationId} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
@@ -226,24 +227,23 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>ポジション</Typography> */}
-            <TextField required label="ポジション" variant="outlined" name="position" value={position} onChange={handleChange}/>
+            <TextField label="ポジション" variant="outlined" name="position" value={position} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談場所</Typography> */}
-            <TextField required label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
+            <TextField label="面談場所" variant="outlined" name="interviewLocation" value={interviewLocation} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談回数</Typography> */}
-            <TextField required label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
+            <TextField label="面談回数" variant="outlined" name="interviewTimes" value={interviewTimes} onChange={handleChange}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>面談日</Typography> */}
-            <TextField  required
-                        label="面談日"
+            <TextField label="面談日"
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" inputProps={{min: "2020-04-01" , max: "2099-12-31"}} name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" name="interviewDate" value={interviewDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>備考欄</Typography> */}
@@ -251,20 +251,19 @@ export default function AlertDialog() {
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>入場日</Typography> */}
-            <TextField  required
-                        label="入場日"
+            <TextField label="入場日"
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" inputProps={{min: "2020-04-01" , max: "2099-12-31"}} name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
+                        type="date" name="entranceDate" value={entranceDate} onChange={handleChange} className={classes1.formControl}/>
         </Grid>
         <Grid item xs={4}>
             {/* <Typography>更新者ID</Typography> */}
-            <TextField required label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
+            <TextField label="更新者ID" variant="outlined" type="number" name="updateBy" value={updateBy} onChange={handleChange}/>
         </Grid>
             <Grid item xs={4}>
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
-                <Button variant="contained" className={classes1.button2} onClick={add}>登録</Button>
+                <Button variant="contained" className={classes1.button2} onClick={fix}>更新</Button>
             </Grid>
         </Grid>
         </DialogContent>
