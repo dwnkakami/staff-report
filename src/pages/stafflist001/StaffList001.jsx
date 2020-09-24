@@ -80,10 +80,6 @@ const StyledTableCell = withStyles((theme) => ({
     { id:'matter_end',numeric: true, disablePadding: false, label: '案件終了日' },
   ];
 
-  const headCells2 = [
-    { label:'詳細'　}
-  ]
-
   function EnhancedTableHead(props) {
     const { classes, order, orderBy, onRequestSort } = props;
     const createSortHandler = (property) => (event) => {
@@ -114,9 +110,7 @@ const StyledTableCell = withStyles((theme) => ({
               </TableSortLabel>
             </StyledTableCell>
           ))}
-        <StyledTableCell align = 'center'>
-          {headCells2.map((headCell) => {return headCell.label})}
-        </StyledTableCell>
+        <StyledTableCell align="center">詳細</StyledTableCell>
         </StyledTableRow>
       </TableHead>
     );
