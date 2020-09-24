@@ -41,31 +41,31 @@ const StyledTableRow = withStyles((theme) => ({
     },
 }))(TableRow);
 
-function descendingComparator(a, b, orderBy) {
-    if (b[orderBy] < a[orderBy]) {
-        return -1;
-    }
-    if (b[orderBy] > a[orderBy]) {
-        return 1;
-    }
-    return 0;
-}
+// function descendingComparator(a, b, orderBy) {
+//     if (b[orderBy] < a[orderBy]) {
+//         return -1;
+//     }
+//     if (b[orderBy] > a[orderBy]) {
+//         return 1;
+//     }
+//     return 0;
+// }
 
-function getComparator(order, orderBy) {
-    return order === 'desc'
-        ? (a, b) => descendingComparator(a, b, orderBy)
-        : (a, b) => -descendingComparator(a, b, orderBy);
-}
+// function getComparator(order, orderBy) {
+//     return order === 'desc'
+//         ? (a, b) => descendingComparator(a, b, orderBy)
+//         : (a, b) => -descendingComparator(a, b, orderBy);
+// }
 
-function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
-    stabilizedThis.sort((a, b) => {
-        const order = comparator(a[0], b[0]);
-        if (order !== 0) return order;
-        return a[1] - b[1];
-    });
-    return stabilizedThis.map((el) => el[0]);
-}
+// function stableSort(array, comparator) {
+//     const stabilizedThis = array.map((el, index) => [el, index]);
+//     stabilizedThis.sort((a, b) => {
+//         const order = comparator(a[0], b[0]);
+//         if (order !== 0) return order;
+//         return a[1] - b[1];
+//     });
+//     return stabilizedThis.map((el) => el[0]);
+// }
 
 const headCells = [
     { id: 'name', numeric: false, disablePadding: true, label: '案件名' },
@@ -75,46 +75,46 @@ const headCells = [
     { id: 'detail', numeric: true, disablePadding: false, label: '詳細' },
 ];
 
-function EnhancedTableHead(props) {
-    const { classes, order, orderBy, onRequestSort } = props;
-    const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
-    };
+// function EnhancedTableHead(props) {
+//     const { classes, order, orderBy, onRequestSort } = props;
+//     const createSortHandler = (property) => (event) => {
+//         onRequestSort(event, property);
+//     };
 
-    return (
-        <TableHead>
-            <StyledTableRow>
-                {headCells.map((headCell) => (
-                    <StyledTableCell
-                        key={headCell.id}
-                        align={headCell.numeric ? 'center' : 'center'}
-                        padding={headCell.disablePadding ? 'none' : 'default'}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
-                        <TableSortLabel
-                            active={orderBy === headCell.id}
-                            direction={orderBy === headCell.id ? order : 'asc'}
-                            onClick={createSortHandler(headCell.id)}
-                        >
-                            {headCell.label}
-                            {orderBy === headCell.id ? (
-                                <span className={classes.visuallyHidden}>
-                                    {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                                </span>
-                            ) : null}
-                        </TableSortLabel>
-                    </StyledTableCell>
-                ))}
-            </StyledTableRow>
-        </TableHead>
-    );
-}
+//     return (
+//         <TableHead>
+//             <StyledTableRow>
+//                 {headCells.map((headCell) => (
+//                     <StyledTableCell
+//                         key={headCell.id}
+//                         align={headCell.numeric ? 'center' : 'center'}
+//                         padding={headCell.disablePadding ? 'none' : 'default'}
+//                         sortDirection={orderBy === headCell.id ? order : false}
+//                     >
+//                         <TableSortLabel
+//                             active={orderBy === headCell.id}
+//                             direction={orderBy === headCell.id ? order : 'asc'}
+//                             onClick={createSortHandler(headCell.id)}
+//                         >
+//                             {headCell.label}
+//                             {orderBy === headCell.id ? (
+//                                 <span className={classes.visuallyHidden}>
+//                                     {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+//                                 </span>
+//                             ) : null}
+//                         </TableSortLabel>
+//                     </StyledTableCell>
+//                 ))}
+//             </StyledTableRow>
+//         </TableHead>
+//     );
+// }
 
-EnhancedTableHead.propTypes = {
-    classes: PropTypes.object.isRequired,
-    rowCount: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-};
+// EnhancedTableHead.propTypes = {
+//     classes: PropTypes.object.isRequired,
+//     rowCount: PropTypes.number.isRequired,
+//     onRequestSort: PropTypes.func.isRequired,
+// };
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -160,14 +160,14 @@ export default function ReferenceList() {
         }
     }
 
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
+    // const [order, setOrder] = React.useState('asc');
+    // const [orderBy, setOrderBy] = React.useState('calories');
 
-    const handleRequestSort = (event, property) => {
-        const isAsc = orderBy === property && order === 'asc';
-        setOrder(isAsc ? 'desc' : 'asc');
-        setOrderBy(property);
-    };
+    // const handleRequestSort = (event, property) => {
+    //     const isAsc = orderBy === property && order === 'asc';
+    //     setOrder(isAsc ? 'desc' : 'asc');
+    //     setOrderBy(property);
+    // };
 
     return (
         <Paper elevation={3} >
@@ -187,16 +187,24 @@ export default function ReferenceList() {
                             <Table
                                 className={classes.table}
                             >
-                                <EnhancedTableHead
+                            <TableHead>
+                                <TableRow>
+                                    <StyledTableCell align="center">案件名</StyledTableCell>
+                                    <StyledTableCell align="center">スタッフ名</StyledTableCell>
+                                    <StyledTableCell align="center">発注元会社</StyledTableCell>
+                                    <StyledTableCell align="center">状態</StyledTableCell>
+                                    <StyledTableCell align="center">詳細</StyledTableCell>
+                                </TableRow>
+                            </TableHead>
+                                {/* <EnhancedTableHead
                                     classes={classes}
                                     order={order}
                                     orderBy={orderBy}
                                     rowCount={posts.length}
                                     onRequestSort={handleRequestSort}
-                                />
+                                /> */}
                                 <TableBody>
-                                    {stableSort(posts, getComparator(order, orderBy))
-                                        .map((data) => {
+                                    {posts.map((data) => {
                                             return (
                                                 <StyledTableRow
                                                     // hover
@@ -218,7 +226,8 @@ export default function ReferenceList() {
                                                             entrance_date={data.entrance_date}
                                                             entry_at={data.entry_at}
                                                             update_at={data.update_at}
-                                                            skill_level_column={data.skill_level_column}
+                                                            update_by={data.update_by}
+                                                            note={data.note}
                                                         />
                                                     </TableCell>
                                                 </StyledTableRow>
