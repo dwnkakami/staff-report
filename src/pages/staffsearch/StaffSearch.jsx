@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
@@ -16,7 +16,7 @@ import './StaffSearch.css';
 import ListData from './ListData';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
-import NumberFormat from 'react-number-format';
+import MaskedInput from 'react-text-mask';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -88,9 +88,9 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(2),
   },
   age: {
-    minWidth: 130,
+    width: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(12.5),
+    left: theme.spacing(10.7),
     top: theme.spacing(2),
   },
   gender: {
@@ -157,29 +157,23 @@ const MenuProps = {
   },
 };
 
-function NumberFormatCustom(props) {
-  const { inputRef, onChange, ...other } = props;
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
   return (
-    <NumberFormat
+    <MaskedInput
       {...other}
-      getInputRef={inputRef}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
       }}
-      isNumericString
-      maxLength="10"
+      mask={[/\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
     />
   );
 }
-NumberFormatCustom.propTypes = {
+
+TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 const StaffSearch = () => {
@@ -668,14 +662,14 @@ const StaffSearch = () => {
         <div>
           <Typography className={classes.title_4} variant="h5" component="h2">
             年齢
-        </Typography>
+          </Typography>
           <TextField className={classes.age}
             placeholder="歳以上"
             label="歳以上"
             value={age}
             onChange={ageChange}
             variant="outlined"
-            InputProps={{inputComponent: NumberFormatCustom}}
+            InputProps={{inputComponent: TextMaskCustom}}
           />
           <TextField className={classes.age}
             placeholder="歳以下"
@@ -683,7 +677,7 @@ const StaffSearch = () => {
             value={age2}
             onChange={ageChange2}
             variant="outlined"
-            InputProps={{inputComponent: NumberFormatCustom}}
+            InputProps={{inputComponent: TextMaskCustom}}
           />
         </div>
 
