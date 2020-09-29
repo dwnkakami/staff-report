@@ -16,8 +16,7 @@ import './StaffSearch.css';
 import ListData from './ListData';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
-
+import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -66,13 +65,13 @@ const useStyles = makeStyles((theme) => ({
   formControl1: {
     minWidth: 250,
     margin: theme.spacing(1),
-    left: theme.spacing(10.5),
+    left: theme.spacing(14.1),
     top: theme.spacing(0.5),
   },
   formControl2: {
     minWidth: 250,
     margin: theme.spacing(1),
-    left: theme.spacing(10.5),
+    left: theme.spacing(14.1),
     top: theme.spacing(1.5),
   },
   skill: {
@@ -90,19 +89,19 @@ const useStyles = makeStyles((theme) => ({
   age: {
     width: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(10.7),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
   gender: {
     minWidth: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(10.7),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
   areas: {
     minWidth: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(10.7),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
 
@@ -157,23 +156,31 @@ const MenuProps = {
   },
 };
 
-function TextMaskCustom(props) {
-  const { inputRef, ...other } = props;
-
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
   return (
-    <MaskedInput
+    <NumberFormat
       {...other}
-      ref={(ref) => {
-        inputRef(ref ? ref.inputElement : null);
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
       }}
-      mask={[/\d/, /\d/, /\d/]}
-      placeholderChar={'\u2000'}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="3"
     />
   );
 }
-
-TextMaskCustom.propTypes = {
+NumberFormatCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 const StaffSearch = () => {
@@ -441,6 +448,12 @@ const StaffSearch = () => {
       window.alert("年齢は上限と下限どちらも指定してください。");
     } else if(age > age2) {
       window.alert("年齢を正しく指定してください。")
+    } else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 !== '') && (skill3 === '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 === '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 === '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))) 
+              && ((skill1 === skill2) || (skill1 === skill3) ||(skill2 === skill3))) {
+      window.alert("同じスキルが選択されています。\nスキルを変更してください。");
     } else if(search.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
     } else {  
@@ -553,10 +566,10 @@ const StaffSearch = () => {
 
         {/* スキル情報１ */}
         <div>
+
           <Typography className={classes.title_3} variant="h5" component="h2">
             スキルレベル
         </Typography>
-
           <TextField className={classes.skill}
             select
             label="skill①"
@@ -571,7 +584,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* ステータス１ */}
@@ -589,7 +601,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* スキル情報２ */}
@@ -607,7 +618,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* ステータス2 */}
           <TextField className={classes.skill_level}
             select
@@ -623,7 +633,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* スキル情報３ */}
@@ -641,7 +650,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* ステータス3 */}
           <TextField className={classes.skill_level}
             select
@@ -669,7 +677,7 @@ const StaffSearch = () => {
             value={age}
             onChange={ageChange}
             variant="outlined"
-            InputProps={{inputComponent: TextMaskCustom}}
+            InputProps={{inputComponent: NumberFormatCustom}}
           />
           <TextField className={classes.age}
             placeholder="歳以下"
@@ -677,7 +685,7 @@ const StaffSearch = () => {
             value={age2}
             onChange={ageChange2}
             variant="outlined"
-            InputProps={{inputComponent: TextMaskCustom}}
+            InputProps={{inputComponent: NumberFormatCustom}}
           />
         </div>
 

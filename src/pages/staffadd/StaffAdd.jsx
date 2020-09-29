@@ -14,7 +14,7 @@ import Select from '@material-ui/core/Select';
 import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import PropTypes from 'prop-types';
-import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -32,43 +32,59 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-  function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-      />
-    );
-  }
-  
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="11"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  function TextMaskCustom2(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={[/\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-      />
-    );
-  }
-  
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+function NumberFormatCustom2(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="3"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default function StaffAdd () {
 
@@ -376,7 +392,7 @@ const classes = useStyles();
         </DialogTitle>
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: TextMaskCustom}}/>
+            <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} inputProps={{maxlength:50}}　className={classes.content}/>
@@ -400,13 +416,11 @@ const classes = useStyles();
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-            
-            <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: TextMaskCustom2}}/>
+        <Grid item xs={4}>            
+            <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom2}}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography></Typography>
-            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: TextMaskCustom}}/>
+            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
@@ -419,8 +433,7 @@ const classes = useStyles();
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-           
+        <Grid item xs={4}>           
             <FormControl variant="outlined"　className={classes.content}>
             <InputLabel>所属会社*</InputLabel>
             <Select required name="company" value={company} onChange={handleChange} label="選択してください">
