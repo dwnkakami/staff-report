@@ -15,6 +15,7 @@ import './StaffAdd.css'
 import { UserProfile } from "../../context/UserContext";
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
+import MaskedInput from 'react-text-mask';
 
 const useStyles = makeStyles((theme) => ({
     content: {
@@ -84,6 +85,25 @@ NumberFormatCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+};
+
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
 };
 
 export default function StaffAdd () {
@@ -255,7 +275,7 @@ const execStaffAdd = () => {
             window.alert('生年月日を正しく入力して下さい。')
         } else if (join < '1900/01/01') {
             window.alert('入社日を正しく入力してください。')
-        } else if (phone.length < 10) {
+        } else if (phone.match(/\s+/))  {
             window.alert('電話番号を正しく入力して下さい。');
         } else {
         axios
@@ -420,7 +440,7 @@ const classes = useStyles();
             <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom2}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: NumberFormatCustom}}/>
+            <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: TextMaskCustom}}/>
         </Grid>
         <Grid item xs={4}>
             <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
