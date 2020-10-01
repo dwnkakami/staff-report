@@ -464,7 +464,7 @@ const MenuProps = {
 
   return (
     <Paper elevation={3}>
-      <DialogTitle>
+      {/* <DialogTitle>
       <div style={{display:'flex'}}>
         <SearchIcon style={{ fontSize: '25px', }} />
         <AssignmentIcon style={{ fontSize: '40px', }} />
@@ -473,7 +473,7 @@ const MenuProps = {
           案件検索
         </Typography>
       </div>
-      </DialogTitle>
+      </DialogTitle> */}
         {/* <br className={classes.end}/> */}
       <CardContent>
       <Typography className={classes.left} id="child" variant="h5" component="h2">

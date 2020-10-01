@@ -25,7 +25,7 @@ import CaseDetail from '../casedetail/CaseDetail';
 const StyledTableCell = withStyles((theme) => ({
   head: {
       fontWeight: 'bolder',
-      backgroundColor: "#eee",
+      backgroundColor: "#FFF994",
       color: theme.palette.common.black,
   },
   body: {
@@ -234,15 +234,15 @@ EnhancedTableHead.propTypes = {
   return(
     <div >
     <Paper elevation={3} className='paper1'>
-      <DialogTitle>
+      {/* <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
          <ListIcon style={{ fontSize: '25px', }} />
                     <AssignmentIcon style={{ fontSize: '40px', }} />
                     <Typography style={{ fontSize: '30px' }}>案件リスト</Typography>
         </div>
-        </DialogTitle>
+        </DialogTitle> */}
         <div className={classes.root}>
-        <TableContainer >
+        <TableContainer>
         <Grid container spacing={24} justify={"center"}>
         <Grid className="table1">
           <Table

@@ -9,7 +9,7 @@ export default function SearchButton(props) {
 
   return (
     <div className={props.className}>
-      <Button variant="contained" onClick={props.onClick} type={props.type}>
+      <Button variant="contained" onClick={props.onClick} type={props.type} style={{ backgroundColor: "#FFF994" }}>
         検索
       </Button>
     </div>
