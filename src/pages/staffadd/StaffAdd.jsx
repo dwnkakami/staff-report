@@ -34,73 +34,77 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props;
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={inputRef}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        isNumericString
-        maxLength="10"
-      />
-    );
-  }
-  NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="11"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  function NumberFormatCustom2(props) {
-    const { inputRef, onChange, ...other } = props;
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={inputRef}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        isNumericString
-        maxLength="3"
-      />
-    );
-  }
-  NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+function NumberFormatCustom2(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="3"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-      />
-    );
-  }
-  
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 export default function StaffAdd () {
 
@@ -267,9 +271,11 @@ const execStaffAdd = () => {
         (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
         (entry.length === 0) || (update_at.length === 0)) {
             window.alert('未入力項目があります。\n*は必須項目です。');
-        } else if (birthday > date) {
+        } else if (birthday > date || '1900/01/01' > birthday) {
             window.alert('生年月日を正しく入力して下さい。')
-        } else if (phone.length < 10) {
+        } else if (join < '1900/01/01') {
+            window.alert('入社日を正しく入力してください。')
+        } else if (phone.match(/\s+/))  {
             window.alert('電話番号を正しく入力して下さい。');
         } else {
         axios
@@ -430,12 +436,10 @@ const classes = useStyles();
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-            
+        <Grid item xs={4}>            
             <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom2}}/>
         </Grid>
         <Grid item xs={4}>
-            <Typography></Typography>
             <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: TextMaskCustom}}/>
         </Grid>
         <Grid item xs={4}>
@@ -449,8 +453,7 @@ const classes = useStyles();
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-           
+        <Grid item xs={4}>           
             <FormControl variant="outlined"　className={classes.content}>
             <InputLabel>所属会社*</InputLabel>
             <Select required name="company" value={company} onChange={handleChange} label="選択してください">
