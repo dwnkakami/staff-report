@@ -391,7 +391,7 @@ const clear = () => {
 
   return (
       <Paper elevation={3}>
-        <DialogTitle>
+        {/* <DialogTitle>
           <div style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
             <AssignmentIcon style={{ fontSize: '40px' }}/>
@@ -399,7 +399,7 @@ const clear = () => {
               案件登録
             </Typography>
           </div>
-        </DialogTitle>
+        </DialogTitle> */}
 
 
 
@@ -674,7 +674,7 @@ const clear = () => {
         <Button onClick={clear} className={classes.button} variant="contained">
         クリア
         </Button>
-        <Button onClick={submit} className={classes.button2} variant="contained">
+        <Button onClick={submit} className={classes.button2} variant="contained" style={{ backgroundColor: "#FFF994" }}>
          登録 
         </Button>
       </Grid>
