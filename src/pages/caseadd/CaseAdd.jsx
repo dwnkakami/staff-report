@@ -26,10 +26,11 @@ const useStyles = makeStyles((theme) => ({
       position: "relative",
     },
     button: {
-      right: theme.spacing(3),
+      left: theme.spacing(2),
+      // minWidth:200,
     },
     button2: {
-      right: theme.spacing(1),
+      left: theme.spacing(2),
     },
     formControl: {
       minWidth: 220,
@@ -670,8 +671,8 @@ const clear = () => {
       </Grid>
 
       <Grid container spacing={5} justify="flex-end" className={classes.form}>
-      <Grid item xs={4}>
-        <Button onClick={clear} className={classes.button} variant="contained">
+      <Grid item xs={6} className={classes.button}>
+        <Button onClick={clear}  variant="contained">
         クリア
         </Button>
         <Button onClick={submit} className={classes.button2} variant="contained">
