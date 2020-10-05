@@ -22,11 +22,17 @@ const useStyles = makeStyles((theme) => ({
         width: '80%',
         position: 'relative'　
     },
+    content1: {
+      width: '80%',
+      position: 'relative',　
+      marginTop: '50px'
+    },
     formControl: {
       minWidth: 195,
     },
     button1: {
         left: theme.spacing(2),
+        backgroundColor: '#93ffff'
     },
     button: {
         textAlign: 'right'
@@ -397,22 +403,22 @@ const classes = useStyles();
 
     return(
         <Paper elevation={3}>
-        <DialogTitle id="customized-dialog-title">
+        {/* <DialogTitle id="customized-dialog-title">
             <div  style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
             <PeopleAltIcon style={{ fontSize: '40px', }}/>
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
-        </DialogTitle>
+        </DialogTitle> */}
         <Grid container spacing={3} className="form">
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom}}/>
+            <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content1} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} inputProps={{maxlength:50}}　className={classes.content}/>
+            <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} inputProps={{maxlength:50}}　className={classes.content1}/>
         </Grid> 
         <Grid item xs={4}>
-            <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
+            <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} inputProps={{maxlength:50}} className={classes.content1}/>
         </Grid>
         <Grid item xs={4}>
            

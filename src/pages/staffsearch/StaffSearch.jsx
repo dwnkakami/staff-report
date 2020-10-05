@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'left',
     paddingTop: 30,
     marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(0),
+    marginTop: theme.spacing(0.5),
   },
   title_2: {
     float: 'left',
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 250,
     margin: theme.spacing(1),
     left: theme.spacing(10.5),
-    top: theme.spacing(0.5),
+    top: theme.spacing(1),
   },
   formControl2: {
     minWidth: 250,
@@ -130,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'left',
     marginBottom: 20,
     // top: theme.spacing(-46),
+    backgroundColor: '#93ffff'
   },
 
   selectEmpty: {
@@ -400,6 +401,7 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
+      if((skill1 !== '' && status1 == '') || (skill2 !== '' && status2 == '') || (skill3 !== '' && status3 == ''))
       return (data.occupation === ocp[0] ||
               data.occupation === ocp[1] ||
               data.occupation === ocp[2] ||
@@ -407,13 +409,43 @@ const StaffSearch = () => {
               data.occupation === ocp[4] ||
               data.occupation === ocp[5]) ||
             (data.license === license) ||
-            (data.skill === skill1 && data.level === status1) ||
-            (data.skill === skill2 && data.level === status2) ||
-            (data.skill === skill3 && data.level === status3) ||
+            (data.skill === skill1) ||
+            (data.skill === skill2) ||
+            (data.skill === skill3) ||          
             (data.gender === ge) ||
             (data.age >= age && data.age <= age2) ||
             (data.area === areas);
-      });
+      if((skill1 !== '' && status1 !== '') || (skill2 !== '' && status2 !== '') || (skill3 !== '' && status3 !== ''))
+      return (data.occupation === ocp[0] ||
+             data.occupation === ocp[1] ||
+             data.occupation === ocp[2] ||
+             data.occupation === ocp[3] ||
+             data.occupation === ocp[4] ||
+             data.occupation === ocp[5]) ||
+             (data.license === license) ||
+             (data.skill === skill1 && data.level === status1) ||
+             (data.skill === skill2 && data.level === status2) ||
+             (data.skill === skill3 && data.level === status3) ||
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
+      if((skill1 == '' && status1 == '') || (skill2 == '' && status2 == '') || (skill3 == '' && status3 == ''))
+      return (data.occupation === ocp[0] ||
+             data.occupation === ocp[1] ||
+             data.occupation === ocp[2] ||
+             data.occupation === ocp[3] ||
+             data.occupation === ocp[4] ||
+             data.occupation === ocp[5]) ||
+             (data.license === license) ||
+             (data.skill === skill1) ||
+             (data.skill === skill2) ||
+             (data.skill === skill3) ||          
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
+     });
+
+
 
     if((age !== '' && age2 == '') || (age == '' && age2 !== '')) {
       window.alert("年齢は上限と下限どちらも指定してください。");
@@ -436,13 +468,13 @@ const StaffSearch = () => {
   return (
     <div className={classes.root}>
       <Paper elevation={3} variant="" >
-        <DialogTitle>
+        {/* <DialogTitle>
           <div style={{ display: 'flex' }}>
             <SearchIcon style={{ fontSize: '25px' }} />
             <PeopleAltIcon style={{ fontSize: '40px', }} />
             <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
           </div>
-        </DialogTitle>
+        </DialogTitle> */}
 
         {/* <div>
           <FormControlLabel

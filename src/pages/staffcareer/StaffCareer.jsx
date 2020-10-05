@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   content:{
     height: theme.spacing(14),
   }, 
+  title: {
+    backgroundColor: '#d6ffea'
+  },
 }));
 
 const StaffCareer = (props) => {
@@ -44,8 +47,8 @@ const StaffCareer = (props) => {
         <Typography gutterBottom key={data.staff_id}>
         <table>
           <tr>
-            <th>案件名</th>
-            <th>案件保有会社</th>
+            <th className={classes.title}>案件名</th>
+            <th className={classes.title}>案件保有会社</th>
           </tr>
           <tr>
             <td>{data.matter_name}</td>
@@ -54,9 +57,9 @@ const StaffCareer = (props) => {
         </table>
         <table>
           <tr>
-            <th>依頼単価</th>
-            <th>勤務地</th>
-            <th>職種</th>
+            <th className={classes.title}>依頼単価</th>
+            <th className={classes.title}>勤務地</th>
+            <th className={classes.title}>職種</th>
           </tr>
           <tr>
            <td>{data.cost}</td> 
@@ -64,9 +67,9 @@ const StaffCareer = (props) => {
            <td>{data.occupation}</td> 
           </tr>
           <tr>
-            <th>募集人数</th>
-            <th>案件開始日</th>
-            <th>案件終了日</th>
+            <th className={classes.title}>募集人数</th>
+            <th className={classes.title}>案件開始日</th>
+            <th className={classes.title}>案件終了日</th>
           </tr>
           <tr>
             <td>{data.people}人</td>
@@ -76,7 +79,7 @@ const StaffCareer = (props) => {
         </table>
         <table>
           <tr>
-          <th>案件内容</th>
+          <th className={classes.title}>案件内容</th>
           </tr>
           <tr>
             <td className={classes.content}>{data.matter_content}</td>
@@ -84,9 +87,9 @@ const StaffCareer = (props) => {
         </table>
         <table>
           <tr>
-            <th>スキル1</th>
-            <th>スキル2</th>
-            <th>スキル3</th>
+            <th className={classes.title}>スキル1</th>
+            <th className={classes.title}>スキル2</th>
+            <th className={classes.title}>スキル3</th>
           </tr>
           <tr>
             <td>{data.skill_1 ? data.skill_1:"データなし"}</td>
@@ -96,8 +99,8 @@ const StaffCareer = (props) => {
         </table>
         <table>
           <tr>
-            <th>必須スキル</th>
-            <th>備考欄</th>
+            <th className={classes.title}>必須スキル</th>
+            <th className={classes.title}>備考欄</th>
           </tr>
           <tr>
             <td>{data.skill_level ? data.skill_level:"データなし"}</td>

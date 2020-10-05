@@ -20,7 +20,7 @@ import StaffList005 from '../staffList005/StaffList005.jsx';
 const StyledTableCell = withStyles((theme) => ({
   head: {
       fontWeight: 'bolder',
-      backgroundColor: "#eee",
+      backgroundColor: "#afeeee",
       color: theme.palette.common.black,
   },
   body: {
@@ -186,13 +186,13 @@ const StyledTableCell = withStyles((theme) => ({
 return(
   <div>
 <Paper elevation={3} >
-<DialogTitle>
+{/* <DialogTitle>
 <div style={{ display: 'flex' }}>
     <ListIcon style={{ fontSize: '25px'}}/>
     <PeopleAltIcon style={{ fontSize: '40px', }} />
     <Typography style={{ fontSize: '30px' }}>スタッフリスト</Typography>
 </div>
-</DialogTitle>
+</DialogTitle> */}
 <div className={classes.root}>
       {/* <Paper className={classes.paper}> */}
         <TableContainer>
