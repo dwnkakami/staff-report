@@ -4,11 +4,11 @@ export default makeStyles(theme => ({
   link: {
     textDecoration: "none",
     "&:hover, &:focus": {
-      backgroundColor: theme.palette.background.light,
+      backgroundColor: "#888",
     },
   },
   linkActive: {
-    backgroundColor: theme.palette.background.light,
+    backgroundColor: "#5D99FF",
   },
   linkNested: {
     paddingLeft: 0,
@@ -18,23 +18,23 @@ export default makeStyles(theme => ({
   },
   linkIcon: {
     marginRight: theme.spacing(1),
-    color: theme.palette.text.secondary + "99",
+    color: "#fff",
     transition: theme.transitions.create("color"),
     width: 24,
     display: "flex",
     justifyContent: "center",
   },
   linkIconActive: {
-    color: theme.palette.primary.main,
+    color: "#fff",
   },
   linkText: {
     padding: 0,
-    color: theme.palette.text.secondary + "CC",
+    color: "#fff",
     transition: theme.transitions.create(["opacity", "color"]),
     fontSize: 16,
   },
   linkTextActive: {
-    color: theme.palette.text.primary,
+    color: "#fff",
   },
   linkTextHidden: {
     opacity: 0,

@@ -50,6 +50,7 @@ export default makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(2),
+    backgroundColor: "#222",
   },
   profileMenuLink: {
     fontSize: 16,
@@ -59,8 +60,6 @@ export default makeStyles(theme => ({
     }},
     
   mobileBackButton: {
-    marginTop: theme.spacing(0.5),
-    marginLeft: theme.spacing(3),
     [theme.breakpoints.only("sm")]: {
       marginTop: theme.spacing(0.625),
     },
@@ -68,4 +67,9 @@ export default makeStyles(theme => ({
       display: "none",
     },
   },
+
+  sidebarList: {
+    backgroundColor: "#222",
+  },
+
 }));
