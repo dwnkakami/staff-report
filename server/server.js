@@ -21,6 +21,8 @@ const staffadd001 = require('./modules/staffadd001.js');
 const staffadd002 = require('./modules/staffadd002.js');
 const staffadd003 = require('./modules/staffadd003.js');
 const staffadd004 = require('./modules/staffadd004.js');
+const staffadd005 = require('./modules/staffadd005.js');
+const staffadd006 = require('./modules/staffadd006.js');
 const caselist = require('./modules/caselist.js');
 const casedetail = require('./modules/casedetail.js');
 const casesearch = require('./modules/casesearch.js');
@@ -35,6 +37,9 @@ const caseadd004 = require('./modules/caseadd004.js');
 const referencelist = require('./modules/referencelist.js');
 const referencedetail = require('./modules/referencedetail.js');
 const referenceadd = require('./modules/referenceadd.js');
+const referenceadd001 = require('./modules/referenceadd001.js');
+const referenceadd002 = require('./modules/referenceadd002.js');
+const referenceadd003 = require('./modules/referenceadd003.js');
 const referenceupdate = require('./modules/referenceupdate.js');
 const billing = require('./modules/billing.js');
 const role = require('./modules/role.js');
@@ -105,6 +110,12 @@ app.get('/api/staffadd003',(req,res) => {
 app.get('/api/staffadd004',(req,res) => {
     staffadd004.getData(req,res);
 });
+app.get('/api/staffadd005',(req,res) => {
+    staffadd005.getData(req,res);
+});
+app.get('/api/staffadd006/:condition',(req,res) => {
+    staffadd006.getData(req.params.condition,res);
+});
 app.get('/api/caselist/:condition',(req,res) => {
     caselist.getData(req.params.condition,res);
 });
@@ -146,6 +157,15 @@ app.get('/api/referencedetail/:condition',(req,res) => {
 });
 app.post('/api/referenceadd/',(req,res) => {
     referenceadd.postData(req,res);
+});
+app.get('/api/referenceadd001/:condition',(req,res) => {
+    referenceadd001.getData(req.params.condition,res);
+});
+app.get('/api/referenceadd002/:condition',(req,res) => {
+    referenceadd002.getData(req.params.condition,res);
+});
+app.get('/api/referenceadd003/:condition',(req,res) => {
+    referenceadd003.getData(req.params.condition,res);
 });
 app.post('/api/referenceupdate/',(req,res) => {
     referenceupdate.postData(req,res);

@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
       experience: {
         position: 'absolute',
         left: '220px',
-        top:'310px',
-        color: '#84a2d4',
+        top:'316px',
+        color: '#C0C0C0',
       },
 }));
 const Graph = (props) =>  {
@@ -88,7 +88,7 @@ const Graph = (props) =>  {
             height={280}
             layout="vertical"
             data={chartData2}
-            margin={{ top: 20, right: 10, bottom: 0, left: 0 }}
+            margin={{ top: 20, right: 10, bottom: 0, left: 10 }}
         >
         <XAxis
             type="number"

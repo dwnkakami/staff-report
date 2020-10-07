@@ -16,6 +16,10 @@ table{
     font-weight: bolder;
   }
   
+  table td{
+    word-wrap: break-word;
+  }
+  
   table tr:nth-child(odd){
     background-color: #eee
   }

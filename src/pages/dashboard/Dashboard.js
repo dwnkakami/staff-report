@@ -31,7 +31,7 @@ export default function Dashboard(props) {
     {/* <div> */}
     <Grid container spacing={1}>
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={3}>
       <Link to="/staff-report/stafflist/001">
        <Widget
         title="スタッフリスト"
@@ -49,7 +49,7 @@ export default function Dashboard(props) {
       </Link>
     </Grid>
     {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-    <Grid item xs={12} sm={4}>
+    <Grid item xs={12} sm={3}>
       <Link to="/staff-report/staffsearch/001">
       <Widget
         title="スタッフ検索"
@@ -67,7 +67,7 @@ export default function Dashboard(props) {
       </Link>
     </Grid>
     {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-    <Grid item xs={12} sm={4}>
+    <Grid item xs={12} sm={3}>
       <Link to="/staff-report/staffadd/001">
       <Widget
         title="スタッフ追加"
@@ -84,13 +84,15 @@ export default function Dashboard(props) {
       </Widget>
       </Link>
     </Grid>
+    </Grid>
     {/* </Grid> */}
     {/* </div> */}
 
     {/* <div> */}
     {/* <Grid container spacing={10}> */}
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid container spacing={1}>
+      <Grid item xs={12} sm={3}>
         <Link to="/staff-report/caselist/001">
         <Widget
           title="案件リスト"
@@ -108,7 +110,7 @@ export default function Dashboard(props) {
         </Link>
       </Grid>
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={3}>
         <Link to="/staff-report/casasearch/001">
         <Widget
           title="案件検索"
@@ -126,7 +128,7 @@ export default function Dashboard(props) {
         </Link>
       </Grid>
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={3}>
         <Link to="/staff-report/caseadd/001">
         <Widget
           title="案件登録"
@@ -143,13 +145,15 @@ export default function Dashboard(props) {
         </Widget>
         </Link>
       </Grid>
+      </Grid>
     {/* </Grid> */}
     {/* </div> */}
 
     {/* <div> */}
     {/* <Grid container spacing={10}> */}
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid container spacing={1}>
+      <Grid item xs={12} sm={3}>
       <Link to="/staff-report/referencelist/001">
       <Widget
        title="引合リスト"
@@ -167,7 +171,7 @@ export default function Dashboard(props) {
       </Link>
       </Grid>
       {/* <Grid item lg={2} md={4} sm={6} xs={12}> */}
-      <Grid item xs={12} sm={4}>
+      <Grid item xs={12} sm={3}>
       <Link to="/staff-report/billing/001">
       <Widget
        title="領収書発行"
