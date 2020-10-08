@@ -17,6 +17,8 @@ export default makeStyles(theme => ({
     alignItems: "center",
     height: "100%",
     width: "100%",
+  　paddingLeft: "5%",
+    paddingRight: "5%"
   },
   Licon: {
     position: "relative",
