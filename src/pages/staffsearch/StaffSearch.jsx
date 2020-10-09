@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
@@ -17,7 +17,6 @@ import ListData from './ListData';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -66,13 +65,13 @@ const useStyles = makeStyles((theme) => ({
   formControl1: {
     minWidth: 250,
     margin: theme.spacing(1),
-    left: theme.spacing(10.5),
+    left: theme.spacing(14.1),
     top: theme.spacing(0.5),
   },
   formControl2: {
     minWidth: 250,
     margin: theme.spacing(1),
-    left: theme.spacing(10.5),
+    left: theme.spacing(14.1),
     top: theme.spacing(1.5),
   },
   skill: {
@@ -88,21 +87,21 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(2),
   },
   age: {
-    minWidth: 130,
+    width: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(12.5),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
   gender: {
     minWidth: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(10.7),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
   areas: {
     minWidth: 130,
     margin: theme.spacing(1),
-    left: theme.spacing(10.7),
+    left: theme.spacing(14.1),
     top: theme.spacing(2),
   },
 
@@ -171,8 +170,10 @@ function NumberFormatCustom(props) {
           },
         });
       }}
+      allowNegative={false}
+      decimalSeparator={false}
       isNumericString
-      maxLength="10"
+      maxLength="3"
     />
   );
 }
@@ -400,25 +401,59 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
+      if((skill1 !== '' && status1 !== '') || (skill2 !== '' && status2 !== '') || (skill3 !== '' && status3 !== ''))
       return (data.occupation === ocp[0] ||
               data.occupation === ocp[1] ||
               data.occupation === ocp[2] ||
               data.occupation === ocp[3] ||
               data.occupation === ocp[4] ||
               data.occupation === ocp[5]) ||
-            (data.license === license) ||
-            (data.skill === skill1 && data.level === status1) ||
-            (data.skill === skill2 && data.level === status2) ||
-            (data.skill === skill3 && data.level === status3) ||
-            (data.gender === ge) ||
-            (data.age >= age && data.age <= age2) ||
-            (data.area === areas);
+             (data.license === license) ||
+             (data.skill === skill1 && data.level === status1) ||
+             (data.skill === skill2 && data.level === status2) ||
+             (data.skill === skill3 && data.level === status3) ||
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
+
+      if((skill1 !== '' && status1 == '') || (skill2 !== '' && status2 == '') || (skill3 !== '' && status3 == ''))
+      return (data.occupation === ocp[0] ||
+              data.occupation === ocp[1] ||
+              data.occupation === ocp[2] ||
+              data.occupation === ocp[3] ||
+              data.occupation === ocp[4] ||
+              data.occupation === ocp[5]) ||
+             (data.license === license) ||
+             (data.skill === skill1) ||
+             (data.skill === skill2) ||
+             (data.skill === skill3) ||
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
+             
+      if((skill1 == '' && status1 == '') || (skill2 == '' && status2 == '') || (skill3 == '' && status3 == ''))
+      return (data.occupation === ocp[0] ||
+              data.occupation === ocp[1] ||
+              data.occupation === ocp[2] ||
+              data.occupation === ocp[3] ||
+              data.occupation === ocp[4] ||
+              data.occupation === ocp[5]) ||
+             (data.license === license) ||
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
       });
 
     if((age !== '' && age2 == '') || (age == '' && age2 !== '')) {
       window.alert("年齢は上限と下限どちらも指定してください。");
     } else if(age > age2) {
       window.alert("年齢を正しく指定してください。")
+    } else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 !== '') && (skill3 === '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 === '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 === '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))) 
+              && ((skill1 === skill2) || (skill1 === skill3) ||(skill2 === skill3))) {
+      window.alert("同じスキルが選択されています。\nスキルを変更してください。");
     } else if(search.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
     } else {  
@@ -531,10 +566,10 @@ const StaffSearch = () => {
 
         {/* スキル情報１ */}
         <div>
+
           <Typography className={classes.title_3} variant="h5" component="h2">
             スキルレベル
         </Typography>
-
           <TextField className={classes.skill}
             select
             label="skill①"
@@ -549,7 +584,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* ステータス１ */}
@@ -567,7 +601,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* スキル情報２ */}
@@ -585,7 +618,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* ステータス2 */}
           <TextField className={classes.skill_level}
             select
@@ -601,7 +633,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* <br className={classes.end} /> */}
 
           {/* スキル情報３ */}
@@ -619,7 +650,6 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
           {/* ステータス3 */}
           <TextField className={classes.skill_level}
             select
@@ -640,7 +670,7 @@ const StaffSearch = () => {
         <div>
           <Typography className={classes.title_4} variant="h5" component="h2">
             年齢
-        </Typography>
+          </Typography>
           <TextField className={classes.age}
             placeholder="歳以上"
             label="歳以上"
