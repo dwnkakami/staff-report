@@ -41,8 +41,7 @@ export default function Dashboard(props) {
        >
       <div className={classes.Icon}>
         <Button variant="contained" style={{ background: "#4FC3F7" }} className={classes.Icon}>
-          <ListIcon className={classes.Licon}  />
-          <PeopleAltIcon className={classes.Picon} />
+          <img src="https://img.icons8.com/ios-filled/100/000000/user-folder--v2.png"/>
         </Button>
       </div>
       </Widget>
@@ -59,8 +58,7 @@ export default function Dashboard(props) {
        >
       <div className={classes.Icon}>
         <Button variant="contained" style={{ background: "#4FC3F7" }} className={classes.Icon}>
-          <SearchIcon className={classes.Licon}  />
-          <PeopleAltIcon className={classes.Picon} />
+          <img src="https://img.icons8.com/ios-filled/100/000000/find-user-male.png"/>
         </Button>
       </div>
       </Widget>
@@ -77,8 +75,7 @@ export default function Dashboard(props) {
        >
       <div className={classes.Icon}>
         <Button variant="contained" style={{ background: "#4FC3F7" }} className={classes.Icon}>
-          <AddIcon className={classes.Licon}  />
-          <PeopleAltIcon className={classes.Picon} />
+          <img src="https://img.icons8.com/ios-filled/100/000000/add-user-male.png"/>
         </Button>
       </div>
       </Widget>
@@ -102,8 +99,7 @@ export default function Dashboard(props) {
         >
         <div className={classes.Icon}>
           <Button variant="contained" style={{ background: "#FFF176" }} className={classes.Icon}>
-            <ListIcon className={classes.Licon} />
-            <AssignmentIcon className={classes.Picon} />
+            <img src="https://img.icons8.com/ios-filled/100/000000/documents-folder--v1.png"/>
           </Button>
         </div>
         </Widget>
@@ -120,8 +116,7 @@ export default function Dashboard(props) {
         >
         <div className={classes.Icon}>
           <Button variant="contained" style={{ background: "#FFF176" }} className={classes.Icon}>
-            <SearchIcon className={classes.Licon} />
-            <AssignmentIcon className={classes.Picon} />
+            <img src="https://img.icons8.com/ios-filled/100/000000/view-file.png"/>
           </Button>
         </div>
         </Widget>
@@ -138,8 +133,7 @@ export default function Dashboard(props) {
         >
         <div className={classes.Icon}>
           <Button variant="contained" style={{ background: "#FFF176" }} className={classes.Icon}>
-            <AddIcon className={classes.Licon} />
-            <AssignmentIcon className={classes.Picon} />
+            <img src="https://img.icons8.com/ios-filled/100/000000/add-file.png"/>
           </Button>
         </div>
         </Widget>
@@ -163,8 +157,7 @@ export default function Dashboard(props) {
       >
       <div className={classes.Icon}>
         <Button variant="contained" style={{ background:　"#aeea00" }} className={classes.Icon}>
-          <ListIcon className={classes.Licon} />
-          <DescriptionIcon className={classes.Picon} />
+          <img src="https://img.icons8.com/ios-filled/100/000000/downloads-folder.png"/>
         </Button>
       </div>
       </Widget>
@@ -181,8 +174,7 @@ export default function Dashboard(props) {
       >
         <div className={classes.Icon}>
           <Button variant="contained" style={{ background:　"#eeeeee" }} className={classes.Icon}>
-            <ArrowDownwardIcon className={classes.Licon} />
-            <LocalAtmIcon className={classes.Picon} />
+            <img src="https://img.icons8.com/ios-filled/100/000000/request-money.png"/>
           </Button>
         </div>
        </Widget>
