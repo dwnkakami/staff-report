@@ -273,7 +273,7 @@ function Login(props) {
                 }}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="text"
+                type="number"
                 fullWidth
               />
               <TextField
