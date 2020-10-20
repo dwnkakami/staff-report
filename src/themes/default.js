@@ -63,7 +63,7 @@ export default {
       hint: "#B9B9B9",
     },
     background: {
-      default: "#F6F7FF",
+      default: "#D9D9D9",
       light: "#F3F5FF",
     },
   },

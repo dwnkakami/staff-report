@@ -25,8 +25,9 @@ import CaseDetail from '../casedetail/CaseDetail';
 const StyledTableCell = withStyles((theme) => ({
   head: {
       fontWeight: 'bolder',
-      backgroundColor: "#FFF994",
-      color: theme.palette.common.black,
+      backgroundColor: "#bccddb",
+      // color: theme.palette.common.whithe,
+      color: 'black',
   },
   body: {
       color: "black",
@@ -41,7 +42,7 @@ const StyledTableRow = withStyles((theme) => ({
       backgroundColor: "#fff"
     },
     '&:nth-of-type(even)': {
-      backgroundColor: "#eee"
+      backgroundColor: "#FFF994"
     },
   },
 }))(TableRow);
@@ -232,8 +233,10 @@ EnhancedTableHead.propTypes = {
   };
 
   return(
-    <div >
-    <Paper elevation={3} className='paper1'>
+    <div>
+    <Paper elevation={3} className='paper1' 
+    // style={{ backgroundColor: '#D9D9D9', }}
+    >
       {/* <DialogTitle>
        <div className='title' style={{ display: 'flex' }}>
          <ListIcon style={{ fontSize: '25px', }} />
