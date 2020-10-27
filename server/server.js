@@ -2,6 +2,7 @@ const express =require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const login = require('./modules/login.js');
+const loginuser = require('./modules/loginuser.js');
 const menu = require('./modules/menu.js');
 const stafflist001 = require('./modules/stafflist001.js');
 const stafflist002 = require('./modules/stafflist002.js');
@@ -52,6 +53,9 @@ const port = process.env.PORT || 4000;
 
 app.get('/api/login/:condition',(req,res) => {
     login.getData(req.params.condition,res);
+});
+app.get('/api/loginuser/:condition',(req,res) => {
+    loginuser.getData(req.params.condition,res);
 });
 app.get('/api/menu/:condition',(req,res) => {
     menu.getData(req.params.condition,res);

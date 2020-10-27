@@ -17,6 +17,8 @@ import {
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
+import NumberFormat from 'react-number-format';
+import PropTypes from 'prop-types';
 // import classnames from "classnames";
 
 // styles
@@ -29,6 +31,33 @@ import logo from "./logo.svg";
 // context
 import { useUserDispatch, loginUser, registerUser } from "../../context/UserContext";
 import Validation from "./Validation";
+
+function NumberFormatCustom(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="10"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 function Login(props) {
 
@@ -50,14 +79,44 @@ function Login(props) {
   };
 
 
-
   const handleClose = () => {
     setOpen(false);
   };
 
+  const [check, setCheck] = useState(false);
+
+  const add = () => {
+      axios
+        .get('./api/loginuser/' + loginValue)
+        .then(response => {
+          if(response.data.length >=1) {
+          setCheck(true)
+          window.alert('そのユーザーIDは既に登録されています。');
+            } else {
+                setCheck(false)
+                submitAction();
+            }})
+        .catch(() => {
+            console.log('connected error')
+            window.alert('未入力項目があります。')
+        })
+  }
 
   const submitAction = () => {
-    
+
+    if((loginValue.length === 0) || (nameValue.length === 0) || (role.length === 0) || (passwordValue === 0)) {
+          window.alert('未入力項目があります。')
+    }　else {
+        handleClickOpen()
+        }
+  }
+
+  const submit = () => {
+  
+  const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
+  
+  if(submitValue === "1111"){
+    alert("新しいユーザーが登録されました！")
     registerUser(
       userDispatch,
       passwordValue,
@@ -65,8 +124,6 @@ function Login(props) {
       setIsLoading,
       setError,
     )
-    const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
-
     axios
         .post('/api/register', newValue)
         .then(response => {
@@ -75,19 +132,11 @@ function Login(props) {
         .catch(() => {
             console.log('submit error');
         })    
-  }
-
-  function submit () {
-  if(submitValue === "1111"){
-    submitAction(true)
-    alert("新しいユーザーが登録されました！")
   }else{
     setError(true)
     
   }
 }
-
-
 
 
   const [posts, setPosts] = useState([]);
@@ -125,15 +174,14 @@ function Login(props) {
   var userDispatch = useUserDispatch();
 
   // local
-  var [isLoading, setIsLoading] = useState(false);
-  var [error, setError] = useState(null);
-  var [activeTabId, setActiveTabId] = useState(0);
-  var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("");
-  var [passwordValue, setPasswordValue] = useState("");
-  var [submitValue, setSubmitValue] = useState("");
-  var [msg, setMsg] = useState("ユーザーID・パスワードの入力に誤りがあるか、登録されていません。");
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [activeTabId, setActiveTabId] = useState(0);
+  const [nameValue, setNameValue] = useState("");
+  const [loginValue, setLoginValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+  const [submitValue, setSubmitValue] = useState("");
+  const [msg, setMsg] = useState("ユーザーID・パスワードの入力に誤りがあるか、登録されていません。");
 
   return (
     <Grid container className={classes.container}>
@@ -176,12 +224,13 @@ function Login(props) {
                 </Typography>
               </Fade>
               <TextField
-                id="name"
+                id="id"
                 InputProps={{
                   classes: {
                     underline: classes.textFieldUnderline,
-                    input: classes.textField,
+                    input: classes.textField,  
                   },
+                  inputComponent: NumberFormatCustom
                 }}
                 value={loginValue}
                 onChange={e => {
@@ -190,7 +239,6 @@ function Login(props) {
                 }}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="number"
                 fullWidth
               />
               <TextField
@@ -265,15 +313,16 @@ function Login(props) {
                     underline: classes.textFieldUnderline,
                     input: classes.textField,
                   },
+                  inputComponent: NumberFormatCustom
                 }}
                 value={loginValue}
                 onChange={e => {
                   setLoginValue(e.target.value);
                   let isValidation = Validation.formValidate("userid", e.target.value, setError, setMsg);
                 }}
+                // onChange={handleChange}
                 margin="normal"
                 placeholder="ユーザーID"
-                type="text"
                 fullWidth
               />
               <TextField
@@ -351,20 +400,7 @@ function Login(props) {
                     passwordValue.length === 0 ||
                     isNaN(Number(loginValue))
                   }
-                    onClick={() => {
-                        let isValidation =  Validation.formValidate("password", passwordValue, setError, setMsg);
-                        console.log(setMsg)
-                        if(!isValidation) return
-                      handleClickOpen()
-                      // loginUser(
-                      //   userDispatch,
-                      //   loginValue,
-                      //   passwordValue,
-                      //   props.history,
-                      //   setIsLoading,
-                      //   setError,
-                      // )
-                    }}
+                    onClick={add}
                     
                     size="large"
                     variant="contained"
