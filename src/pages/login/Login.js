@@ -116,7 +116,7 @@ function Login(props) {
   const newValue = {id:loginValue, name:nameValue, role_id:role, password:passwordValue};
   
   if(submitValue === "1111"){
-    alert("新しいユーザーが登録されました！")
+    alert("新しいユーザーが登録されました。")
     registerUser(
       userDispatch,
       passwordValue,
