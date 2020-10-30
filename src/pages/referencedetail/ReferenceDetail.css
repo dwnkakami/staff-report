@@ -5,7 +5,6 @@ table{
     table-layout: fixed;
     margin: auto;
   }
-  
   table th,table td{
     height: 30px;
     padding: 3px 0 3px 5px;
@@ -17,7 +16,7 @@ table{
   }
   
   table tr:nth-child(odd){
-    background-color: #eee
+    background-color: #E0FFFF;
   }
   
   .wide-td1{

@@ -22,14 +22,32 @@ const useStyles = makeStyles((theme) => ({
     formControl: {
       minWidth: 195,
     },
+    tablespace: {
+      marginTop: 5,
+    },
+    tablehead: {
+      backgroundColor: "#AADDAA",
+    },
+    tabledata: {
+      backgroundColor: "#FAFAFA",
+    },
+    addarea: {
+      marginTop: 8,
+      marginRight: 10,
+      left: theme.spacing(2),
+      // right: theme.spacing(2),
+    },
     button1: {
-      marginTop: 20,
+      marginTop: 8,
+      left: theme.spacing(4),
     },
   　button2: {
-      marginTop: 20,
-      left: theme.spacing(2),
-      right: theme.spacing(2),
-   },
+    marginTop: 8,
+    // marginLeft: 5,
+    left: theme.spacing(6),
+    right: theme.spacing(2),
+    backgroundColor:　"#536DFE",
+ },
   }));
 
 const styles = (theme) => ({
@@ -321,17 +339,29 @@ const userAdd = () => {
         </DialogTitle>
         <DialogContent dividers >
         <Grid container spacing={2}>
+       <table>
+       <tr>
+       <th rowSpan="5" className={classes1.tablehead}>案件情報</th>
+       <td className={classes1.tabledata}>
         <Grid item xs={4}>
             {/* <Typography>案件ID</Typography> */}
-            <TextField required label="案件ID" variant="outlined" name="matterId" value={matterId} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}}/>
+            <TextField required label="案件ID" variant="outlined" name="matterId" value={matterId} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}} size="small" style={{background: "#FFFFFF"}}/>
         </Grid>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
         <Grid item xs={4}>
             {/* <Typography>スタッフID</Typography> */}
-            <TextField required label="スタッフID" variant="outlined" name="staffId" value={staffId} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}}/>
+            <TextField required label="スタッフID" variant="outlined" name="staffId" value={staffId} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}} size="small" style={{background: "#FFFFFF"}}/>
         </Grid>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
         <Grid item xs={4}>
             {/* <Typography>職種</Typography> */}
-            <FormControl required variant="outlined" className={classes1.formControl}>
+            <FormControl required variant="outlined" className={classes1.formControl} size="small" style={{background: "#FFFFFF"}}>
             <InputLabel>職種</InputLabel>
             <Select  name="occupationId" value={occupationId} onChange={handleChange} label="選択してください">
             <MenuItem value=""></MenuItem>
@@ -343,31 +373,18 @@ const userAdd = () => {
             </Select>
             </FormControl>
         </Grid>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
         <Grid item xs={4}>
             {/* <Typography>ポジション</Typography> */}
-            <TextField required label="ポジション" variant="outlined" name="position" inputProps={{maxlength: 50}} value={position} onChange={handleChange}/>
+            <TextField required label="ポジション" variant="outlined" name="position" inputProps={{maxlength: 50}} value={position} onChange={handleChange} size="small" style={{background: "#FFFFFF"}}/>
         </Grid>
-        <Grid item xs={4}>
-            {/* <Typography>面談場所</Typography> */}
-            <TextField required label="面談場所" variant="outlined" name="interviewLocation" inputProps={{maxlength: 100}} value={interviewLocation} onChange={handleChange}/>
-        </Grid>
-        <Grid item xs={4}>
-            {/* <Typography>面談回数</Typography> */}
-            <TextField required label="面談回数" variant="outlined" name="interviewTimes" maxLength="2" value={interviewTimes} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}}/>
-        </Grid>
-        <Grid item xs={4}>
-            {/* <Typography>面談日</Typography> */}
-            <TextField  required
-                        label="面談日"
-                        InputLabelProps={{
-                        shrink: true,
-                        }}
-                        type="date" inputProps={{max: "9999-12-31"}} id="interviewdate" name="interviewDate" value={interviewDate} onChange={handleChange} onClick={interviewmindate} className={classes1.formControl}/>
-        </Grid>
-        <Grid item xs={4}>
-            {/* <Typography>備考欄</Typography> */}
-            <TextField label="備考欄" variant="outlined" name="note" inputProps={{maxlength: 200}} value={note} onChange={handleChange}/>
-        </Grid>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
         <Grid item xs={4}>
             {/* <Typography>入場日</Typography> */}
             <TextField  required
@@ -375,13 +392,59 @@ const userAdd = () => {
                         InputLabelProps={{
                         shrink: true,
                         }}
-                        type="date" inputProps={{max: "9999-12-31"}} id="entrancedate" name="entranceDate" value={entranceDate} onChange={handleChange} onClick={entrancemindate} className={classes1.formControl}/>
+                        type="date" inputProps={{max: "9999-12-31"}} id="entrancedate" name="entranceDate" value={entranceDate} onChange={handleChange} onClick={entrancemindate} className={classes1.formControl} size="small" style={{background: "#FFFFFF"}}/>
         </Grid>
+        </td>
+        </tr>
+       </table>
+       <table className={classes1.tablespace}>
+       <tr>
+       <th rowSpan="3" className={classes1.tablehead}>面談情報</th>
+       <td className={classes1.tabledata}>
         <Grid item xs={4}>
-            {/* <Typography>更新者ID</Typography> */}
-            <TextField required label="更新者ID" variant="outlined" name="updateBy" value={updateBy} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}}/>
+            {/* <Typography>面談場所</Typography> */}
+            <TextField required label="面談場所" variant="outlined" name="interviewLocation" inputProps={{maxlength: 100}} value={interviewLocation} onChange={handleChange} size="small" style={{background: "#FFFFFF"}}/>
         </Grid>
-            <Grid item xs={4}>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
+        <Grid item xs={4}>
+            {/* <Typography>面談回数</Typography> */}
+            <TextField required label="面談回数" variant="outlined" name="interviewTimes" maxLength="2" value={interviewTimes} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}} size="small" style={{background: "#FFFFFF"}}/>
+        </Grid>
+        </td>
+        </tr>
+        <tr>
+        <td className={classes1.tabledata}>
+        <Grid item xs={4}>
+            {/* <Typography>面談日</Typography> */}
+            <TextField  required
+                        label="面談日"
+                        InputLabelProps={{
+                        shrink: true,
+                        }}
+                        type="date" inputProps={{max: "9999-12-31"}} id="interviewdate" name="interviewDate" value={interviewDate} onChange={handleChange} onClick={interviewmindate} className={classes1.formControl} size="small" style={{background: "#FFFFFF"}}/>
+        </Grid>
+        </td>
+        </tr>
+       </table>
+       <table className={classes1.tablespace}>
+       <tr>
+       <th className={classes1.tablehead}>備考</th>
+       <td className={classes1.tabledata}>
+        <Grid item xs={4}>
+            {/* <Typography>備考欄</Typography> */}
+            <TextField label="備考欄" variant="outlined" name="note" inputProps={{maxlength: 200}} value={note} onChange={handleChange} style={{background: "#FFFFFF"}}/>
+        </Grid>
+        </td>
+        </tr>
+       </table>
+        <Grid item xs={8}>
+            {/* <Typography>更新者ID</Typography> */}
+            <TextField required label="更新者ID" variant="outlined" name="updateBy" value={updateBy} className={classes1.addarea} onChange={handleChange} InputProps={{inputComponent: NumberFormatCustom}} size="small"/>
+        {/* </Grid>
+            <Grid item xs={4}> */}
                 <Button variant="contained" className={classes1.button1} onClick={clear}>クリア</Button>
                 <Button variant="contained" className={classes1.button2} onClick={add}>登録</Button>
             </Grid>

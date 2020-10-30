@@ -100,7 +100,7 @@ export default function CaseDetail (props) {
         {/* {user.map((data) => ( */}
           <Typography gutterBottom>
             <table>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>案件名</th>
                 <th>案件保有会社</th>
                 <th>担当営業名</th>
@@ -112,7 +112,7 @@ export default function CaseDetail (props) {
               </tr>
               </table>
               <table>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>依頼単価</th>
                 <th>勤務地</th>
                 <th>職種</th>
@@ -122,7 +122,7 @@ export default function CaseDetail (props) {
                 <td>{props.workplace}</td>
                 <td>{props.occupation}</td>
               </tr>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>募集人数</th>
                 <th>案件開始日</th>
                 <th>案件終了日</th>
@@ -134,7 +134,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
             <table>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>業務内容</th>
               </tr>
               <tr>
@@ -142,7 +142,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
             <table>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>スキル1</th>
                 <th>スキル2</th>
                 <th>スキル3</th>
@@ -154,7 +154,7 @@ export default function CaseDetail (props) {
               </tr>
             </table>
             <table>
-              <tr>
+              <tr style={{ background:　"#E0FFFF" }}>
                 <th>必須スキル</th>
                 <th>備考欄</th>
               </tr>
