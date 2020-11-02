@@ -36,6 +36,22 @@ const StaffInformation = (props) => {
         })
     }
   }
+  const [state, setState] = useState([]);
+
+  useEffect(() => getCasedetailData2(),[]);
+
+  const getCasedetailData2 = () => {
+    if(state.length === 0) {
+      axios
+        .get(`/api/stafflist004/${props.id}`)
+        .then(response => {
+          setState(response.data);
+        })
+         .catch(() => {
+          console.log('connected error');
+        })
+    }
+  }
   return (
     <div>
       <Paper className={classes.paper} elevation={3}>
@@ -96,13 +112,17 @@ const StaffInformation = (props) => {
             </tr>
             <tr>
              <td className={classes.content}>{data.station ? data.station:"データなし"}</td> 
-             <td>{data.matter_name ? data.matter_name:"データなし"}</td> 
+             {state.map((data) => (
+             <td>{data.name ? data.name:"データなし"}</td>
+             ))}
             </tr>
             <tr>
               <th className={classes.title}>現案件終了予定日</th>
             </tr>
             <tr>
-             <td className={classes.content}>{data.end_day　? data.end_day:"データなし"}</td> 
+             {state.map((data) => (
+             <td className={classes.content}>{data.matter_end　? data.matter_end:"データなし"}</td>
+             ))} 
             </tr>
           </table>
         </Typography>

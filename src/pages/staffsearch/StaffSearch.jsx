@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import { Typography, DialogTitle } from '@material-ui/core';
+import { Typography, DialogTitle, Grid } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchIcon from '@material-ui/icons/Search';
 import Select from '@material-ui/core/Select';
@@ -18,7 +18,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
 import NumberFormat from 'react-number-format';
 
-
 const useStyles = makeStyles((theme) => ({
   paper: {
     width: '98%',
@@ -26,84 +25,90 @@ const useStyles = makeStyles((theme) => ({
     // height: theme.spacing(75),
   },
 
-  title: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(0.5),
-  },
-  title_2: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
+  div: {
+    background: 'linear-gradient(90deg, #a2d5f2 0%, #a2d5f2 30%, #bccddb 30%, #bccddb 100%)',
     marginTop: theme.spacing(1),
-  },
-  title_3: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(1),
-  },
-  title_4: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(1),
-  },
-  title_5: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(1),
-  },
-  title_6: {
-    float: 'left',
-    paddingTop: 30,
-    marginLeft: theme.spacing(2.5),
-    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(10),
+    marginLeft: theme.spacing(10),
+    paddingBottom: '22px',
   },
 
+  grid: {
+    margin: '0 auto',
+    marginLeft: '15px',
+    marginTop: theme.spacing(4),
+  },
+
+
+  title: {
+    backgroundColor: '#a2d5f2',
+    fontSize: '21px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: theme.spacing(1.5),
+    height: '80px',
+  },
+  title_2: {
+    backgroundColor: '#a2d5f2',
+    fontSize: '21px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+  },
+
+  form_1: {
+    backgroundColor: '#bccddb',
+    marginBottom: theme.spacing(1.5),
+    height: '80px',
+  },
   formControl1: {
     minWidth: 250,
-    margin: theme.spacing(1),
-    left: theme.spacing(10.5),
-    top: theme.spacing(1),
+    margin: theme.spacing(0.5),
+    left: theme.spacing(4),
+    // left: '29%',
   },
   formControl2: {
     minWidth: 250,
-    margin: theme.spacing(1),
-    left: theme.spacing(10.5),
-    top: theme.spacing(1.5),
+    margin: theme.spacing(0.5),
+    left: theme.spacing(4),
+  },
+  skill_form: {
+    backgroundColor: '#bccddb',
+    // marginBottom: theme.spacing(2),
+
+  },
+  skill_form2: {
+    backgroundColor: '#bccddb',
+    marginBottom: theme.spacing(1.5),
+    height: '80px',
   },
   skill: {
     minWidth: 130,
-    margin: theme.spacing(1),
-    left: theme.spacing(4),
-    top: theme.spacing(2),
+    margin: theme.spacing(0.5),
+    left: '23.5%',
+    verticalAlign: 'middle',
   },
   skill_level: {
     minWidth: 130,
-    margin: theme.spacing(1),
-    left: theme.spacing(3),
-    top: theme.spacing(2),
+    margin: theme.spacing(0.5),
+    left: '23.3%',
   },
   age: {
-    minWidth: 130,
-    margin: theme.spacing(1),
-    left: theme.spacing(12.5),
-    top: theme.spacing(2),
+    width: 130,
+    margin: theme.spacing(0.5),
+    left: theme.spacing(4),
   },
   gender: {
     minWidth: 130,
-    margin: theme.spacing(1),
-    left: theme.spacing(10.7),
-    top: theme.spacing(2),
+    margin: theme.spacing(0.5),
+    left: theme.spacing(4),
   },
   areas: {
     minWidth: 130,
-    margin: theme.spacing(1),
-    left: theme.spacing(10.7),
-    top: theme.spacing(2),
+    margin: theme.spacing(0.5),
+    left: theme.spacing(4),
   },
 
   end: {
@@ -130,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     float: 'left',
     marginBottom: 20,
     // top: theme.spacing(-46),
-    backgroundColor: '#93ffff'
+    backgroundColor: '#536dfe'
   },
 
   selectEmpty: {
@@ -172,8 +177,10 @@ function NumberFormatCustom(props) {
           },
         });
       }}
+      allowNegative={false}
+      decimalSeparator={false}
       isNumericString
-      maxLength="10"
+      maxLength="3"
     />
   );
 }
@@ -401,27 +408,13 @@ const StaffSearch = () => {
 
   const Search = () => {
     const search = data.filter((data) => {
-      if((skill1 !== '' && status1 == '') || (skill2 !== '' && status2 == '') || (skill3 !== '' && status3 == ''))
+      if((skill1 !== '' && status1 !== '') || (skill2 !== '' && status2 !== '') || (skill3 !== '' && status3 !== ''))
       return (data.occupation === ocp[0] ||
               data.occupation === ocp[1] ||
               data.occupation === ocp[2] ||
               data.occupation === ocp[3] ||
               data.occupation === ocp[4] ||
               data.occupation === ocp[5]) ||
-            (data.license === license) ||
-            (data.skill === skill1) ||
-            (data.skill === skill2) ||
-            (data.skill === skill3) ||          
-            (data.gender === ge) ||
-            (data.age >= age && data.age <= age2) ||
-            (data.area === areas);
-      if((skill1 !== '' && status1 !== '') || (skill2 !== '' && status2 !== '') || (skill3 !== '' && status3 !== ''))
-      return (data.occupation === ocp[0] ||
-             data.occupation === ocp[1] ||
-             data.occupation === ocp[2] ||
-             data.occupation === ocp[3] ||
-             data.occupation === ocp[4] ||
-             data.occupation === ocp[5]) ||
              (data.license === license) ||
              (data.skill === skill1 && data.level === status1) ||
              (data.skill === skill2 && data.level === status2) ||
@@ -429,28 +422,45 @@ const StaffSearch = () => {
              (data.gender === ge) ||
              (data.age >= age && data.age <= age2) ||
              (data.area === areas);
-      if((skill1 == '' && status1 == '') || (skill2 == '' && status2 == '') || (skill3 == '' && status3 == ''))
+
+      if((skill1 !== '' && status1 == '') || (skill2 !== '' && status2 == '') || (skill3 !== '' && status3 == ''))
       return (data.occupation === ocp[0] ||
-             data.occupation === ocp[1] ||
-             data.occupation === ocp[2] ||
-             data.occupation === ocp[3] ||
-             data.occupation === ocp[4] ||
-             data.occupation === ocp[5]) ||
+              data.occupation === ocp[1] ||
+              data.occupation === ocp[2] ||
+              data.occupation === ocp[3] ||
+              data.occupation === ocp[4] ||
+              data.occupation === ocp[5]) ||
              (data.license === license) ||
              (data.skill === skill1) ||
              (data.skill === skill2) ||
-             (data.skill === skill3) ||          
+             (data.skill === skill3) ||
              (data.gender === ge) ||
              (data.age >= age && data.age <= age2) ||
              (data.area === areas);
-     });
-
-
+             
+      if((skill1 == '' && status1 == '') || (skill2 == '' && status2 == '') || (skill3 == '' && status3 == ''))
+      return (data.occupation === ocp[0] ||
+              data.occupation === ocp[1] ||
+              data.occupation === ocp[2] ||
+              data.occupation === ocp[3] ||
+              data.occupation === ocp[4] ||
+              data.occupation === ocp[5]) ||
+             (data.license === license) ||
+             (data.gender === ge) ||
+             (data.age >= age && data.age <= age2) ||
+             (data.area === areas);
+      });
 
     if((age !== '' && age2 == '') || (age == '' && age2 !== '')) {
       window.alert("年齢は上限と下限どちらも指定してください。");
     } else if(age > age2) {
       window.alert("年齢を正しく指定してください。")
+    } else if((((skill1 !== '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 !== '') && (skill3 === '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 !== '') && (skill2 === '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))||
+              ((skill1 === '') && (skill2 !== '') && (skill3 !== '') && (status1 === '') && (status2 === '') && (status3 === ''))) 
+              && ((skill1 === skill2) || (skill1 === skill3) ||(skill2 === skill3))) {
+      window.alert("同じスキルが選択されています。\nスキルを変更してください。");
     } else if(search.length === 0) {
       window.alert("検索結果がありません。\n条件を変更してください。");
     } else {  
@@ -468,81 +478,39 @@ const StaffSearch = () => {
   return (
     <div className={classes.root}>
       <Paper elevation={3} variant="" >
-        {/* <DialogTitle>
-          <div style={{ display: 'flex' }}>
-            <SearchIcon style={{ fontSize: '25px' }} />
-            <PeopleAltIcon style={{ fontSize: '40px', }} />
-            <Typography style={{ fontSize: '30px' }}>スタッフ検索</Typography>
-          </div>
-        </DialogTitle> */}
+        <Grid container spacing={3} className={classes.grid}>
 
-        {/* <div>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={andMode}
-                onChange={ModeChange}
-                color="primary"
-              />
-            }
-            label="もっと絞り込む"
-          />
-        </div> */}
         {/* 職種選択 */}
-
-        <div>
-          <Typography className={classes.title} variant="h5" component="h2">
+          <Grid item xs={4} className={classes.title}>
             職種
-        </Typography>
-          <FormControl className={classes.formControl1}>
-            <InputLabel>職種</InputLabel>
-            <Select
-              multiple
-              value={ocp}
-              onChange={handleChange}
-              input={<Input />}
-              renderValue={(selected) => selected.join(', ')}
-              MenuProps={MenuProps}
-            >
-              {getOcp.map((name) => (
-                <MenuItem key={name.name} value={name.name}>
-                  <Checkbox checked={ocp.indexOf(name.name) > -1} />
-                  <ListItemText primary={name.name} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </div>
+          </Grid>
+          <Grid item xs={6} className={classes.form_1}>
+            <FormControl className={classes.formControl1}>
+              <InputLabel>職種</InputLabel>
+              <Select
+                multiple
+                value={ocp}
+                onChange={handleChange}
+                input={<Input />}
+                renderValue={(selected) => selected.join(', ')}
+                MenuProps={MenuProps}
+              >
+                {getOcp.map((name) => (
+                  <MenuItem key={name.name} value={name.name}>
+                    <Checkbox checked={ocp.indexOf(name.name) > -1} />
+                    <ListItemText primary={name.name} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
 
-        {/* <br className={classes.end}/> */}
-
-        {/* <FormControl variant="filled" className={classes.formControl1}>
-        <Select
-          value={ocp}
-          onChange={handleChange}
-          //name = "license"
-        >
-          {getOcp.map((data)=>(
-            <option key={data.id} value={data.name}>
-              {data.name}
-            </option>
-          ))}
-        </Select>
-    </FormControl> */}
-
-        {/* <Typography variant="h5" component="h2">
-        キーワード検索
-        </Typography> */}
-
-        {/* <Keyword value={keyword} /> */}
-        {/* 検索ボタン */}
-        {/* <Button variant="contained">検索</Button> */}
 
         {/* 資格情報 */}
-        <div>
-          <Typography className={classes.title_2} variant="h5" component="h2">
+          <Grid item xs={4} className={classes.title}>
             資格
-        </Typography>
+          </Grid>
+          <Grid item xs={6} className={classes.form_1}>
           <TextField className={classes.formControl2}
             select
             label="資格"
@@ -557,16 +525,15 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
+          </Grid>
 
-        {/* <br className={classes.end}/> */}
 
         {/* スキル情報１ */}
-        <div>
-          <Typography className={classes.title_3} variant="h5" component="h2">
-            スキルレベル
-        </Typography>
 
+          <Grid item xs={4} className={classes.title_2}>
+            スキルレベル
+          </Grid>
+          <Grid item xs={3} className={classes.skill_form}>
           <TextField className={classes.skill}
             select
             label="skill①"
@@ -581,10 +548,10 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
-          {/* <br className={classes.end} /> */}
+          </Grid>
 
           {/* ステータス１ */}
+          <Grid item xs={3} className={classes.skill_form}>
           <TextField className={classes.skill_level}
             select
             label="level①"
@@ -599,44 +566,47 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
-          {/* <br className={classes.end} /> */}
+          </Grid>
 
           {/* スキル情報２ */}
-          <TextField className={classes.skill}
-            select
-            label="skill②"
-            value={skill2}
-            onChange={Skill2Change}
-            variant="outlined"
-          >
-            <MenuItem value=""></MenuItem>
-            {getSkill.map((data) => (
-              <MenuItem key={data.id} value={data.name}>
-                {data.name}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          {/* ステータス2 */}
-          <TextField className={classes.skill_level}
-            select
-            label="level②"
-            value={status2}
-            onChange={Status2Change}
-            variant="outlined"
-          >
-            <MenuItem value=""></MenuItem>
-            {getStatus.map((data) => (
-              <MenuItem key={data.level} value={data.level}>
-                {data.level}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          {/* <br className={classes.end} /> */}
+          <Grid item xs={4} className={classes.title_2}></Grid>
+          <Grid item xs={3} className={classes.skill_form}>
+            <TextField className={classes.skill}
+              select
+              label="skill②"
+              value={skill2}
+              onChange={Skill2Change}
+              variant="outlined"
+            >
+              <MenuItem value=""></MenuItem>
+              {getSkill.map((data) => (
+                <MenuItem key={data.id} value={data.name}>
+                  {data.name}
+                </MenuItem>
+              ))}
+            </TextField>
+            </Grid>
+            {/* ステータス2 */}
+            <Grid item xs={3} className={classes.skill_form}>
+            <TextField className={classes.skill_level}
+              select
+              label="level②"
+              value={status2}
+              onChange={Status2Change}
+              variant="outlined"
+            >
+              <MenuItem value=""></MenuItem>
+              {getStatus.map((data) => (
+                <MenuItem key={data.level} value={data.level}>
+                  {data.level}
+                </MenuItem>
+              ))}
+            </TextField>
+          </Grid>
 
           {/* スキル情報３ */}
+          <Grid item xs={4} className={classes.title}></Grid>
+          <Grid item xs={3} className={classes.skill_form2}>
           <TextField className={classes.skill}
             select
             label="skill③"
@@ -651,8 +621,9 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-
+          </Grid>
           {/* ステータス3 */}
+          <Grid item xs={3} className={classes.skill_form2}>
           <TextField className={classes.skill_level}
             select
             label="level③"
@@ -667,12 +638,12 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
+          </Grid>
 
-        <div>
-          <Typography className={classes.title_4} variant="h5" component="h2">
+          <Grid item xs={4} className={classes.title}>
             年齢
-        </Typography>
+          </Grid>
+          <Grid item xs={6} className={classes.form_1}>
           <TextField className={classes.age}
             placeholder="歳以上"
             label="歳以上"
@@ -689,12 +660,12 @@ const StaffSearch = () => {
             variant="outlined"
             InputProps={{inputComponent: NumberFormatCustom}}
           />
-        </div>
-
-        <div>
-          <Typography className={classes.title_5} variant="h5" component="h2">
+          </Grid>
+        
+          <Grid item xs={4} className={classes.title}>
             性別
-        </Typography>
+          </Grid>
+          <Grid item xs={6} className={classes.form_1}>
           <TextField className={classes.gender}
             select
             label="性別"
@@ -709,12 +680,12 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
+          </Grid>
 
-        <div>
-          <Typography className={classes.title_6} variant="h5" component="h2">
+          <Grid item xs={4} className={classes.title}>
             地域
-        </Typography>
+          </Grid>
+        <Grid item xs={6} className={classes.form_1}>
           <TextField className={classes.areas}
             select
             label="地域"
@@ -729,7 +700,7 @@ const StaffSearch = () => {
               </MenuItem>
             ))}
           </TextField>
-        </div>
+        </Grid>
 
         <br className={classes.end} />
         <div className={classes.blockButton}>
@@ -738,7 +709,10 @@ const StaffSearch = () => {
           {/* 検索ボタン */}
           <Button variant="contained" onClick={Search} className={classes.button_2}>検索</Button>
         </div>
+        </Grid>
       </Paper>
+      
+
     </div>
   );
 }

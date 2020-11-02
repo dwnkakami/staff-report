@@ -13,7 +13,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import { Paper, 
          MenuItem, 
          TextField,
-         FormHelperText
+         FormHelperText, Grid
          } from '@material-ui/core';
 import axios from 'axios';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -89,6 +89,9 @@ end: {
       margin: theme.spacing(1),
     },
   },
+  button1: {
+    left: theme.spacing(2),
+},
   keyButton: {
     '& > *': {
       margin: theme.spacing(1),
@@ -599,8 +602,10 @@ const MenuProps = {
         <div className={classes.left}><br /></div>
         {/* <div className={classes.left}><br /></div> */}
 
-        <DeleteButton onClick={clearAll} />
-        <SearchButton onClick={formSubmit} className={classes.button} />
+        <Grid item xs={11} className={classes.button1}>
+          <DeleteButton onClick={clearAll} />
+          <SearchButton onClick={formSubmit} className={classes.button} />
+        </Grid>
 
       </CardContent>
     </Paper>

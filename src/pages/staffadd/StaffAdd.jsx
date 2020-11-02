@@ -25,88 +25,110 @@ const useStyles = makeStyles((theme) => ({
     content1: {
       width: '80%',
       position: 'relative',　
-      marginTop: '50px'
+      paddingTop: '10px',
+    },
+    grid: {
+      margin: '0 auto',
+      marginLeft: '15px',
+    },
+    title: {
+      backgroundColor: '#a2d5f2',
+      borderBottom: '2px solid',
+      borderRight: '2px solid',
+      fontSize: '21px',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    form: {
+      borderBottom: '2px solid',
     },
     formControl: {
       minWidth: 195,
     },
     button1: {
         left: theme.spacing(2),
-        backgroundColor: '#93ffff'
+        backgroundColor: '#536dfe'
     },
     button: {
-        textAlign: 'right'
+        textAlign: 'right',
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
     }
 }));
 
 function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props;
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={inputRef}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        isNumericString
-        maxLength="10"
-      />
-    );
-  }
-  NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="11"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  function NumberFormatCustom2(props) {
-    const { inputRef, onChange, ...other } = props;
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={inputRef}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        isNumericString
-        maxLength="3"
-      />
-    );
-  }
-  NumberFormatCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-    name: PropTypes.string.isRequired,
-    onChange: PropTypes.func.isRequired,
-  };
+function NumberFormatCustom2(props) {
+  const { inputRef, onChange, ...other } = props;
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={inputRef}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      allowNegative={false}
+      decimalSeparator={false}
+      isNumericString
+      maxLength="3"
+    />
+  );
+}
+NumberFormatCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
-  function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
-  
-    return (
-      <MaskedInput
-        {...other}
-        ref={(ref) => {
-          inputRef(ref ? ref.inputElement : null);
-        }}
-        mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-        placeholderChar={'\u2000'}
-      />
-    );
-  }
-  
-  TextMaskCustom.propTypes = {
-    inputRef: PropTypes.func.isRequired,
-  };
+function TextMaskCustom(props) {
+  const { inputRef, ...other } = props;
+
+  return (
+    <MaskedInput
+      {...other}
+      ref={(ref) => {
+        inputRef(ref ? ref.inputElement : null);
+      }}
+      mask={[/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+      placeholderChar={'\u2000'}
+    />
+  );
+}
+
+TextMaskCustom.propTypes = {
+  inputRef: PropTypes.func.isRequired,
+};
 
 export default function StaffAdd () {
 
@@ -273,9 +295,11 @@ const execStaffAdd = () => {
         (area.length === 0) || (occupation.length === 0) || (employment.length === 0) || 
         (entry.length === 0) || (update_at.length === 0)) {
             window.alert('未入力項目があります。\n*は必須項目です。');
-        } else if (birthday > date) {
+        } else if (birthday > date || '1900/01/01' > birthday) {
             window.alert('生年月日を正しく入力して下さい。')
-        } else if (phone.length < 10) {
+        } else if (join < '1900/01/01') {
+            window.alert('入社日を正しく入力してください。')
+        } else if (phone.match(/\s+/))  {
             window.alert('電話番号を正しく入力して下さい。');
         } else {
         axios
@@ -410,17 +434,29 @@ const classes = useStyles();
             <Typography　style={{ fontSize: '30px' }}>スタッフ追加</Typography>
             </div>
         </DialogTitle> */}
-        <Grid container spacing={3} className="form">
-        <Grid item xs={4}>
+        <Grid container spacing={3} className={classes.grid}>
+        <Grid item xs={4} className={classes.title}>
+          スタッフID
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required variant="outlined" name="staffId"　label="スタッフID"  value={staffId} onChange={handleChange} className={classes.content1} InputProps={{inputComponent: NumberFormatCustom}}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          スタッフ氏名
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required variant="outlined" name="name" value={name} label="スタッフ氏名" onChange={handleChange} inputProps={{maxlength:50}}　className={classes.content1}/>
+        </Grid>
+        <Grid item xs={4} className={classes.title}>
+          スタッフ氏名（ふりがな）
         </Grid> 
-        <Grid item xs={4}>
+        <Grid item xs={7} className={classes.form}>
             <TextField required variant="outlined" name="kana" value={kana} label="スタッフ氏名（ふりがな）" onChange={handleChange} inputProps={{maxlength:50}} className={classes.content1}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          性別
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
            
             <FormControl variant="outlined" className={classes.content}>
             <InputLabel>性別*</InputLabel>
@@ -431,32 +467,50 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          生年月日
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required type="date" inputProps={{max:new Date().toJSON().split('T')[0]}} name="birthday"　label="生年月日" defaultValue="2020-01-01" value={birthday} onChange={handleChange2} className={classes.content}  InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-            
+        <Grid item xs={4} className={classes.title}>
+          年齢
+        </Grid>
+        <Grid item xs={7} className={classes.form}>            
             <TextField required variant="outlined" name="age" label="年齢" value={age} onChange={handleChange} className={classes.content} InputProps={{inputComponent: NumberFormatCustom2}}/>
         </Grid>
-        <Grid item xs={4}>
-            <Typography></Typography>
+        <Grid item xs={4} className={classes.title}>
+          電話番号(ハイフンなし)
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required inputmode="url" variant="outlined" name="phone"　label="電話番号(ハイフンなし)" value={phone} onChange={handleChange} className={classes.content} InputProps={{ inputComponent: TextMaskCustom}}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          最寄駅
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required variant="outlined" name="station" label="最寄駅" value={station} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          最終学歴（学校名）
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required variant="outlined" name="career" label="最終学歴（学校名）" value={career} onChange={handleChange} inputProps={{maxlength:50}} className={classes.content}/>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          入社日
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <TextField required　type="date" inputProps={{max:"2029-12-31"}} name="join" label="入社日"　defaultValue="2020-01-01"  value={join} onChange={handleChange3} className={classes.content}　InputLabelProps={{
           shrink: true,
         }}/>
         </Grid>
-        <Grid item xs={4}>
-           
+        <Grid item xs={4} className={classes.title}>
+          所属会社
+        </Grid>
+        <Grid item xs={7} className={classes.form}>           
             <FormControl variant="outlined"　className={classes.content}>
             <InputLabel>所属会社*</InputLabel>
             <Select required name="company" value={company} onChange={handleChange} label="選択してください">
@@ -469,7 +523,10 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          地域
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <FormControl variant="outlined" className={classes.content}>
             <InputLabel>地域*</InputLabel>
             <Select required name="area" value={area} onChange={handleChange} label="選択してください">
@@ -482,7 +539,10 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          役職
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
         <FormControl variant="outlined" className={classes.content}>
             <InputLabel>役職*</InputLabel>
             <Select required name="position" value={position} onChange={handleChange} label="選択してください">
@@ -495,7 +555,10 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          職種
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <FormControl variant="outlined" className={classes.content}>
             <InputLabel>職種*</InputLabel>
             <Select required name="occupation" value={occupation} onChange={handleChange} label="選択してください">
@@ -508,7 +571,10 @@ const classes = useStyles();
             </Select>
             </FormControl>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={4} className={classes.title}>
+          雇用形態
+        </Grid>
+        <Grid item xs={7} className={classes.form}>
             <FormControl variant="outlined" className={classes.content}>
             <InputLabel>雇用形態*</InputLabel>
             <Select required name="employment" value={employment} onChange={handleChange} label="選択してください">

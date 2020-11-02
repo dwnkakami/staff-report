@@ -52,7 +52,7 @@ const Graph = (props) =>  {
         <div className={classes.Graph}>
         <ComposedChart
             width={400}
-          height={280}
+            height={280}
             layout="vertical"
             data={chartData}
             margin={{ top: 20, right: 60, bottom: 0, left: 10 }}
