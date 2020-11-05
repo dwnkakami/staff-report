@@ -466,8 +466,8 @@ const MenuProps = {
   };
 
   return (
-    <Paper elevation={3}>
-      {/* <DialogTitle>
+    <Paper elevation={3} style={{boxSizing: 'content-box' ,width: '100%' ,}}>
+      <DialogTitle>
       <div style={{display:'flex'}}>
         <SearchIcon style={{ fontSize: '25px', }} />
         <AssignmentIcon style={{ fontSize: '40px', }} />
@@ -476,51 +476,56 @@ const MenuProps = {
           案件検索
         </Typography>
       </div>
-      </DialogTitle> */}
+      </DialogTitle>
         {/* <br className={classes.end}/> */}
       <CardContent>
-      <Typography className={classes.left} id="child" variant="h5" component="h2">
-        案件名検索
+      <Typography className={classes.left} id="child" variant="h5" component="h2" style={{backgroundColor: '#FFF994' ,borderRight: '2px solid' ,position: 'relative' ,fontWeight: 'bold' ,}}>
+        ●案件名検索
         </Typography>
-
-          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key" />
+        <div style={{position: 'relative',borderBottom: '5px solid' ,borderTop: '5px solid' ,padding: '0 0 8px 180px' ,}}>
+          <TextField value={keyWord} onChange={e => setKeyWord(e.target.value)} className={classes.inputForm} id="outlined-basic" label="キーワード" variant="outlined" type="text" name="key"/>
          
           <SearchButton onClick={keywordSubmit} className={classes.keyButton} type="submit" />
-
+        </div>
         <br className={classes.end} />
-        
-        <Typography className={classes.left} variant="h5" component="h2">
+        <div style={{borderTop: '5px solid' ,}}>
+        <Typography className={classes.left} variant="h5" component="h2" style={{backgroundColor: '#FFF994',fontWeight: 'bold' ,borderRight: '2px solid' ,}}>
+          ●条件検索
+        </Typography>
+        </div>
+        <br className={classes.end} />
+        <div style={{position: 'relative',borderBottom: '2px solid' ,borderTop: '2px solid' ,padding: '0 0 8px 0' ,fontSize: '0' ,}}>
+        <Typography className={classes.left} variant="h5" component="h2" style={{backgroundColor: '#FFF994' ,borderRight: '2px solid' ,}}>
           職種
         </Typography>
 
-
-        <div>
-          <FormControl className={classes.formControl}>
-            <InputLabel>希望職種</InputLabel>
-            <Select
-              multiple
-              value={jobName}
-              onChange={jobChange}
-              input={<Input />}
-              renderValue={(selected) => selected.join(', ')}
-              MenuProps={MenuProps}
-            >
-              {job.map((name) => (
-                <MenuItem key={name.id} value={name.name}>
-                  <Checkbox checked={jobName.indexOf(name.name) > -1} />
-                  <ListItemText primary={name.name} />
-                </MenuItem>
-              ))}
-            </Select>
-            <FormHelperText>3つまで選択可能です。</FormHelperText>
-          </FormControl>
-        </div>
-
+        
+        <FormControl className={classes.formControl} style={{margin: '0 0 0 10px' ,}}>
+          <InputLabel style={{padding: '0 0 0 10px' ,}}>希望職種</InputLabel>
+          <Select
+            multiple
+            value={jobName}
+            onChange={jobChange}
+            input={<Input />}
+            renderValue={(selected) => selected.join(', ')}
+            MenuProps={MenuProps}
+          >
+            {job.map((name) => (
+              <MenuItem key={name.id} value={name.name}>
+                <Checkbox checked={jobName.indexOf(name.name) > -1} />
+                <ListItemText primary={name.name} />
+              </MenuItem>
+            ))}
+          </Select>
+          <FormHelperText style={{fontSize: '12px'}}>
+            3つまで選択可能です
+          </FormHelperText>
+        </FormControl>
                 
         <br className={classes.end} />
         
 
-        <Typography className={classes.left} variant="h5" component="h2">
+        <Typography className={classes.left} variant="h5" component="h2" style={{backgroundColor: '#FFF994' ,borderRight: '2px solid' ,}}>
           スキルレベル
         </Typography>
 
@@ -577,7 +582,7 @@ const MenuProps = {
         
         <br className={classes.end} /> */}
 
-        <Typography className={classes.left} variant="h5" component="h2">
+        <Typography className={classes.left} variant="h5" component="h2" style={{backgroundColor: '#FFF994' ,borderRight: '2px solid' ,}}>
           担当営業名
         </Typography>
 
@@ -592,7 +597,7 @@ const MenuProps = {
           <MenuItem className={classes.brank}></MenuItem>
           {salesItems}
         </TextField>
-
+        </div>
         <br className={classes.end} />
         <div className={classes.left}><br /></div>
         <div className={classes.left}><br /></div>
@@ -602,8 +607,8 @@ const MenuProps = {
         <div className={classes.left}><br /></div>
         {/* <div className={classes.left}><br /></div> */}
 
-        <Grid item xs={11} className={classes.button1}>
-          <DeleteButton onClick={clearAll} />
+        <Grid item xs={11} className={classes.button1} style={{margin: '0 0 0 50px' ,}}>
+          <DeleteButton onClick={clearAll}/>
           <SearchButton onClick={formSubmit} className={classes.button} />
         </Grid>
 

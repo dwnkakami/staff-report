@@ -20,17 +20,36 @@ import NumberFormat from 'react-number-format';
 
 
 const useStyles = makeStyles((theme) => ({
-    form: {
-      textAlign: "center",
-      margin: "auto",
-      position: "relative",
-    },
+    // form: {
+    //   textAlign: "center",
+    //   margin: "auto",
+    //   position: "relative",
+    // },
     button: {
       left: theme.spacing(2),
       // minWidth:200,
     },
     button2: {
       left: theme.spacing(2),
+      backgroundColor:　"#536DFE",
+    },
+    tablebody: {
+      width: "95%",
+      maxwidth: 800,
+    },
+    tablehead: {
+      borderBottom: "solid 1px",
+      borderRight: "solid 1px",
+      textAlign: "center",
+      backgroundColor:　"#FFF994",
+    },
+    tabledata: {
+      borderBottom: "solid 1px",
+      backgroundColor: "#FFFFFF",
+    },
+    skillarea: {
+      // width: "100%",
+      marginRight: 5,
     },
     formControl: {
       minWidth: 220,
@@ -45,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       margin: 'none'
     },
     content: {
-      width: '80%',
+      width: '100%',
       position: 'relative',
     },
     content_2: {
@@ -392,7 +411,7 @@ const clear = () => {
 
   return (
       <Paper elevation={3}>
-        {/* <DialogTitle>
+        <DialogTitle>
           <div style={{ display: 'flex' }}>
             <AddIcon style={{ fontSize: '25px'}}/>
             <AssignmentIcon style={{ fontSize: '40px' }}/>
@@ -400,11 +419,15 @@ const clear = () => {
               案件登録
             </Typography>
           </div>
-        </DialogTitle> */}
+        </DialogTitle>
 
 
 
       <Grid container spacing={3} className={classes.form}>
+        <table className={classes.tablebody}>
+          <tr>
+            <th className={classes.tablehead}>案件名</th>
+          <td className={classes.tabledata}>
         <Grid item xs={4}>
           <TextField
             required
@@ -419,6 +442,11 @@ const clear = () => {
             className={classes.content}
             />
         </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>案件保有会社名</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>  
           <FormControl required variant="outlined" className={classes.content}>
           <InputLabel>案件保有会社名</InputLabel>
@@ -437,6 +465,11 @@ const clear = () => {
           </Select>
           </FormControl>
       </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>依頼単価</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
         <TextField
           required
@@ -453,10 +486,15 @@ const clear = () => {
           className={classes.content}
         />
       </Grid>
-      </Grid>
+          </td>
+          </tr>
+      {/* </Grid> */}
 
 
-      <Grid container spacing={3} className={classes.form}>
+      {/* <Grid container spacing={3} className={classes.form}> */}
+          <tr>
+            <th className={classes.tablehead}>勤務地</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
         <TextField
          required
@@ -473,6 +511,11 @@ const clear = () => {
         >
         </TextField>
       </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>募集人数</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
         <TextField
           required
@@ -487,6 +530,11 @@ const clear = () => {
           className={classes.content}
         />
       </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>職種</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
         <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">職種</InputLabel>
@@ -505,13 +553,18 @@ const clear = () => {
         </Select>
       </FormControl>
       </Grid>
-      </Grid>
+          </td>
+          </tr>
+      {/* </Grid> */}
 
 
 
-      <Grid container spacing={3} className={classes.form}>
-      <Grid item xs={4}>
-        <FormControl required variant="outlined" className={classes.content}>
+      {/* <Grid container spacing={3} className={classes.form}> */}
+          <tr>
+            <th className={classes.tablehead}>Skill1・2・3</th>
+          <td className={classes.tabledata}>
+      <Grid item xs={8}>
+        <FormControl required variant="outlined" className={classes.skillarea}>
         <InputLabel htmlFor="outlined-age-native-simple" >skill①</InputLabel>
         <Select
           value={skill1}
@@ -527,9 +580,9 @@ const clear = () => {
         ))}
         </Select>
       </FormControl>
-      </Grid>
-      <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+      {/* </Grid>
+      <Grid item xs={4}> */}
+        <FormControl variant="outlined" className={classes.skillarea}>
         <InputLabel htmlFor="outlined-age-native-simple">skill②</InputLabel>
         <Select
           value={skill2}
@@ -545,9 +598,9 @@ const clear = () => {
           ))}
         </Select>
       </FormControl>
-      </Grid>
-      <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content}>
+      {/* </Grid>
+      <Grid item xs={4}> */}
+        <FormControl variant="outlined" className={classes.skillarea}>
         <InputLabel htmlFor="outlined-age-native-simple">skill③</InputLabel>
         <Select
           value={skill3}
@@ -564,11 +617,16 @@ const clear = () => {
         </Select>
       </FormControl>
       </Grid>
-      </Grid>
+          </td>
+          </tr>
+      {/* </Grid> */}
 
 
 
-      <Grid container spacing={3} className={classes.form}>
+      {/* <Grid container spacing={3} className={classes.form}> */}
+          <tr>
+            <th className={classes.tablehead}>管理者名</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
         <FormControl required variant="outlined" className={classes.content}>
         <InputLabel htmlFor="outlined-age-native-simple">管理者名</InputLabel>
@@ -587,6 +645,11 @@ const clear = () => {
         </Select>
       </FormControl>
       </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>案件開始日・終了日</th>
+          <td className={classes.tabledata}>
     <Grid item xs={4}>
         <TextField
         required
@@ -601,6 +664,7 @@ const clear = () => {
         className={classes.content}
       />
       </Grid>
+      ～
       <Grid item xs={4}>
        <TextField
         required
@@ -612,14 +676,18 @@ const clear = () => {
         label="案件終了日"
         inputProps={{max:"9999-12-31",}}
         InputLabelProps={{shrink: true,}}
-        className={classes.content}
       />
       </Grid>
-      </Grid>
+          </td>
+          </tr>
+      {/* </Grid> */}
 
-      <Grid container className={classes.form}>
+      {/* <Grid container className={classes.form}> */}
+          <tr>
+            <th className={classes.tablehead}>募集内容</th>
+          <td className={classes.tabledata}>
       <Grid itex xs={4}>
-        <FormControl required variant="outlined" className={classes.content_2}>
+        <FormControl required variant="outlined" className={classes.content}>
           <InputLabel htmlFor="outlined-adornment-amount">募集内容</InputLabel>
           <OutlinedInput
          name="contents"
@@ -635,8 +703,13 @@ const clear = () => {
          />
         </FormControl>
       </Grid>  
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>スキル詳細</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
-        <FormControl required variant="outlined" className={classes.content_3}>
+        <FormControl required variant="outlined" className={classes.content}>
           <InputLabel htmlFor="outlined-adornment-amount">スキル詳細</InputLabel>
           <OutlinedInput
          name="skillcontents"
@@ -652,8 +725,13 @@ const clear = () => {
          />
         </FormControl>
       </Grid>
+          </td>
+          </tr>
+          <tr>
+            <th className={classes.tablehead}>備考</th>
+          <td className={classes.tabledata}>
       <Grid item xs={4}>
-        <FormControl variant="outlined" className={classes.content_4}>
+        <FormControl variant="outlined" className={classes.content}>
           <InputLabel htmlFor="outlined-adornment-amount">備考</InputLabel>
           <OutlinedInput
          name="note"
@@ -668,6 +746,9 @@ const clear = () => {
          />
         </FormControl>
       </Grid>
+          </td>
+          </tr>
+      </table>
       </Grid>
 
       <Grid container spacing={5} justify="flex-end" className={classes.form}>
@@ -675,7 +756,7 @@ const clear = () => {
         <Button onClick={clear}  variant="contained">
         クリア
         </Button>
-        <Button onClick={submit} className={classes.button2} variant="contained" style={{ backgroundColor: "#FFF994" }}>
+        <Button onClick={submit} className={classes.button2} variant="contained">
          登録 
         </Button>
       </Grid>
