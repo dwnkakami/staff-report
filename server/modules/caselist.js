@@ -20,7 +20,7 @@ exports.getData = (req, res) => {
   con.connect((err) => {
     try {
       var err = () => {throw err}
-      console.log('Connected!');
+      // 
     } catch (err) {
       console.log('err')
     }

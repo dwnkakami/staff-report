@@ -4,7 +4,7 @@ import { fade } from "@material-ui/core/styles/colorManipulator";
 export default makeStyles(theme => ({
   logotype: {
     color: "white",
-    marginLeft: theme.spacing(2.5),
+    marginLeft: theme.spacing(0),
     marginRight: theme.spacing(2.5),
     fontWeight: 500,
     fontSize: 18,
@@ -15,6 +15,7 @@ export default makeStyles(theme => ({
   },
   appBar: {
     width: "100vw",
+    backgroundColor: "#00B3EA",
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["margin"], {
       easing: theme.transitions.easing.sharp,

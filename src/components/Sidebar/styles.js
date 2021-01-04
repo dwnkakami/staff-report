@@ -50,7 +50,7 @@ export default makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
     padding: theme.spacing(2),
-    backgroundColor: "#222",
+    backgroundColor: "#222D32",
   },
   profileMenuLink: {
     fontSize: 16,
@@ -69,7 +69,7 @@ export default makeStyles(theme => ({
   },
 
   sidebarList: {
-    backgroundColor: "#222",
+    backgroundColor: "#222D32",
   },
 
 }));

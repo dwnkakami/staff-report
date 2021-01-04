@@ -33,7 +33,7 @@ exports.postData = (req, res) => {
   con.connect((err) => {
     try {
       var err = () => {throw err}
-      console.log('Connected!');
+      // 
     } catch (err) {
       console.log('err')
     }
@@ -47,7 +47,7 @@ exports.postData = (req, res) => {
       } catch (err) {
         console.log('err')
       }
-      res.send('Success!!');
+      // res.send('Success!!');
 
     // const sql1 = "insert into m_matter (staff_skill_id1) select id from m_skill where m_skill.id=?"
     // console.log(req.body);

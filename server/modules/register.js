@@ -25,7 +25,7 @@ exports.postData = (req, res) => {
     con.connect((err) => {
         try {
             var err = () => {throw err}
-            console.log('Connected!');
+            
           } catch (err) {
             console.log('err')
           }
@@ -35,7 +35,7 @@ exports.postData = (req, res) => {
         con.query(sql,[req.body.id, req.body.name, req.body.role_id, req.body.password], (err, result, fields) => {
             try {
                 var err = () => {throw err}
-                console.log('Connected!');
+                
               } catch (err) {
                 console.log('err')
               }

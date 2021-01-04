@@ -18,7 +18,7 @@ exports.postData = (req, res) => {
   con.connect((err) => {
     try {
       var err = () => {throw err}
-      console.log('Connected!');
+      
     } catch (err) {
       console.log('err')
     }
@@ -28,7 +28,7 @@ exports.postData = (req, res) => {
     con.query(sql, (err, result, fields) => {
       try {
         var err = () => {throw err}
-        console.log('Connected!');
+        
       } catch (err) {
         console.log('err')
       }
