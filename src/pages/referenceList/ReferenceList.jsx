@@ -21,7 +21,8 @@ import ReferenceDetail from '../referencedetail/ReferenceDetail';
 const StyledTableCell = withStyles((theme) => ({
     head: {
         fontWeight: 'bolder',
-        backgroundColor: "#eee",
+        // color: "white",
+        backgroundColor: "#bccddb",
         color: theme.palette.common.black,
     },
     body: {
@@ -33,10 +34,10 @@ const StyledTableCell = withStyles((theme) => ({
 const StyledTableRow = withStyles((theme) => ({
     root: {
         '&:nth-of-type(odd)': {
-            backgroundColor: "#fff"
+            backgroundColor: "white"
         },
         '&:nth-of-type(even)': {
-            backgroundColor: "#eee"
+            backgroundColor: "#CCF6C8"
         },
     },
 }))(TableRow);
@@ -194,6 +195,11 @@ export default function ReferenceList() {
                                     <StyledTableCell align="center">発注元会社</StyledTableCell>
                                     <StyledTableCell align="center">状態</StyledTableCell>
                                     <StyledTableCell align="center">詳細</StyledTableCell>
+                                    {/* <StyledTableCell align="center" style={{ background:　"#aeea00" }}>案件名</StyledTableCell>
+                                    <StyledTableCell align="center" style={{ background:　"#aeea00" }}>スタッフ名</StyledTableCell>
+                                    <StyledTableCell align="center" style={{ background:　"#aeea00" }}>発注元会社</StyledTableCell>
+                                    <StyledTableCell align="center" style={{ background:　"#aeea00" }}>状態</StyledTableCell>
+                                    <StyledTableCell align="center" style={{ background:　"#aeea00" }}>詳細</StyledTableCell> */}
                                 </TableRow>
                             </TableHead>
                                 {/* <EnhancedTableHead
