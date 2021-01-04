@@ -12,7 +12,7 @@ const passwordValidation = (password, setError, setMsg) => {
     const useridValidation = (userid, setError, setMsg) => {
         if (!userid || isNaN(Number(userid))) {
             setError(true)
-            setMsg("ユーザーIDは数字で入力してください。")
+            setMsg("ユーザーIDは半角英数字で入力してください。")
         　　return false
         };
             setError(false)
