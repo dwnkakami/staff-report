@@ -13,6 +13,11 @@ export default makeStyles(theme => ({
       display: "none",
     },
   },
+  logoicon: {
+    width: "30px",
+    height: "30px",
+    marginRight: theme.spacing(0.5),
+  },
   appBar: {
     width: "100vw",
     backgroundColor: "#00B3EA",

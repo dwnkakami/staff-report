@@ -36,6 +36,9 @@ import {
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut, UserProfile } from "../../context/UserContext";
 
+// logo
+import logo from "../../../src/images/logo.png"
+
 
 const messages = [
   {
@@ -158,8 +161,9 @@ export default function Header(props) {
             />
           )}
         </IconButton>
+        <img src={logo} alt="logo" className={classNames(classes.logoicon)} />
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          Staff-Report
+          スタレポ
         </Typography>
         <div className={classes.grow} />
         

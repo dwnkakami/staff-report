@@ -21,6 +21,7 @@ export default makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    WebkitOverflowScrolling: "none",
   },
   drawerClose: {
     transition: theme.transitions.create("width", {
@@ -28,6 +29,7 @@ export default makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     overflowX: "hidden",
+    overfrowY: "hidden",
     width: theme.spacing(7) + 40,
     [theme.breakpoints.down("sm")]: {
       width: drawerWidth,
@@ -53,7 +55,7 @@ export default makeStyles(theme => ({
     backgroundColor: "#222D32",
   },
   profileMenuLink: {
-    fontSize: 16,
+    fontSize: 12,
     textDecoration: "none",
     "&:hover": {
       cursor: "pointer",

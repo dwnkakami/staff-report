@@ -127,7 +127,7 @@ function Sidebar({ location } ,props) {
   return (
     <Drawer
       variant={isPermanent ? "permanent" : "temporary"}
-      className={classNames(classes.drawer, {
+      className={classNames(classes.scrollBar, classes.drawer, {
         [classes.drawerOpen]: isSidebarOpened,
         [classes.drawerClose]: !isSidebarOpened,
       })}
